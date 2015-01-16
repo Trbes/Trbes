@@ -1,5 +1,18 @@
 class ApplicationController < ActionController::Base
+  respond_to :html
+
   protect_from_forgery
+
+  helper_method :current_group
+  def current_group
+    @current_group ||= Group.find_by(subdomain: request.subdomain)
+  end
+
+  def ensure_group_is_loaded!
+    unless current_group.present?
+      render text: "Not found group for this subdomain", status: 404
+    end
+  end
 
   protected
 
