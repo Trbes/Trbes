@@ -10,7 +10,7 @@ Rails.application.routes.draw do
   authenticated :user do
     resources :groups, only: %i( new create )
 
-    root to: 'user/dashboard#index', as: :user_root
+    root to: 'user_scope/dashboard#index', as: :user_root
   end
 
   root to: 'dashboard#index'

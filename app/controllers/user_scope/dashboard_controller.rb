@@ -1,4 +1,4 @@
-class User
+module UserScope
   class DashboardController < ApplicationController
     expose(:groups)
 
