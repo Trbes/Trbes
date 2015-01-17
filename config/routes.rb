@@ -8,7 +8,7 @@ Rails.application.routes.draw do
   end
 
   authenticated :user do
-    resources :groups, only: [:new, :create]
+    resources :groups, only: %i( new create )
 
     root to: 'user/dashboard#index', as: :user_root
   end

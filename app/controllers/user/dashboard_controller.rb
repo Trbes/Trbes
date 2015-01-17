@@ -1,6 +1,8 @@
-class User::DashboardController < ApplicationController
-  expose(:groups)
+class User
+  class DashboardController < ApplicationController
+    expose(:groups)
 
-  def index
+    def index
+    end
   end
 end
