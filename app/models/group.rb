@@ -1,4 +1,6 @@
 class Group < ActiveRecord::Base
-  validates :name, :subdomain, presence: true
+  has_many :posts
+
+  validates :name, :subdomain, presence: true, uniqueness: true
   validates :subdomain, subdomain: true
 end
