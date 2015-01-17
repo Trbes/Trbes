@@ -18,7 +18,7 @@ gem 'autoprefixer-rails'
 gem 'therubyracer', platforms: :ruby
 gem 'uglifier', '>= 1.3.0'
 
-gem 'simple_form', '~> 3.0.2'
+gem 'simple_form', '~> 3.1'
 gem 'active_link_to'
 gem 'title'
 gem 'github-markdown' # only for dashboard controller
@@ -44,7 +44,6 @@ group :test do
   gem 'formulaic'
   gem 'launchy'
   gem 'shoulda-matchers'
-  gem 'site_prism'
   gem 'webmock', require: false
 end
 
@@ -60,6 +59,7 @@ group :development, :test do
   gem 'rails_best_practices'
   gem 'rspec-rails', '~> 3.0'
   gem 'rubocop'
+  gem 'faker'
 end
 
 group :development do
