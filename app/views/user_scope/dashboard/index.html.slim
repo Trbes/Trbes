@@ -5,6 +5,6 @@
     ul
       - groups.each do |group|
         li
-          = link_to group.name, group_path(group)
+          = link_to_group(group)
 
     = link_to "Create group", new_group_path
