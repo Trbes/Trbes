@@ -1,3 +1,10 @@
 .row
   .columns
-    h1 Trbes dashboard
+    h1 User dashboard
+
+    ul
+      - groups.each do |group|
+        li
+          = link_to_group(group)
+
+    = link_to "Create group", new_group_path
