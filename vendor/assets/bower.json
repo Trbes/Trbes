@@ -2,6 +2,7 @@
   "name": "dsl-generated dependencies",
   "dependencies": {
     "foundation": "latest",
-    "foundation-icons": "latest"
+    "foundation-icons": "latest",
+    "modernizr": "latest"
   }
 }
