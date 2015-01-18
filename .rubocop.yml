@@ -5,6 +5,7 @@ AllCops:
     - db/**/*
     - lib/templates/**/*
     - vendor/**/*
+    - Guardfile
 
 Style/Documentation:
   Description: 'Document classes and non-namespace modules.'
@@ -14,9 +15,15 @@ Style/SymbolArray:
   Description: 'Use %i or %I for arrays of symbols.'
   Enabled: true
 
-Style/LineLength:
+Metrics/LineLength:
   Description: 'Limit lines to 120 characters.'
   Max: 120
+
+Style/AlignParameters:
+  EnforcedStyle: with_fixed_indentation
+  SupportedStyles:
+    - with_first_parameter
+    - with_fixed_indentation
 
 # Align ends correctly.
 Lint/EndAlignment:
