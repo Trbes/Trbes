@@ -1,0 +1,9 @@
+.row
+  .columns
+    = simple_form_for(group) do |f|
+      = f.input :name
+      = f.input :description
+      = f.input :subdomain
+      = f.input :private, as: :boolean
+
+      = f.submit 'Create', class: 'button'

@@ -1,16 +1,16 @@
 source 'https://rubygems.org'
 
-ruby '2.1.5'
+ruby '2.2.0'
 
 # the most important stuff
-gem 'rails', '4.1.8'
+gem 'rails', '4.2.0'
 gem 'pg'
 
 # frontend stack: preprocessors, libraries, minifiers, assets
 # plus view stack: helpers, builders, etc.
-gem 'sass-rails', '~> 4.0.0'
+gem 'sass-rails', '~> 5.0'
 gem 'slim'
-gem 'coffee-rails', '~> 4.0.0'
+gem 'coffee-rails', '~> 4.1.0'
 gem 'foundation-rails'
 gem 'foundation-icons-sass-rails'
 gem 'jquery-rails'
