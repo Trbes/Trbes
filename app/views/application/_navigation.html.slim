@@ -1,12 +1,14 @@
-nav.top-bar( data-topbar )
+.contain-to-grid
+  nav.top-bar( data-topbar )
 
-  ul.title-area
-    li.name
-      h1= link_to t('titles.application'), root_path
-    li.toggle-topbar
-      = link_to '#' do
-        i.fi-list
+    ul.title-area
+      li.name
+        h1= link_to t('titles.application'), root_path
+      li.toggle-topbar.menu-icon
+        = link_to '#' do
+          span
 
-  section.top-bar-section
-    = render 'navigation_main'
-    = render 'navigation_user'
+
+    section.top-bar-section
+      = render 'navigation_main'
+      = render 'navigation_user'

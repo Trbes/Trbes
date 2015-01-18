@@ -11,12 +11,11 @@ gem 'pg'
 gem 'sass-rails', '~> 5.0'
 gem 'slim'
 gem 'coffee-rails', '~> 4.1.0'
-gem 'foundation-rails'
-gem 'foundation-icons-sass-rails'
 gem 'jquery-rails'
 gem 'autoprefixer-rails'
 gem 'therubyracer', platforms: :ruby
 gem 'uglifier', '>= 1.3.0'
+gem 'bower-rails'
 
 gem 'simple_form', '~> 3.1'
 gem 'active_link_to'

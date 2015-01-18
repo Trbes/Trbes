@@ -1,0 +1,13 @@
+{
+  "name": "foundation-icons",
+  "homepage": "https://github.com/zurb/foundation-icons",
+  "_release": "ed2ae6b59b",
+  "_resolution": {
+    "type": "branch",
+    "branch": "master",
+    "commit": "ed2ae6b59bf7cea55f93cdcd64056216199b143c"
+  },
+  "_source": "git://github.com/zurb/foundation-icons.git",
+  "_target": "*",
+  "_originalSource": "foundation-icons"
+}
