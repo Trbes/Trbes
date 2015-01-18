@@ -134,7 +134,6 @@ GEM
     fuubar (2.0.0.rc1)
       rspec (~> 3.0.rc1)
       ruby-progressbar (~> 1.4)
-    github-markdown (0.6.4)
     globalid (0.3.0)
       activesupport (>= 4.1.0)
     haml (4.0.5)
@@ -142,6 +141,10 @@ GEM
     highline (1.6.21)
     hike (1.2.3)
     i18n (0.7.0)
+    interactor (3.1.0)
+    interactor-rails (2.0.1)
+      interactor (~> 3.0)
+      rails (>= 3, < 5)
     jquery-rails (3.1.2)
       railties (>= 3.0, < 5.0)
       thor (>= 0.14, < 2.0)
@@ -349,7 +352,7 @@ DEPENDENCIES
   foreman
   formulaic
   fuubar (~> 2.0.0.rc1)
-  github-markdown
+  interactor-rails
   jquery-rails
   kaminari
   launchy
