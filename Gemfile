@@ -30,6 +30,7 @@ gem 'seedbank'
 gem 'thin'
 gem 'interactor-rails'
 gem 'factory_girl_rails'
+gem 'faker'
 
 group :staging, :production do
   gem 'rails_12factor'
@@ -58,7 +59,6 @@ group :development, :test do
   gem 'rails_best_practices'
   gem 'rspec-rails', '~> 3.0'
   gem 'rubocop'
-  gem 'faker'
 end
 
 group :development do
