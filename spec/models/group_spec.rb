@@ -2,7 +2,7 @@ require 'rails_helper'
 
 describe Group do
   describe 'associations' do
-    it { is_expected. to have_many(:posts) }
+    it { is_expected. to have_many(:posts).dependent(:destroy) }
   end
 
   describe 'validations' do
