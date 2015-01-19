@@ -76,5 +76,7 @@ Rails.application.configure do
 
   # Application specific options
   #
-  config.host = 'fs-rails-base-staging.herokuapp.com'
+  config.host = 'trbes-staging.herokuapp.com'
+
+  config.action_dispatch.tld_length = 2
 end

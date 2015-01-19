@@ -29,6 +29,7 @@ gem 'rollbar', '~> 0.10.3'
 gem 'seedbank'
 gem 'thin'
 gem 'interactor-rails'
+gem 'factory_girl_rails'
 
 group :staging, :production do
   gem 'rails_12factor'
@@ -52,7 +53,6 @@ group :development, :test do
   gem 'bundler-audit'
   gem 'byebug'
   gem 'dotenv-rails'
-  gem 'factory_girl_rails'
   gem 'fuubar', '~> 2.0.0.rc1'
   gem 'pry-rails'
   gem 'rails_best_practices'
