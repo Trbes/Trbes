@@ -1,8 +1,10 @@
 Rails.application.routes.draw do
   devise_for :users
 
+  resources :groups, only: %i( new create )
+
   constraints(subdomain: SubdomainValidator::REG_EXP) do
-    resources :groups, only: %i( show new create )
+    resources :groups, only: %i( show )
     resources :posts, only: %i( show new create )
 
     root to: 'groups#show', as: :group_root
