@@ -1,8 +1,15 @@
 FactoryGirl.define do
   factory :group do
-    name { Faker::Company.name }
+    sequence :name do |n|
+      "#{Faker::Company.name} #{n}"
+    end
+
     description { Faker::Company.catch_phrase }
-    subdomain { Faker::Internet.domain_word }
+
+    sequence :subdomain do |n|
+      "#{Faker::Internet.domain_word}#{n}"
+    end
+
     private false
   end
 end
