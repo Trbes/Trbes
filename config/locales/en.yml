@@ -23,7 +23,7 @@ en:
   hello: "Hello world"
 
   titles:
-    application: Trbes
+    application: tr
     dashboard:
       index: Dashboard
     devise:

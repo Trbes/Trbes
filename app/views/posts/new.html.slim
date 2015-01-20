@@ -1,6 +1,10 @@
 .container
-  = simple_form_for(post) do |f|
-    = f.input :title
-    = f.input :body
+  .row
+    .col-md-6.col-md-push-3
+      h2 Post to group
 
-    = f.submit 'Create', class: 'button'
+      = simple_form_for(post) do |f|
+        = f.input :title
+        = f.input :body
+
+        = f.button :submit

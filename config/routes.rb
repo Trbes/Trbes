@@ -10,5 +10,7 @@ Rails.application.routes.draw do
     root to: 'groups#show', as: :group_root
   end
 
+  get '/frontend/posts' => 'frontend#posts'
+
   root to: 'dashboard#index'
 end

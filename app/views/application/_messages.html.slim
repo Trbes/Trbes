@@ -1,6 +1,6 @@
-.container
-  - flash.each do |type, content|
-    div( role="alert" class="alert #{bootstrap_class_for(type)} alert-dismissible")
+- flash.each do |type, content|
+  div( role="alert" class="alert #{bootstrap_class_for(type)} alert-dismissible")
+    .container
       button.close aria-label="Close" data-dismiss="alert" type="button"
         span aria-hidden="true"  &times;
       = content
