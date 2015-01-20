@@ -1,5 +1,4 @@
 module ApplicationHelper
-
   BOOTSTRAP_FLASH_MAPPER = {
     success: 'alert-success',
     error: 'alert-danger',
