@@ -1,12 +1,11 @@
-.row
-  .columns
-    h1.title= current_group.name
-    h4= current_group.description
+.container
+  h1.title= current_group.name
+  h4= current_group.description
 
-    - if user_signed_in?
-      = link_to "Create post", new_post_path
+  - if user_signed_in?
+    = link_to "Create post", new_post_path
 
-    - current_group.posts.each do |post|
-      hr
-      h5= post.title
-      p= post.body
+  - current_group.posts.each do |post|
+    hr
+    h5= post.title
+    p= post.body

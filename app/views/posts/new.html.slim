@@ -1,7 +1,6 @@
-.row
-  .columns
-    = simple_form_for(post) do |f|
-      = f.input :title
-      = f.input :body
+.container
+  = simple_form_for(post) do |f|
+    = f.input :title
+    = f.input :body
 
-      = f.submit 'Create', class: 'button'
+    = f.submit 'Create', class: 'button'

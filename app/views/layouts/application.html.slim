@@ -16,6 +16,11 @@ html class="no-js" lang="en"
     /! Le modernizr
     = javascript_include_tag "modernizr/modernizr"
 
+    /! HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries
+    /! WARNING: Respond.js doesn't work if you view the page via file://
+    /![if lt IE 9]
+      = javascript_include_tag 'ielt9_support'
+
   body
     #root
       = render "navigation"

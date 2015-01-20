@@ -1,11 +1,10 @@
-.row
-  .columns
-    h1 Dashboard
+.container
+  h1 Dashboard
 
-    ul
-      - groups.each do |group|
-        li
-          = link_to_group(group)
+  ul
+    - groups.each do |group|
+      li
+        = link_to_group(group)
 
-    - if user_signed_in?
-      = link_to "Create group", new_group_path
+  - if user_signed_in?
+    = link_to "Create group", new_group_path

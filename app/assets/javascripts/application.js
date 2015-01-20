@@ -6,7 +6,5 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require foundation
-//= require_tree .
-
-$(document).foundation();
+//= require bootstrap-sass-official/assets/javascripts/bootstrap-sprockets
+//= require scripts

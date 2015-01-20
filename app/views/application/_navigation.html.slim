@@ -1,14 +1,16 @@
-.contain-to-grid
-  nav.top-bar( data-topbar )
+nav.navbar.navbar-default
+  .container
 
-    ul.title-area
-      li.name
-        h1= link_to t('titles.application'), root_url(subdomain: nil)
-      li.toggle-topbar.menu-icon
-        = link_to '#' do
-          span
+    /! Brand and toggle get grouped for better mobile display
+    .navbar-header
+      button.navbar-toggle.collapsed data-target="#navbar_navigation" data-toggle="collapse" type="button"
+        span.sr-only Toggle navigation
+        span.icon-bar
+        span.icon-bar
+        span.icon-bar
+      = link_to t('titles.application'), root_url(subdomain: nil), class: 'navbar-brand'
 
-
-    section.top-bar-section
+    /! Collect the nav links, forms, and other content for toggling
+    #navbar_navigation.collapse.navbar-collapse
       = render 'navigation_main'
       = render 'navigation_user'

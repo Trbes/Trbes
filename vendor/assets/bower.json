@@ -1,8 +1,13 @@
 {
   "name": "dsl-generated dependencies",
   "dependencies": {
-    "foundation": "latest",
-    "foundation-icons": "latest",
-    "modernizr": "latest"
+    "bootstrap-sass-official": "latest",
+    "bootstrap-social": "latest",
+    "breakpoint-sass": "latest",
+    "animate.css": "latest",
+    "modernizr": "latest",
+    "html5shiv": "latest",
+    "respond": "latest",
+    "enquire": "latest"
   }
 }

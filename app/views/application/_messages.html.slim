@@ -1,4 +1,6 @@
-- flash.each do |type, content|
-  div( data-alert class="alert-box #{type}" )
-    = content
-    a.close &times;
+.container
+  - flash.each do |type, content|
+    div( role="alert" class="alert alert-#{type} alert-dismissible")
+      button.close aria-label="Close" data-dismiss="alert" type="button"
+        span aria-hidden="true"  &times;
+      = content
