@@ -1,6 +1,11 @@
-# A sample Bowerfile
 # Check out https://github.com/42dev/bower-rails#ruby-dsl-configuration for more options
 
-asset 'foundation'
-asset 'foundation-icons'
+asset 'bootstrap-sass-official'
+asset 'bootstrap-social'
+asset 'breakpoint-sass'
+asset 'animate.css'
+
 asset 'modernizr'
+asset 'html5shiv'
+asset 'respond'
+asset 'enquire'
