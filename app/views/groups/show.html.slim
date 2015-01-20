@@ -1,9 +1,6 @@
 .container
-  h1.title= current_group.name
-  h4= current_group.description
-
   - if user_signed_in?
-    = link_to "Create post", new_post_path
+    = link_to "Create post", new_post_path, class: 'btn btn-success'
 
   - current_group.posts.each do |post|
     hr

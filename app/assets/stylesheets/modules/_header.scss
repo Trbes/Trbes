@@ -1,0 +1,49 @@
+
+.navbar-default {
+  border: 0;
+}
+
+
+.navbar-brand {
+  position: absolute;
+  margin: 0 !important;
+  padding: 20px;
+  top: 10px;
+  left: 10px;
+  height: auto;
+  font-size: 2em;
+  color: black;
+}
+
+// Group
+.navbar-group {
+  @include clearfix();
+}
+
+.group-logo {
+  float: left;
+}
+
+.group-info {
+  float: left;
+  margin: 0;
+  margin-top: 30px;
+  margin-left: $grid-gutter-width/2;
+}
+
+.group-name {
+  font-size: 1.4em;
+  font-weight: bold;
+  color: #333;
+
+  &:hover,
+  &:active,
+  &:focus {
+    color: #333;
+  }
+}
+
+.group-desc {
+  color: #696969;
+  font-size: 1.2em;
+}

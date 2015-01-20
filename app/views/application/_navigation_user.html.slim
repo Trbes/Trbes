@@ -1,9 +1,12 @@
 ul.nav.navbar-nav.navbar-right
   - if user_signed_in?
-    li.dropdown
+    li.dropdown.dropdown-profile
       a.dropdown-toggle aria-expanded="false" data-toggle="dropdown" href="#" role="button"
-        = current_user.full_name_with_email
-        span.caret
+        div.profile-info
+          = current_user.full_name
+          div Using <strong>default</strong> profile
+        = image_tag('sample/user_photo.jpg', class: 'profile-photo', width: 48, height: 48)
+        /! span.caret
       ul.dropdown-menu role="menu"
         li
           a href=edit_user_registration_path
