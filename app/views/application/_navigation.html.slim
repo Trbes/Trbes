@@ -3,11 +3,12 @@ nav.navbar.navbar-default
 
     /! Brand and toggle get grouped for better mobile display
     .navbar-header
-      button.navbar-toggle.collapsed data-target="#navbar_navigation" data-toggle="collapse" type="button"
-        span.sr-only Toggle navigation
-        span.icon-bar
-        span.icon-bar
-        span.icon-bar
+      /!
+        button.navbar-toggle.collapsed data-target="#navbar_navigation" data-toggle="collapse" type="button"
+          span.sr-only Toggle navigation
+          span.icon-bar
+          span.icon-bar
+          span.icon-bar
 
       = link_to image_tag('logo_mini_black.png'), root_url(subdomain: nil), class: 'js-menu-trigger navbar-brand'
 
@@ -22,7 +23,8 @@ nav.navbar.navbar-default
 
 
     /! Collect the nav links, forms, and other content for toggling
-    #navbar_navigation.collapse.navbar-collapse
+    / #navbar_navigation.collapse.navbar-collapse
+    #navbar_navigation
       - render 'navigation_main'
       = render 'navigation_user'
 
