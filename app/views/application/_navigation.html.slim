@@ -9,7 +9,7 @@ nav.navbar.navbar-default
         span.icon-bar
         span.icon-bar
 
-      = link_to t('titles.application'), root_url(subdomain: nil), class: 'navbar-brand'
+      = link_to image_tag('logo_mini_black.png'), root_url(subdomain: nil), class: 'js-menu-trigger navbar-brand'
 
       - if current_group
         .navbar-group
@@ -25,3 +25,5 @@ nav.navbar.navbar-default
     #navbar_navigation.collapse.navbar-collapse
       - render 'navigation_main'
       = render 'navigation_user'
+
+= render 'navigation_main_slide_menu'

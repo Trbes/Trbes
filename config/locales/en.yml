@@ -89,6 +89,9 @@ en:
         sign_up: 'Sign up'
         edit_profile: 'Edit profile'
 
+    main_sliding_menu:
+      create_group: 'CREATE'
+
   time:
     formats:
       short_date: "%x"
