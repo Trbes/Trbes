@@ -1,4 +1,5 @@
 source 'https://rubygems.org'
+source 'https://rails-assets.org'
 
 ruby '2.2.0'
 
@@ -15,7 +16,6 @@ gem 'jquery-rails'
 gem 'autoprefixer-rails'
 gem 'therubyracer', platforms: :ruby
 gem 'uglifier', '>= 1.3.0'
-gem 'bower-rails'
 
 gem 'simple_form', '~> 3.1'
 gem 'active_link_to'
@@ -68,3 +68,14 @@ group :development do
   gem 'letter_opener'
   gem 'slim-rails'
 end
+
+# Assets gems from rails-assets.org
+gem 'rails-assets-bootstrap-sass-official'
+gem 'rails-assets-bootstrap-social'
+gem 'rails-assets-breakpoint-sass'
+gem 'rails-assets-animate.css'
+
+gem 'rails-assets-modernizr'
+gem 'rails-assets-html5shiv'
+gem 'rails-assets-respond'
+gem 'rails-assets-enquire'
