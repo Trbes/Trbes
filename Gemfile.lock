@@ -203,6 +203,7 @@ GEM
     rails-assets-bootstrap-social (4.8.0)
       rails-assets-bootstrap (~> 3)
       rails-assets-font-awesome (~> 4.2)
+    rails-assets-bourbon (4.1.1)
     rails-assets-breakpoint-sass (2.5.0)
       rails-assets-sassy-maps (< 1.0.0)
     rails-assets-enquire (2.1.2)
@@ -380,6 +381,7 @@ DEPENDENCIES
   rails-assets-animate.css
   rails-assets-bootstrap-sass-official
   rails-assets-bootstrap-social
+  rails-assets-bourbon
   rails-assets-breakpoint-sass
   rails-assets-enquire
   rails-assets-html5shiv

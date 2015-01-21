@@ -1,0 +1,32 @@
+$profile-photo-size: 48px;
+
+.dropdown-profile {
+  &>a {
+    padding: 5px 0 !important;
+    margin-top: 30px;
+    height: $profile-photo-size;
+    background-color: transparent !important;
+
+    .profile-info {
+      text-align: right;
+      margin-right: $profile-photo-size + 10px;
+      color: $brand-primary;
+
+      div {
+        color: #696969;
+      }
+    }
+
+    .profile-photo {
+      @include size($profile-photo-size $profile-photo-size);
+      position: absolute;
+      top: 0;
+      right: 0;
+    }
+  }
+
+  .dropdown-menu {
+    text-align: center;
+  }
+}
+

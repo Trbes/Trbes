@@ -1,0 +1,211 @@
+.sliding-menu-content {
+
+///////////////////////////////////////////////////////////////////////////////////
+  $base-accent-color: #477DCA !default;
+  $dark-gray: #333 !default;
+
+  ul {
+    padding: 0;
+    margin: 0;
+  }
+
+  li {
+    list-style: none;
+  }
+
+  a {
+    text-decoration: none;
+  }
+
+//////////////////////////////////////////////////////////////////////////////////
+
+  $sliding-menu-border-color: $dark-gray;
+  $sliding-menu-background: lighten($sliding-menu-border-color, 5%);
+  $sliding-menu-color: #fff;
+  $sliding-menu-border: 1px solid $sliding-menu-border-color;
+  $sliding-menu-background-hover: $base-accent-color;
+  $sliding-menu-color-hover: #fff;
+  $sliding-menu-background-focus: lighten($sliding-menu-background, 5%);
+  $sliding-menu-width: 220px;
+  $sliding-menu-transition-duration: 0.25s;
+  $sliding-menu-transition-easing: linear;
+  $sliding-menu-inner-padding: 0;
+  $sliding-menu-item-padding: 1em;
+
+// Overrides
+//////////////////////////////////////////////////////////////////////////////////
+
+  &#main_sliding_menu {
+    $sliding-menu-width: 360px;
+    $sliding-menu-transition-easing: ease;
+    $sliding-menu-background: rgba(0, 0, 0, 0.8);
+    $sliding-menu-inner-padding: 36px 50px;
+    $sliding-menu-color: #cacaca;
+    $sliding-menu-border: 0;
+    $sliding-menu-background-focus: transparent;
+    $sliding-menu-background-hover: $sliding-menu-background-focus;
+    $sliding-menu-item-padding: 0;
+  }
+
+  @include position(fixed, 0px auto 0px 0px);
+  @include size($sliding-menu-width 100%);
+  @include transform(translateX(-$sliding-menu-width));
+  @include transition(all $sliding-menu-transition-duration $sliding-menu-transition-easing);
+  background: $sliding-menu-background;
+  z-index: 999999;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  padding: $sliding-menu-inner-padding;
+
+  li a {
+    border-bottom: $sliding-menu-border;
+    color: $sliding-menu-color;
+    display: block;
+    font-weight: bold;
+    padding: $sliding-menu-item-padding;
+
+    &:focus {
+      background-color: $sliding-menu-background-focus;
+    }
+
+    &:hover {
+      background-color: $sliding-menu-background-hover;
+      color: $sliding-menu-color-hover;
+    }
+  }
+
+  &.is-visible {
+    @include transform(translateX(0));
+  }
+}
+
+.sliding-menu-fade-screen {
+  @include position(fixed, 0px 0px 0px 0px);
+  @include transition;
+  background: black;
+  opacity: 0;
+  visibility: hidden;
+  z-index: 999998;
+
+  &.is-visible {
+    opacity: 0.4;
+    visibility: visible;
+  }
+}
+
+.sliding-menu-button {
+  @include button(flat, #477DCA);
+  padding: 10px 16px;
+  display: inline-block;
+  cursor: pointer;
+  position: relative;
+  outline: none;
+
+  img {
+    height: 1.3em;
+  }
+}
+
+#main_sliding_menu {
+
+  @include breakpoint(0 $screen-xs) {
+    @include size(320px 100%);
+    padding: 24px 30px;
+  }
+
+  color: white;
+
+  .btn-close-sliding-menu {
+    margin-top: -20px;
+    margin-bottom: 10px;
+    color: white;
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    display: none;
+    @include transition(border-color 0.25s ease-out);
+
+    @include on_link_actions {
+      border-color: white;
+    }
+  }
+
+  .container-fluid {
+    padding: 0;
+    margin-bottom: 30px;
+  }
+
+  .btn-create-group {
+    color: white;
+    font-size: 12px;
+    margin-top: 10px;
+
+    @include on_link_actions {
+      span {
+        text-decoration: underline;
+      }
+    }
+  }
+
+  .my-trbes-title {
+    font-weight: bold;
+    font-size: 0.85em;
+    margin: 0 0 3px;
+  }
+
+  .my-trbes-list {
+    li {
+      margin-bottom: 3px;
+
+      a {
+        padding: 0;
+        text-transform: uppercase;
+        font-weight: normal;
+        font-size: 0.85em;
+
+        @include on_link_actions {
+          text-decoration: underline;
+        }
+      }
+    }
+  }
+
+  .snf {
+    .search {
+      .input-group-addon {
+        background: transparent;
+        border: 0;
+        padding-left: 0;
+        padding-right: 0;
+
+        .glyphicon {
+          color: white;
+        }
+      }
+
+      input[type='search'] {
+        @include placeholder {
+          color: white;
+        }
+
+        color: white;
+        background: transparent;
+        border: 0;
+        box-shadow: none;
+        padding-left: 5px;
+      }
+    }
+
+    .favorites {
+      color: white;
+
+      @include on_link_actions {
+        .text {
+          text-decoration: underline;
+        }
+      }
+
+      .glyphicon {
+        margin-right: 5px;
+      }
+    }
+  }
+}

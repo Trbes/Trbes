@@ -3,6 +3,8 @@ class ApplicationController < ActionController::Base
 
   protect_from_forgery
 
+  expose(:groups)
+
   helper_method :current_group
   def current_group
     @current_group ||= Group.find_by(subdomain: request.subdomain)

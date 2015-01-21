@@ -1,8 +1,9 @@
 .container
-  - if user_signed_in?
-    = link_to "Create post", new_post_path, class: 'btn btn-success'
+  /
+    - if user_signed_in?
+      - link_to "Create post", new_post_path, class: 'btn btn-success'
 
   - current_group.posts.each do |post|
-    hr
     h5= post.title
     p= post.body
+    hr

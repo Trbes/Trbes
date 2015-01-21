@@ -1,0 +1,27 @@
+nav#main_sliding_menu.js-menu.sliding-menu-content
+  .container-fluid.clearfix.header
+    a.btn.btn-block.btn-close-sliding-menu.js-menu-trigger.visible-xs href="#"
+      | ← Back
+    = link_to root_url(subdomain: nil), class: 'pull-left brand' do
+      = image_tag('logo_full_white.png')
+    = link_to new_group_path, class: 'pull-right btn-create-group' do
+      | +&nbsp;
+      span= t('app.main_sliding_menu.create_group')
+
+  .container-fluid.my-trbes
+    h5.my-trbes-title My Trbes
+    ul.my-trbes-list
+      - groups.each do |group|
+        li
+          = link_to group.name, root_url(subdomain: group.subdomain)
+
+  .container-fluid.snf
+    .input-group.search
+      span#search_sliding_menu.input-group-addon
+        .glyphicon.glyphicon-search
+      input.form-control aria-describedby="search_sliding_menu" placeholder="Search for groups" type="search"
+    a.favorites href='#'
+      span.glyphicon.glyphicon-star-empty
+      span.text Favorites
+
+.js-menu-screen.sliding-menu-fade-screen
