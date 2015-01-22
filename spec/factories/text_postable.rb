@@ -1,9 +1,6 @@
 FactoryGirl.define do
-  factory :post do
+  factory :text_postable do
     title { Faker::Hacker.say_something_smart }
     body { Faker::Lorem.paragraph(10) }
-    group
-    user
-    association(:postable, factory: :text_postable)
   end
 end
