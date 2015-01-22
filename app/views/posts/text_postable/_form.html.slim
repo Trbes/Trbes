@@ -1,0 +1,10 @@
+.container
+  .row
+    .col-md-6.col-md-push-3
+      = simple_form_for(post) do |f|
+        = f.hidden_field(:postable_type, value: 'TextPostable')
+        = f.fields_for(:postable, TextPostable.new) do |f|
+          = f.input :title
+          = f.input :body
+
+        = f.button :submit

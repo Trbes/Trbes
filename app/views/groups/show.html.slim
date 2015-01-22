@@ -3,7 +3,6 @@
     - if user_signed_in?
       - link_to "Create post", new_post_path, class: 'btn btn-success'
 
-  - current_group.posts.each do |post|
-    h5= post.title
-    p= post.body
+  - posts.each do |post|
+    = render "posts/#{post.postable_type.underscore}/#{post.postable_type.underscore}", post: post
     hr
