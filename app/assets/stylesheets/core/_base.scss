@@ -1,0 +1,7 @@
+a {
+  @include transition(color 0.25s ease);
+  @include on_link_actions {
+    text-decoration: none;
+    color: gray;
+  }
+}

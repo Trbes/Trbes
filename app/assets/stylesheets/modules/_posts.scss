@@ -1,0 +1,143 @@
+
+$post-thumb-size: 96px;
+$post-upvote-width: 60px;
+$post-upvote-height: $post-thumb-size;
+$post-vertical-spacing: 30px;
+$post-component-spacing: 16px;
+
+$post-actions-min-width: $icon-circle-size * 2 + $post-component-spacing;
+$post-right-min-width: $post-actions-min-width + $post-component-spacing + $post-thumb-size;
+
+.posts-group {
+  margin-top: $grid-gutter-width;
+}
+
+ul.posts {
+  padding: 0;
+  list-style: none;
+}
+
+li.post {
+  @include clearfix();
+
+  margin-bottom: $post-vertical-spacing;
+  padding-bottom: $post-vertical-spacing;
+  border-bottom: 1px solid #eaecee;
+
+  &:last-child {
+    padding-bottom: 0;
+    margin-bottom: 0;
+    border-bottom: 0;
+  }
+}
+
+.post-upvote {
+  @include size($post-upvote-width $post-upvote-height);
+  border-radius: 5px;
+  background-color: #efefef;
+  float: left;
+  text-align: center;
+  padding: 15px 0;
+  font-size: 1.2em;
+
+  .vote-count {
+    color: #777;
+  }
+
+  a.vote {
+    padding: 10px;
+    margin-top: 10px;
+    display: block;
+  }
+}
+
+.post-content {
+  float: left;
+  margin-left: $post-component-spacing/2;
+  width: calc(100% - #{$post-right-min-width + $post-component-spacing*1.5 + $post-upvote-width});
+
+  @include breakpoint(0 ($screen-sm - 1)) {
+    width: calc(100% - #{$post-actions-min-width + $post-component-spacing*1.5 + $post-upvote-width});
+  }
+
+  .title {
+    font-size: 1.2em;
+    font-weight: bold;
+    color: #333;
+
+    @include on_link_actions {
+      text-decoration: underline;
+    }
+  }
+
+  .excerpt {
+    color: #908F8F;
+  }
+
+  .image {
+    img {
+      max-width: 100%;
+    }
+  }
+
+  .meta {
+    color: #B8B8B8;
+    font-size: 0.8em;
+    margin-top: 5px;
+
+    a {
+      // color: #908F8F;
+    }
+  }
+
+  .url {
+    i {
+      margin-right: 5px;
+    }
+  }
+}
+
+.post-right {
+  float: right;
+}
+
+a.post-thumb {
+  @include size($post-thumb-size);
+
+  min-width: $post-thumb-size;
+  float: left;
+  margin-right: $post-component-spacing;
+  border-radius: $post-thumb-size;
+  overflow: hidden;
+
+  @include breakpoint(0 ($screen-sm - 1)) {
+    display: none;
+  }
+
+  img {
+    @include size($post-thumb-size);
+  }
+
+  @include on_link_actions {
+    img {
+      @include transform(scale(1.1))
+    }
+  }
+}
+
+
+.post-actions {
+  text-align: right;
+  float: right;
+  min-width: $post-actions-min-width;
+  margin-top: ($post-thumb-size - $icon-circle-size) / 2;
+
+  a {
+    margin-left: $post-component-spacing;
+    display: inline-block;
+
+    &:first-child {
+      margin-left: 0;
+    }
+  }
+}

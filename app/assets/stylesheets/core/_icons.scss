@@ -1,6 +1,7 @@
 $icon-circle-size: 34px;
-$icon-circle-color: #f7c94c;
-$icon-circle-color-hover: #efaf00;
+$icon-circle-background-color: #f7c94c;
+$icon-circle-background-color-hover: #efaf00;
+$icon-circle-color: rgba(0, 0, 0, 0.8);
 
 .fa.circle {
   @include size($icon-circle-size);
@@ -9,16 +10,25 @@ $icon-circle-color-hover: #efaf00;
   line-height: $icon-circle-size;
   border-radius: $icon-circle-size;
   font-size: $icon-circle-size * 0.6;
-  background-color: $icon-circle-color;
-  color: rgba(0, 0, 0, 0.8);
+  background-color: $icon-circle-background-color;
+  color: $icon-circle-color;
   text-align: center;
   vertical-align: middle;
+
+  &.grey {
+    background-color: #eeeeee;
+    color: rgba(0, 0, 0, 0.25);
+  }
 }
 
 a:hover,
 a:focus,
 a:active {
   .fa.circle {
-    background-color: $icon-circle-color-hover;
+    background-color: $icon-circle-background-color-hover;
+
+    &.grey {
+      background-color: #d4d4d4;
+    }
   }
 }

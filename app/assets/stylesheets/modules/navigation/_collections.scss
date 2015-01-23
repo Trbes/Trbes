@@ -63,7 +63,7 @@ $nav-collection-link-color-hover: #333;
 
       &.fa-ellipsis-h {
         background-color: transparent;
-        color: $icon-circle-color;
+        color: $icon-circle-background-color;
       }
     }
 
@@ -72,7 +72,7 @@ $nav-collection-link-color-hover: #333;
     a:active {
       .fa-ellipsis-h {
         background-color: transparent;
-        color: $icon-circle-color-hover;
+        color: $icon-circle-background-color-hover;
       }
     }
 
