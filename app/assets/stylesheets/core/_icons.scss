@@ -1,0 +1,14 @@
+$icon-circle-size: 34px;
+$icon-circle-color: #f7c94c;
+
+.fa.circle {
+  @include size($icon-circle-size);
+
+  line-height: $icon-circle-size;
+  border-radius: $icon-circle-size;
+  font-size: $icon-circle-size * 0.6;
+  background-color: $icon-circle-color;
+  color: rgba(0, 0, 0, 0.8);
+  text-align: center;
+  vertical-align: middle;
+}

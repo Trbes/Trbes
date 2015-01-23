@@ -75,6 +75,7 @@ gem "rails-assets-bootstrap-social"
 gem "rails-assets-breakpoint-sass"
 gem "rails-assets-animate.css"
 gem "rails-assets-bourbon"
+gem "rails-assets-font-awesome"
 
 gem "rails-assets-modernizr"
 gem "rails-assets-html5shiv"

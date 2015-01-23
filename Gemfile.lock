@@ -384,6 +384,7 @@ DEPENDENCIES
   rails-assets-bourbon
   rails-assets-breakpoint-sass
   rails-assets-enquire
+  rails-assets-font-awesome
   rails-assets-html5shiv
   rails-assets-modernizr
   rails-assets-respond

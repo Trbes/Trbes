@@ -2,9 +2,9 @@
 @import 'breakpoint-sass';
 
 @mixin on_link_actions {
-    &:hover,
-    &:active,
-    &:focus {
-      @content;
-    }
+  &:hover,
+  &:active,
+  &:focus {
+    @content;
   }
+}

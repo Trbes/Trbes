@@ -70,8 +70,9 @@
   font-size: 1.2em;
   // background-color: #3ea8db !important;
 
-  .glyphicon {
+  .fa-plus {
     color: white;
+    margin-right: 5px;
   }
 
   @include on_link_actions {

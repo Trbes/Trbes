@@ -1,0 +1,50 @@
+// Styling for the filter menu in posts listing
+
+$nav-filter-link-color: #666;
+$nav-filter-link-color-hover: #333;
+
+.nav-filter {
+  font-size: 1.2em;
+
+  @include breakpoint(0 $screen-md) {
+    text-align: center;
+  }
+
+  &>li {
+    margin-right: $grid-gutter-width/2;
+
+    &>a {
+      padding-left: 0;
+      padding-right: 0;
+      border-radius: 0;
+      color: $nav-filter-link-color;
+
+
+      @include on_link_actions {
+        background-color: transparent;
+        text-decoration: underline;
+      }
+    }
+
+    &.active {
+      &>a {
+        background-color: transparent;
+        text-decoration: underline;
+        color: $nav-filter-link-color-hover;
+        font-weight: bold;
+
+        @include on_link_actions {
+          background-color: transparent;
+          text-decoration: underline;
+          color: $nav-filter-link-color-hover;
+        }
+      }
+    }
+
+    @include breakpoint(0 $screen-md) {
+      float: none;
+      display: inline-block;
+    }
+  }
+  
+}
