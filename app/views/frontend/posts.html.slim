@@ -3,36 +3,106 @@
     .col-md-4
       ul.nav.nav-pills.nav-filter
         li.active
-          a href="#"  Popular
+          a href='#'  Popular
         li
-          a href="#"  New
+          a href='#'  New
         li
-          a href="#"  Trending
+          a href='#'  Trending
 
 
     .col-md-8
       ul.nav.nav-pills.nav-collections
         li
-          a href="#"
+          a href='#'
             i.fa.fa-graduation-cap.circle
             | Knowledge
         li
-          a href="#"
+          a href='#'
             i.fa.fa-lightbulb-o.circle
             | Feature
         li
-          a href="#"
+          a href='#'
             i.fa.fa-bug.circle
             | Bug report
         li.dropdown.more
-          a.dropdown-toggle data-close-others="false" data-delay="1000" data-hover="dropdown" data-toggle="dropdown" href="#" 
+          a.dropdown-toggle data-close-others='false' data-delay='1000' data-hover='dropdown' data-toggle='dropdown' href='#' 
             i.fa.fa-ellipsis-h.circle
           ul.dropdown-menu
             li
-              a href="#" tabindex="-1"  Collection 1
+              a href='#' tabindex='-1'  Collection 1
             li
-              a href="#" tabindex="-1"  Collection 2
+              a href='#' tabindex='-1'  Collection 2
             li
-              a href="#" tabindex="-1"  Collection 3
+              a href='#' tabindex='-1'  Collection 3
             li
-              a href="#" tabindex="-1"  Collection 4
+              a href='#' tabindex='-1'  Collection 4
+  .posts-group
+    ul.posts
+      li.post
+        .upvote
+          span.vote-count 200
+          a href='#' 
+            i.fa.fa-thumbs-up
+        .content
+          a.title href='#'  The Ultimate Guide to a DIY Smart Home
+          .excerpt 
+            | I spent an unbelievable amount of time selecting the devices I would use for my new Smart Home. 
+            | I would have saved countless hours if I [...]
+          .meta
+            span.date  posted 1 day ago
+            | by
+            a.author href='#' Jérôme Gravel-Niquet
+            | •
+            a.answers href='#' 26 answers
+        .right
+          a.thumb href='#'
+            = image_tag('sample/post_thumb.jpg', width: 96, height: 96)
+          .actions
+            a.collection-tag href='#'
+              i.fa.fa-bug.circle
+            a.share href='#'
+              i.fa.fa-share-square-o.circle
+      li.post
+        .upvote
+          span.vote-count 200
+          a href='#' 
+            i.fa.fa-thumbs-up
+        .content
+          a.title href='#'  Computer Scientists Ask Supreme Court to Rule APIs Can’t Be Copyrighted
+          .excerpt  EFF wants the justices to review a court decision about APIs.
+          .url
+            i.fa.fa-link
+            a href='#' www.eff.org/ [...]
+          .meta
+            span.date  posted 1 day ago
+            | by
+            a.author href='#' Jérôme Gravel-Niquet
+            | •
+            a.answers href='#' 26 answers
+        .right
+          .actions
+            a.collection-tag href='#'
+              i.fa.fa-bug.circle
+            a.share href='#'
+              i.fa.fa-share-square-o.circle
+      li.post
+        .upvote
+          span.vote-count 200
+          a href='#' 
+            i.fa.fa-thumbs-up
+        .content
+          a.title href='#'  Remembering Steve Jobs
+          a.image
+            = image_tag('sample/post_image.jpg')
+          .meta
+            span.date  posted 1 day ago
+            | by
+            a.author href='#' Jérôme Gravel-Niquet
+            | •
+            a.answers href='#' 26 answers
+        .right
+          .actions
+            a.share href='#'
+              i.fa.fa-share-square-o.circle
+
+
