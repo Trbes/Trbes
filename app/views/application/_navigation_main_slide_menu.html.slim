@@ -2,11 +2,11 @@ nav#main_sliding_menu.js-menu.sliding-menu-content
   .container-fluid.clearfix.header
     a.btn.btn-block.btn-close-sliding-menu.js-menu-trigger.visible-xs href="#"
       | ← Back
-    = link_to root_url(subdomain: nil), class: 'pull-left brand' do
-      = image_tag('logo_full_white.png')
-    = link_to new_group_path, class: 'pull-right btn-create-group' do
+    = link_to root_url(subdomain: nil), class: "pull-left brand" do
+      = image_tag("logo_full_white.png")
+    = link_to new_group_path, class: "pull-right btn-create-group" do
       | +&nbsp;
-      span= t('app.main_sliding_menu.create_group')
+      span= t("app.main_sliding_menu.create_group")
 
   .container-fluid.my-trbes
     h5.my-trbes-title My Trbes
@@ -20,7 +20,7 @@ nav#main_sliding_menu.js-menu.sliding-menu-content
       span#search_sliding_menu.input-group-addon
         i.fa.fa-search
       input.form-control aria-describedby="search_sliding_menu" placeholder="Search for groups" type="search"
-    a.favorites href='#'
+    a.favorites href="#"
       i.fa.fa-star-o
       span.text Favorites
 

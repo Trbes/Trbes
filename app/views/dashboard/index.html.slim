@@ -6,9 +6,9 @@
       h3 Groups
       .list-group
         - groups.each do |group|
-          = link_to root_url(subdomain: group.subdomain), class: 'list-group-item' do
+          = link_to root_url(subdomain: group.subdomain), class: "list-group-item" do
             h5.list-group-item-heading= group.name
             p.list-group-item-text= group.description
 
   - if user_signed_in?
-    = link_to "Create group", new_group_path, class: 'btn btn-success'
+    = link_to "Create group", new_group_path, class: "btn btn-success"
