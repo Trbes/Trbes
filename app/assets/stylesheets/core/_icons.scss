@@ -1,8 +1,10 @@
 $icon-circle-size: 34px;
 $icon-circle-color: #f7c94c;
+$icon-circle-color-hover: #efaf00;
 
 .fa.circle {
   @include size($icon-circle-size);
+  @include transition(background-color 0.25s ease);
 
   line-height: $icon-circle-size;
   border-radius: $icon-circle-size;
@@ -11,4 +13,12 @@ $icon-circle-color: #f7c94c;
   color: rgba(0, 0, 0, 0.8);
   text-align: center;
   vertical-align: middle;
+}
+
+a:hover,
+a:focus,
+a:active {
+  .fa.circle {
+    background-color: $icon-circle-color-hover;
+  }
 }

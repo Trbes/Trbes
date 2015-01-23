@@ -37,15 +37,6 @@ $nav-collection-link-color-hover: #333;
       @include on_link_actions {
         background-color: transparent;
       }
-
-      .fa {
-        margin-right: 5px;
-      }
-
-      .fa-ellipsis-h {
-        background-color: transparent;
-        color: $icon-circle-color;
-      }
     }
 
     &.active {
@@ -58,6 +49,30 @@ $nav-collection-link-color-hover: #333;
           background-color: transparent;
           color: $nav-collection-link-color-hover;
         }
+      }
+    }
+
+    &.dropdown.open {
+      &>a {
+        background-color: transparent;
+      }
+    }
+
+    .fa {
+      margin-right: 5px;
+
+      &.fa-ellipsis-h {
+        background-color: transparent;
+        color: $icon-circle-color;
+      }
+    }
+
+    a:hover,
+    a:focus,
+    a:active {
+      .fa-ellipsis-h {
+        background-color: transparent;
+        color: $icon-circle-color-hover;
       }
     }
 
