@@ -53,122 +53,122 @@ SimpleForm.setup do |config|
     # b.use :full_error, wrap_with: { tag: :span, class: :error }
   end
 
-  config.wrappers :vertical_form, tag: 'div', class: 'form-group', error_class: 'has-error' do |b|
+  config.wrappers :vertical_form, tag: "div", class: "form-group", error_class: "has-error" do |b|
     b.use :html5
     b.use :placeholder
     b.optional :maxlength
     b.optional :pattern
     b.optional :min_max
     b.optional :readonly
-    b.use :label, class: 'control-label'
+    b.use :label, class: "control-label"
 
-    b.use :input, class: 'form-control'
-    b.use :error, wrap_with: { tag: 'span', class: 'help-block' }
-    b.use :hint,  wrap_with: { tag: 'p', class: 'help-block' }
+    b.use :input, class: "form-control"
+    b.use :error, wrap_with: { tag: "span", class: "help-block" }
+    b.use :hint,  wrap_with: { tag: "p", class: "help-block" }
   end
 
-  config.wrappers :vertical_file_input, tag: 'div', class: 'form-group', error_class: 'has-error' do |b|
+  config.wrappers :vertical_file_input, tag: "div", class: "form-group", error_class: "has-error" do |b|
     b.use :html5
     b.use :placeholder
     b.optional :maxlength
     b.optional :readonly
-    b.use :label, class: 'control-label'
+    b.use :label, class: "control-label"
 
     b.use :input
-    b.use :error, wrap_with: { tag: 'span', class: 'help-block' }
-    b.use :hint,  wrap_with: { tag: 'p', class: 'help-block' }
+    b.use :error, wrap_with: { tag: "span", class: "help-block" }
+    b.use :hint,  wrap_with: { tag: "p", class: "help-block" }
   end
 
-  config.wrappers :vertical_boolean, tag: 'div', class: 'form-group', error_class: 'has-error' do |b|
+  config.wrappers :vertical_boolean, tag: "div", class: "form-group", error_class: "has-error" do |b|
     b.use :html5
     b.optional :readonly
 
-    b.wrapper tag: 'div', class: 'checkbox' do |ba|
+    b.wrapper tag: "div", class: "checkbox" do |ba|
       ba.use :label_input
     end
 
-    b.use :error, wrap_with: { tag: 'span', class: 'help-block' }
-    b.use :hint,  wrap_with: { tag: 'p', class: 'help-block' }
+    b.use :error, wrap_with: { tag: "span", class: "help-block" }
+    b.use :hint,  wrap_with: { tag: "p", class: "help-block" }
   end
 
-  config.wrappers :vertical_radio_and_checkboxes, tag: 'div', class: 'form-group', error_class: 'has-error' do |b|
+  config.wrappers :vertical_radio_and_checkboxes, tag: "div", class: "form-group", error_class: "has-error" do |b|
     b.use :html5
     b.optional :readonly
-    b.use :label, class: 'control-label'
+    b.use :label, class: "control-label"
     b.use :input
-    b.use :error, wrap_with: { tag: 'span', class: 'help-block' }
-    b.use :hint,  wrap_with: { tag: 'p', class: 'help-block' }
+    b.use :error, wrap_with: { tag: "span", class: "help-block" }
+    b.use :hint,  wrap_with: { tag: "p", class: "help-block" }
   end
 
-  config.wrappers :horizontal_form, tag: 'div', class: 'form-group', error_class: 'has-error' do |b|
+  config.wrappers :horizontal_form, tag: "div", class: "form-group", error_class: "has-error" do |b|
     b.use :html5
     b.use :placeholder
     b.optional :maxlength
     b.optional :pattern
     b.optional :min_max
     b.optional :readonly
-    b.use :label, class: 'col-sm-3 control-label'
+    b.use :label, class: "col-sm-3 control-label"
 
-    b.wrapper tag: 'div', class: 'col-sm-9' do |ba|
-      ba.use :input, class: 'form-control'
-      ba.use :error, wrap_with: { tag: 'span', class: 'help-block' }
-      ba.use :hint,  wrap_with: { tag: 'p', class: 'help-block' }
+    b.wrapper tag: "div", class: "col-sm-9" do |ba|
+      ba.use :input, class: "form-control"
+      ba.use :error, wrap_with: { tag: "span", class: "help-block" }
+      ba.use :hint,  wrap_with: { tag: "p", class: "help-block" }
     end
   end
 
-  config.wrappers :horizontal_file_input, tag: 'div', class: 'form-group', error_class: 'has-error' do |b|
+  config.wrappers :horizontal_file_input, tag: "div", class: "form-group", error_class: "has-error" do |b|
     b.use :html5
     b.use :placeholder
     b.optional :maxlength
     b.optional :readonly
-    b.use :label, class: 'col-sm-3 control-label'
+    b.use :label, class: "col-sm-3 control-label"
 
-    b.wrapper tag: 'div', class: 'col-sm-9' do |ba|
+    b.wrapper tag: "div", class: "col-sm-9" do |ba|
       ba.use :input
-      ba.use :error, wrap_with: { tag: 'span', class: 'help-block' }
-      ba.use :hint,  wrap_with: { tag: 'p', class: 'help-block' }
+      ba.use :error, wrap_with: { tag: "span", class: "help-block" }
+      ba.use :hint,  wrap_with: { tag: "p", class: "help-block" }
     end
   end
 
-  config.wrappers :horizontal_boolean, tag: 'div', class: 'form-group', error_class: 'has-error' do |b|
+  config.wrappers :horizontal_boolean, tag: "div", class: "form-group", error_class: "has-error" do |b|
     b.use :html5
     b.optional :readonly
 
-    b.wrapper tag: 'div', class: 'col-sm-offset-3 col-sm-9' do |wr|
-      wr.wrapper tag: 'div', class: 'checkbox' do |ba|
-        ba.use :label_input, class: 'col-sm-9'
+    b.wrapper tag: "div", class: "col-sm-offset-3 col-sm-9" do |wr|
+      wr.wrapper tag: "div", class: "checkbox" do |ba|
+        ba.use :label_input, class: "col-sm-9"
       end
 
-      wr.use :error, wrap_with: { tag: 'span', class: 'help-block' }
-      wr.use :hint,  wrap_with: { tag: 'p', class: 'help-block' }
+      wr.use :error, wrap_with: { tag: "span", class: "help-block" }
+      wr.use :hint,  wrap_with: { tag: "p", class: "help-block" }
     end
   end
 
-  config.wrappers :horizontal_radio_and_checkboxes, tag: 'div', class: 'form-group', error_class: 'has-error' do |b|
+  config.wrappers :horizontal_radio_and_checkboxes, tag: "div", class: "form-group", error_class: "has-error" do |b|
     b.use :html5
     b.optional :readonly
 
-    b.use :label, class: 'col-sm-3 control-label'
+    b.use :label, class: "col-sm-3 control-label"
 
-    b.wrapper tag: 'div', class: 'col-sm-9' do |ba|
+    b.wrapper tag: "div", class: "col-sm-9" do |ba|
       ba.use :input
-      ba.use :error, wrap_with: { tag: 'span', class: 'help-block' }
-      ba.use :hint,  wrap_with: { tag: 'p', class: 'help-block' }
+      ba.use :error, wrap_with: { tag: "span", class: "help-block" }
+      ba.use :hint,  wrap_with: { tag: "p", class: "help-block" }
     end
   end
 
-  config.wrappers :inline_form, tag: 'div', class: 'form-group', error_class: 'has-error' do |b|
+  config.wrappers :inline_form, tag: "div", class: "form-group", error_class: "has-error" do |b|
     b.use :html5
     b.use :placeholder
     b.optional :maxlength
     b.optional :pattern
     b.optional :min_max
     b.optional :readonly
-    b.use :label, class: 'sr-only'
+    b.use :label, class: "sr-only"
 
-    b.use :input, class: 'form-control'
-    b.use :error, wrap_with: { tag: 'span', class: 'help-block' }
-    b.use :hint,  wrap_with: { tag: 'p', class: 'help-block' }
+    b.use :input, class: "form-control"
+    b.use :error, wrap_with: { tag: "span", class: "help-block" }
+    b.use :hint,  wrap_with: { tag: "p", class: "help-block" }
   end
 
   # Wrappers for forms and inputs using the Bootstrap toolkit.
@@ -190,7 +190,7 @@ SimpleForm.setup do |config|
   config.boolean_style = :nested
 
   # Default class for buttons
-  config.button_class = 'btn btn-default'
+  config.button_class = "btn btn-default"
 
   # Method used to tidy up errors. Specify any Rails Array method.
   # :first lists the first message for each field.
@@ -201,7 +201,7 @@ SimpleForm.setup do |config|
   config.error_notification_tag = :div
 
   # CSS class to add for error notification helper.
-  config.error_notification_class = 'alert alert-danger'
+  config.error_notification_class = "alert alert-danger"
 
   # ID to add for error notification helper.
   # config.error_notification_id = nil
@@ -243,7 +243,7 @@ SimpleForm.setup do |config|
   # config.required_by_default = true
 
   # Tell browsers whether to use the native HTML5 validations (novalidate form option).
-  # These validations are enabled in SimpleForm's internal config but disabled by default
+  # These validations are enabled in SimpleForm"s internal config but disabled by default
   # in this configuration, which is recommended due to some quirks from different browsers.
   # To stop SimpleForm from generating the novalidate option, enabling the HTML5 validations,
   # change this configuration to true.
@@ -274,7 +274,7 @@ SimpleForm.setup do |config|
   # When false, do not use translations for labels.
   # config.translate_labels = true
 
-  # Automatically discover new inputs in Rails' autoload path.
+  # Automatically discover new inputs in Rails" autoload path.
   # config.inputs_discovery = true
 
   # Cache SimpleForm inputs discovery
@@ -291,5 +291,5 @@ SimpleForm.setup do |config|
   # config.include_default_input_wrapper_class = true
 
   # Defines which i18n scope will be used in Simple Form.
-  # config.i18n_scope = 'simple_form'
+  # config.i18n_scope = "simple_form"
 end

@@ -4,7 +4,7 @@
       h2 Post to group
 
       - Post::POSTABLE_TYPES.each do |postable|
-        = link_to postable.constantize.human_name, new_post_path(postable_type: postable)
+        = link_to human_name(postable), new_post_path(postable_type: postable)
 
       - if postable_type = params[:postable_type]
         = render "posts/#{postable_type.underscore}/form"

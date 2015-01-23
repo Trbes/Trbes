@@ -13,7 +13,7 @@ class ApplicationController < ActionController::Base
   def ensure_group_is_loaded!
     return if current_group.present?
 
-    render text: 'Not found group for this subdomain', status: 404
+    render text: "Not found group for this subdomain", status: 404
   end
 
   protected

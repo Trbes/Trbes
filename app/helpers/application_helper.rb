@@ -1,9 +1,9 @@
 module ApplicationHelper
   BOOTSTRAP_FLASH_MAPPER = {
-    success: 'alert-success',
-    error: 'alert-danger',
-    alert: 'alert-warning',
-    notice: 'alert-info'
+    success: "alert-success",
+    error: "alert-danger",
+    alert: "alert-warning",
+    notice: "alert-info"
   }
 
   def bootstrap_class_for(flash_type)

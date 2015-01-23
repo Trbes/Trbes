@@ -1,11 +1,11 @@
-require 'rails_helper'
+require "rails_helper"
 
 describe Group do
-  describe 'associations' do
+  describe "associations" do
     it { is_expected. to have_many(:posts).dependent(:destroy) }
   end
 
-  describe 'validations' do
+  describe "validations" do
     subject { build(:group) }
 
     it { is_expected.to validate_presence_of(:name) }
@@ -14,13 +14,13 @@ describe Group do
     it { is_expected.to validate_uniqueness_of(:name) }
     it { is_expected.to validate_uniqueness_of(:subdomain) }
 
-    it 'should have a valid subdomain' do
-      expect(build(:group, subdomain: 'www')).not_to be_valid
-      expect(build(:group, subdomain: 'speci@l')).not_to be_valid
-      expect(build(:group, subdomain: 'normal')).to be_valid
+    it "should have a valid subdomain" do
+      expect(build(:group, subdomain: "www")).not_to be_valid
+      expect(build(:group, subdomain: "speci@l")).not_to be_valid
+      expect(build(:group, subdomain: "normal")).to be_valid
     end
 
-    describe 'columns' do
+    describe "columns" do
       it { is_expected.to have_db_column(:name) }
       it { is_expected.to have_db_column(:description) }
       it { is_expected.to have_db_column(:subdomain) }
