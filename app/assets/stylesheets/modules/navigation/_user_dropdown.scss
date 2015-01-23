@@ -1,6 +1,7 @@
 $profile-photo-size: 48px;
 
 .dropdown-profile {
+
   &>a {
     padding: 5px 0 !important;
     margin-top: 30px;
@@ -22,6 +23,20 @@ $profile-photo-size: 48px;
       position: absolute;
       top: 0;
       right: 0;
+    }
+
+    @include breakpoint(0 ($screen-sm - 1)) {
+      margin-top: 0;
+
+      .profile-photo {
+        left: 0;
+      }
+
+      .profile-info {
+        text-align: left;
+        margin-right: 0;
+        margin-left: $profile-photo-size + 3px;
+      }
     }
   }
 

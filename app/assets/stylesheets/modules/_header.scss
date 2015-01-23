@@ -27,6 +27,19 @@
   }
 }
 
+.navbar {
+  @include breakpoint(0 ($screen-sm - 1)) {
+    min-height: 54px;
+
+    .navbar-toggle {
+      margin-top: 10px;
+      margin-bottom: 10px;
+    }
+  }
+}
+
+
+
 // Group
 .navbar-group {
   @include clearfix();
@@ -34,13 +47,13 @@
 
 .group-logo {
   float: left;
+  margin-right: $grid-gutter-width/2;
 }
 
 .group-info {
   float: left;
   margin: 0;
   margin-top: 30px;
-  margin-left: $grid-gutter-width/2;
 }
 
 .group-name {
@@ -60,6 +73,41 @@
   font-size: 1.2em;
 }
 
+@include breakpoint(0 ($screen-sm - 1)) { // smaller than iPad
+  .navbar-group {
+    margin-left: 40px;
+  }
+
+  .group-logo {
+    margin-right: 10px;
+    img {
+      height: 54px;
+    }
+  }
+
+  .group-info {
+    margin-top: 5px;
+  }
+
+  .group-name {
+    font-size: 1.2em;
+  }
+
+  .group-desc {
+    font-size: 1em;
+  }
+}
+
+#navbar_navigation {
+  .navbar-nav {
+    @include breakpoint(0 ($screen-sm - 1)) {
+      margin-left: 0;
+      margin-right: 0;
+      text-align: center;
+    }
+  }
+}
+
 .btn-add-post {
   padding-top: 10px !important;
   padding-bottom: 10px !important;
@@ -69,6 +117,8 @@
   margin: 30px 0 30px 60px !important;
   font-size: 1.2em;
   // background-color: #3ea8db !important;
+  max-width: 280px;
+  display: inline-block !important;
 
   .fa-plus {
     color: white;
@@ -77,5 +127,23 @@
 
   @include on_link_actions {
     background-color: #2e6da4 !important;
+  }
+
+  @include breakpoint(0 $screen-md) { // iPad
+    padding: 10px !important;
+    width: 42px;
+    margin-left: 20px !important;
+
+    .fa-plus {
+      margin-right: 0;
+    }
+
+    span {
+      display: none;
+    }
+  }
+
+  @include breakpoint(0 ($screen-sm - 1)) { // smaller than iPad
+    margin: 0 !important;
   }
 }
