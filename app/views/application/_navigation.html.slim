@@ -16,8 +16,18 @@ nav.navbar.navbar-default
           = link_to root_url(subdomain: current_group.subdomain), class: 'group-logo' do
             = image_tag('sample/group_logo.jpg', height: 115)
           .group-info
-            = link_to root_url(subdomain: current_group.subdomain), class: 'group-name' do
-              = current_group.name
+            .group-name
+              = link_to current_group.name, root_url(subdomain: current_group.subdomain)
+              .dropdown
+                button#dropdownMenu1.btn.btn-default.dropdown-toggle aria-expanded="true" data-toggle="dropdown" type="button"
+                  .fa.fa-cog
+                ul.dropdown-menu aria-labelledby="dropdownMenu1" role="menu"
+                  li role="presentation"
+                    a href="#" role="menuitem" tabindex="-1"  Edit Group
+                  li role="presentation"
+                    a href="#" role="menuitem" tabindex="-1"  Manage Members
+                  li role="presentation"
+                    a href="#" role="menuitem" tabindex="-1"  Invite Someone
             .group-desc= current_group.description
 
 

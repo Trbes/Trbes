@@ -38,8 +38,6 @@
   }
 }
 
-
-
 // Group
 .navbar-group {
   @include clearfix();
@@ -58,13 +56,41 @@
 
 .group-name {
   font-size: 1.4em;
-  font-weight: bold;
-  color: #333;
 
-  &:hover,
-  &:active,
-  &:focus {
+  a {
+    font-weight: bold;
     color: #333;
+
+    @include on_link_actions {
+      color: #333;
+    }
+  }
+
+  .dropdown {
+    display: inline-block;
+
+    button {
+      padding: 0;
+      background: none;
+      border: 0;
+
+      .fa {
+        font-size: 18px;
+        width: 18px;
+        height: 18px;
+        padding: 0;
+        color: #bababa;
+      }
+
+      @include on_link_actions {
+        @include box-shadow(none);
+        background: none;
+
+        .fa {
+          color: #333;
+        }
+      }
+    }
   }
 }
 
@@ -129,10 +155,13 @@
     background-color: #2e6da4 !important;
   }
 
-  @include breakpoint(0 $screen-md) { // iPad
+  @include breakpoint(0 $screen-lg - 1) { // iPad
+    margin-left: 20px !important;
+  }
+
+  @include breakpoint(0 $screen-md - 1) { // iPad
     padding: 10px !important;
     width: 42px;
-    margin-left: 20px !important;
 
     .fa-plus {
       margin-right: 0;
