@@ -1,0 +1,26 @@
+{
+  "ignored_warnings":[
+    {
+      "warning_type":"Dynamic Render Path",
+      "warning_code":15,
+      "fingerprint":"0f155fe290aea2ea112bb98c37cda84b83d1230d507abbe88e9ef961482501e4",
+      "message":"Render path contains parameter value",
+      "file":"app/views/posts/new.html.slim",
+      "line":10,
+      "link":"http://brakemanscanner.org/docs/warning_types/dynamic_render_path/",
+      "code":"render(action => \"posts/#{params[:postable_type].underscore}/form\", {})",
+      "render_path":[
+        "PostsController#new"
+      ],
+      "location":{
+        "type":"template",
+        "template":"posts/new (PostsController#new)"
+      },
+      "user_input":"params[:postable_type].underscore",
+      "confidence":"Medium",
+      "note":""
+    }
+  ],
+  "updated":"2015-01-23 22:04:28 +0300",
+  "brakeman_version":"3.0.0"
+}
