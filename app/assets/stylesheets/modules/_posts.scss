@@ -57,7 +57,7 @@ li.post {
   width: calc(100% - #{$post-right-min-width + $post-component-spacing*1.5 + $post-upvote-width});
 
   @include breakpoint(0 ($screen-sm - 1)) {
-    width: calc(100% - #{$post-actions-min-width + $post-component-spacing*1.5 + $post-upvote-width});
+    width: calc(100% - #{$icon-circle-size + $post-component-spacing*1.5 + $post-upvote-width});
   }
 
   .title {
@@ -138,6 +138,17 @@ a.post-thumb {
 
     &:first-child {
       margin-left: 0;
+    }
+  }
+
+  @include breakpoint(0 ($screen-sm - 1)) {
+    margin-top: 0;
+    min-width: $icon-circle-size;
+
+    a {
+      display: block;
+      margin-left: 0;
+      margin-bottom: 10px;
     }
   }
 }
