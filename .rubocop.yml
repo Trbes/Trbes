@@ -25,6 +25,12 @@ Style/AlignParameters:
     - with_first_parameter
     - with_fixed_indentation
 
+Style/StringLiterals:
+  EnforcedStyle: double_quotes
+  SupportedStyles:
+    - single_quotes
+    - double_quotes
+
 # Align ends correctly.
 Lint/EndAlignment:
   # The value `keyword` means that `end` should be aligned with the matching

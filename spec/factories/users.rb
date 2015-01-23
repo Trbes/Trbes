@@ -2,8 +2,8 @@ FactoryGirl.define do
   factory :user do
     email { Faker::Internet.email }
     full_name { Faker::Name.name }
-    password '123456'
-    password_confirmation '123456'
+    password "123456"
+    password_confirmation "123456"
   end
 
   trait :confirmed do

@@ -1,7 +1,8 @@
 class GroupsController < ApplicationController
   before_action :ensure_group_is_loaded!, only: [:show]
 
-  expose(:group, attributes: :group_attributes)
+  expose(:group, attributes: :group_attributes) { |element| element.includes(posts: [:postable]) }
+  expose(:posts, only: [:show]) { current_group.posts.includes(:postable) }
 
   def new
   end

@@ -3,8 +3,8 @@
     .col-md-6.col-md-push-3
       h2 Post to group
 
-      = simple_form_for(post) do |f|
-        = f.input :title
-        = f.input :body
+      - Post::POSTABLE_TYPES.each do |postable|
+        = link_to human_name(postable), new_post_path(postable_type: postable)
 
-        = f.button :submit
+      - if postable_type = params[:postable_type]
+        = render "posts/#{postable_type.underscore}/form"

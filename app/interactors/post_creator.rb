@@ -8,11 +8,16 @@ class PostCreator
   private
 
   def create_post
+    postable = attributes[:postable_type].constantize.create!(attributes[:postable_attributes])
+
     Post.create!(
-      context.attributes.merge(
-        user: context.current_user,
-        group: context.current_group
-      )
+      postable: postable,
+      user: context.current_user,
+      group: context.current_group
     )
+  end
+
+  def attributes
+    context.attributes
   end
 end
