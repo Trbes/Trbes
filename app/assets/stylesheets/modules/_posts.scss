@@ -110,12 +110,22 @@ a.post-thumb {
   border-radius: $post-thumb-size;
   overflow: hidden;
 
-  @include breakpoint(0 ($screen-sm - 1)) {
-    display: none;
-  }
-
   img {
     @include size($post-thumb-size);
+  }
+
+  @include breakpoint(0 ($screen-sm - 1)) {
+    @include size($icon-circle-size);
+
+    min-width: 34px;
+    float: none;
+    display: block;
+    margin-right: 0;
+    margin-bottom: 5px;
+
+    img {
+      @include size($icon-circle-size);
+    }
   }
 
   @include on_link_actions {
@@ -148,7 +158,7 @@ a.post-thumb {
     a {
       display: block;
       margin-left: 0;
-      margin-bottom: 10px;
+      margin-bottom: 5px;
     }
   }
 }
