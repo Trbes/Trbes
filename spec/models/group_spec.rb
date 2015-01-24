@@ -19,12 +19,12 @@ describe Group do
       expect(build(:group, subdomain: "speci@l")).not_to be_valid
       expect(build(:group, subdomain: "normal")).to be_valid
     end
+  end
 
-    describe "columns" do
-      it { is_expected.to have_db_column(:name) }
-      it { is_expected.to have_db_column(:description) }
-      it { is_expected.to have_db_column(:subdomain) }
-      it { is_expected.to have_db_column(:private) }
-    end
+  describe "columns" do
+    it { is_expected.to have_db_column(:name) }
+    it { is_expected.to have_db_column(:description) }
+    it { is_expected.to have_db_column(:subdomain) }
+    it { is_expected.to have_db_column(:private) }
   end
 end

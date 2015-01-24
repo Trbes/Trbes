@@ -11,10 +11,31 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150122192106) do
+ActiveRecord::Schema.define(version: 20150124160856) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "collection_posts", force: :cascade do |t|
+    t.integer  "post_id",       null: false
+    t.integer  "collection_id", null: false
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+  end
+
+  add_index "collection_posts", ["collection_id"], name: "index_collection_posts_on_collection_id", using: :btree
+  add_index "collection_posts", ["post_id"], name: "index_collection_posts_on_post_id", using: :btree
+
+  create_table "collections", force: :cascade do |t|
+    t.string   "image",       null: false
+    t.string   "name",        null: false
+    t.text     "description"
+    t.integer  "group_id",    null: false
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  add_index "collections", ["group_id"], name: "index_collections_on_group_id", using: :btree
 
   create_table "documents", force: :cascade do |t|
     t.string   "title",      limit: 255, null: false
@@ -93,6 +114,9 @@ ActiveRecord::Schema.define(version: 20150122192106) do
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
+  add_foreign_key "collection_posts", "collections"
+  add_foreign_key "collection_posts", "posts"
+  add_foreign_key "collections", "groups"
   add_foreign_key "posts", "groups"
   add_foreign_key "posts", "users"
 end

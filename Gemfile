@@ -31,6 +31,8 @@ gem "thin"
 gem "interactor-rails"
 gem "factory_girl_rails"
 gem "faker"
+gem "carrierwave"
+gem "cloudinary"
 
 group :staging, :production do
   gem "rails_12factor"
