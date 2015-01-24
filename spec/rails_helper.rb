@@ -11,6 +11,11 @@ end
 
 Dir[Rails.root.join("spec/support/**/*.rb")].each { |f| require f }
 
+CarrierWave.configure do |config|
+  config.storage = :file
+  config.enable_processing = false
+end
+
 RSpec.configure do |config|
   config.use_transactional_fixtures = false
   config.infer_spec_type_from_file_location!
