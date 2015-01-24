@@ -21,8 +21,6 @@ RSpec.configure do |config|
   config.include Formulaic::Dsl
   config.include LoginHelpers
 
-  CarrierWave.configure { |config| config.storage = :file }
-
   config.before do
     ActionMailer::Base.deliveries.clear
   end
