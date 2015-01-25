@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150124160856) do
+ActiveRecord::Schema.define(version: 20150125123136) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -63,6 +63,21 @@ ActiveRecord::Schema.define(version: 20150124160856) do
     t.string "link"
   end
 
+  create_table "memberships", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "group_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "memberships", ["group_id"], name: "index_memberships_on_group_id", using: :btree
+  add_index "memberships", ["user_id"], name: "index_memberships_on_user_id", using: :btree
+
+  create_table "memberships_roles", id: false, force: :cascade do |t|
+    t.integer "membership_id", null: false
+    t.integer "role_id",       null: false
+  end
+
   create_table "orders", force: :cascade do |t|
     t.string  "order_number",      limit: 255, null: false
     t.string  "url",               limit: 255, null: false
@@ -85,6 +100,12 @@ ActiveRecord::Schema.define(version: 20150124160856) do
 
   add_index "posts", ["group_id"], name: "index_posts_on_group_id", using: :btree
   add_index "posts", ["user_id"], name: "index_posts_on_user_id", using: :btree
+
+  create_table "roles", force: :cascade do |t|
+    t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "text_postables", force: :cascade do |t|
     t.string "title"
@@ -117,6 +138,8 @@ ActiveRecord::Schema.define(version: 20150124160856) do
   add_foreign_key "collection_posts", "collections"
   add_foreign_key "collection_posts", "posts"
   add_foreign_key "collections", "groups"
+  add_foreign_key "memberships", "groups"
+  add_foreign_key "memberships", "users"
   add_foreign_key "posts", "groups"
   add_foreign_key "posts", "users"
 end

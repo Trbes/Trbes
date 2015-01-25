@@ -3,5 +3,5 @@
     .col-md-6.col-md-push-3
       ul.collections
         = render collections
-
-        = link_to "Create collection", new_collection_path
+        - if policy(collection).new?
+          = link_to "Create collection", new_collection_path
