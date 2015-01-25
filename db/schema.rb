@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150125123136) do
+ActiveRecord::Schema.define(version: 20150125143544) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -63,6 +63,16 @@ ActiveRecord::Schema.define(version: 20150125123136) do
     t.string "link"
   end
 
+  create_table "membership_roles", force: :cascade do |t|
+    t.integer  "membership_id", null: false
+    t.integer  "role_id",       null: false
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+  end
+
+  add_index "membership_roles", ["membership_id"], name: "index_membership_roles_on_membership_id", using: :btree
+  add_index "membership_roles", ["role_id"], name: "index_membership_roles_on_role_id", using: :btree
+
   create_table "memberships", force: :cascade do |t|
     t.integer  "user_id"
     t.integer  "group_id"
@@ -72,11 +82,6 @@ ActiveRecord::Schema.define(version: 20150125123136) do
 
   add_index "memberships", ["group_id"], name: "index_memberships_on_group_id", using: :btree
   add_index "memberships", ["user_id"], name: "index_memberships_on_user_id", using: :btree
-
-  create_table "memberships_roles", id: false, force: :cascade do |t|
-    t.integer "membership_id", null: false
-    t.integer "role_id",       null: false
-  end
 
   create_table "orders", force: :cascade do |t|
     t.string  "order_number",      limit: 255, null: false
@@ -138,6 +143,8 @@ ActiveRecord::Schema.define(version: 20150125123136) do
   add_foreign_key "collection_posts", "collections"
   add_foreign_key "collection_posts", "posts"
   add_foreign_key "collections", "groups"
+  add_foreign_key "membership_roles", "memberships"
+  add_foreign_key "membership_roles", "roles"
   add_foreign_key "memberships", "groups"
   add_foreign_key "memberships", "users"
   add_foreign_key "posts", "groups"

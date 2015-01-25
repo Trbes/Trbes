@@ -1,9 +1,9 @@
 class CollectionPolicy < Struct.new(:membership, :collection)
   def new?
-    membership.is_admin?
+    membership.admin?
   end
 
   def create?
-    membership.is_admin?
+    membership.admin?
   end
 end

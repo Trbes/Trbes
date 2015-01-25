@@ -8,9 +8,9 @@ class FindOrCreateMembership
   private
 
   def find_membership
-    if user && group
-      user.membership_for(group)
-    end
+    return unless user && group
+
+    user.membership_for(group)
   end
 
   def create_membership

@@ -1,4 +1,4 @@
 require "rails_helper"
 
-describe Membership do
+describe MembershipRole do
 end

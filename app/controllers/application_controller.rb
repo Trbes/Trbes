@@ -7,7 +7,7 @@ class ApplicationController < ActionController::Base
 
   rescue_from Pundit::NotAuthorizedError, with: :not_authorized
 
-  before_filter :load_current_membership
+  before_action :load_current_membership
 
   expose(:groups)
 
