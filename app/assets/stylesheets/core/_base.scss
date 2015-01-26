@@ -1,3 +1,7 @@
+body {
+  font-weight: 300;
+}
+
 a {
   @include transition(color 0.25s ease);
   @include on_link_actions {

@@ -1,3 +1,22 @@
-= link_to post do
-  h4= post.title
-p= post.body
+.post
+  .post-upvote
+    .vote-count 200
+    a.vote href="#"
+      i.fa.fa-thumbs-up
+  .post-content
+    = link_to post.title, post, class: "title"
+    .excerpt= post.body
+    .meta
+      span.date  posted 1 day ago
+      | &nbsp;by&nbsp;
+      a.author href="#" Jérôme Gravel-Niquet
+      | &nbsp;•&nbsp;
+      a.answers href="#" 26 answers
+  .post-right
+    a.post-thumb href="#"
+      = image_tag("sample/post_thumb.jpg", width: 96, height: 96)
+    .post-actions
+      a.collection-tag href="#"
+        i.fa.fa-bug.circle.grey
+      a.share href="#"
+        i.fa.fa-share-square-o.circle.grey

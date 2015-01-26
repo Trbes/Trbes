@@ -58,7 +58,7 @@
   font-size: 1.4em;
 
   a {
-    font-weight: bold;
+    font-weight: 400;
     color: #333;
 
     @include on_link_actions {
@@ -125,8 +125,10 @@
 }
 
 #navbar_navigation {
-  .navbar-nav {
-    @include breakpoint(0 ($screen-sm - 1)) {
+  @include breakpoint(0 ($screen-sm - 1)) {
+    background-color: #efefef;
+
+    .navbar-nav {
       margin-left: 0;
       margin-right: 0;
       text-align: center;

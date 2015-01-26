@@ -12,12 +12,11 @@ $post-right-min-width: $post-actions-min-width + $post-component-spacing + $post
   margin-top: $grid-gutter-width;
 }
 
-ul.posts {
+.posts {
   padding: 0;
-  list-style: none;
 }
 
-li.post {
+.post {
   @include clearfix();
 
   margin-bottom: $post-vertical-spacing;
@@ -62,7 +61,7 @@ li.post {
 
   .title {
     font-size: 1.2em;
-    font-weight: bold;
+    font-weight: 400;
     color: #333;
 
     @include on_link_actions {
