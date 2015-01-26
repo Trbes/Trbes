@@ -14,11 +14,11 @@
         = f.full_error :reset_password_token
 
         .form-group
-          = f.input :password, label: t('app.user.password.change.legend'), required: true
-          = f.input :password_confirmation, label: t('app.user.password.change.confirm'), required: true
+          = f.input :password, label: t("app.user.password.change.legend"), required: true
+          = f.input :password_confirmation, label: t("app.user.password.change.confirm"), required: true
 
         .form-group
-          = f.button :submit, t('app.form.update')
+          = f.button :submit, t("app.form.update")
 
     .col-md-5.col-md-offset-1
       = render "devise/shared/links"

@@ -11,10 +11,10 @@
           html: { method: :post } do |f|
 
         .form-group
-          = f.input :email, required: true, label: t('app.user.password.forgot.legend')
+          = f.input :email, required: true, label: t("app.user.password.forgot.legend")
 
         .form-group
-          = f.button :submit, t('app.user.password.forgot.submit')
+          = f.button :submit, t("app.user.password.forgot.submit")
 
     .col-md-5.col-md-offset-1
       = render "devise/shared/links"

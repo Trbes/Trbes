@@ -1,23 +1,23 @@
 ul.nav.navbar-nav.navbar-right
   - if user_signed_in?
-    li.dropdown.dropdown-profile
+    li.pull-left.dropdown.dropdown-profile
       a.dropdown-toggle aria-expanded="false" data-toggle="dropdown" href="#" role="button"
         div.profile-info
           = current_user.full_name
           div Using <strong>default</strong> profile
-        = image_tag('sample/user_photo.jpg', class: 'profile-photo', width: 48, height: 48)
-        /! span.caret
+        = image_tag("sample/user_photo.jpg", class: "profile-photo", width: 48, height: 48)
+        / span.caret
       ul.dropdown-menu role="menu"
         li
           a href=edit_user_registration_path
-            = t('app.navigation.user.edit_profile')
+            = t("app.navigation.user.edit_profile")
         li
           a href=destroy_user_session_path
-            = t('app.navigation.user.sign_out')
-    li
+            = t("app.navigation.user.sign_out")
+    li.pull-right
       a.btn.btn-primary.navbar-btn.btn-add-post href=(new_post_path)
-        .glyphicon.glyphicon-plus
-        | Add Post
+        i.fa.fa-plus
+        span Add Post
   - else
-    = active_link_to t('app.navigation.user.sign_in'), new_user_session_path, active: :exclusive, wrap_tag: :li
-    = active_link_to t('app.navigation.user.sign_up'), new_user_registration_path, active: :exclusive, wrap_tag: :li
+    = active_link_to t("app.navigation.user.sign_in"), new_user_session_path, active: :exclusive, wrap_tag: :li
+    = active_link_to t("app.navigation.user.sign_up"), new_user_registration_path, active: :exclusive, wrap_tag: :li

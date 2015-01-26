@@ -2,7 +2,7 @@
   .row
     .col-md-6.col-md-push-3
       = simple_form_for(post) do |f|
-        = f.hidden_field(:postable_type, value: 'LinkPostable')
+        = f.hidden_field(:postable_type, value: "LinkPostable")
         = f.fields_for(:postable, LinkPostable.new) do |f|
           = f.input :title
           = f.input :link

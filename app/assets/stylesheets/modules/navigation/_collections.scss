@@ -1,0 +1,84 @@
+// Styling for the collections menu in posts listing
+
+$nav-collection-link-color: #666;
+$nav-collection-link-color-hover: #333;
+
+.nav-collections {
+  float: right;
+  font-size: 1.2em;
+
+  @include breakpoint(0 $screen-md) {
+    float: none;
+    text-align: center;
+  }
+
+  &>li {
+    margin-right: $grid-gutter-width * 0.8;
+
+    &:last-child {
+      margin-right: 0;
+    }
+
+    @include breakpoint(0 $screen-md) {
+      float: none;
+      display: inline-block;
+    }
+
+    &>a {
+      padding: 0;
+      border-radius: 0;
+      color: $nav-collection-link-color;
+      text-transform: uppercase;
+
+      &:hover {
+        color: $nav-collection-link-color-hover;
+      }
+
+      @include on_link_actions {
+        background-color: transparent;
+      }
+    }
+
+    &.active {
+      &>a {
+        background-color: transparent;
+        color: $nav-collection-link-color-hover;
+        font-weight: bold;
+
+        @include on_link_actions {
+          background-color: transparent;
+          color: $nav-collection-link-color-hover;
+        }
+      }
+    }
+
+    &.dropdown.open {
+      &>a {
+        background-color: transparent;
+      }
+    }
+
+    .fa {
+      margin-right: 5px;
+
+      &.fa-ellipsis-h {
+        background-color: transparent;
+        color: $icon-circle-background-color;
+      }
+    }
+
+    a:hover,
+    a:focus,
+    a:active {
+      .fa-ellipsis-h {
+        background-color: transparent;
+        color: $icon-circle-background-color-hover;
+      }
+    }
+
+    .dropdown-menu {
+      right: 0;
+      left: auto;
+    }
+  }
+}

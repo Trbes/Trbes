@@ -19,7 +19,7 @@
         .form-group
           = f.input :password,
               autocomplete: "off",
-              hint: t('app.user.edit.new_password.hint'),
+              hint: t("app.user.edit.new_password.hint"),
               required: false
 
         .form-group
@@ -28,19 +28,18 @@
 
         .form-group
           = f.input :current_password,
-              hint: t('app.user.edit.confirm_password.hint'),
+              hint: t("app.user.edit.confirm_password.hint"),
               required: true
 
         .form-group
-          = f.button :submit, t('app.form.update')
+          = f.button :submit, t("app.form.update")
 
     .col-md-5.col-md-offset-1
       h6
-        b= t('app.user.cancel.title')
+        b= t("app.user.cancel.title")
       p
-        = t('app.user.cancel.reason')
-        '
-        = link_to t('app.user.cancel.title'),
+        = t("app.user.cancel.reason")
+        = link_to t("app.user.cancel.title"),
             registration_path(resource_name),
-            data: { confirm: t('app.form.sure') },
+            data: { confirm: t("app.form.sure") },
             method: :delete

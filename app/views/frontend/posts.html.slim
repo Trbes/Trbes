@@ -1,1 +1,133 @@
-h1 Haha
+.container
+  .row
+    .col-md-4
+      ul.nav.nav-pills.nav-filter
+        li.active
+          a href="#"  Popular
+        li
+          a href="#"  New
+        li
+          a href="#"  Trending
+
+
+    .col-md-8
+      ul.nav.nav-pills.nav-collections
+        li
+          a href="#"
+            i.fa.fa-graduation-cap.circle
+            | Knowledge
+        li
+          a href="#"
+            i.fa.fa-lightbulb-o.circle
+            | Feature
+        li
+          a href="#"
+            i.fa.fa-bug.circle
+            | Bug report
+        li.dropdown.more
+          a.dropdown-toggle data-close-others="false" data-delay="1000" data-hover="dropdown" data-toggle="dropdown" href="#"
+            i.fa.fa-ellipsis-h.circle
+          ul.dropdown-menu
+            li
+              a href="#" tabindex="-1"  Collection 1
+            li
+              a href="#" tabindex="-1"  Collection 2
+            li
+              a href="#" tabindex="-1"  Collection 3
+            li
+              a href="#" tabindex="-1"  Collection 4
+  .posts-group
+    ul.posts
+      li.post
+        .post-upvote
+          .vote-count 200
+          a.vote href="#"
+            i.fa.fa-thumbs-up
+        .post-content
+          a.title href="#"  The Ultimate Guide to a DIY Smart Home
+          .excerpt
+            | I spent an unbelievable amount of time selecting the devices I would use for my new Smart Home.
+            | I would have saved countless hours if I [...]
+          .meta
+            span.date  posted 1 day ago
+            | &nbsp;by&nbsp;
+            a.author href="#" Jérôme Gravel-Niquet
+            | &nbsp;•&nbsp;
+            a.answers href="#" 26 answers
+        .post-right
+          a.post-thumb href="#"
+            = image_tag("sample/post_thumb.jpg", width: 96, height: 96)
+          .post-actions
+            a.collection-tag href="#"
+              i.fa.fa-bug.circle.grey
+            a.share href="#"
+              i.fa.fa-share-square-o.circle.grey
+      li.post
+        .post-upvote
+          .vote-count 200
+          a.vote href="#"
+            i.fa.fa-thumbs-up
+        .post-content
+          a.title href="#"  Computer Scientists Ask Supreme Court to Rule APIs Can’t Be Copyrighted
+          .excerpt  EFF wants the justices to review a court decision about APIs.
+          .url
+            i.fa.fa-link
+            a href="#" www.eff.org/ [...]
+          .meta
+            span.date  posted 1 day ago
+            | &nbsp;by&nbsp;
+            a.author href="#" Jérôme Gravel-Niquet
+            | &nbsp;•&nbsp;
+            a.answers href="#" 26 answers
+        .post-right
+          .post-actions
+            a.collection-tag href="#"
+              i.fa.fa-bug.circle.grey
+            a.share href="#"
+              i.fa.fa-share-square-o.circle.grey
+      li.post
+        .post-upvote
+          .vote-count 200
+          a.vote href="#"
+            i.fa.fa-thumbs-up
+        .post-content
+          a.title href="#"  Remembering Steve Jobs
+          a.image href="#"
+            = image_tag("sample/post_image.jpg")
+          .meta
+            span.date  posted 1 day ago
+            | &nbsp;by&nbsp;
+            a.author href="#" Jérôme Gravel-Niquet
+            | &nbsp;•&nbsp;
+            a.answers href="#" 26 answers
+        .post-right
+          .post-actions
+            a.share href="#"
+              i.fa.fa-share-square-o.circle.grey
+      li.post
+        .post-upvote
+          .vote-count 200
+          a.vote href="#"
+            i.fa.fa-thumbs-up
+        .post-content
+          a.title href="#"  The Ultimate Smart Thermostat : Nest
+          .excerpt  Now part of Google, Nest is still the king of the connected thermostats.
+          .url
+            i.fa.fa-link
+            a href="#" www.nest.com
+          .meta
+            span.date  posted 1 day ago
+            | &nbsp;by&nbsp;
+            a.author href="#" Jérôme Gravel-Niquet
+            | &nbsp;•&nbsp;
+            a.answers href="#" 26 answers
+        .post-right
+          a.post-thumb href="#"
+            = image_tag("sample/post_thumb.jpg", width: 96, height: 96)
+          .post-actions
+            a.collection-tag href="#"
+              i.fa.fa-bug.circle.grey
+            a.share href="#"
+              i.fa.fa-share-square-o.circle.grey
+
+

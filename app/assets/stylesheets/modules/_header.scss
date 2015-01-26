@@ -27,6 +27,17 @@
   }
 }
 
+.navbar {
+  @include breakpoint(0 ($screen-sm - 1)) {
+    min-height: 54px;
+
+    .navbar-toggle {
+      margin-top: 10px;
+      margin-bottom: 10px;
+    }
+  }
+}
+
 // Group
 .navbar-group {
   @include clearfix();
@@ -34,30 +45,93 @@
 
 .group-logo {
   float: left;
+  margin-right: $grid-gutter-width/2;
 }
 
 .group-info {
   float: left;
   margin: 0;
   margin-top: 30px;
-  margin-left: $grid-gutter-width/2;
 }
 
 .group-name {
   font-size: 1.4em;
-  font-weight: bold;
-  color: #333;
 
-  &:hover,
-  &:active,
-  &:focus {
+  a {
+    font-weight: bold;
     color: #333;
+
+    @include on_link_actions {
+      color: #333;
+    }
+  }
+
+  .dropdown {
+    display: inline-block;
+
+    button {
+      padding: 0;
+      background: none;
+      border: 0;
+
+      .fa {
+        font-size: 18px;
+        width: 18px;
+        height: 18px;
+        padding: 0;
+        color: #bababa;
+      }
+
+      @include on_link_actions {
+        @include box-shadow(none);
+        background: none;
+
+        .fa {
+          color: #333;
+        }
+      }
+    }
   }
 }
 
 .group-desc {
   color: #696969;
   font-size: 1.2em;
+}
+
+@include breakpoint(0 ($screen-sm - 1)) { // smaller than iPad
+  .navbar-group {
+    margin-left: 40px;
+  }
+
+  .group-logo {
+    margin-right: 10px;
+    img {
+      height: 54px;
+    }
+  }
+
+  .group-info {
+    margin-top: 5px;
+  }
+
+  .group-name {
+    font-size: 1.2em;
+  }
+
+  .group-desc {
+    font-size: 1em;
+  }
+}
+
+#navbar_navigation {
+  .navbar-nav {
+    @include breakpoint(0 ($screen-sm - 1)) {
+      margin-left: 0;
+      margin-right: 0;
+      text-align: center;
+    }
+  }
 }
 
 .btn-add-post {
@@ -69,12 +143,36 @@
   margin: 30px 0 30px 60px !important;
   font-size: 1.2em;
   // background-color: #3ea8db !important;
+  max-width: 280px;
+  display: inline-block !important;
 
-  .glyphicon {
+  .fa-plus {
     color: white;
+    margin-right: 5px;
   }
 
   @include on_link_actions {
     background-color: #2e6da4 !important;
+  }
+
+  @include breakpoint(0 $screen-lg - 1) { // iPad
+    margin-left: 20px !important;
+  }
+
+  @include breakpoint(0 $screen-md - 1) { // iPad
+    padding: 10px !important;
+    width: 42px;
+
+    .fa-plus {
+      margin-right: 0;
+    }
+
+    span {
+      display: none;
+    }
+  }
+
+  @include breakpoint(0 ($screen-sm - 1)) { // smaller than iPad
+    margin: 0 !important;
   }
 }
