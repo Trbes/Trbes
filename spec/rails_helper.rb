@@ -26,8 +26,8 @@ RSpec.configure do |config|
   config.include EmailSpec::Matchers
   config.include FactoryGirl::Syntax::Methods
   config.include Formulaic::Dsl
-  config.include LoginHelpers
-
+  config.include FeatureHelpers, type: :feature
+  config.include ControllerHelpers, type: :controller
   config.before do
     ActionMailer::Base.deliveries.clear
   end

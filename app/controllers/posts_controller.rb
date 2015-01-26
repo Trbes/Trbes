@@ -5,7 +5,7 @@ class PostsController < ApplicationController
   end
 
   def create
-    result = PostCreator.call(
+    result = CreatePost.call(
       attributes: post_attributes,
       current_group: current_group,
       current_user: current_user

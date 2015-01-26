@@ -1,25 +1,23 @@
 class CollectionsController < ApplicationController
+  before_action :ensure_group_is_loaded!
   before_action :authorize_collection, only: %i(new create edit update destroy)
 
   expose(:collections)
   expose(:collection, attributes: :collection_attributes)
 
   def create
-    collection.group = current_group
+    collection = CreateCollection.call(
+      attributes: collection_attributes,
+      current_group: current_group
+    ).collection
 
-    if collection.save
-      redirect_to(collection)
-    else
-      redirect_to(:new)
-    end
+    respond_with(collection)
   end
 
   def update
-    if collection.save
-      redirect_to(collection)
-    else
-      redirect_to(:edit)
-    end
+    collection.save
+
+    respond_with(collection)
   end
 
   def destroy
