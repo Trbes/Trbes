@@ -2,6 +2,7 @@ ENV["RAILS_ENV"] ||= "test"
 require "spec_helper"
 require File.expand_path("../../config/environment", __FILE__)
 require "rspec/rails"
+require "pundit/rspec"
 
 # Run codeclimate-test-reporter only in CI
 if ENV["CI"]
@@ -10,6 +11,7 @@ if ENV["CI"]
 end
 
 Dir[Rails.root.join("spec/support/**/*.rb")].each { |f| require f }
+Dir[Rails.root.join("spec/shared/**/*.rb")].each { |f| require f }
 
 CarrierWave.configure do |config|
   config.storage = :file

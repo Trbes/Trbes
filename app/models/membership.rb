@@ -12,7 +12,7 @@ class Membership < ActiveRecord::Base
   end
 
   def admin?
-    has_role?(:admin)
+    role?(:admin)
   end
 
   def role?(role)
