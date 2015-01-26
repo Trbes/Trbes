@@ -7,6 +7,8 @@ Rails.application.routes.draw do
     resources :groups, only: %i( show )
     resources :posts, only: %i( show new create )
 
+    resources :collections, only: %i( index show new create edit update destroy )
+
     root to: "groups#show", as: :group_root
   end
 

@@ -1,4 +1,4 @@
-class PostCreator
+class CreatePost
   include Interactor
 
   def call

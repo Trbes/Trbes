@@ -1,0 +1,9 @@
+.container
+  .row
+    .col-md-6.col-md-push-3
+      = simple_form_for(collection) do |f|
+        = f.input :name
+        = f.input :image, as: :file
+        = f.input :image_cache, as: :hidden
+
+        = f.submit "Save", class: "btn btn-success"

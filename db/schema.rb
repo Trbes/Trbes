@@ -11,10 +11,31 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150122192106) do
+ActiveRecord::Schema.define(version: 20150125143544) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "collection_posts", force: :cascade do |t|
+    t.integer  "post_id",       null: false
+    t.integer  "collection_id", null: false
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+  end
+
+  add_index "collection_posts", ["collection_id"], name: "index_collection_posts_on_collection_id", using: :btree
+  add_index "collection_posts", ["post_id"], name: "index_collection_posts_on_post_id", using: :btree
+
+  create_table "collections", force: :cascade do |t|
+    t.string   "image",       null: false
+    t.string   "name",        null: false
+    t.text     "description"
+    t.integer  "group_id",    null: false
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  add_index "collections", ["group_id"], name: "index_collections_on_group_id", using: :btree
 
   create_table "documents", force: :cascade do |t|
     t.string   "title",      limit: 255, null: false
@@ -42,6 +63,26 @@ ActiveRecord::Schema.define(version: 20150122192106) do
     t.string "link"
   end
 
+  create_table "membership_roles", force: :cascade do |t|
+    t.integer  "membership_id", null: false
+    t.integer  "role_id",       null: false
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+  end
+
+  add_index "membership_roles", ["membership_id"], name: "index_membership_roles_on_membership_id", using: :btree
+  add_index "membership_roles", ["role_id"], name: "index_membership_roles_on_role_id", using: :btree
+
+  create_table "memberships", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "group_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "memberships", ["group_id"], name: "index_memberships_on_group_id", using: :btree
+  add_index "memberships", ["user_id"], name: "index_memberships_on_user_id", using: :btree
+
   create_table "orders", force: :cascade do |t|
     t.string  "order_number",      limit: 255, null: false
     t.string  "url",               limit: 255, null: false
@@ -64,6 +105,12 @@ ActiveRecord::Schema.define(version: 20150122192106) do
 
   add_index "posts", ["group_id"], name: "index_posts_on_group_id", using: :btree
   add_index "posts", ["user_id"], name: "index_posts_on_user_id", using: :btree
+
+  create_table "roles", force: :cascade do |t|
+    t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "text_postables", force: :cascade do |t|
     t.string "title"
@@ -93,6 +140,13 @@ ActiveRecord::Schema.define(version: 20150122192106) do
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
+  add_foreign_key "collection_posts", "collections"
+  add_foreign_key "collection_posts", "posts"
+  add_foreign_key "collections", "groups"
+  add_foreign_key "membership_roles", "memberships"
+  add_foreign_key "membership_roles", "roles"
+  add_foreign_key "memberships", "groups"
+  add_foreign_key "memberships", "users"
   add_foreign_key "posts", "groups"
   add_foreign_key "posts", "users"
 end
