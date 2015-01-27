@@ -4,6 +4,6 @@ class ImagePostable < ActiveRecord::Base
   # validates :image, presence: true
 
   def preview_image
-    "https://placekitten.com/g/#{rand(8)+1}00/#{rand(8)+1}00"
+    "https://placekitten.com/g/#{rand(8) + 1}00/#{rand(8) + 1}00"
   end
 end
