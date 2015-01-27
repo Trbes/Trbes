@@ -1,4 +1,12 @@
 .container
-  - posts.each do |post|
-    = render "posts/#{post.postable_type.underscore}/#{post.postable_type.underscore}", post: post
-    hr
+  .row
+    .col-md-4
+      = render "posts/filter_menu"
+    .col-md-8
+      = render "posts/collection_menu"
+
+  .posts-group
+    .posts
+      - posts.each do |post|
+        = render "posts/#{postable_name(post)}/#{postable_name(post)}", post: post
+

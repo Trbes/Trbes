@@ -1,1 +1,19 @@
-'TODO
+.post
+  .post-upvote
+    .vote-count 200
+    a.vote href="#"
+      i.fa.fa-thumbs-up
+  .post-content
+    a.title href="#" = post.title
+    a.image href="#"
+      = image_tag(post.preview_image)
+    .meta
+      span.date  posted 1 day ago
+      | &nbsp;by&nbsp;
+      a.author href="#" Jérôme Gravel-Niquet
+      | &nbsp;•&nbsp;
+      a.answers href="#" 26 answers
+  .post-right
+    .post-actions
+      a.share href="#"
+        i.fa.fa-share-square-o.circle.grey
