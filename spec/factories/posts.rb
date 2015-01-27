@@ -2,6 +2,6 @@ FactoryGirl.define do
   factory :post do
     group
     user
-    association(:postable, factory: :text_postable)
+    after(:build) { |post| post.postable = create %i( text_postable link_postable image_postable ).sample }
   end
 end

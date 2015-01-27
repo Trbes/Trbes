@@ -4,9 +4,9 @@
     a.vote href="#"
       i.fa.fa-thumbs-up
   .post-content
-    a.title href="#"  Remembering Steve Jobs
+    a.title href="#" = post.title
     a.image href="#"
-      = image_tag(post.image.url)
+      = image_tag(post.preview_image)
     .meta
       span.date  posted 1 day ago
       | &nbsp;by&nbsp;
