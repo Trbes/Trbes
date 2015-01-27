@@ -1,9 +1,10 @@
 class ImagePostable < ActiveRecord::Base
   has_one :post, as: :postable
+  has_many :attachments, as: :attachable
 
-  # validates :image, presence: true
+  accepts_nested_attributes_for :attachments
 
   def preview_image
-    "https://placekitten.com/g/#{rand(8) + 1}00/#{rand(8) + 1}00"
+    attachments.first.image
   end
 end

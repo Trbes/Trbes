@@ -24,6 +24,14 @@ class PostsController < ApplicationController
   private
 
   def post_attributes
-    params.require(:post).permit(:postable_type, postable_attributes: %i(title link body))
+    params.require(:post).permit(
+      :postable_type,
+      postable_attributes: [
+        :title,
+        :link,
+        :body,
+        attachments_attributes: [:image]
+      ]
+    )
   end
 end

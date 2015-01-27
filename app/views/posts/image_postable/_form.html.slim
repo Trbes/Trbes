@@ -1,1 +1,9 @@
-'TODO
+= simple_form_for(post) do |f|
+  = f.hidden_field(:postable_type, value: "ImagePostable")
+  = f.fields_for(:postable, ImagePostable.new) do |postable_fields|
+    = postable_fields.input :title
+
+    = postable_fields.fields_for(:attachments, Attachment.new) do |attachment_fields|
+      = attachment_fields.input :image, as: :file
+
+  = f.button :submit
