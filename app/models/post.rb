@@ -12,4 +12,6 @@ class Post < ActiveRecord::Base
   delegate :title, :body, :link, :image, :preview_image, to: :postable
 
   accepts_nested_attributes_for :postable
+
+  acts_as_votable
 end

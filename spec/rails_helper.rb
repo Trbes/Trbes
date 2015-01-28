@@ -29,6 +29,7 @@ RSpec.configure do |config|
   config.include FeatureHelpers, type: :feature
   config.include ControllerHelpers, type: :controller
   config.before do
+    allow(Cloudinary::Utils).to receive(:cloudinary_url).and_return("")
     ActionMailer::Base.deliveries.clear
   end
 end

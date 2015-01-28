@@ -6,6 +6,9 @@ Rails.application.routes.draw do
   constraints(subdomain: SubdomainValidator::REG_EXP) do
     resources :groups, only: %i( show )
     resources :posts, only: %i( show new create )
+    resources :votes, only: [] do
+      put "upvote"
+    end
 
     resources :collections, only: %i( index show new create edit update destroy )
 

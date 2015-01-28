@@ -6,7 +6,7 @@ module ControllerHelpers
   end
 
   def stub_current_user
-    user = double("user")
+    user = create(:user)
     allow(controller).to receive(:current_user).and_return(user)
     allow(request.env["warden"]).to receive(:authenticate!).and_return(user)
   end

@@ -1,0 +1,4 @@
+.post-upvote
+  .vote-count= post.cached_votes_total
+  = link_to(vote_upvote_path(post), class: "vote", method: :put) do
+    i.fa.fa-thumbs-up
