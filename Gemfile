@@ -34,6 +34,7 @@ gem "faker"
 gem "carrierwave"
 gem "cloudinary"
 gem "pundit"
+gem "acts_as_votable"
 
 group :staging, :production do
   gem "rails_12factor"

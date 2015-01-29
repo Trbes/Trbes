@@ -1,11 +1,7 @@
-.post
-  .post-upvote
-    .vote-count 200
-    a.vote href="#"
-      i.fa.fa-thumbs-up
+= div_for(post)
+  = render "posts/voting", post: post
   .post-content
     = link_to post.title, post, class: "title"
-    / .excerpt  Now part of Google, Nest is still the king of the connected thermostats.
     .url
       i.fa.fa-link
       = link_to post.link, post.link
