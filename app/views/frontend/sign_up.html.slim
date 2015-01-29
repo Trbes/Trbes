@@ -1,0 +1,47 @@
+.container
+  .module-sign-up
+    header.su-header
+      h1.su-title Hello. Welcome to Trbes.
+      .su-subtitle
+        | Just Enter your Email Address to join&nbsp;
+        strong Chirp Signal : All about Connected Devices.
+    .su-body
+      #su_boy
+      form.su-form
+        .form-group.fg-su-email
+          label for="su_email"  Email Address
+          input#su_email.form-control placeholder=("Example: hello@trbes.com") type="email" data-point-to-class="point-to-email"
+          p.help-block
+            | If you prefer, you can sign up with:
+            br
+            a href="#" Facebook
+            | ,&nbsp;
+            a href="#" Twitter
+            | ,&nbsp;
+            a href="#" Groove
+            | ,&nbsp;
+            a href="#" Hipchat
+            |  or&nbsp;
+            a href="#" other service
+            | .
+        .form-group.has-feedback.fg-su-first-name
+          label for="su_first_name"  First Name
+          input#su_first_name.form-control aria-describedby="su_first_name_success_status" type="text" data-point-to-class="point-to-name"
+          span.fa.fa-check-circle.form-control-feedback aria-hidden="true"
+          / span.fa.fa-times-circle.form-control-feedback aria-hidden="true"
+          span#su_first_name_success_status.sr-only (success)
+        .form-group.fg-su-last-name
+          label for="su_last_name"  Last Name
+          input#su_last_name.form-control type="text" data-point-to-class="point-to-name"
+        .form-group.fg-su-password
+          label for="su_password"
+            | Choose a Password
+            small
+              |  (8 characters or longer)
+          input#su_password.form-control type="password" data-point-to-class="point-to-password"
+        .checkbox
+          label
+            input type="checkbox"
+            | Show my password
+        button.btn.btn-primary.btn-sign-up type="submit"  Create my account
+
