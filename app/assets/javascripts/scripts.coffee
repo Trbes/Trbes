@@ -25,3 +25,34 @@ $ ->
     $(".su-form input").on "blur", (e) ->
       $("#su_boy").removeClass()
 
+  # Sign-up form validation
+  $("form.su-form").validate
+    rules:
+      email:
+        required: true
+        email: true
+      name:
+        minlength: 2
+        required: true
+      title:
+        minlength: 2
+      password:
+        minlength: 8
+        required: true
+
+    highlight: (element) ->
+      $(element).
+        closest(".form-group").removeClass("has-feedback has-success").addClass("has-feedback has-error").
+        find(".form-control-feedback").removeClass("fa-check-circle").addClass("fa-times-circle")
+
+    success: (element) ->
+      $(element).
+        closest(".form-group").removeClass("has-feedback has-error").addClass("has-feedback has-success").
+        find(".form-control-feedback").removeClass("fa-times-circle").addClass("fa-check-circle")
+
+  # Toggle password
+  $(".fg-su-show-password input[type='checkbox']").click (e) ->
+    if $(this).is(":checked")
+      $("#su_password").prop("type", "text")
+    else
+      $("#su_password").prop("type", "password")

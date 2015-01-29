@@ -55,6 +55,10 @@
   width: 340px;
   margin-top: 30px;
 
+  .error {
+    display: none !important;
+  }
+
   .form-group {
 
     label {
@@ -71,6 +75,14 @@
       margin-top: 9px;
       margin-right: 8px;
     }
+
+    @include breakpoint(0 320px) {
+      &.fg-su-password {
+        .form-control-feedback {
+          margin-top: 28px;
+        }
+      }
+    }
   }
 
   @include breakpoint(0 $screen-sm - 1) {
@@ -80,6 +92,11 @@
 
     .form-group {
       margin-right: auto;
+
+      label {
+        max-width: 100%;
+        width: 100%;
+      }
     }
   }
 }
@@ -98,6 +115,10 @@
     font-size: 1.2em;
   }
 
+  .form-control-feedback {
+    margin-top: 14px;
+  }
+
   .help-block {
     margin-top: 15px;
     font-size: 0.9em;
@@ -108,8 +129,14 @@
   }
 }
 
-.fg-su-first-name,
-.fg-su-last-name,
+
+.fg-su-name,
+.fg-su-title,
 .fg-su-password {
   margin-right: 100px;
+
+  label {
+    max-width: 130%;
+    width: 130%;
+  }
 }
