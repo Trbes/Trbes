@@ -4,15 +4,38 @@
 .su-header {
   margin-bottom: 50px;
   text-align: center;
+
+  @include breakpoint(0 $screen-sm) {
+    text-align: left;
+  }
 }
 
 .su-title {
   text-transform: uppercase;
   font-size: 26px;
+  position: relative;
+
+  &:after {
+    background: transparent image-url("hint_spam_policy.png") no-repeat;
+    width: 269px;
+    height: 66px;
+    content: " ";
+    position: absolute;
+    top: -41px;
+    margin-left: 20px;
+
+    @include breakpoint(0 $screen-sm - 1) {
+      display: none
+    }
+  }
 }
 
-.su-subtitle {
+.su-subtitle, .su-anti-spam {
   color: #8a8d99;
+}
+
+.su-anti-spam {
+  margin-top: 10px;
 }
 
 .su-body {
@@ -74,6 +97,13 @@
       height: auto;
       margin-top: 9px;
       margin-right: 8px;
+      display: none;
+    }
+
+    .has-feedback {
+      .form-control-feedback {
+        display: inline-block;
+      }
     }
 
     @include breakpoint(0 320px) {
