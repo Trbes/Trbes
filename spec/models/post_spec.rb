@@ -6,11 +6,6 @@ describe Post do
     it { is_expected.to belong_to(:user) }
   end
 
-  describe "validations" do
-    it { is_expected.to have_db_column(:group_id) }
-    it { is_expected.to have_db_column(:user_id) }
-  end
-
   describe "columns" do
     it { is_expected.to have_db_column(:group_id) }
     it { is_expected.to have_db_column(:user_id) }

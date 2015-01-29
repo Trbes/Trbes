@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150128192317) do
+ActiveRecord::Schema.define(version: 20150129193747) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -46,6 +46,17 @@ ActiveRecord::Schema.define(version: 20150128192317) do
   end
 
   add_index "collections", ["group_id"], name: "index_collections_on_group_id", using: :btree
+
+  create_table "comments", force: :cascade do |t|
+    t.integer  "post_id",    null: false
+    t.integer  "user_id",    null: false
+    t.text     "body",       null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "comments", ["post_id"], name: "index_comments_on_post_id", using: :btree
+  add_index "comments", ["user_id"], name: "index_comments_on_user_id", using: :btree
 
   create_table "documents", force: :cascade do |t|
     t.string   "title",      limit: 255, null: false
@@ -112,6 +123,7 @@ ActiveRecord::Schema.define(version: 20150128192317) do
     t.integer  "postable_id"
     t.string   "postable_type"
     t.integer  "cached_votes_total", default: 0
+    t.integer  "comments_count",     default: 0, null: false
   end
 
   add_index "posts", ["cached_votes_total"], name: "index_posts_on_cached_votes_total", using: :btree
@@ -147,6 +159,7 @@ ActiveRecord::Schema.define(version: 20150128192317) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "full_name"
+    t.integer  "comments_count",         default: 0,  null: false
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
@@ -170,6 +183,8 @@ ActiveRecord::Schema.define(version: 20150128192317) do
   add_foreign_key "collection_posts", "collections"
   add_foreign_key "collection_posts", "posts"
   add_foreign_key "collections", "groups"
+  add_foreign_key "comments", "posts"
+  add_foreign_key "comments", "users"
   add_foreign_key "membership_roles", "memberships"
   add_foreign_key "membership_roles", "roles"
   add_foreign_key "memberships", "groups"

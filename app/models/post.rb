@@ -5,6 +5,7 @@ class Post < ActiveRecord::Base
     TextPostable
   ).freeze
 
+  has_many :comments, dependent: :destroy
   belongs_to :group, required: true
   belongs_to :user, required: true
   belongs_to :postable, polymorphic: true, required: true

@@ -10,7 +10,7 @@
       | &nbsp;by&nbsp;
       a.author href="#" Jérôme Gravel-Niquet
       | &nbsp;•&nbsp;
-      a.answers href="#" 26 answers
+      a.answers href="#"= pluralize(post.comments_count, "answer")
   .post-right
     a.post-thumb href="#"
       = image_tag("sample/post_thumb.jpg", width: 96, height: 96)
