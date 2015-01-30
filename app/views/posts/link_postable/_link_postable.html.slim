@@ -5,12 +5,7 @@
     .url
       i.fa.fa-link
       = link_to post.link, post.link
-    .meta
-      span.date  posted 1 day ago
-      | &nbsp;by&nbsp;
-      a.author href="#" Jérôme Gravel-Niquet
-      | &nbsp;•&nbsp;
-      a.answers href="#"= pluralize(post.comments_count, "answer")
+    = render "posts/meta", post: post
   .post-right
     a.post-thumb href="#"
       = image_tag("sample/post_thumb.jpg", width: 96, height: 96)

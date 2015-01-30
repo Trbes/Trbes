@@ -2,14 +2,14 @@ class FindOrCreateMembership
   include Interactor
 
   def call
+    return unless user && group
+
     context.membership = find_membership || create_membership
   end
 
   private
 
   def find_membership
-    return unless user && group
-
     user.membership_for(group)
   end
 

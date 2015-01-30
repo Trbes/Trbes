@@ -11,6 +11,7 @@ class Post < ActiveRecord::Base
   belongs_to :postable, polymorphic: true, required: true
 
   delegate :title, :body, :link, :image, :preview_image, to: :postable
+  delegate :full_name, to: :user, prefix: true
 
   scope :order_by_votes, -> { order(cached_votes_total: :desc) }
 

@@ -1,6 +1,6 @@
 class Membership < ActiveRecord::Base
-  belongs_to :user
-  belongs_to :group
+  belongs_to :user, required: true
+  belongs_to :group, required: true
 
   has_many :membership_roles
   has_many :roles, through: :membership_roles

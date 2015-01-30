@@ -10,8 +10,4 @@ class CreateCollection
   def create_collection
     Collection.create(context.attributes.merge(group: context.current_group))
   end
-
-  def attributes
-    context.attributes
-  end
 end

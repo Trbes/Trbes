@@ -1,6 +1,6 @@
 class CommentPolicy < Struct.new(:membership, :comment)
   def create?
-    true
+    membership.present?
   end
 
   def destroy?

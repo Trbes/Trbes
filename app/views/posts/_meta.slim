@@ -1,0 +1,6 @@
+.meta
+  span.date posted #{distance_of_time_in_words_to_now(post.created_at) } ago
+  | &nbsp;by&nbsp;
+  a.author href="#"= post.user_full_name
+  | &nbsp;•&nbsp;
+  = link_to pluralize(post.comments_count, "answer"), post_path(post)

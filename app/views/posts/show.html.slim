@@ -2,10 +2,11 @@
   = render "posts/#{postable_name(post)}/#{postable_name(post)}"
   = render post.comments.includes(:user)
 
-  .col-md-4
-    h4 New comment
-    = simple_form_for([post, Comment.new]) do |f|
-      = f.input :body, label: false
-      = f.submit "Post", class: "btn btn-success"
+  - if policy(Comment).create?
+    .col-md-4
+      h4 New comment
+      = simple_form_for([post, Comment.new]) do |f|
+        = f.input :body, label: false
+        = f.submit "Post", class: "btn btn-success"
 
-    = link_to "Back", root_path
+      = link_to "Back", root_path

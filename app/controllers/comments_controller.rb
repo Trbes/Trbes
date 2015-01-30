@@ -3,9 +3,11 @@ class CommentsController < ApplicationController
   expose(:post)
 
   def create
-    comment.user = current_user
-    comment.post = post
-    comment.save
+    comment = CreateComment.call(
+      user: current_user,
+      post: post,
+      attributes: comment_attributes
+    ).comment
 
     redirect_to comment.post
   end
