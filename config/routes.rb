@@ -16,6 +16,7 @@ Rails.application.routes.draw do
   end
 
   get "/frontend/posts" => "frontend#posts"
+  get "/frontend/sign_up" => "frontend#sign_up"
 
   root to: "dashboard#index"
 end

@@ -1,0 +1,172 @@
+.module-sign-up {
+}
+
+.su-header {
+  margin-bottom: 50px;
+  text-align: center;
+
+  @include breakpoint(0 $screen-sm) {
+    text-align: left;
+  }
+}
+
+.su-title {
+  text-transform: uppercase;
+  font-size: 26px;
+  position: relative;
+
+  &:after {
+    background: transparent image-url("hint_spam_policy.png") no-repeat;
+    width: 269px;
+    height: 66px;
+    content: " ";
+    position: absolute;
+    top: -41px;
+    margin-left: 20px;
+
+    @include breakpoint(0 $screen-sm - 1) {
+      display: none
+    }
+  }
+}
+
+.su-subtitle, .su-anti-spam {
+  color: #8a8d99;
+}
+
+.su-anti-spam {
+  margin-top: 10px;
+}
+
+.su-body {
+  background-color: #f7f7f7;
+  box-shadow: 0 0 3px rgba(18, 98, 157, 0.25);
+  min-height: 510px;
+  max-width: 720px;
+  margin: 0 auto;
+}
+
+#su_boy {
+  @include size(356px 508px);
+
+  float: left;
+  position: relative;
+  bottom: -8px;
+  background-image: image-url("sprite_sign_up.png");
+  background-repeat: no-repeat;
+  background-position: 0 0;
+
+  @include breakpoint(0 $screen-sm - 1) {
+    display: none;
+  }
+
+  &.point-to-email {
+    background-position: -356px 0;
+  }
+
+  &.point-to-name {
+    background-position: -712px 0;
+  }
+
+  &.point-to-password {
+    background-position: -1068px 0;
+  }
+}
+
+.su-form {
+  float: left;
+  width: 340px;
+  margin-top: 30px;
+
+  .error {
+    display: none !important;
+  }
+
+  .form-group {
+
+    label {
+      font-weight: 500;
+
+      small {
+        color: #737373;
+      }
+    }
+
+    .form-control-feedback {
+      width: auto;
+      height: auto;
+      margin-top: 9px;
+      margin-right: 8px;
+      display: none;
+    }
+
+    .has-feedback {
+      .form-control-feedback {
+        display: inline-block;
+      }
+    }
+
+    @include breakpoint(0 320px) {
+      &.fg-su-password {
+        .form-control-feedback {
+          margin-top: 28px;
+        }
+      }
+    }
+  }
+
+  @include breakpoint(0 $screen-sm - 1) {
+    margin-left: 20px;
+    margin-right: 20px;
+    width: auto;
+
+    .form-group {
+      margin-right: auto;
+
+      label {
+        max-width: 100%;
+        width: 100%;
+      }
+    }
+  }
+}
+
+.btn-sign-up {
+  background-color: #7d9e4d;
+  border-color: #7d9e4d;
+  font-size: 1.1em;
+  text-transform: uppercase;
+  padding: 10px 20px;
+  margin-top: 20px;
+}
+
+.fg-su-email {
+  label {
+    font-size: 1.2em;
+  }
+
+  .form-control-feedback {
+    margin-top: 14px;
+  }
+
+  .help-block {
+    margin-top: 15px;
+    font-size: 0.9em;
+
+    a {
+      font-size: 1.1em;
+    }
+  }
+}
+
+
+.fg-su-name,
+.fg-su-title,
+.fg-su-password {
+  margin-right: 100px;
+
+  label {
+    max-width: 130%;
+    width: 130%;
+  }
+}

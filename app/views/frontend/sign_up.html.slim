@@ -1,0 +1,53 @@
+.container
+  .module-sign-up
+    header.su-header
+      h1.su-title Hello. Welcome to Trbes.
+      .su-subtitle
+        | Just Enter your Email Address to join&nbsp;
+        strong Chirp Signal : All about Connected Devices.
+      .su-anti-spam.visible-xs-block
+        strong We won't share your email ever! We do not spam.
+    .su-body
+      #su_boy
+      form.su-form
+        .form-group.fg-su-email
+          label for="su_email"  Email Address
+          input#su_email.form-control type="email" name="email" placeholder="Example: hello@trbes.com" data-point-to-class="point-to-email"
+          span.fa.fa-check-circle.form-control-feedback aria-hidden="true"
+          p.help-block
+            | If you prefer, you can sign up with:
+            br
+            a href="#" Facebook
+            | ,&nbsp;
+            a href="#" Twitter
+            | ,&nbsp;
+            a href="#" Groove
+            | ,&nbsp;
+            a href="#" Hipchat
+            |  or&nbsp;
+            a href="#" other service
+            | .
+        .form-group.fg-su-name
+          label for="su_name"  Full Name
+          input#su_name.form-control type="text" name="name" placeholder="Awesome Doe" data-point-to-class="point-to-name"
+          span.fa.fa-check-circle.form-control-feedback aria-hidden="true"
+        .form-group.fg-su-title
+          label for="su_title"
+            | Who are you?
+            small
+              |  (optional)
+          input#su_title.form-control type="text" name="title" placeholder="CEO at My Company Inc" data-point-to-class="point-to-name"
+          span.fa.fa-check-circle.form-control-feedback aria-hidden="true"
+        .form-group.fg-su-password
+          label for="su_password"
+            | Choose a Password
+            small
+              |  (8 characters or longer)
+          input#su_password.form-control name="password" type="password" data-point-to-class="point-to-password"
+          span.fa.fa-check-circle.form-control-feedback aria-hidden="true"
+        .checkbox.fg-su-show-password
+          label
+            input type="checkbox"
+            | Show my password
+        button.btn.btn-primary.btn-sign-up type="submit"  Create my account
+
