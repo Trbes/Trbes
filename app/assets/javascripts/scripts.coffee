@@ -12,18 +12,20 @@ $ ->
   if $(".su-form").length > 0
     check_and_point_to_input = () ->
       point_to_class = $(".su-form input:focus").eq(0).data("point-to-class")
-      $("#su_boy").removeClass()
+      $("#su_cody").removeClass()
       if point_to_class
-        $("#su_boy").addClass(point_to_class)
+        $("#su_cody").addClass(point_to_class)
 
-    $(".su-form input").on "focus", (e) ->
+    $(".su-form input[type='email'],
+       .su-form input[type='text'],
+       .su-form input[type='password']").on "focus", (e) ->
       point_to_class = $(e.target).data("point-to-class")
-      $("#su_boy").removeClass()
+      $("#su_cody").removeClass()
       if point_to_class
-        $("#su_boy").addClass(point_to_class)
+        $("#su_cody").addClass(point_to_class)
 
-    $(".su-form input").on "blur", (e) ->
-      $("#su_boy").removeClass()
+    # $(".su-form input").on "blur", (e) ->
+    #   $("#su_cody").removeClass()
 
   # Sign-up form validation
   $("form.su-form").validate

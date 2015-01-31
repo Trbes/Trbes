@@ -46,8 +46,8 @@
   margin: 0 auto;
 }
 
-#su_boy {
-  @include size(356px 508px);
+#su_cody {
+  @include size(370px 508px);
 
   float: left;
   position: relative;
@@ -61,15 +61,15 @@
   }
 
   &.point-to-email {
-    background-position: -356px 0;
+    background-position: -370px 0;
   }
 
   &.point-to-name {
-    background-position: -712px 0;
+    background-position: -740px 0;
   }
 
   &.point-to-password {
-    background-position: -1068px 0;
+    background-position: -1110px 0;
   }
 }
 
@@ -100,9 +100,39 @@
       display: none;
     }
 
-    .has-feedback {
+    &.has-feedback {
       .form-control-feedback {
         display: inline-block;
+      }
+    }
+
+    &.fg-su-email {
+      label {
+        font-size: 1.2em;
+      }
+
+      .form-control-feedback {
+        margin-top: 14px;
+      }
+
+      .help-block {
+        margin-top: 15px;
+        font-size: 0.9em;
+
+        a {
+          font-size: 1.1em;
+        }
+      }
+    }
+
+    &.fg-su-name,
+    &.fg-su-title,
+    &.fg-su-password {
+      margin-right: 100px;
+
+      label {
+        max-width: 130%;
+        width: 130%;
       }
     }
 
@@ -140,33 +170,5 @@
   margin-top: 20px;
 }
 
-.fg-su-email {
-  label {
-    font-size: 1.2em;
-  }
-
-  .form-control-feedback {
-    margin-top: 14px;
-  }
-
-  .help-block {
-    margin-top: 15px;
-    font-size: 0.9em;
-
-    a {
-      font-size: 1.1em;
-    }
-  }
-}
 
 
-.fg-su-name,
-.fg-su-title,
-.fg-su-password {
-  margin-right: 100px;
-
-  label {
-    max-width: 130%;
-    width: 130%;
-  }
-}
