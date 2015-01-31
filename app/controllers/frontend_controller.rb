@@ -4,4 +4,7 @@ class FrontendController < ApplicationController
 
   def sign_up
   end
+
+  def thank_you
+  end
 end

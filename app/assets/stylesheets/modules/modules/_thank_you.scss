@@ -1,0 +1,78 @@
+.module-thank-you {
+}
+
+.ty-header {
+  margin-bottom: 30px;
+  text-align: center;
+}
+
+.ty-title {
+  font-size: 26px;
+  padding-left: 34px;
+  display: inline-block;
+  background: image-url("tick.png") 0 50% no-repeat;
+}
+
+.ty-subtitle {
+}
+
+.ty-crew {
+  text-align: center;
+
+  img {
+    max-width: 100%;
+  }
+}
+
+.ty-body {
+  background-color: #f7f7f7;
+  box-shadow: 0 0 3px rgba(18, 98, 157, 0.25);
+  margin: 0 auto 0;
+  padding: 40px;
+  text-align: center;
+
+  hr {
+    margin-top: 40px;
+    margin-bottom: 40px;
+  }
+
+  p {
+    font-size: 16px;
+    color: #5c5c5c;
+
+    @include breakpoint(0 $screen-sm - 1) {
+      font-size: 14px;
+    }
+  }
+}
+
+.ty-announcement {
+  font-size: 26px;
+
+  @include breakpoint(0 $screen-sm - 1) {
+    font-size: 18px;
+  }
+
+  strong {
+    font-weight: 500;
+  }
+}
+
+.ty-invite {
+  font-size: 24px;
+  margin-top: 10px;
+  display: inline-block;
+
+  @include breakpoint(0 $screen-sm - 1) {
+    font-size: 16px;
+  }
+}
+
+.btn-go-to-group {
+  background-color: $button-color;
+  border-color: $button-color;
+  font-size: 1.1em;
+  text-transform: uppercase;
+  padding: 10px 20px;
+  margin-top: 40px;
+}
