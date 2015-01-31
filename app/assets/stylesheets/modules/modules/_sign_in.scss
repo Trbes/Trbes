@@ -1,7 +1,7 @@
-.module-sign-up {
+.module-sign-in {
 }
 
-.su-header {
+.si-header {
   margin-bottom: 50px;
   text-align: center;
 
@@ -10,19 +10,20 @@
   }
 }
 
-.su-title {
+.si-title {
   text-transform: uppercase;
   font-size: 26px;
   position: relative;
+  display: inline-block;
 
   &:after {
-    background: transparent image-url("hint_spam_policy.png") no-repeat;
-    width: 269px;
-    height: 66px;
+    background: transparent image-url("hint_trbes_powered.png") no-repeat;
+    width: 260px;
+    height: 74px;
     content: " ";
     position: absolute;
     top: -41px;
-    margin-left: 20px;
+    right: -230px;
 
     @include breakpoint(0 $screen-sm - 1) {
       display: none
@@ -30,15 +31,15 @@
   }
 }
 
-.su-subtitle, .su-anti-spam {
+.si-subtitle, .si-powered {
   color: #8a8d99;
 }
 
-.su-anti-spam {
+.si-powered {
   margin-top: 10px;
 }
 
-.su-body {
+.si-body {
   background-color: #f7f7f7;
   box-shadow: 0 0 3px rgba(18, 98, 157, 0.25);
   min-height: 510px;
@@ -46,7 +47,7 @@
   margin: 0 auto;
 }
 
-#su_cody {
+#si_cody {
   @include size(370px 508px);
 
   float: left;
@@ -54,50 +55,58 @@
   bottom: -8px;
   background-image: image-url("sprite_cody.png");
   background-repeat: no-repeat;
-  background-position: 0 0;
+  background-position: 45px 0;
 
   @include breakpoint(0 $screen-sm - 1) {
     display: none;
   }
 
-  &.point-to-email {
-    background-position: -370px 0;
-  }
-
-  &.point-to-name {
-    background-position: -740px 0;
-  }
-
-  &.point-to-password {
-    background-position: -1110px 0;
+  &.has-error {
+    background-position: -1483px 0;
   }
 }
 
-.su-form {
+.si-form {
   float: left;
   width: 340px;
-  margin-top: 30px;
+  margin-top: 45px;
+
+  .si-logo {
+    margin-bottom: 25px;
+  }
 
   .error {
     display: none !important;
   }
 
   .form-group {
-
-    label {
-      font-weight: 500;
-
-      small {
-        color: #737373;
-      }
-    }
+    position: relative;
 
     .form-control-feedback {
       width: auto;
       height: auto;
-      margin-top: 9px;
+      margin-top: 10px;
       margin-right: 8px;
       display: none;
+      top: 0;
+    }
+
+    .fg-si-addon {
+      position: absolute;
+      top: 0;
+      left: 0;
+      z-index: 2;
+      display: block;
+      width: 34px;
+      height: 34px;
+      line-height: 34px;
+      text-align: center;
+      pointer-events: none;
+      color: #e1e0df;
+    }
+
+    input {
+      padding-left: 32px;
     }
 
     &.has-feedback {
@@ -106,52 +115,21 @@
       }
     }
 
-    &.fg-su-email {
-      label {
-        font-size: 1.2em;
-      }
-
-      .form-control-feedback {
-        margin-top: 14px;
-      }
-
-      .help-block {
-        margin-top: 15px;
-        font-size: 0.9em;
-
-        a {
-          font-size: 1.1em;
-        }
-      }
-    }
-
-    &.fg-su-name,
-    &.fg-su-title,
-    &.fg-su-password {
+    &.fg-si-password {
       margin-right: 100px;
-
-      label {
-        max-width: 130%;
-        width: 130%;
-      }
 
       @include breakpoint(0 $screen-sm - 1) {
         margin-right: auto;
-
-        label {
-          max-width: 100%;
-          width: 100%;
-        }
       }
     }
 
-    @include breakpoint(0 320px) {
-      &.fg-su-password {
-        .form-control-feedback {
-          margin-top: 28px;
-        }
-      }
-    }
+    // @include breakpoint(0 320px) {
+    //   &.fg-si-password {
+    //     .form-control-feedback {
+    //       margin-top: 28px;
+    //     }
+    //   }
+    // }
   }
 
   @include breakpoint(0 $screen-sm - 1) {
@@ -160,20 +138,44 @@
     width: auto;
   }
 
-  .btn-sign-up {
+  .btn-sign-in {
     background-color: $button-color;
     border-color: $button-color;
     font-size: 1.1em;
     text-transform: uppercase;
     padding: 10px 20px;
-    margin-top: 20px;
+    margin-top: 10px;
 
     @include on_link_actions {
       background-color: lighten($button-color, 10%);
       border-color: lighten($button-color, 10%);
     }
   }
-}
 
+  .si-altenatives {
+    margin-top: 60px;
+    margin-bottom: 30px;
+    color: #989999;
+    padding-right: 20px;
+  }
+
+  a.forgot-password {
+    line-height: 43px;
+    margin-left: 25px;
+    margin-top: 10px;
+    vertical-align: top;
+    display: inline-block;
+  }
+
+  a.si-sign-up {
+    font-weight: 500;
+  }
+
+  .si-already-signed-up {
+    display: none;
+    color: #626363;
+    margin-bottom: 12px;
+  }
+}
 
 
