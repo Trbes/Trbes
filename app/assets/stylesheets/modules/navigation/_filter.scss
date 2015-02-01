@@ -1,7 +1,7 @@
 // Styling for the filter menu in posts listing
 
-$nav-filter-link-color: #666;
-$nav-filter-link-color-hover: #333;
+$nav-filter-link-color: #727272;
+$nav-filter-link-color-hover: #727272;
 
 .nav-filter {
   font-size: 1.2em;
@@ -33,7 +33,7 @@ $nav-filter-link-color-hover: #333;
         background-color: transparent;
         text-decoration: underline;
         color: $nav-filter-link-color-hover;
-        font-weight: 400;
+        font-weight: bold;
 
         @include on_link_actions {
           background-color: transparent;
