@@ -15,3 +15,4 @@ vendor/ruby
 .pryrc
 .powenv
 public/uploads
+.DS_Store
