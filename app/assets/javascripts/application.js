@@ -8,5 +8,5 @@
 //= require jquery_ujs
 //= require bootstrap-sass-official
 //= require jquery-validation
-//= require_tree ./gsdk
+//= require gsdk
 //= require scripts

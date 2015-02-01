@@ -1,0 +1,204 @@
+.module-create-group {
+}
+
+.cg-crew {
+  text-align: center;
+
+  img {
+    max-width: 100%;
+  }
+}
+
+.cg-body {
+  background-color: #f7f7f7;
+  box-shadow: 0 0 3px rgba(18, 98, 157, 0.25);
+  margin: 0 auto;
+  padding: 20px 50px 50px;
+  max-width: 720px;
+
+  hr {
+    margin-top: 20px;
+    margin-bottom: 20px;
+  }
+
+  @include breakpoint(0 $screen-sm - 1) {
+    padding: 20px;
+  }
+}
+
+.cg-announcement {
+  font-size: 26px;
+  font-weight: 100;
+  text-align: center;
+
+  @include breakpoint(0 $screen-sm - 1) {
+    font-size: 18px;
+  }
+
+  a, strong {
+    font-weight: 300;
+  }
+}
+
+.cg-title {
+  font-size: 32px;
+
+  @include breakpoint(0 $screen-sm - 1) {
+    font-size: 24px;
+  }
+}
+
+.cg-form {
+  margin-top: 30px;
+
+  .error {
+    display: none !important;
+  }
+
+  .form-group {
+    margin-bottom: 20px;
+
+    label {
+      font-weight: 400;
+      display: block;
+
+      small {
+        color: #737373;
+      }
+    }
+
+    .form-control-feedback {
+      width: auto;
+      height: auto;
+      margin-top: 12px;
+      margin-right: 8px;
+      display: none;
+    }
+
+    &.has-error, &.has-success {
+      .help-block {
+        color: #737373;
+      }
+    }
+
+    &.has-feedback {
+      .form-control-feedback {
+        display: inline-block;
+      }
+    }
+
+    &.fg-su-email {
+      label {
+        font-size: 1.2em;
+      }
+
+      .form-control-feedback {
+        margin-top: 17px;
+      }
+
+      .help-block {
+        margin-top: 15px;
+        font-size: 0.9em;
+
+        a {
+          font-size: 1.1em;
+        }
+      }
+    }
+
+    &.fg-cg-name,
+    &.fg-cg-short-name,
+    &.fg-cg-description {
+      max-width: 370px;
+
+      label {
+        max-width: 130%;
+        width: 130%;
+      }
+
+      @include breakpoint(0 $screen-sm - 1) {
+        margin-right: auto;
+
+        label {
+          max-width: 100%;
+          width: 100%;
+        }
+      }
+    }
+
+    &.fg-cg-short-name {
+      .form-control {
+        width: 200px;
+        float: left;
+      }
+
+      .form-control-static {
+        padding: 10px 0;
+        margin-left: 5px;
+        float: left;
+      }
+
+      .form-control-feedback {
+        right: auto;
+        left: 180px;
+      }
+    }
+
+    &.fg-cg-privacy {
+      .btn-privacy-hint {
+        padding: 0 5px;
+        vertical-align: baseline;
+      }
+
+      .cg-privacy-switch {
+        .fa {
+          font-size: 16px;
+        }
+
+        &.has-switch {
+          span.switch-left {
+            // background-color: $primary-color;
+          }
+
+          .switch-off {
+            span.switch-left,
+            span.switch-right {
+              background-color: #6C6B6B;
+            }
+          }
+        }
+      }
+    }
+
+    .checkbox-allowed-content {
+      label {
+
+      }
+    }
+
+    @include breakpoint(0 320px) {
+      &.fg-cg-name,
+      &.fg-cg-description  {
+        .form-control-feedback {
+          margin-top: 31px;
+        }
+      }
+
+      &.fg-cg-short-name {
+        .form-control {
+          width: 150px;
+        }
+
+        .form-control-feedback {
+          left: 130px;
+        }
+      }
+    }
+  }
+
+  .btn-create-group {
+    text-transform: uppercase;
+    margin-top: 10px;
+  }
+}
+

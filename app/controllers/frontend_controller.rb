@@ -10,4 +10,7 @@ class FrontendController < ApplicationController
 
   def thank_you
   end
+
+  def create_group
+  end
 end

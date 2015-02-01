@@ -1,0 +1,9 @@
+//= require ./gsdk/gsdk-checkbox
+//= require ./gsdk/gsdk-morphing
+//= require ./gsdk/gsdk-radio
+//= require ./gsdk/gsdk-bootstrapswitch
+//= require ./gsdk/bootstrap-select
+//= require ./gsdk/bootstrap-datepicker
+//= require ./gsdk/chartist.min
+//= require ./gsdk/jquery.tagsinput
+//= require ./gsdk/get-shit-done

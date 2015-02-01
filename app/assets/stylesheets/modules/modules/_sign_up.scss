@@ -90,7 +90,7 @@
     margin-bottom: 12px;
 
     label {
-      font-weight: 500;
+      font-weight: 400;
 
       small {
         color: #737373;
@@ -133,6 +133,12 @@
         a {
           font-size: 1.1em;
         }
+      }
+    }
+
+    &.fg-su-show-password {
+      label {
+        font-weight: 300;
       }
     }
 
