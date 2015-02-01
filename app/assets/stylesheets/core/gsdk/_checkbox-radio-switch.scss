@@ -10,16 +10,17 @@
   font-weight: normal;
   // line-height: 1.5;
   color: #333333;
+  cursor: pointer;
 }
 .checkbox input,
 .radio input {
   outline: none !important;
   display: none;
 }
-.checkbox label,
-.radio label {
+.checkbox label {
   padding-left: 0;
 }
+
 .checkbox .icons,
 .radio .icons {
   color: $medium-gray;

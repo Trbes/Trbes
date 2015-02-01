@@ -1,5 +1,7 @@
 # Write miscelaneous javascript code here
-
+$.validator.addMethod "subdomain", (value, element) ->
+  return this.optional(element) || /^[a-zA-Z0-9][a-zA-Z0-9.-]+[a-zA-Z0-9]$/.test value
+, "* Invalid subdomain"
 
 
 # Document ready
@@ -119,6 +121,7 @@ $ ->
         minlength: 2
       short_name:
         required: true
+        subdomain: true
         minlength: 2
         maxlength: 20
 

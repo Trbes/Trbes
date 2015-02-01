@@ -170,9 +170,17 @@
       }
     }
 
+    &.fg-cg-intended-usage {
+      .options {
+        label.radio {
+          font-weight: 300;
+        }
+      }
+    }
+
     .checkbox-allowed-content {
       label {
-
+        font-weight: 300;
       }
     }
 
