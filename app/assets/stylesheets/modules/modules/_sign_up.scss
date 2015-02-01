@@ -87,6 +87,7 @@
   }
 
   .form-group {
+    margin-bottom: 12px;
 
     label {
       font-weight: 500;
@@ -99,9 +100,15 @@
     .form-control-feedback {
       width: auto;
       height: auto;
-      margin-top: 9px;
+      margin-top: 12px;
       margin-right: 8px;
       display: none;
+    }
+
+    &.has-error, &.has-success {
+      .help-block {
+        color: #737373;
+      }
     }
 
     &.has-feedback {
@@ -116,7 +123,7 @@
       }
 
       .form-control-feedback {
-        margin-top: 14px;
+        margin-top: 17px;
       }
 
       .help-block {
@@ -152,7 +159,7 @@
     @include breakpoint(0 320px) {
       &.fg-su-password {
         .form-control-feedback {
-          margin-top: 28px;
+          margin-top: 31px;
         }
       }
     }
@@ -165,17 +172,8 @@
   }
 
   .btn-sign-up {
-    background-color: $button-color;
-    border-color: $button-color;
-    font-size: 1.1em;
     text-transform: uppercase;
-    padding: 10px 20px;
-    margin-top: 20px;
-
-    @include on_link_actions {
-      background-color: lighten($button-color, 10%);
-      border-color: lighten($button-color, 10%);
-    }
+    margin-top: 10px;
   }
 }
 

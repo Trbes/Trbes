@@ -64,7 +64,7 @@ $ ->
 
 
   # Toggle password
-  $(".fg-su-show-password input[type='checkbox']").click (e) ->
+  $(".fg-su-show-password input[type='checkbox']").change (e) ->
     if $(this).is(":checked")
       $("#su_password").prop("type", "text")
     else

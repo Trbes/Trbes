@@ -18,6 +18,7 @@ $nav-filter-link-color-hover: #333;
       padding-left: 0;
       padding-right: 0;
       border-radius: 0;
+      border: 0;
       color: $nav-filter-link-color;
 
       @include on_link_actions {
