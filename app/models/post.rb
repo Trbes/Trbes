@@ -21,5 +21,5 @@ class Post < ActiveRecord::Base
 
   acts_as_votable
 
-  friendly_id :title, use: %i(slugged finders)
+  friendly_id :title, use: %i( slugged finders )
 end

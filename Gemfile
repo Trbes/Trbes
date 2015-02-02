@@ -57,10 +57,10 @@ group :development, :test do
   gem "bundler-audit"
   gem "byebug"
   gem "dotenv-rails"
-  gem "fuubar", "~> 2.0.0.rc1"
+  gem "fuubar", "~> 2.0"
   gem "pry-rails"
   gem "rails_best_practices"
-  gem "rspec-rails", "~> 3.0"
+  gem "rspec-rails", "~> 3.1"
   gem "rubocop"
 end
 

@@ -8,6 +8,7 @@ module ControllerHelpers
   def stub_current_user
     user = create(:user)
     allow(controller).to receive(:current_user).and_return(user)
+    allow_message_expectations_on_nil
     allow(request.env["warden"]).to receive(:authenticate!).and_return(user)
   end
 
