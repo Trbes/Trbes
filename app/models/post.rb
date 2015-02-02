@@ -5,11 +5,13 @@ class Post < ActiveRecord::Base
     TextPostable
   ).freeze
 
+  has_many :comments, dependent: :destroy
   belongs_to :group, required: true
   belongs_to :user, required: true
   belongs_to :postable, polymorphic: true, required: true
 
   delegate :title, :body, :link, :image, :preview_image, to: :postable
+  delegate :full_name, to: :user, prefix: true
 
   scope :order_by_votes, -> { order(cached_votes_total: :desc) }
 

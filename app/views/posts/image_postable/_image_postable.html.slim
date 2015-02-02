@@ -5,12 +5,7 @@
       = post.title
       a.image href="#"
         = cl_image_tag(post.preview_image)
-    .meta
-      span.date posted 1 day ago
-      | &nbsp;by&nbsp;
-      a.author href="#" Jérôme Gravel-Niquet
-      | &nbsp;•&nbsp;
-      a.answers href="#" 26 answers
+    = render "posts/meta", post: post
   .post-right
     .post-actions
       a.share href="#"

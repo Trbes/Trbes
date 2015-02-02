@@ -1,0 +1,7 @@
+= div_for(comment)
+  blockquote
+    p= comment.body
+    footer= comment.user_full_name
+
+    - if policy(comment).destroy?
+      = link_to "Delete", post_comment_path(post, comment), method: :delete, data: { confirm: "Are you sure?" }
