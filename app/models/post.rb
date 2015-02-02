@@ -21,5 +21,7 @@ class Post < ActiveRecord::Base
 
   acts_as_votable
 
+  paginates_per 20
+
   friendly_id :title, use: %i( slugged finders )
 end
