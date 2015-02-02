@@ -1,5 +1,5 @@
 class PostsController < ApplicationController
-  expose(:post, attributes: :post_attributes)
+  expose(:post, attributes: :post_attributes, finder: :find_by_slug)
 
   def new
   end

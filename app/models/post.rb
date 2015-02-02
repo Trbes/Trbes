@@ -1,4 +1,6 @@
 class Post < ActiveRecord::Base
+  extend FriendlyId
+
   POSTABLE_TYPES = %w(
     ImagePostable
     LinkPostable
@@ -18,4 +20,6 @@ class Post < ActiveRecord::Base
   accepts_nested_attributes_for :postable
 
   acts_as_votable
+
+  friendly_id :title, use: %i(slugged finders)
 end

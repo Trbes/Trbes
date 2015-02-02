@@ -25,7 +25,6 @@ gem "title"
 gem "devise"
 gem "decent_exposure"
 gem "kaminari"
-gem "rollbar", "~> 0.10.3"
 gem "seedbank"
 gem "thin"
 gem "interactor-rails"
@@ -35,6 +34,7 @@ gem "carrierwave"
 gem "cloudinary"
 gem "pundit"
 gem "acts_as_votable"
+gem "friendly_id"
 
 group :staging, :production do
   gem "rails_12factor"
@@ -43,7 +43,6 @@ end
 group :test do
   gem "capybara"
   gem "capybara-webkit"
-  gem "codeclimate-test-reporter", require: false
   gem "database_cleaner"
   gem "email_spec"
   gem "formulaic"
