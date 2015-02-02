@@ -1,5 +1,6 @@
 class FrontendController < ApplicationController
   def posts
+    @test_post_form = true
   end
 
   def sign_up

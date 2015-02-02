@@ -5,7 +5,8 @@
 @mixin on_link_actions {
   &:hover,
   &:active,
-  &:focus {
+  &:focus,
+  &.active {
     @content;
   }
 }

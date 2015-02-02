@@ -136,3 +136,11 @@ $ ->
         find(".form-control-feedback").removeClass("fa-times-circle").addClass("fa-check-circle")
 
 
+  # Toggle add post form
+  $("#btn_add_post").click (e) ->
+    $("#add_a_post").toggleClass("open")
+
+  $(".cancel-post").click (e) ->
+    $("#add_a_post").removeClass("open")
+
+
