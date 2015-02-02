@@ -4,12 +4,6 @@ require File.expand_path("../../config/environment", __FILE__)
 require "rspec/rails"
 require "pundit/rspec"
 
-# Run codeclimate-test-reporter only in CI
-if ENV["CI"]
-  require "codeclimate-test-reporter"
-  CodeClimate::TestReporter.start
-end
-
 Dir[Rails.root.join("spec/support/**/*.rb")].each { |f| require f }
 Dir[Rails.root.join("spec/shared/**/*.rb")].each { |f| require f }
 
