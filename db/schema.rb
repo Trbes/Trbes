@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150129193747) do
+ActiveRecord::Schema.define(version: 20150202083508) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -58,13 +58,18 @@ ActiveRecord::Schema.define(version: 20150129193747) do
   add_index "comments", ["post_id"], name: "index_comments_on_post_id", using: :btree
   add_index "comments", ["user_id"], name: "index_comments_on_user_id", using: :btree
 
-  create_table "documents", force: :cascade do |t|
-    t.string   "title",      limit: 255, null: false
-    t.string   "url",        limit: 255, null: false
-    t.text     "body",                   null: false
+  create_table "friendly_id_slugs", force: :cascade do |t|
+    t.string   "slug",                      null: false
+    t.integer  "sluggable_id",              null: false
+    t.string   "sluggable_type", limit: 50
+    t.string   "scope"
     t.datetime "created_at"
-    t.datetime "updated_at"
   end
+
+  add_index "friendly_id_slugs", ["slug", "sluggable_type", "scope"], name: "index_friendly_id_slugs_on_slug_and_sluggable_type_and_scope", unique: true, using: :btree
+  add_index "friendly_id_slugs", ["slug", "sluggable_type"], name: "index_friendly_id_slugs_on_slug_and_sluggable_type", using: :btree
+  add_index "friendly_id_slugs", ["sluggable_id"], name: "index_friendly_id_slugs_on_sluggable_id", using: :btree
+  add_index "friendly_id_slugs", ["sluggable_type"], name: "index_friendly_id_slugs_on_sluggable_type", using: :btree
 
   create_table "groups", force: :cascade do |t|
     t.string   "name",                        null: false
@@ -104,17 +109,6 @@ ActiveRecord::Schema.define(version: 20150129193747) do
   add_index "memberships", ["group_id"], name: "index_memberships_on_group_id", using: :btree
   add_index "memberships", ["user_id"], name: "index_memberships_on_user_id", using: :btree
 
-  create_table "orders", force: :cascade do |t|
-    t.string  "order_number",      limit: 255, null: false
-    t.string  "url",               limit: 255, null: false
-    t.text    "keyword"
-    t.text    "secondary_keyword"
-    t.text    "title"
-    t.text    "description"
-    t.text    "heading"
-    t.integer "document_id"
-  end
-
   create_table "posts", force: :cascade do |t|
     t.integer  "group_id",                       null: false
     t.integer  "user_id",                        null: false
@@ -124,10 +118,12 @@ ActiveRecord::Schema.define(version: 20150129193747) do
     t.string   "postable_type"
     t.integer  "cached_votes_total", default: 0
     t.integer  "comments_count",     default: 0, null: false
+    t.string   "slug",                           null: false
   end
 
   add_index "posts", ["cached_votes_total"], name: "index_posts_on_cached_votes_total", using: :btree
   add_index "posts", ["group_id"], name: "index_posts_on_group_id", using: :btree
+  add_index "posts", ["slug"], name: "index_posts_on_slug", unique: true, using: :btree
   add_index "posts", ["user_id"], name: "index_posts_on_user_id", using: :btree
 
   create_table "roles", force: :cascade do |t|

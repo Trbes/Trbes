@@ -1,7 +1,7 @@
 require "rails_helper"
 
 describe CommentsController do
-  let!(:some_post) { create(:post) }
+  let!(:some_post) { create(:post, :text) }
 
   before do
     stub_auth

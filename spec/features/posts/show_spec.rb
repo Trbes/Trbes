@@ -1,13 +1,29 @@
 require "rails_helper"
 
-feature "Vote for a post" do
+feature "Single post page" do
   let(:user) { create(:user, :confirmed) }
   let(:group) { create(:group) }
-  let!(:post) { create(:post, group: group) }
+  let!(:post) { create(:post, :text, group: group) }
 
   before(:each) do
     sign_in(user.email, "123456")
     visit root_url(subdomain: group.subdomain)
+  end
+
+  scenario "I visit single post page" do
+    within("#post_#{post.id}") do
+      expect(page).to have_css(".title", text: post.title)
+      expect(page).to have_css(".excerpt", text: post.body)
+
+      click_link post.title
+    end
+
+    expect(current_path).to eq("/posts/#{post.title.parameterize}")
+
+    within("#post_#{post.id}") do
+      expect(page).to have_css(".title", text: post.title)
+      expect(page).to have_css(".excerpt", text: post.body)
+    end
   end
 
   scenario "I upvote for a post" do

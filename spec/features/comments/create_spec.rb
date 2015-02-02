@@ -3,7 +3,7 @@ require "rails_helper"
 feature "Post a comment" do
   let(:user) { create(:user, :confirmed) }
   let(:group) { create(:group) }
-  let!(:post) { create(:post, group: group) }
+  let!(:post) { create(:post, :text, group: group) }
 
   before(:each) do
     sign_in(user.email, "123456")

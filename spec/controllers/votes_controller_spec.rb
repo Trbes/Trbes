@@ -1,7 +1,7 @@
 require "rails_helper"
 
 describe VotesController do
-  let!(:post) { create(:post) }
+  let!(:post) { create(:post, :text) }
 
   before do
     stub_auth
