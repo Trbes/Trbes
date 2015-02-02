@@ -1,8 +1,7 @@
 class AddSlugsToPosts < ActiveRecord::Migration
   def change
-    change_table :posts do |t|
-      t.string :slug, index: true, uniq: true
-    end
+    add_column :posts, :slug, :string
+    add_index :posts, :slug, unique: true
 
     Post.find_each(&:save)
 

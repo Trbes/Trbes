@@ -123,6 +123,7 @@ ActiveRecord::Schema.define(version: 20150202083508) do
 
   add_index "posts", ["cached_votes_total"], name: "index_posts_on_cached_votes_total", using: :btree
   add_index "posts", ["group_id"], name: "index_posts_on_group_id", using: :btree
+  add_index "posts", ["slug"], name: "index_posts_on_slug", unique: true, using: :btree
   add_index "posts", ["user_id"], name: "index_posts_on_user_id", using: :btree
 
   create_table "roles", force: :cascade do |t|
