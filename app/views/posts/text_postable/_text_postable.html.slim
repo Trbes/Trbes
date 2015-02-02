@@ -6,8 +6,7 @@
       span= post.body
     = render "posts/meta", post: post
   .post-right
-    a.post-thumb href="#"
-      = image_tag("sample/post_thumb.jpg", width: 96, height: 96)
+    = preview_image(post)
     .post-actions
       a.collection-tag href="#"
         i.fa.fa-bug.circle.grey
