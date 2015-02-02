@@ -46,13 +46,13 @@
   margin: 0 auto;
 }
 
-#su_boy {
-  @include size(356px 508px);
+#su_cody {
+  @include size(370px 508px);
 
   float: left;
   position: relative;
   bottom: -8px;
-  background-image: image-url("sprite_sign_up.png");
+  background-image: image-url("sprite_cody.png");
   background-repeat: no-repeat;
   background-position: 0 0;
 
@@ -61,15 +61,19 @@
   }
 
   &.point-to-email {
-    background-position: -356px 0;
+    background-position: -370px 0;
   }
 
   &.point-to-name {
-    background-position: -712px 0;
+    background-position: -740px 0;
   }
 
   &.point-to-password {
-    background-position: -1068px 0;
+    background-position: -1110px 0;
+  }
+
+  &.has-error {
+    background-position: -1483px 0;
   }
 }
 
@@ -83,9 +87,10 @@
   }
 
   .form-group {
+    margin-bottom: 12px;
 
     label {
-      font-weight: 500;
+      font-weight: 400;
 
       small {
         color: #737373;
@@ -95,21 +100,72 @@
     .form-control-feedback {
       width: auto;
       height: auto;
-      margin-top: 9px;
+      margin-top: 12px;
       margin-right: 8px;
       display: none;
     }
 
-    .has-feedback {
+    &.has-error, &.has-success {
+      .help-block {
+        color: #737373;
+      }
+    }
+
+    &.has-feedback {
       .form-control-feedback {
         display: inline-block;
+      }
+    }
+
+    &.fg-su-email {
+      label {
+        font-size: 1.2em;
+      }
+
+      .form-control-feedback {
+        margin-top: 17px;
+      }
+
+      .help-block {
+        margin-top: 15px;
+        font-size: 0.9em;
+
+        a {
+          font-size: 1.1em;
+        }
+      }
+    }
+
+    &.fg-su-show-password {
+      label {
+        font-weight: 300;
+      }
+    }
+
+    &.fg-su-name,
+    &.fg-su-title,
+    &.fg-su-password {
+      margin-right: 100px;
+
+      label {
+        max-width: 130%;
+        width: 130%;
+      }
+
+      @include breakpoint(0 $screen-sm - 1) {
+        margin-right: auto;
+
+        label {
+          max-width: 100%;
+          width: 100%;
+        }
       }
     }
 
     @include breakpoint(0 320px) {
       &.fg-su-password {
         .form-control-feedback {
-          margin-top: 28px;
+          margin-top: 31px;
         }
       }
     }
@@ -119,54 +175,13 @@
     margin-left: 20px;
     margin-right: 20px;
     width: auto;
-
-    .form-group {
-      margin-right: auto;
-
-      label {
-        max-width: 100%;
-        width: 100%;
-      }
-    }
-  }
-}
-
-.btn-sign-up {
-  background-color: #7d9e4d;
-  border-color: #7d9e4d;
-  font-size: 1.1em;
-  text-transform: uppercase;
-  padding: 10px 20px;
-  margin-top: 20px;
-}
-
-.fg-su-email {
-  label {
-    font-size: 1.2em;
   }
 
-  .form-control-feedback {
-    margin-top: 14px;
-  }
-
-  .help-block {
-    margin-top: 15px;
-    font-size: 0.9em;
-
-    a {
-      font-size: 1.1em;
-    }
+  .btn-sign-up {
+    text-transform: uppercase;
+    margin-top: 10px;
   }
 }
 
 
-.fg-su-name,
-.fg-su-title,
-.fg-su-password {
-  margin-right: 100px;
 
-  label {
-    max-width: 130%;
-    width: 130%;
-  }
-}

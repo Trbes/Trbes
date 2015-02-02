@@ -1,47 +1,121 @@
 $profile-photo-size: 48px;
 
-.dropdown-profile {
+#navbar_navigation {
+  .navbar-nav {
+    &>li {
+      &.dropdown-profile {
+        &>a {
+          padding: 5px 0;
+          margin-top: 30px;
+          height: $profile-photo-size;
+          background-color: transparent;
 
-  &>a {
-    padding: 5px 0 !important;
-    margin-top: 30px;
-    height: $profile-photo-size;
-    background-color: transparent !important;
+          .profile-info {
+            text-align: right;
+            margin-right: $profile-photo-size + 10px;
+            color: $brand-primary;
 
-    .profile-info {
-      text-align: right;
-      margin-right: $profile-photo-size + 10px;
-      color: $brand-primary;
+            div {
+              color: #696969;
+            }
+          }
 
-      div {
-        color: #696969;
+          .profile-photo {
+            @include size($profile-photo-size $profile-photo-size);
+            position: absolute;
+            top: 0;
+            right: 0;
+          }
+        }
+
+        .dropdown-menu {
+          text-align: center;
+        }
       }
-    }
 
-    .profile-photo {
-      @include size($profile-photo-size $profile-photo-size);
-      position: absolute;
-      top: 0;
-      right: 0;
-    }
+      .btn-add-post {
+        padding: 10px 40px;
+        color: white;
+        margin: 30px 0 30px 60px;
+        font-size: 1.2em;
+        border-width: 0;
+        // background-color: #3ea8db !important;
+        max-width: 280px;
+        display: inline-block;
 
-    @include breakpoint(0 ($screen-sm - 1)) {
-      margin-top: 0;
+        .fa-plus {
+          color: white;
+          margin-right: 5px;
+        }
 
-      .profile-photo {
-        left: 0;
-      }
+        @include on_link_actions {
+          background-color: #2e6da4;
+        }
 
-      .profile-info {
-        text-align: left;
-        margin-right: 0;
-        margin-left: $profile-photo-size + 3px;
+        @include breakpoint($screen-md $screen-lg - 1) { // iPad
+          margin-left: 20px;
+        }
+
+        @include breakpoint($screen-sm $screen-md - 1) { // iPad
+          margin-left: 20px;
+          padding: 10px;
+          width: 42px;
+
+          .fa-plus {
+            margin-right: 0;
+          }
+
+          span {
+            display: none;
+          }
+        }
+
+        @include breakpoint(0 $screen-sm - 1) { // smaller than iPad
+          background-color: #3ea8db;
+          opacity: 1;
+          margin: 20px 0;
+          width: 100%;
+          border-radius: 4px;
+        }
       }
     }
   }
 
-  .dropdown-menu {
-    text-align: center;
+  @include breakpoint(0 ($screen-sm - 1)) { // smaller than iPad
+    background-color: #efefef;
+
+    .navbar-nav {
+      margin: 20px 0;
+      text-align: center;
+
+      &>li {
+        float: none !important;
+
+        &.dropdown-profile {
+          padding-bottom: 20px;
+
+          &>a {
+            margin: 0;
+            opacity: 1;
+
+            .profile-photo {
+              left: 0;
+            }
+
+            .profile-info {
+              text-align: left;
+              margin-right: 0;
+              margin-left: $profile-photo-size + 3px;
+
+              div {
+                color: #bbb;
+              }
+            }
+          }
+        }
+      }
+    }
   }
 }
+
 

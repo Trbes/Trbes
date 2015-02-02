@@ -1,5 +1,6 @@
-@import 'bourbon';
-@import 'breakpoint-sass';
+@import "bourbon";
+@import "breakpoint-sass";
+@import "helpers/multiline_ellipsis";
 
 @mixin on_link_actions {
   &:hover,

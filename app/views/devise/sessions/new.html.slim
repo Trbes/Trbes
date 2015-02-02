@@ -16,10 +16,10 @@
         .form-group
           = f.input :password, required: false
         .form-group
-          = f.input :remember_me, as: :boolean
+          = f.input :remember_me, as: :boolean, input_html: { data: { toggle: "checkbox" } }
 
         .form-group
-          = f.button :submit, t("app.user.sign_in.title")
+          = f.button :submit, t("app.user.sign_in.title"), class: "btn-fill btn-primary"
 
     .col-md-5.col-md-offset-1
       = render "devise/shared/links"

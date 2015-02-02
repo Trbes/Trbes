@@ -1,0 +1,172 @@
+.module-sign-in {
+}
+
+.si-header {
+  margin-bottom: 50px;
+  text-align: center;
+
+  @include breakpoint(0 $screen-sm) {
+    text-align: left;
+  }
+}
+
+.si-title {
+  text-transform: uppercase;
+  font-size: 26px;
+  position: relative;
+  display: inline-block;
+
+  &:after {
+    background: transparent image-url("hint_trbes_powered.png") no-repeat;
+    width: 260px;
+    height: 74px;
+    content: " ";
+    position: absolute;
+    top: -41px;
+    right: -230px;
+
+    @include breakpoint(0 $screen-sm - 1) {
+      display: none
+    }
+  }
+}
+
+.si-subtitle, .si-powered {
+  color: #8a8d99;
+}
+
+.si-powered {
+  margin-top: 10px;
+}
+
+.si-body {
+  background-color: #f7f7f7;
+  box-shadow: 0 0 3px rgba(18, 98, 157, 0.25);
+  min-height: 510px;
+  max-width: 720px;
+  margin: 0 auto;
+}
+
+#si_cody {
+  @include size(370px 508px);
+
+  float: left;
+  position: relative;
+  bottom: -8px;
+  background-image: image-url("sprite_cody.png");
+  background-repeat: no-repeat;
+  background-position: 45px 0;
+
+  @include breakpoint(0 $screen-sm - 1) {
+    display: none;
+  }
+
+  &.has-error {
+    background-position: -1483px 0;
+  }
+}
+
+.si-form {
+  float: left;
+  width: 340px;
+  margin-top: 45px;
+
+  .si-logo {
+    margin-bottom: 25px;
+  }
+
+  .error {
+    display: none !important;
+  }
+
+  .form-group {
+    position: relative;
+
+    .form-control-feedback {
+      width: auto;
+      height: auto;
+      margin-top: 13px;
+      margin-right: 8px;
+      display: none;
+      top: 0;
+    }
+
+    .fg-si-addon {
+      position: absolute;
+      top: 0;
+      left: 0;
+      z-index: 2;
+      display: block;
+      width: 34px;
+      height: 40px;
+      line-height: 40px;
+      text-align: center;
+      pointer-events: none;
+      color: #e1e0df;
+    }
+
+    input {
+      padding-left: 32px;
+    }
+
+    &.has-feedback {
+      .form-control-feedback {
+        display: inline-block;
+      }
+    }
+
+    &.fg-si-password {
+      margin-right: 100px;
+
+      @include breakpoint(0 $screen-sm - 1) {
+        margin-right: auto;
+      }
+    }
+
+    // @include breakpoint(0 320px) {
+    //   &.fg-si-password {
+    //     .form-control-feedback {
+    //       margin-top: 28px;
+    //     }
+    //   }
+    // }
+  }
+
+  @include breakpoint(0 $screen-sm - 1) {
+    margin-left: 20px;
+    margin-right: 20px;
+    width: auto;
+  }
+
+  .btn-sign-in {
+    text-transform: uppercase;
+    margin-top: 10px;
+  }
+
+  .si-altenatives {
+    margin-top: 60px;
+    margin-bottom: 30px;
+    color: #989999;
+    padding-right: 20px;
+  }
+
+  a.forgot-password {
+    line-height: 43px;
+    margin-left: 25px;
+    margin-top: 10px;
+    vertical-align: top;
+    display: inline-block;
+  }
+
+  a.si-sign-up {
+    font-weight: 500;
+  }
+
+  .si-already-signed-up {
+    display: none;
+    color: #626363;
+    margin-bottom: 12px;
+  }
+}
+
+

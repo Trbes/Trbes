@@ -1,8 +1,9 @@
-= div_for(post)
+= div_for(post, class: "post-type-text")
   = render "posts/voting", post: post
   .post-content
     = link_to post.title, post, class: "title"
-    .excerpt= post.body
+    .excerpt
+      span= post.body
     = render "posts/meta", post: post
   .post-right
     a.post-thumb href="#"
