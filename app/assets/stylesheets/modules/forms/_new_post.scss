@@ -1,0 +1,127 @@
+#add_a_post {
+  background-color: rgba(114, 114, 114, 0.9);
+  position: absolute;
+  width: 100%;
+  z-index: 9999;
+  top: 115px;
+  color: #f8f8f8;
+  padding: 20px;
+  overflow: hidden;
+  display: none;
+  opacity: 0;
+
+  &.open {
+    @include transition(opacity 1s ease);
+    display: block;
+    opacity: 1;
+
+    @include breakpoint(0 ($screen-sm - 1)) {
+      position: static;
+      margin-top: -30px;
+    }
+  }
+
+
+  .fnp-legends {
+    .fa-info-circle {
+      margin-left: -18px;
+      position: relative;
+      left: -6px;
+
+      @include breakpoint(0 ($screen-sm - 1)) {
+        margin: 10px 0 0;
+        position: static;
+        left: 0;
+      }
+    }
+  }
+
+  .form-new-post {
+    margin-top: 20px;
+    min-height: 200px;
+    display: none;
+
+    &.active {
+      display: block;
+    }
+  }
+
+  .form-group {
+    &.fnp-title {
+      input {
+        max-width: 470px;
+      }
+    }
+
+    &.fnp-text {
+      textarea {
+        max-width: 385px;
+      }
+    }
+
+    &.fnp-link {
+      input {
+        max-width: 300px;
+      }
+    }
+
+    &.fnp-file {
+      input {
+        margin-top: 6px;
+      }
+    }
+  }
+
+  .toggle-post-type {
+    display: block;
+    color: #f8f8f8;
+    text-decoration: underline;
+    font-weight: 500;
+
+    @include on_link_actions {
+      text-decoration: none;
+    }
+
+    &.active {
+      font-weight: bold;
+      color: #e1dfdf;
+    }
+  }
+
+  .fnp-actions {
+    a {
+      color: #d6d6d6;
+      margin-left: 20px;
+      text-decoration: underline;
+
+      @include on_link_actions {
+        text-decoration: none;
+      }
+    }
+  }
+
+  .btn-submit-post {
+    text-transform: uppercase;
+  }
+}
+
+.cody-container {
+  position: relative;
+}
+
+#cody_thumbs_up {
+  @include size(197px 216px);
+  position: relative;
+  background: image-url("sprite_cody_thumbs_up.png") 0 0 no-repeat;
+  position: absolute;
+  left: 480px;
+  bottom: -21px;
+
+  @include breakpoint($screen-sm ($screen-md - 1)) {
+    left: 440px;
+  }
+
+  @include breakpoint(0 ($screen-sm - 1)) {
+    display: none;
+  }
+}

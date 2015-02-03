@@ -136,3 +136,20 @@ $ ->
         find(".form-control-feedback").removeClass("fa-times-circle").addClass("fa-check-circle")
 
 
+  # Toggle add post form
+  $("#btn_add_post").click (e) ->
+    $("#add_a_post").toggleClass("open")
+
+  $(".cancel-post").click (e) ->
+    $("#add_a_post").removeClass("open")
+
+  $(".fnp-togglers a").click (e) ->
+    e.preventDefault()
+    return if $(this).hasClass("active")
+
+    $(this).addClass("active").
+      siblings().removeClass("active")
+    $("#add_a_post " + $(this).attr("href")).addClass("active").
+      siblings().removeClass("active")
+
+
