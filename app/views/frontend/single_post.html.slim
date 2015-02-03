@@ -30,5 +30,35 @@
 
           p Thank you !
 
+    .comments
+      .comment
+        .comment-left
+          .comment-upvote
+            a.vote href="#"
+              i.fa.fa-thumbs-up
+            .vote-count 200
+          .comment-reply
+            a.reply href="#"
+              i.fa.fa-mail-reply
+              | reply
+
+        .comment-content
+          header.comment-header
+            .comment-author
+              a.user-avatar href="#"
+                = image_tag("sample/author_photo.jpg", width: 16, height: 16)
+              a.user-name> href="#" Martin Leclair
+              | •
+              div.user-title< Founder at Trbes
+
+              span.label.label-info.user-label MOD
+
+            .comment-meta
+              span.date
+                i.fa.fa-clock-o
+                | 1 day ago
+          .comment-body
+            p I spent an unbelievable amount of time selecting the devices I would use for my new Smart Home. I would have saved countless hours if I could have found an online guide relating one’s experience with today’s connected devices.  I could also have worked with an integrator to install a system such as Savant or Control4. In fact, I did work with an integrator for Shades & Lighting (I will share details in this guide) but I would say I feel better with most of the things I installed and configured myself then with what the integrator handled.
+
 
 

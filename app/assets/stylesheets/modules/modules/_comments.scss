@@ -1,0 +1,121 @@
+.comments {
+  margin-top: 50px;
+}
+
+.comment {
+  @include clearfix;
+
+  .comment-left {
+    float: left;
+    width: 138px;
+    margin-right: $grid-gutter-width/2;
+
+    @include breakpoint(0 ($screen-sm - 1)) {
+      width: 64px;
+    }
+  }
+
+  .comment-content {
+    float: left;
+    width: calc(100% - (138px + #{ $grid-gutter-width } + 170px));
+
+    @include breakpoint(0 ($screen-sm - 1)) {
+      width: calc(100% - (32px + #{ $grid-gutter-width/2 }));
+    }
+  }
+
+  .comment-upvote {
+    text-align: right;
+    padding-right: 20px;
+
+    @include breakpoint(0 ($screen-sm - 1)) {
+      padding: 0;
+    }
+  }
+
+  a.vote {
+    .fa {
+      font-size: 20px;
+    }
+  }
+
+  .vote-count {
+    display: inline;
+    font-weight: 500;
+    color: #777777;
+  }
+
+  .comment-reply {
+    padding-right: 20px;
+    text-align: right;
+    margin-top: 5px;
+    text-transform: uppercase;
+    font-weight: 500;
+
+    @include breakpoint(0 ($screen-sm - 1)) {
+      padding: 0;
+    }
+  }
+
+  .comment-content {
+    border: 1px solid #e5e5e5;
+    border-radius: 5px;
+    padding: 10px;
+  }
+
+  .comment-header {
+    @include clearfix;
+    position: relative;
+  }
+
+  .comment-author {
+    color: #858484;
+    float: left;
+  }
+
+  .user-avatar {
+    margin-right: 5px;
+
+    img {
+      border-radius: 16px;
+      vertical-align: top;
+    }
+  }
+
+  .user-name {
+    color: #858484;
+    font-weight: bold;
+  }
+
+  .user-title {
+    display: inline;
+  }
+
+  .user-label {
+    position: absolute;
+    right: 100px;
+    top: 0;
+
+    @include breakpoint(0 ($screen-sm - 1)) {
+      right: auto;
+      top: auto;
+      bottom: -2px;
+      left: 0;
+    }
+
+  }
+
+  .comment-meta {
+    float: right;
+
+    .date {
+      color: #cbcbcb;
+    }
+  }
+
+  .comment-body {
+    margin-top: 5px;
+    font-size: 16px;
+    color: #333333;
+  }
+}
