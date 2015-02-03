@@ -11,7 +11,7 @@
     margin-right: $grid-gutter-width/2;
 
     @include breakpoint(0 ($screen-sm - 1)) {
-      width: 64px;
+      width: 32px;
     }
   }
 
