@@ -14,4 +14,7 @@ class FrontendController < ApplicationController
 
   def create_group
   end
+
+  def single_post
+  end
 end
