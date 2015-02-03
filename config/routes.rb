@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get "/groups/:subdomain", to: "groups#show"
+
   devise_for :users
 
   resources :groups, only: %i( new create )
