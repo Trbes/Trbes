@@ -38,6 +38,12 @@
 
   .form-new-post {
     margin-top: 20px;
+    min-height: 200px;
+    display: none;
+
+    &.active {
+      display: block;
+    }
   }
 
   .form-group {
@@ -52,6 +58,18 @@
         max-width: 385px;
       }
     }
+
+    &.fnp-link {
+      input {
+        max-width: 300px;
+      }
+    }
+
+    &.fnp-file {
+      input {
+        margin-top: 6px;
+      }
+    }
   }
 
   .toggle-post-type {
@@ -64,7 +82,7 @@
       text-decoration: none;
     }
 
-    .active {
+    &.active {
       font-weight: bold;
       color: #e1dfdf;
     }

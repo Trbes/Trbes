@@ -2,33 +2,64 @@
   .container
     .row
       .col-sm-8.fnp-togglers
-        a.toggle-post-type.new-link-post href="#"
+        a.toggle-post-type.new-link-post href="#form_new_link_post"
           i.fa.fa-link
           | Share a link to awesome stuff
-        a.toggle-post-type.new-text-post.active href="#"
-          i.fa.fa-link
+        a.toggle-post-type.new-text-post.active href="#form_new_text_post"
+          i.fa.fa-pencil
           | Write Something
-        a.toggle-post-type.new-image-post href="#"
-          i.fa.fa-link
+        a.toggle-post-type.new-image-post href="#form_new_image_post"
+          i.fa.fa-photo
           | Post an image
       .col-sm-3.fnp-legends
         i.fa.fa-info-circle
         | Use the «<u>Write more</u>» link to use rich text and publish long form How-To articles.
 
-    form.form-horizontal.form-new-post
+    form#form_new_text_post.form-horizontal.form-new-post.active
       .form-group.fnp-title
-        label.col-sm-2.control-label for="fnp_post_title"  Title
+        label.col-sm-2.control-label for="fnp_text_post_title"  Title *
         .col-sm-10
-          input#fnp_post_title.form-control type="text"
+          input#fnp_text_post_title.form-control type="text"
       .form-group.fnp-text
-        label.col-sm-2.control-label for="fnp_post_text"  Your Text
+        label.col-sm-2.control-label for="fnp_text_post_text"  Your Text *
         .col-sm-10
-          textarea#fnp_post_text class="form-control" rows="5"
+          textarea#fnp_text_post_text class="form-control" rows="5"
       .form-group.fnp-actions
         .col-sm-offset-2.col-sm-10
           button.btn.btn-success.btn-lg.btn-fill.btn-submit-post type="submit"  Publish Post
           a.link-write-more href="#" Write more
           a.cancel-post href="#" Cancel
+    form#form_new_link_post.form-horizontal.form-new-post
+      .form-group.fnp-link
+        label.col-sm-2.control-label for="fnp_link_post_link"  Link *
+        .col-sm-10
+          input#fnp_link_post_title.form-control type="text" placeholder="http://"
+      .form-group.fnp-title
+        label.col-sm-2.control-label for="fnp_link_post_title"  Title *
+        .col-sm-10
+          input#fnp_link_post_title.form-control type="text"
+      .form-group.fnp-text
+        label.col-sm-2.control-label for="fnp_link_post_desc"  Description or Comment
+        .col-sm-10
+          textarea#fnp_link_post_desc class="form-control" rows="5"
+      .form-group.fnp-actions
+        .col-sm-offset-2.col-sm-10
+          button.btn.btn-success.btn-lg.btn-fill.btn-submit-post type="submit"  Publish Post
+          a.cancel-post href="#" Cancel
+    form#form_new_image_post.form-horizontal.form-new-post
+      .form-group.fnp-title
+        label.col-sm-2.control-label for="fnp_image_post_title"  Title *
+        .col-sm-10
+          input#fnp_image_post_title.form-control type="text"
+      .form-group.fnp-file
+        label.col-sm-2.control-label for="fnp_image_post_image"  Image *
+        .col-sm-10
+          input#fnp_image_post_image type="file"
+      .form-group.fnp-actions
+        .col-sm-offset-2.col-sm-10
+          button.btn.btn-success.btn-lg.btn-fill.btn-submit-post type="submit"  Publish Post
+          a.cancel-post href="#" Cancel
+
     .row
       .col-sm-2
       .col-sm-10.cody-container
