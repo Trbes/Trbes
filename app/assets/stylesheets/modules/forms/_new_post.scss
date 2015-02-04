@@ -51,6 +51,11 @@
   }
 
   .form-group {
+    label {
+      font-weight: 100;
+      color: #d6d6d6;
+    }
+
     &.fnp-title {
       input {
         max-width: 470px;
@@ -77,10 +82,10 @@
   }
 
   .toggle-post-type {
-    display: block;
+    display: inline-block;
     color: #f8f8f8;
     text-decoration: underline;
-    font-weight: 500;
+    font-weight: bold;
 
     @include on_link_actions {
       text-decoration: none;
@@ -97,6 +102,7 @@
       color: #d6d6d6;
       margin-left: 20px;
       text-decoration: underline;
+      font-weight: bold;
 
       @include on_link_actions {
         text-decoration: none;
