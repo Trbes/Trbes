@@ -1,13 +1,124 @@
-.comments {
+$comment-left-width: 138px;
+$comment-right-width: 170px;
+
+.list-section {
   margin-top: 50px;
+
+  .section-header {
+    margin-left: $comment-left-width + $grid-gutter-width/2;
+    margin-right: $comment-right-width + $grid-gutter-width/2;
+    font-size: 16px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #eaeaea;
+    margin-bottom: 20px;
+
+    @include breakpoint(0 ($screen-sm - 1)) {
+      margin-left: 32px + $grid-gutter-width/2;
+      margin-right: 0;
+    }
+
+    .fa {
+      font-size: 32px;
+      width: auto;
+      color: #a9a9a9;
+      vertical-align: top;
+    }
+  }
+
+  .section-count {
+    color: #adadad;
+    line-height: 30px;
+    margin-left: 10px;
+    font-weight: 500;
+  }
 }
+
+.post-a-comment {
+  margin-left: $comment-left-width + $grid-gutter-width/2;
+  margin-right: $comment-right-width + $grid-gutter-width/2;
+
+  @include breakpoint(0 ($screen-sm - 1)) {
+    margin-left: 32px + $grid-gutter-width/2;
+    margin-right: 0;
+  }
+
+  &.nested {
+    margin-left: $comment-left-width + $grid-gutter-width/2 + 50px;
+
+    @include breakpoint(0 ($screen-sm - 1)) {
+      margin-left: 32px + $grid-gutter-width/2 + 25px;
+    }
+  }
+
+  background-color: #f6f5f5;
+  border-radius: 5px;
+  padding: 10px;
+  margin-bottom: 65px;
+
+  .pac-header {
+    @include clearfix;
+    position: relative;
+  }
+
+  .pac-author {
+    color: #858484;
+    float: left;
+  }
+
+  .user-avatar {
+    margin-right: 5px;
+
+    img {
+      border-radius: 16px;
+      vertical-align: top;
+    }
+  }
+
+  .user-name {
+    color: #858484;
+    font-weight: bold;
+  }
+
+  .user-title {
+    display: inline;
+  }
+
+  .form-pac {
+    @include clearfix;
+    margin-right: -10px;
+    margin-bottom: -10px;
+    position: relative;
+
+    textarea {
+      float: left;
+      width: 100%;
+      border-bottom-right-radius: 5px;
+      border: 0px;
+      margin: 5px 0 0;
+      min-height: 80px;
+      background-color: #f6f5f5;
+      font-size: 16px;
+      outline: 0;
+    }
+
+    button {
+      position: absolute;
+      bottom: -45px;
+      right: 0;
+    }
+  }
+}
+
+.comments { }
 
 .comment {
   @include clearfix;
 
+  margin-bottom: 20px;
+
   .comment-left {
     float: left;
-    width: 138px;
+    width: $comment-left-width;
     margin-right: $grid-gutter-width/2;
 
     @include breakpoint(0 ($screen-sm - 1)) {
@@ -17,7 +128,7 @@
 
   .comment-content {
     float: left;
-    width: calc(100% - (138px + #{ $grid-gutter-width } + 170px));
+    width: calc(100% - (#{$comment-left-width} + #{$grid-gutter-width} + #{$comment-right-width}));
 
     @include breakpoint(0 ($screen-sm - 1)) {
       width: calc(100% - (32px + #{ $grid-gutter-width/2 }));
@@ -41,7 +152,7 @@
 
   .vote-count {
     display: inline;
-    font-weight: 500;
+    font-weight: bold;
     color: #777777;
   }
 
@@ -50,7 +161,7 @@
     text-align: right;
     margin-top: 5px;
     text-transform: uppercase;
-    font-weight: 500;
+    font-weight: bold;
 
     @include breakpoint(0 ($screen-sm - 1)) {
       padding: 0;
@@ -61,6 +172,13 @@
     border: 1px solid #e5e5e5;
     border-radius: 5px;
     padding: 10px;
+  }
+
+
+  &.best {
+    .comment-content {
+      background-color: #dbf3da;
+    }
   }
 
   .comment-header {
@@ -117,5 +235,17 @@
     margin-top: 5px;
     font-size: 16px;
     color: #333333;
+  }
+}
+
+.comment-nested {
+  .comment-content {
+    margin-left: 50px;
+    width: calc(100% - (#{$comment-left-width} + #{$grid-gutter-width} + #{$comment-right-width}) - 50px);
+
+    @include breakpoint(0 ($screen-sm - 1)) {
+      margin-left: 25px;
+      width: calc(100% - (32px + #{ $grid-gutter-width/2 }) - 25px);
+    }
   }
 }

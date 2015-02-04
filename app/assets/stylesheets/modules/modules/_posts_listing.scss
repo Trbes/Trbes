@@ -74,7 +74,7 @@ $post-right-min-width: $post-actions-min-width + $post-component-spacing + $post
     .title {
       @include ellipsis();
       font-size: 1.3em;
-      font-weight: 500;
+      font-weight: bold;
       color: #727272;
       line-height: 1.5em;
       display: block;
