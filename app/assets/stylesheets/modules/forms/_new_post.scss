@@ -10,6 +10,10 @@
   display: none;
   opacity: 0;
 
+  &>.container {
+    max-width: 970px;
+  }
+
   &.open {
     @include transition(opacity 1s ease);
     display: block;
