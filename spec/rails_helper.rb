@@ -1,4 +1,6 @@
 ENV["RAILS_ENV"] ||= "test"
+ENV["ALGOLIASEARCH_API_KEY_SEARCH"] ||= "fake"
+ENV["ALGOLIASEARCH_APPLICATION_ID"] ||= "fake"
 require "spec_helper"
 require File.expand_path("../../config/environment", __FILE__)
 require "rspec/rails"
@@ -26,6 +28,7 @@ RSpec.configure do |config|
 
   config.before do
     WebMock.enable!
+    WebMock.disable_net_connect!(allow_localhost: true)
     WebMock.stub_request(:get, %r{.*\.algolia\.(io|net)\/1\/indexes\/[^\/]+})
       .to_return(body: '{ "hits": [ { "objectID": 42 } ], "page": 1, "hitsPerPage": 1 }')
     allow(Cloudinary::Utils).to receive(:cloudinary_url).and_return("")
