@@ -28,7 +28,7 @@
         .col-sm-offset-2.col-sm-10
           button.btn.btn-success.btn-lg.btn-fill.btn-submit-post type="submit"  Publish Post
           a.link-write-more href="#" Write more
-          a.cancel-post href="#" Cancel
+          / a.cancel-post href="#" Cancel
     form#form_new_link_post.form-horizontal.form-new-post
       .form-group.fnp-link
         label.col-sm-2.control-label for="fnp_link_post_link"  Link *
@@ -45,7 +45,7 @@
       .form-group.fnp-actions
         .col-sm-offset-2.col-sm-10
           button.btn.btn-success.btn-lg.btn-fill.btn-submit-post type="submit"  Publish Post
-          a.cancel-post href="#" Cancel
+          / a.cancel-post href="#" Cancel
     form#form_new_image_post.form-horizontal.form-new-post
       .form-group.fnp-title
         label.col-sm-2.control-label for="fnp_image_post_title"  Title *
@@ -58,12 +58,16 @@
       .form-group.fnp-actions
         .col-sm-offset-2.col-sm-10
           button.btn.btn-success.btn-lg.btn-fill.btn-submit-post type="submit"  Publish Post
-          a.cancel-post href="#" Cancel
+          / a.cancel-post href="#" Cancel
 
     .row
       .col-sm-2
       .col-sm-10.cody-container
         #cody_thumbs_up
+
+    a.cancel-post href="#"
+      | Cancel
+      i.fa.fa-angle-double-up<
 .container
   .row
     .col-md-4

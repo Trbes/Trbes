@@ -107,11 +107,30 @@
   .btn-submit-post {
     text-transform: uppercase;
   }
+
+  .cancel-post {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    border: 1px solid white;
+    color: white;
+    padding: 0 0 0 5px;
+    border-bottom: 0;
+    border-top-left-radius: 4px;
+    border-top-right-radius: 4px;
+    margin-left: -33px;
+
+    @include on_link_actions {
+      background-color: rgb(161, 160, 160);
+    }
+  }
 }
 
 .cody-container {
   position: relative;
 }
+
+
 
 #cody_thumbs_up {
   @include size(197px 216px);
