@@ -1,0 +1,140 @@
+
+.post-unit {
+  padding: 0;
+
+  .post {
+    @include clearfix;
+
+    .post-left {
+      float: left;
+      width: 138px;
+      margin-right: $grid-gutter-width/2;
+
+      @include breakpoint(0 ($screen-sm - 1)) {
+        @include clearfix;
+        width: auto;
+      }
+    }
+
+    .post-content {
+      float: left;
+      width: calc(100% - (138px + #{ $grid-gutter-width } + 170px));
+
+      @include breakpoint(0 ($screen-sm - 1)) {
+        width: auto;
+        clear: both;
+      }
+    }
+
+    .post-right {
+      float: right;
+      width: 170px;
+
+      @include breakpoint(0 ($screen-sm - 1)) {
+        width: 64px;
+      }
+    }
+
+    .post-upvote, .post-share {
+      background-color: #fefefe;
+      border: 1px solid #e5e5e5;
+      border-radius: 5px;
+
+      text-align: center;
+      padding: 15px 0;
+      font-size: 1.2em;
+      margin-bottom: 20px;
+
+      @include breakpoint(0 ($screen-sm - 1)) {
+        display: inline-block;
+        margin-right: 10px;
+        padding: 10px;
+        height: 80px;
+        float: left;
+      }
+    }
+
+    a.vote {
+      display: block;
+
+      .fa {
+        font-size: 42px;
+        width: auto;
+
+        @include breakpoint(0 ($screen-sm - 1)) {
+          font-size: 24px;
+        }
+      }
+    }
+
+    .vote-count {
+      color: #777;
+    }
+
+    a.share {
+      @include hide-text;
+      @include size(37px 51px);
+      background: image-url("icons/icon_share.png") 0 0 no-repeat;
+      display: inline-block;
+
+      @include breakpoint(0 ($screen-sm - 1)) {
+        background-size: 100% 100%;
+        width: 20px;
+        height: 25px;
+      }
+    }
+
+    .post-header {
+      margin-bottom: 20px;
+    }
+
+    .post-title {
+      color: #727272;
+      font-weight: bold;
+      font-size: 32px;
+      margin: 0;
+    }
+
+    .post-meta {
+      .date {
+        color: #c7c6c6;
+        font-size: 18px;
+      }
+    }
+
+    .post-author {
+      text-align: center;
+    }
+
+    .post-body {
+      font-size: 18px;
+      color: #4f3d3d;
+    }
+
+    .user-avatar {
+      @include size(64px);
+      display: block;
+      margin: 0 auto;
+
+      img {
+        border-radius: 64px;
+      }
+    }
+
+    .user-name {
+      color: #5c5b5b;
+      font-weight: bold;
+
+      @include on_link_actions {
+        text-decoration: underline;
+      }
+    }
+
+    .user-title {
+      color: #999797;
+      font-weight: 100;
+    }
+  }
+
+}
+

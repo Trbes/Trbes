@@ -1,0 +1,230 @@
+.container
+  .post-unit
+    .post
+      .post-left
+        .post-upvote
+          a.vote href="#"
+            i.fa.fa-thumbs-up
+          .vote-count 200
+        .post-share
+          a.share href="#" Share
+
+      .post-right
+        .post-author
+          a.user-avatar href="#"
+            = image_tag("sample/author_photo.jpg", width: 64, height: 64)
+          a.user-name href="#" Martin Leclair
+          .user-title Founder at Trbes
+
+      .post-content
+        header.post-header
+          h2.post-title  The Ultimate Guide to a DIY Smart Home
+          .post-meta
+              span.date  posted 1 day ago
+        .post-body
+          p I spent an unbelievable amount of time selecting the devices I would use for my new Smart Home. I would have saved countless hours if I could have found an online guide relating one’s experience with today’s connected devices.  I could also have worked with an integrator to install a system such as Savant or Control4. In fact, I did work with an integrator for Shades & Lighting (I will share details in this guide) but I would say I feel better with most of the things I installed and configured myself then with what the integrator handled.
+
+          p At the time I chose my system, Savant still had an ugly app. They recently launched a new app that looks interesting, but still, implementing a Whole Home Automation with Savant will cost you an arm and a leg.   It sure is expensive to build a Smart Home, but at least building your Smart Home following this guide will cost you a leg but you’ll get to keep your arm.
+
+          p Before we go straight into the devices, you might ask yourself is it worth it? It probably depends.  I love it and would now have a hard time living without my Smart and Connected Things.  Having family in both Canada & Mexico I am often out of the country and being able to keep an eye on the house or control many things remotely is really useful for me.  I also am often surprised to realize how I appreciate simple things as opening my garage door with my iPhone or getting a notification when someone rings the doorbell.  Those little things make my life easier.
+
+          p Thank you !
+
+    section.list-section.best-comment
+      header.section-header.sbc-header
+        i.fa.fa-star-o
+        span.section-count.sbc-count 1
+      .comment.best
+        .comment-left
+          .comment-upvote
+            a.vote href="#"
+              i.fa.fa-thumbs-up
+            .vote-count 200
+          .comment-reply
+            a.reply href="#"
+              i.fa.fa-mail-reply
+              | reply
+
+        .comment-content
+          header.comment-header
+            .comment-author
+              a.user-avatar href="#"
+                = image_tag("sample/author_photo.jpg", width: 16, height: 16)
+              a.user-name> href="#" Martin Leclair
+              | •
+              div.user-title< Founder at Trbes
+
+              span.label.label-info.user-label MOD
+
+            .comment-meta
+              span.date
+                i.fa.fa-clock-o
+                | 1 day ago
+          .comment-body
+            p I spent an unbelievable amount of time selecting the devices I would use for my new Smart Home. I would have saved countless hours if I could have found an online guide relating one’s experience with today’s connected devices.  I could also have worked with an integrator to install a system such as Savant or Control4. In fact, I did work with an integrator for Shades & Lighting (I will share details in this guide) but I would say I feel better with most of the things I installed and configured myself then with what the integrator handled.
+
+    section.list-section.all-comments
+      header.section-header.sbc-header
+        i.fa.fa-comment-o
+        span.section-count.sbc-count 1
+
+      .post-a-comment
+        header.pac-header
+          .pac-author
+            | Posting as
+            a.user-avatar< href="#"
+              = image_tag("sample/author_photo.jpg", width: 16, height: 16)
+            a.user-name> href="#" Martin Leclair
+            | •
+            div.user-title< Founder at Trbes
+
+        form.form-pac
+          textarea placeholder="Join the discussion"
+          button class="btn btn-fill btn-primary" Submit
+
+      #pac_template.post-a-comment.nested.hidden
+        header.pac-header
+          .pac-author
+            | Posting as
+            a.user-avatar< href="#"
+              = image_tag("sample/author_photo.jpg", width: 16, height: 16)
+            a.user-name> href="#" Martin Leclair
+            | •
+            div.user-title< Founder at Trbes
+
+        form.form-pac
+          textarea placeholder="Write a nice reply..."
+          button class="btn btn-fill btn-primary" Submit
+
+
+      .comments
+        .comment
+          .comment-left
+            .comment-upvote
+              a.vote href="#"
+                i.fa.fa-thumbs-up
+              .vote-count 200
+            .comment-reply
+              a.reply href="#"
+                i.fa.fa-mail-reply
+                | reply
+
+          .comment-content
+            header.comment-header
+              .comment-author
+                a.user-avatar href="#"
+                  = image_tag("sample/author_photo.jpg", width: 16, height: 16)
+                a.user-name> href="#" Martin Leclair
+                | •
+                div.user-title< Founder at Trbes
+
+                span.label.label-info.user-label MOD
+
+              .comment-meta
+                span.date
+                  i.fa.fa-clock-o
+                  | 1 day ago
+            .comment-body
+              p I spent an unbelievable amount of time selecting the devices I would use for my new Smart Home. I would have saved countless hours if I could have found an online guide relating one’s experience with today’s connected devices.
+
+        .comment
+          .comment-left
+            .comment-upvote
+              a.vote href="#"
+                i.fa.fa-thumbs-up
+              .vote-count 200
+            .comment-reply
+              a.reply href="#"
+                i.fa.fa-mail-reply
+                | reply
+
+          .comment-content
+            header.comment-header
+              .comment-author
+                a.user-avatar href="#"
+                  = image_tag("sample/author_photo.jpg", width: 16, height: 16)
+                a.user-name> href="#" Martin Leclair
+                | •
+                div.user-title< Founder at Trbes
+
+                span.label.label-info.user-label MOD
+
+              .comment-meta
+                span.date
+                  i.fa.fa-clock-o
+                  | 1 day ago
+            .comment-body
+              p I spent an unbelievable amount of time selecting the devices I would use for my new Smart Home. I would have saved countless hours if I could have found an online guide relating one’s experience with today’s connected devices.
+
+        .comment.comment-nested
+          .comment-left
+            .comment-upvote
+              a.vote href="#"
+                i.fa.fa-thumbs-up
+              .vote-count 200
+          .comment-content
+            header.comment-header
+              .comment-author
+                a.user-avatar href="#"
+                  = image_tag("sample/author_photo.jpg", width: 16, height: 16)
+                a.user-name> href="#" Martin Leclair
+                | •
+                div.user-title< Founder at Trbes
+
+              .comment-meta
+                span.date
+                  i.fa.fa-clock-o
+                  | 1 day ago
+            .comment-body
+              p I spent an unbelievable amount of time selecting the devices I would use for my new Smart Home. I would have saved countless hours if I could have found an online guide relating one’s experience with today’s connected devices. I could also have worked with an integrator to install a system such as Savant or Control4.
+
+        .comment
+          .comment-left
+            .comment-upvote
+              a.vote href="#"
+                i.fa.fa-thumbs-up
+              .vote-count 200
+            .comment-reply
+              a.reply href="#"
+                i.fa.fa-mail-reply
+                | reply
+
+          .comment-content
+            header.comment-header
+              .comment-author
+                a.user-avatar href="#"
+                  = image_tag("sample/author_photo.jpg", width: 16, height: 16)
+                a.user-name> href="#" Martin Leclair
+                | •
+                div.user-title< Founder at Trbes
+
+                span.label.label-info.user-label MOD
+
+              .comment-meta
+                span.date
+                  i.fa.fa-clock-o
+                  | 1 day ago
+            .comment-body
+              p I spent an unbelievable amount of time selecting the devices I would use for my new Smart Home. I would have saved countless hours if I could have found an online guide relating one’s experience with today’s connected devices.
+
+
+- content_for :javascripts do
+  coffee:
+    $("a.reply").click (e) ->
+      e.preventDefault()
+
+      comment = $(this).closest(".comment")
+
+      # Hide form if is showing
+      if comment.next(".post-a-comment").length > 0
+        comment.next(".post-a-comment").remove()
+
+      # Show form
+      else
+        # Will need to use some javascript template engine later when
+        # there are too much of adhoc cloning usage.
+        form = $("#pac_template").clone()
+        form.removeClass("hidden").removeAttr("id")
+        form.insertAfter(comment)
+
+
