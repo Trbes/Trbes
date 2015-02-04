@@ -1,8 +1,11 @@
 ENV["RAILS_ENV"] ||= "test"
+ENV["ALGOLIASEARCH_API_KEY_SEARCH"] ||= "fake"
+ENV["ALGOLIASEARCH_APPLICATION_ID"] ||= "fake"
 require "spec_helper"
 require File.expand_path("../../config/environment", __FILE__)
 require "rspec/rails"
 require "pundit/rspec"
+require "algolia/webmock"
 
 Dir[Rails.root.join("spec/support/**/*.rb")].each { |f| require f }
 Dir[Rails.root.join("spec/shared/**/*.rb")].each { |f| require f }
@@ -22,8 +25,17 @@ RSpec.configure do |config|
   config.include Formulaic::Dsl
   config.include FeatureHelpers, type: :feature
   config.include ControllerHelpers, type: :controller
+
   config.before do
+    WebMock.enable!
+    WebMock.disable_net_connect!(allow_localhost: true)
+    WebMock.stub_request(:get, %r{.*\.algolia\.(io|net)\/1\/indexes\/[^\/]+})
+      .to_return(body: '{ "hits": [ { "objectID": 42 } ], "page": 1, "hitsPerPage": 1 }')
     allow(Cloudinary::Utils).to receive(:cloudinary_url).and_return("")
     ActionMailer::Base.deliveries.clear
+  end
+
+  config.after do
+    WebMock.disable!
   end
 end

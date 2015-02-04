@@ -7,7 +7,7 @@ class ApplicationController < ActionController::Base
 
   rescue_from Pundit::NotAuthorizedError, with: :not_authorized
 
-  before_action :load_current_membership
+  before_action :load_current_membership, :push_algolio_config
 
   expose(:groups)
 
@@ -21,9 +21,13 @@ class ApplicationController < ActionController::Base
   end
 
   def ensure_group_is_loaded!
-    return if current_group.present?
+    return if current_group.present? && !params[:subdomain]
 
-    render text: "Not found group for this subdomain", status: 404
+    if params[:subdomain]
+      redirect_to root_url(subdomain: params[:subdomain])
+    else
+      render text: "Not found group for this subdomain", status: 404
+    end
   end
 
   protected
@@ -47,6 +51,10 @@ class ApplicationController < ActionController::Base
     else
       super
     end
+  end
+
+  def push_algolio_config
+    gon.push(AlgoliaSearch.configuration)
   end
 
   decent_configuration do

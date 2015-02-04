@@ -35,6 +35,8 @@ gem "cloudinary"
 gem "pundit"
 gem "acts_as_votable"
 gem "friendly_id"
+gem "algoliasearch-rails"
+gem "gon"
 
 group :staging, :production do
   gem "rails_12factor"

@@ -135,7 +135,6 @@ $ ->
         closest(".form-group").removeClass("has-feedback has-error").addClass("has-feedback has-success").
         find(".form-control-feedback").removeClass("fa-times-circle").addClass("fa-check-circle")
 
-
   # Toggle add post form
   $("#btn_add_post").click (e) ->
     $("#add_a_post").toggleClass("open")
@@ -152,4 +151,4 @@ $ ->
     $("#add_a_post " + $(this).attr("href")).addClass("active").
       siblings().removeClass("active")
 
-
+  new GroupSearch($("input#group_search"))
