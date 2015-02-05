@@ -51,10 +51,30 @@ $post-right-min-width: $post-actions-min-width + $post-component-spacing + $post
       color: #777;
     }
 
-    a.vote {
+    .vote {
       padding: 10px;
       margin-top: 10px;
       display: block;
+
+      &.done {
+        .fa-close {
+          display: none;
+        }
+
+        .fa-check {
+          display: inline-block;
+        }
+
+        &:hover {
+          .fa-close {
+            display: inline-block;
+          }
+
+          .fa-check {
+            display: none;
+          }
+        }
+      }
     }
   }
 

@@ -113,8 +113,11 @@
       .post.post-type-text
         .post-upvote
           .vote-count 200
-          a.vote href="#"
-            i.fa.fa-thumbs-up
+          a.vote.done href="#" title="Undo like"
+            i.fa.fa-check
+            i.fa.fa-close
+
+
         .post-content
           a.title href="#"  The Ultimate Guide to a DIY Smart Home
           .excerpt
@@ -138,7 +141,7 @@
       .post.post-type-link
         .post-upvote
           .vote-count 200
-          a.vote href="#"
+          a.vote href="#" title="Like this post"
             i.fa.fa-thumbs-up
         .post-content
           a.title href="#"  Computer Scientists Ask Supreme Court to Rule APIs Can’t Be Copyrighted
