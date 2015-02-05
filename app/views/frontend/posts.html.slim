@@ -188,8 +188,6 @@
             i.fa.fa-thumbs-up
         .post-content
           a.title href="#"  The Ultimate Smart Thermostat : Nest
-          .excerpt
-            span Now part of Google, Nest is still the king of the connected thermostats.
           .url
             a.iconify href="http://www.nest.com" www.nest.com
           .meta
@@ -206,5 +204,21 @@
               i.fa.fa-bug.circle.grey
             a.share href="#"
               i.fa.fa-share-square-o.circle.grey
+
+- content_for :javascripts do
+  coffee:
+    $("a.vote").click (e) ->
+      e.preventDefault()
+
+      voted = $(this).hasClass("done")
+
+      if voted
+        $(this).removeClass("done").attr("title", "Like this post").
+          html("<i class='fa fa-thumbs-up'></i>").
+          closest(".post").find(".post-content").removeClass("voted")
+      else
+        $(this).addClass("done").attr("title", "Undo like").
+          html("<i class='fa fa-check'></i><i class='fa fa-close'></i>").
+          closest(".post").find(".post-content").addClass("voted")
 
 
