@@ -6,9 +6,12 @@ feature "Post a comment" do
   let!(:post) { create(:post, :text, group: group) }
 
   before(:each) do
+    switch_to_subdomain(group.subdomain)
     sign_in(user.email, "123456")
-    visit post_url(post, subdomain: group.subdomain)
+    visit post_path(post)
   end
+
+  after { switch_to_main }
 
   scenario "I post a comment under post" do
     expect {

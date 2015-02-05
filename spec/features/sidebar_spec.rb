@@ -2,11 +2,12 @@ require "rails_helper"
 
 feature "Sidebar" do
   let!(:group) { create(:group) }
+
   background do
     visit root_path
   end
 
-  scenario "search", js: true do
+  scenario "Search for groups", js: true do
     page.find(".navbar-brand").click
 
     within(".tt-dropdown-menu", visible: false) do

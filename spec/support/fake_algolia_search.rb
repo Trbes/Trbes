@@ -14,6 +14,21 @@ class FakeAlgoliaSearch < Sinatra::Base
     end.to_json
   end
 
+  options "/1/indexes/Post/query" do
+    setup
+    "{}"
+  end
+
+  post "/1/indexes/Post/query" do
+    setup
+
+    { hits: [] }.tap do |response|
+      Post.all.each do |post|
+        response[:hits] << { title: post.title, slug: post.slug, objectID: post.id, _tags: ["group_#{post.group_id}"] }
+      end
+    end.to_json
+  end
+
   def setup
     headers(
       "Access-Control-Allow-Origin" => "*",

@@ -12,4 +12,12 @@ module FeatureHelpers
 
     click_button "Sign in"
   end
+
+  def switch_to_subdomain(subdomain)
+    Capybara.app_host = "http://#{subdomain}.#{DEFAULT_HOST}:#{DEFAULT_PORT}"
+  end
+
+  def switch_to_main
+    Capybara.app_host = "http://#{DEFAULT_HOST}:#{DEFAULT_PORT}"
+  end
 end
