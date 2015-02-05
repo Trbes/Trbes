@@ -10,7 +10,7 @@ Dir[Rails.root.join("spec/support/**/*.rb")].each { |f| require f }
 Dir[Rails.root.join("spec/shared/**/*.rb")].each { |f| require f }
 
 server = FakeAlgoliaSearch.boot
-ALGOLIA_HOSTS = [[server.host, server.port].join(':')]
+ALGOLIA_HOSTS = [[server.host, server.port].join(":")]
 
 CarrierWave.configure do |config|
   config.storage = :file

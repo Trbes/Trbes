@@ -7,7 +7,7 @@ class ApplicationController < ActionController::Base
 
   rescue_from Pundit::NotAuthorizedError, with: :not_authorized
 
-  before_action :load_current_membership, :push_algolio_config
+  before_action :load_current_membership, :push_algolia_config
 
   expose(:groups)
 
@@ -53,12 +53,9 @@ class ApplicationController < ActionController::Base
     end
   end
 
-  def push_algolio_config
+  def push_algolia_config
     configuration = AlgoliaSearch.configuration
-
-    if defined?(ALGOLIA_HOSTS)
-      configuration.merge!(hosts: ALGOLIA_HOSTS)
-    end
+    configuration.merge!(hosts: ALGOLIA_HOSTS) if defined?(ALGOLIA_HOSTS)
 
     gon.push(configuration)
   end
