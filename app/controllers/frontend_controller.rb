@@ -17,4 +17,7 @@ class FrontendController < ApplicationController
 
   def single_post
   end
+
+  def invite
+  end
 end
