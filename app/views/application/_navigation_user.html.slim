@@ -18,11 +18,11 @@ ul.nav.navbar-nav.navbar-right
       - if @test_post_form
         a#btn_add_post.btn.btn-fill.btn-primary.navbar-btn.btn-add-post href="#"
           i.fa.fa-plus
-          span Add Post
+          span Add
       - else
         a.btn.btn-fill.btn-primary.navbar-btn.btn-add-post href=(new_post_path)
           i.fa.fa-plus
-          span Add Post
+          span Add
   - else
     = active_link_to t("app.navigation.user.sign_in"), new_user_session_path, active: :exclusive, wrap_tag: :li
     = active_link_to t("app.navigation.user.sign_up"), new_user_registration_path, active: :exclusive, wrap_tag: :li

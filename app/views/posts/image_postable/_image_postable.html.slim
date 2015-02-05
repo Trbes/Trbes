@@ -4,7 +4,8 @@
     = link_to post, class: "title" do
       = post.title
       a.image href="#"
-        = cl_image_tag(post.preview_image)
+        .image-wrapper
+          = cl_image_tag(post.preview_image)
     = render "posts/meta", post: post
   .post-right
     .post-actions

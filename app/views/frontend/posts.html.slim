@@ -5,9 +5,11 @@
         a.toggle-post-type.new-link-post href="#form_new_link_post"
           i.fa.fa-link
           | Share a link to awesome stuff
+        br
         a.toggle-post-type.new-text-post.active href="#form_new_text_post"
           i.fa.fa-pencil
           | Write Something
+        br
         a.toggle-post-type.new-image-post href="#form_new_image_post"
           i.fa.fa-photo
           | Post an image
@@ -28,7 +30,7 @@
         .col-sm-offset-2.col-sm-10
           button.btn.btn-success.btn-lg.btn-fill.btn-submit-post type="submit"  Publish Post
           a.link-write-more href="#" Write more
-          a.cancel-post href="#" Cancel
+          / a.cancel-post href="#" Cancel
     form#form_new_link_post.form-horizontal.form-new-post
       .form-group.fnp-link
         label.col-sm-2.control-label for="fnp_link_post_link"  Link *
@@ -45,7 +47,7 @@
       .form-group.fnp-actions
         .col-sm-offset-2.col-sm-10
           button.btn.btn-success.btn-lg.btn-fill.btn-submit-post type="submit"  Publish Post
-          a.cancel-post href="#" Cancel
+          / a.cancel-post href="#" Cancel
     form#form_new_image_post.form-horizontal.form-new-post
       .form-group.fnp-title
         label.col-sm-2.control-label for="fnp_image_post_title"  Title *
@@ -58,12 +60,16 @@
       .form-group.fnp-actions
         .col-sm-offset-2.col-sm-10
           button.btn.btn-success.btn-lg.btn-fill.btn-submit-post type="submit"  Publish Post
-          a.cancel-post href="#" Cancel
+          / a.cancel-post href="#" Cancel
 
     .row
       .col-sm-2
       .col-sm-10.cody-container
         #cody_thumbs_up
+
+    a.cancel-post href="#"
+      | Cancel
+      i.fa.fa-angle-double-up<
 .container
   .row
     .col-md-4
@@ -161,7 +167,8 @@
         .post-content
           a.title href="#"  Remembering Steve Jobs
           a.image href="#"
-            = image_tag("http://placekitten.com/g/500/300")
+            .image-wrapper
+              = image_tag("http://placekitten.com/g/500/300")
           .meta
             span.date  posted 1 day ago
             | &nbsp;by&nbsp;

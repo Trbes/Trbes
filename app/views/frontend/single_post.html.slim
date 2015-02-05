@@ -68,19 +68,33 @@
         i.fa.fa-comment-o
         span.section-count.sbc-count 1
 
-      .post-a-comment
-        header.pac-header
-          .pac-author
-            | Posting as
-            a.user-avatar< href="#"
-              = image_tag("sample/author_photo.jpg", width: 16, height: 16)
-            a.user-name> href="#" Martin Leclair
-            | •
-            div.user-title< Founder at Trbes
+      - if user_signed_in?
+        .post-a-comment
+          header.pac-header
+            .pac-author
+              | Posting as
+              a.user-avatar< href="#"
+                = image_tag("sample/author_photo.jpg", width: 16, height: 16)
+              a.user-name> href="#" Martin Leclair
+              | •
+              div.user-title< Founder at Trbes
 
-        form.form-pac
-          textarea placeholder="Join the discussion"
-          button class="btn btn-fill btn-primary" Submit
+          form.form-pac
+            textarea placeholder="Join the discussion"
+            button class="btn btn-fill btn-primary" Submit
+      - else
+        .post-a-comment.not-logged-in
+          header.pac-header
+            .pac-author
+              span.user-avatar<
+                = image_tag("default_avatar.jpg", width: 16, height: 16)
+              span.user-name> href="#" Join the conversation
+
+          .actions
+            a.btn.btn-fill.btn-primary href="#" Login to Trbes
+            .link-create-account
+              | No account yet?
+              a< href="#" Create one free
 
       #pac_template.post-a-comment.nested.hidden
         header.pac-header
