@@ -64,6 +64,7 @@ group :development, :test do
   gem "rails_best_practices"
   gem "rspec-rails", "~> 3.1"
   gem "rubocop"
+  gem "sinatra"
 end
 
 group :development do

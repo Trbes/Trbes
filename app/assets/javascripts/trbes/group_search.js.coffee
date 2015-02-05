@@ -3,7 +3,7 @@ class window.GroupSearch
   constructor: (@$container) ->
     return unless @$container.length
 
-    @client = new AlgoliaSearch(gon.application_id, gon.api_key_search)
+    @client = new AlgoliaSearch(gon.application_id, gon.api_key_search, { hosts: gon.hosts })
     @_initGroupSearch()
 
   _initGroupSearch: ->

@@ -54,7 +54,13 @@ class ApplicationController < ActionController::Base
   end
 
   def push_algolio_config
-    gon.push(AlgoliaSearch.configuration)
+    configuration = AlgoliaSearch.configuration
+
+    if defined?(ALGOLIA_HOSTS)
+      configuration.merge!(hosts: ALGOLIA_HOSTS)
+    end
+
+    gon.push(configuration)
   end
 
   decent_configuration do
