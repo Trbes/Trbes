@@ -6,7 +6,8 @@ $.validator.addMethod "subdomain", (value, element) ->
 
 # Document ready
 $ ->
-  iconify_external(".post-content .url", 16)
+  # Show favicon before external urls
+  iconify_links(16)
 
   # Trigger main slide menu
   $(".js-menu-trigger,.js-menu-screen").on "click touchstart", (e) ->

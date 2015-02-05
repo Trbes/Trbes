@@ -3,7 +3,7 @@
   .post-content
     = link_to post.title, post, class: "title"
     .url
-      = link_to post.link, post.link
+      = link_to post.link, post.link, class: "iconify"
     = render "posts/meta", post: post
   .post-right
     .post-actions
