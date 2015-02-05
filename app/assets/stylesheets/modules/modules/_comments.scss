@@ -5,15 +5,15 @@ $comment-right-width: 170px;
   margin-top: 50px;
 
   .section-header {
-    margin-left: $comment-left-width + $grid-gutter-width/2;
-    margin-right: $comment-right-width + $grid-gutter-width/2;
+    margin-left: $comment-left-width + $grid-gutter-width;
+    margin-right: $comment-right-width + $grid-gutter-width;
     font-size: 16px;
     padding-bottom: 10px;
     border-bottom: 1px solid #eaeaea;
     margin-bottom: 20px;
 
     @include breakpoint(0 ($screen-sm - 1)) {
-      margin-left: 32px + $grid-gutter-width/2;
+      margin-left: 32px + $grid-gutter-width;
       margin-right: 0;
     }
 
@@ -34,19 +34,19 @@ $comment-right-width: 170px;
 }
 
 .post-a-comment {
-  margin-left: $comment-left-width + $grid-gutter-width/2;
-  margin-right: $comment-right-width + $grid-gutter-width/2;
+  margin-left: $comment-left-width + $grid-gutter-width;
+  margin-right: $comment-right-width + $grid-gutter-width;
 
   @include breakpoint(0 ($screen-sm - 1)) {
-    margin-left: 32px + $grid-gutter-width/2;
+    margin-left: 32px + $grid-gutter-width;
     margin-right: 0;
   }
 
   &.nested {
-    margin-left: $comment-left-width + $grid-gutter-width/2 + 50px;
+    margin-left: $comment-left-width + $grid-gutter-width + 50px;
 
     @include breakpoint(0 ($screen-sm - 1)) {
-      margin-left: 32px + $grid-gutter-width/2 + 25px;
+      margin-left: 32px + $grid-gutter-width + 25px;
     }
   }
 
@@ -132,7 +132,7 @@ $comment-right-width: 170px;
   .comment-left {
     float: left;
     width: $comment-left-width;
-    margin-right: $grid-gutter-width/2;
+    margin-right: $grid-gutter-width;
 
     @include breakpoint(0 ($screen-sm - 1)) {
       width: 32px;
@@ -141,10 +141,10 @@ $comment-right-width: 170px;
 
   .comment-content {
     float: left;
-    width: calc(100% - (#{$comment-left-width} + #{$grid-gutter-width} + #{$comment-right-width}));
+    width: calc(100% - (#{$comment-left-width} + #{$grid-gutter-width*2} + #{$comment-right-width}));
 
     @include breakpoint(0 ($screen-sm - 1)) {
-      width: calc(100% - (32px + #{ $grid-gutter-width/2 }));
+      width: calc(100% - (32px + #{ $grid-gutter-width }));
     }
   }
 
@@ -254,11 +254,11 @@ $comment-right-width: 170px;
 .comment-nested {
   .comment-content {
     margin-left: 50px;
-    width: calc(100% - (#{$comment-left-width} + #{$grid-gutter-width} + #{$comment-right-width}) - 50px);
+    width: calc(100% - (#{$comment-left-width} + #{$grid-gutter-width*2} + #{$comment-right-width}) - 50px);
 
     @include breakpoint(0 ($screen-sm - 1)) {
       margin-left: 25px;
-      width: calc(100% - (32px + #{ $grid-gutter-width/2 }) - 25px);
+      width: calc(100% - (32px + #{ $grid-gutter-width }) - 25px);
     }
   }
 }

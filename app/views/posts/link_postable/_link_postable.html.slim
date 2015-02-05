@@ -3,7 +3,6 @@
   .post-content
     = link_to post.title, post, class: "title"
     .url
-      i.fa.fa-link
       = link_to post.link, post.link
     = render "posts/meta", post: post
   .post-right
