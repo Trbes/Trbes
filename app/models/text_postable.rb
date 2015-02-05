@@ -10,4 +10,8 @@ class TextPostable < ActiveRecord::Base
   def preview_image
     attachments.first.image if attachments.any?
   end
+
+  def content
+    body
+  end
 end
