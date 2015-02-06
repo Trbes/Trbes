@@ -12,9 +12,16 @@ describe Post do
     it { is_expected.to have_db_column(:user_id) }
     it { is_expected.to have_db_column(:comments_count) }
     it { is_expected.to have_db_column(:slug) }
+    it { is_expected.to have_db_column(:title) }
+    it { is_expected.to have_db_column(:body) }
 
     it { is_expected.to have_db_index(:group_id) }
     it { is_expected.to have_db_index(:user_id) }
     it { is_expected.to have_db_index(:slug) }
+  end
+
+  describe "normalizations" do
+    it { is_expected.to normalize_attribute(:title) }
+    it { is_expected.to normalize_attribute(:body) }
   end
 end

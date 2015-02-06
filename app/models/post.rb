@@ -2,23 +2,21 @@ class Post < ActiveRecord::Base
   include AlgoliaSearch
   extend FriendlyId
 
-  POSTABLE_TYPES = %w(
-    ImagePostable
-    LinkPostable
-    TextPostable
-  ).freeze
+  default_scope { includes(:attachments) }
 
-  has_many :comments, dependent: :destroy
-  belongs_to :group, required: true
-  belongs_to :user, required: true
-  belongs_to :postable, polymorphic: true, required: true
-
-  delegate :title, :body, :link, :image, :preview_image, :attachments, :content, to: :postable
-  delegate :full_name, to: :user, prefix: true
+  enum post_type: %i(text_post link_post image_post)
 
   scope :order_by_votes, -> { order(cached_votes_total: :desc) }
 
-  accepts_nested_attributes_for :postable
+  has_many :comments, dependent: :destroy
+  has_many :attachments, as: :attachable, dependent: :destroy
+  belongs_to :group, required: true
+  belongs_to :user, required: true
+
+  validates :title, :body, presence: true
+  validates :title, length: { minimum: 10, maximum: 100 }
+
+  delegate :full_name, to: :user, prefix: true
 
   acts_as_votable
 
@@ -26,11 +24,17 @@ class Post < ActiveRecord::Base
 
   friendly_id :title, use: %i( slugged finders )
 
+  normalize_attributes :title, :body
+
   algoliasearch do
-    attribute :title, :content, :slug
+    attribute :title, :body, :slug
 
     tags do
       ["group_#{group_id}"]
     end
+  end
+
+  def preview_image
+    attachments.first.image if attachments.any?
   end
 end

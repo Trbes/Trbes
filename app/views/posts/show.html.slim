@@ -1,5 +1,5 @@
 .container
-  = render "posts/#{postable_name(post)}/#{postable_name(post)}"
+  = render "posts/#{post.post_type}/post"
   = render post.comments.includes(:user)
 
   - if policy(Comment).create?

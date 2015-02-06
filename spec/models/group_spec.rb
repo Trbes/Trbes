@@ -2,7 +2,9 @@ require "rails_helper"
 
 describe Group do
   describe "associations" do
-    it { is_expected. to have_many(:posts).dependent(:destroy) }
+    it { is_expected.to have_many(:posts).dependent(:destroy) }
+    it { is_expected.to have_many(:memberships).dependent(:destroy) }
+    it { is_expected.to have_many(:collections).dependent(:destroy) }
   end
 
   describe "validations" do
@@ -26,5 +28,11 @@ describe Group do
     it { is_expected.to have_db_column(:description) }
     it { is_expected.to have_db_column(:subdomain) }
     it { is_expected.to have_db_column(:private) }
+  end
+
+  describe "normalizations" do
+    it { is_expected.to normalize_attribute(:name) }
+    it { is_expected.to normalize_attribute(:description) }
+    it { is_expected.to normalize_attribute(:subdomain) }
   end
 end

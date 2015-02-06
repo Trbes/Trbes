@@ -33,6 +33,7 @@ RSpec.configure do |config|
   config.include Formulaic::Dsl
   config.include FeatureHelpers, type: :feature
   config.include ControllerHelpers, type: :controller
+  config.include AttributeNormalizer::RSpecMatcher, type: :model
 
   config.before do
     WebMock.enable!

@@ -8,10 +8,10 @@ class CreatePost
   private
 
   def create_post
-    postable = attributes[:postable_type].constantize.create!(attributes[:postable_attributes])
-
     Post.create!(
-      postable: postable,
+      title: attributes[:title],
+      body: attributes[:body],
+      post_type: attributes[:post_type],
       user: context.current_user,
       group: context.current_group
     )

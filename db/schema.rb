@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150202083508) do
+ActiveRecord::Schema.define(version: 20150206142812) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -81,11 +81,9 @@ ActiveRecord::Schema.define(version: 20150202083508) do
   end
 
   create_table "image_postables", force: :cascade do |t|
-    t.string "title"
   end
 
   create_table "link_postables", force: :cascade do |t|
-    t.string "title"
     t.string "link"
   end
 
@@ -114,11 +112,12 @@ ActiveRecord::Schema.define(version: 20150202083508) do
     t.integer  "user_id",                        null: false
     t.datetime "created_at",                     null: false
     t.datetime "updated_at",                     null: false
-    t.integer  "postable_id"
-    t.string   "postable_type"
     t.integer  "cached_votes_total", default: 0
     t.integer  "comments_count",     default: 0, null: false
     t.string   "slug",                           null: false
+    t.string   "title",                          null: false
+    t.integer  "post_type",          default: 0, null: false
+    t.string   "body",                           null: false
   end
 
   add_index "posts", ["cached_votes_total"], name: "index_posts_on_cached_votes_total", using: :btree
@@ -133,8 +132,7 @@ ActiveRecord::Schema.define(version: 20150202083508) do
   end
 
   create_table "text_postables", force: :cascade do |t|
-    t.string "title"
-    t.text   "body"
+    t.text "body"
   end
 
   create_table "users", force: :cascade do |t|
