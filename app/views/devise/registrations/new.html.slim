@@ -1,27 +1,90 @@
 .container
-  .row
-    .col-md-12
-      h2= title
-
-  .row
-    .col-md-6
+  .module-sign-up
+    header.su-header
+      h1.su-title Hello. Welcome to Trbes.
+      .su-subtitle
+        | Just Enter your Email Address to join
+        - if current_group
+          strong<
+            = current_group.name
+            span>
+            = current_group.description
+        - else
+          strong< Trbes
+      .su-anti-spam.visible-xs-block
+        strong We won't share your email ever! We do not spam.
+    .su-body
+      #su_cody.point-to-email
       = simple_form_for resource,
           as: resource_name,
-          url: registration_path(resource_name) do |f|
+          url: registration_path(resource_name),
+          html: { class: "su-form" } do |f|
+        .form-group.fg-su-email
+          label for="su_email"  Email Address
+          = f.input :email,
+            required: true,
+            autofocus: true,
+            label: false,
+            wrapper: false,
+            input_html: { id: "su_email",
+                          class: "form-control",
+                          placeholder: "Example: hello@trbes.com",
+                          data: { point_to_class: "point-to-email" } }
+          span.fa.fa-check-circle.form-control-feedback aria-hidden="true"
+          p.help-block
+            | If you prefer, you can sign up with:
+            br
+            a href="#" Facebook
+            | ,
+            a< href="#" Twitter
+            | ,
+            a< href="#" Groove
+            | ,
+            a<> href="#" Hipchat
+            | or
+            a< href="#" other services
+            | .
+        .form-group.fg-su-name
+          label for="su_name"  Full Name
+          = f.input :full_name,
+            required: true,
+            label: false,
+            wrapper: false,
+            input_html: { id: "su_name",
+                          class: "form-control",
+                          placeholder: "Awesome Doe",
+                          data: { point_to_class: "point-to-name" } }
+          span.fa.fa-check-circle.form-control-feedback aria-hidden="true"
+        .form-group.fg-su-title
+          label for="su_title"
+            | More About You
+            small
+              |  (optional)
+          = f.input :title,
+            required: true,
+            label: false,
+            wrapper: false,
+            input_html: { id: "su_title",
+                          class: "form-control",
+                          placeholder: "CEO at My Company Inc",
+                          data: { point_to_class: "point-to-name" } }
+          span.fa.fa-check-circle.form-control-feedback aria-hidden="true"
+        .form-group.fg-su-password
+          label for="su_password"
+            | Choose a Password
+            small
+              |  (8 characters or longer)
+          = f.input :password,
+            required: true,
+            label: false,
+            wrapper: false,
+            input_html: { id: "su_password",
+                          class: "form-control",
+                          data: { point_to_class: "point-to-password" } }
+          span.fa.fa-check-circle.form-control-feedback aria-hidden="true"
+        .checkbox.fg-su-show-password
+          label
+            input type="checkbox" data-toggle="checkbox"
+            | Show my password
+        = f.button :submit, t("app.user.sign_up.link"), class: "btn btn-success btn-lg btn-fill btn-sign-up"
 
-        legend= t("app.user.sign_up.legend_html", app_name: t("titles.application"))
-
-        .form-group
-          = f.input :full_name, required: true, autofocus: true
-        .form-group
-          = f.input :email, required: true
-        .form-group
-          = f.input :password, required: true
-        .form-group
-          = f.input :password_confirmation, required: true
-
-        .form-group
-          = f.button :submit, t("app.user.sign_up.title")
-
-    .col-md-5.col-md-offset-1
-      = render "devise/shared/links"

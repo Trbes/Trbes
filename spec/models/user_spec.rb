@@ -13,6 +13,7 @@ describe User do
   describe "columns" do
     it { is_expected.to have_db_column(:email) }
     it { is_expected.to have_db_column(:full_name) }
+    it { is_expected.to have_db_column(:title) }
     it { is_expected.to have_db_column(:encrypted_password) }
 
     it { is_expected.to have_db_index(:email) }

@@ -97,6 +97,11 @@
       }
     }
 
+    span.help-block {
+      margin: 0;
+      color: #FF3B30;
+    }
+
     .form-control-feedback {
       width: auto;
       height: auto;
@@ -106,7 +111,7 @@
     }
 
     &.has-error, &.has-success {
-      .help-block {
+      p.help-block {
         color: #737373;
       }
     }
@@ -126,13 +131,17 @@
         margin-top: 17px;
       }
 
-      .help-block {
+      p.help-block {
         margin-top: 15px;
         font-size: 0.9em;
 
         a {
           font-size: 1.1em;
         }
+      }
+
+      span.help-block + p.help-block, span.help-block + span + p.help-block {
+        margin-top: 0;
       }
     }
 

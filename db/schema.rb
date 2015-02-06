@@ -79,6 +79,9 @@ ActiveRecord::Schema.define(version: 20150212094926) do
     t.string   "subdomain",                         null: false
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.boolean  "allow_image_posts"
+    t.boolean  "allow_text_posts"
+    t.boolean  "allow_link_posts"
     t.integer  "memberships_count", default: 0,     null: false
     t.integer  "posts_count",       default: 0,     null: false
     t.integer  "collections_count", default: 0,     null: false
