@@ -2,14 +2,18 @@ require "rails_helper"
 
 feature "Sign up" do
   let(:user) { User.first }
-  let(:user_attributes) { attributes_for(:user).slice(:full_name, :email, :password, :password_confirmation) }
+  let(:user_attributes) { attributes_for(:user).slice(:email, :full_name, :title, :password) }
 
   before(:each) do
     visit new_user_registration_path
 
-    fill_form(:user, user_attributes)
+    fill_in "Email Address", with: user_attributes[:email]
+    fill_in "Full Name", with: user_attributes[:full_name]
+    fill_in "More About You (optional)", with: user_attributes[:title]
+    fill_in "Password", with: user_attributes[:password]
+    click_button "Create my account"
 
-    click_button "Sign up"
+    # fill_form(:user, user_attributes)
   end
 
   scenario "User signs up successfully" do

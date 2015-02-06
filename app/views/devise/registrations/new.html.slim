@@ -16,9 +16,9 @@
     .su-body
       #su_cody.point-to-email
       = simple_form_for resource,
-          as: resource_name,
-          url: registration_path(resource_name),
-          html: { class: "su-form" } do |f|
+        as: resource_name,
+        url: registration_path(resource_name),
+        html: { class: "su-form" } do |f|
         .form-group.fg-su-email
           label for="su_email"  Email Address
           = f.input :email,
@@ -45,7 +45,7 @@
             a< href="#" other services
             | .
         .form-group.fg-su-name
-          label for="su_name"  Full Name
+          label for="su_name" Full Name
           = f.input :full_name,
             required: true,
             label: false,
@@ -80,6 +80,7 @@
             wrapper: false,
             input_html: { id: "su_password",
                           class: "form-control",
+                          placeholder: "Password",
                           data: { point_to_class: "point-to-password" } }
           span.fa.fa-check-circle.form-control-feedback aria-hidden="true"
         .checkbox.fg-su-show-password

@@ -109,6 +109,11 @@
       padding-left: 32px;
     }
 
+    label {
+      color: #989999;
+      font-weight: lighter;
+    }
+
     &.has-feedback {
       .form-control-feedback {
         display: inline-block;
