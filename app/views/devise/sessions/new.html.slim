@@ -1,12 +1,22 @@
 .container
   .module-sign-in
     header.si-header
-      h1.si-title Hello. Welcome to Chirp Signal.
-      .si-powered.visible-xs-block
-        strong This group is powered by Trbes!
-      .si-subtitle
-        | Sign in to Share and Participate on &nbsp;
-        strong Chirp Signal : All about Connected Devices.
+      - if current_group
+        h1.si-title
+          | Hello. Welcome to
+          = current_group.name
+        .si-powered.visible-xs-block
+          strong This group is powered by Trbes!
+        .si-subtitle
+          | Sign in to Share and Participate on
+          strong<
+            = current_group.name
+            | :&nbsp;
+            = current_group.description
+      - else
+        h1.si-title Hello. Welcome to Trbes.
+        .si-subtitle
+          | Sign in to Share and Participate on our community.
 
     .si-body
       #si_cody
