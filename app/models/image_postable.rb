@@ -9,4 +9,8 @@ class ImagePostable < ActiveRecord::Base
   def preview_image
     attachments.first.image if attachments.any?
   end
+
+  def content
+    preview_image
+  end
 end

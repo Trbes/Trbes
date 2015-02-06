@@ -10,6 +10,7 @@
 //= require jquery-validation
 //= require gsdk
 //= require trbes/group_search
+//= require trbes/post_search
 //= require scripts
 //= require algolia/algoliasearch.min
 //= require algolia/typeahead.jquery

@@ -1,15 +1,17 @@
-class window.GroupSearch
+class window.PostSearch
 
   constructor: (@$container) ->
     return unless @$container.length
 
     @client = new AlgoliaSearch(gon.application_id, gon.api_key_search, { hosts: gon.hosts })
-    @_initGroupSearch()
+    @client.setSecurityTags("(public,#{gon.group_tag})")
 
-  _initGroupSearch: ->
+    @_initPostSearch()
+
+  _initPostSearch: ->
     @$container.typeahead({ hint: false }
-      source: @client.initIndex('Group').ttAdapter()
+      source: @client.initIndex('Post').ttAdapter()
       templates:
         suggestion: (hit) ->
-          return "<li><a href='/groups/#{hit.subdomain}'>#{hit.name}</a></li>";
+          return "<li><a href='/posts/#{hit.slug}'>#{hit.title}</a></li>";
     )

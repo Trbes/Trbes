@@ -2,8 +2,8 @@ class Membership < ActiveRecord::Base
   belongs_to :user, required: true
   belongs_to :group, required: true
 
-  has_many :membership_roles
-  has_many :roles, through: :membership_roles
+  has_many :membership_roles, dependent: :destroy
+  has_many :roles, through: :membership_roles, dependent: :destroy
 
   scope :for_group, -> (group) { where(group_id: group.id) }
 

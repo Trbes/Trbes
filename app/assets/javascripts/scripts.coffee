@@ -152,3 +152,4 @@ $ ->
       siblings().removeClass("active")
 
   new GroupSearch($("input#group_search"))
+  new PostSearch($("input#post_search"))

@@ -6,9 +6,12 @@ feature "Single post page" do
   let!(:post) { create(:post, :text, group: group) }
 
   before(:each) do
+    switch_to_subdomain(group.subdomain)
     sign_in(user.email, "123456")
-    visit root_url(subdomain: group.subdomain)
+    visit root_path
   end
+
+  after { switch_to_main }
 
   scenario "I visit single post page" do
     within("#post_#{post.id}") do

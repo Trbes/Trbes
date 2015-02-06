@@ -7,7 +7,7 @@ class ApplicationController < ActionController::Base
 
   rescue_from Pundit::NotAuthorizedError, with: :not_authorized
 
-  before_action :load_current_membership, :push_algolio_config
+  before_action :load_current_membership, :push_algolia_config
 
   expose(:groups)
 
@@ -53,8 +53,18 @@ class ApplicationController < ActionController::Base
     end
   end
 
-  def push_algolio_config
-    gon.push(AlgoliaSearch.configuration)
+  def push_algolia_config
+    configuration = AlgoliaSearch.configuration
+    configuration.merge!(
+      api_key_search: Algolia.generate_secured_api_key(
+        ENV["ALGOLIASEARCH_API_KEY_SEARCH"],
+        "(public,group_#{current_group.id})"
+      ),
+      group_tag: "group_#{current_group.id}"
+    ) if current_group
+    configuration.merge!(hosts: ALGOLIA_HOSTS) if defined?(ALGOLIA_HOSTS)
+
+    gon.push(configuration)
   end
 
   decent_configuration do

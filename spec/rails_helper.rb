@@ -1,14 +1,18 @@
 ENV["RAILS_ENV"] ||= "test"
-ENV["ALGOLIASEARCH_API_KEY_SEARCH"] ||= "fake"
-ENV["ALGOLIASEARCH_APPLICATION_ID"] ||= "fake"
 require "spec_helper"
 require File.expand_path("../../config/environment", __FILE__)
 require "rspec/rails"
 require "pundit/rspec"
+
 require "algolia/webmock"
 
 Dir[Rails.root.join("spec/support/**/*.rb")].each { |f| require f }
 Dir[Rails.root.join("spec/shared/**/*.rb")].each { |f| require f }
+
+server = FakeAlgoliaSearch.boot
+ALGOLIA_HOSTS = [[server.host, server.port].join(":")]
+DEFAULT_HOST = "lvh.me"
+DEFAULT_PORT = 9887
 
 CarrierWave.configure do |config|
   config.storage = :file
@@ -16,6 +20,10 @@ CarrierWave.configure do |config|
 end
 
 RSpec.configure do |config|
+  Capybara.default_host = "#{DEFAULT_HOST}"
+  Capybara.server_port = DEFAULT_PORT
+  Capybara.app_host = "#{DEFAULT_HOST}:#{DEFAULT_PORT}"
+
   config.use_transactional_fixtures = false
   config.infer_spec_type_from_file_location!
 
