@@ -1,0 +1,124 @@
+.module-invite {
+  max-width: 720px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.iv-header {
+  margin-bottom: 30px;
+  text-align: center;
+}
+
+.iv-title {
+  font-size: 26px;
+  display: inline-block;
+  font-weight: lighter;
+  line-height: 1.5em;
+}
+
+.iv-subtitle {
+}
+
+.iv-crew {
+  text-align: center;
+
+  img {
+    max-width: 100%;
+  }
+}
+
+.iv-body {
+  background-color: #f7f7f7;
+  box-shadow: 0 0 3px rgba(18, 98, 157, 0.25);
+  margin: 0 auto 0;
+  padding: 40px;
+
+  hr {
+    margin-top: 40px;
+    margin-bottom: 40px;
+  }
+
+  p {
+    font-size: 18px;
+    color: #2d2d2d;
+    margin-bottom: 18px;
+  }
+}
+
+.form-invite {
+  .form-group {
+    label {
+      font-size: 18px;
+      font-weight: lighter;
+      color: #2d2d2d;
+      padding-right: 0;
+    }
+
+    .label-invite-message {
+      display: none;
+
+      @include breakpoint(0 $screen-sm - 1) {
+        display: block;
+      }
+    }
+
+    &.fiv-content {
+      .col-sm-10 {
+        padding-top: 6px;
+        outline: 0;
+      }
+    }
+  }
+}
+
+.fic-email-body {
+  border-left: 3px solid #c8c8c8;
+  padding-left: 17px;
+  margin-left: -20px;
+
+  @include breakpoint(0 $screen-sm - 1) {
+    border-left: 0;
+    margin-left: 0;
+    padding-left: 0;
+  }
+}
+
+.btn-send-invite {
+  text-transform: uppercase;
+}
+
+.iv-more {
+  text-align: center;
+
+  .form-group.fg-invite-link {
+    max-width: 320px;
+    display: inline-block;
+    margin: 0;
+
+    .input-group-addon {
+      cursor: pointer;
+    }
+
+    .form-control {
+      border-left: 1px solid #E3E3E3;
+
+      &:focus {
+        border-left-color: #9A9A9A;
+      }
+    }
+  }
+
+  .btn-social {
+    display: inline-block;
+    margin-left: 10px;
+    vertical-align: top;
+  }
+
+  .link-go-to-group {
+    text-decoration: underline;
+  }
+}
+
+.iv-interest {
+  text-align: center;
+}

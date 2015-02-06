@@ -51,10 +51,30 @@ $post-right-min-width: $post-actions-min-width + $post-component-spacing + $post
       color: #777;
     }
 
-    a.vote {
+    .vote {
       padding: 10px;
       margin-top: 10px;
       display: block;
+
+      &.done {
+        .fa-close {
+          display: none;
+        }
+
+        .fa-check {
+          display: inline-block;
+        }
+
+        &:hover {
+          .fa-close {
+            display: inline-block;
+          }
+
+          .fa-check {
+            display: none;
+          }
+        }
+      }
     }
   }
 
@@ -70,6 +90,20 @@ $post-right-min-width: $post-actions-min-width + $post-component-spacing + $post
     @include breakpoint(0 ($screen-sm - 1)) {
       width: calc(100% - #{$icon-circle-size + $post-component-spacing*1.5 + $post-upvote-width});
     }
+
+    &.voted {
+      @include keyframes(post-vote-cooldown) {
+        0% {
+          background-color: rgb(231, 252, 228);
+        }
+        100% {
+          background-color: white;
+        }
+      }
+
+      animation: post-vote-cooldown 4s ease-out;
+    }
+
 
     .title {
       @include ellipsis();

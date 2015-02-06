@@ -23,6 +23,7 @@ Rails.application.routes.draw do
   get "/frontend/sign_up" => "frontend#sign_up"
   get "/frontend/sign_in" => "frontend#sign_in"
   get "/frontend/thank_you" => "frontend#thank_you"
+  get "/frontend/invite" => "frontend#invite"
   get "/frontend/create_group" => "frontend#create_group"
   get "/frontend/single_post" => "frontend#single_post"
 

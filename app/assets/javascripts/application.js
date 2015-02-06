@@ -11,6 +11,7 @@
 //= require gsdk
 //= require trbes/group_search
 //= require trbes/post_search
+//= require grabicon
 //= require scripts
 //= require algolia/algoliasearch.min
 //= require algolia/typeahead.jquery

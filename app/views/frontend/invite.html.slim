@@ -1,0 +1,76 @@
+.container
+  .module-invite
+    header.iv-header
+      h1.iv-title
+        | Your new group:
+        strong< mygroup.trbes.com
+        br
+        | Now invite 2 or 3 teammates you trust to help you try Trbes !
+    .iv-crew
+      = image_tag("sprite_invite.png")
+    .iv-body
+      -# render "application/cloud_sponge"
+
+      form#form_invite.form-horizontal.form-invite
+        .form-group.fiv-emails
+          label.col-sm-2.control-label for="fiv_emails"  To:
+          .col-sm-10
+            input#fiv_emails.form-control type="text" placeholder="teammate@email.com"
+        .form-group.fiv-content
+          label.col-sm-2.control-label Subject:
+          .col-sm-10
+            .fic-email-title contenteditable="true"
+              p A new place for us to share about Connected Devices.
+
+            label.control-label.label-invite-message  Message:
+            .fic-email-body contenteditable="true"
+              p
+                | I would like you to join our new user community about
+                a< href="#" Connected Devices
+                | .
+                |  Help me create some content and share some links !
+              p
+                | Clic here to join :
+                br
+                a href="#" http://mygroup.trbes.com/invite/Qm387z
+              p
+                | PS : I gave you <em>super user</em> rights !
+
+        .form-group.fnp-actions
+          .col-sm-offset-2.col-sm-10
+            button.btn.btn-success.btn-lg.btn-fill.btn-send-invite type="submit" Send Invitation
+
+      hr
+      .iv-more
+        h4 More ways to invite your teammates
+
+        .form-group.fg-invite-link
+          .input-group
+            span.input-group-addon
+              i.fa.fa-link
+              | Copy Link
+            input.form-control aria-describedby="inputGroupSuccess1Status" type="text" value="https://trbes.com/invitecode"
+        a.btn.btn-social.btn-fill.btn-facebook href="#"
+          i.fa.fa-facebook-square
+          | Share via Facebook
+        a.btn.btn-social.btn-fill.btn-twitter href="#"
+          i.fa.fa-twitter-square
+          | Tweet on Twitter
+
+        a.link-go-to-group href="#"
+          h4 I am done. Take me to my group.
+
+      hr
+      .iv-interest
+        p You might also be interested in:
+        p
+          a.iv-link href="#" Browse groups
+          |  ::&nbsp;
+          a.iv-link href="#" Start your own group <em>free</em>
+          |  ::&nbsp;
+          a.iv-link href="#" Subscribe to Trbes
+          |  ::&nbsp;
+          a.iv-link href="#" Complete your profile
+
+
+

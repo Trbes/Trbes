@@ -113,8 +113,11 @@
       .post.post-type-text
         .post-upvote
           .vote-count 200
-          a.vote href="#"
-            i.fa.fa-thumbs-up
+          a.vote.done href="#" title="Undo like"
+            i.fa.fa-check
+            i.fa.fa-close
+
+
         .post-content
           a.title href="#"  The Ultimate Guide to a DIY Smart Home
           .excerpt
@@ -138,15 +141,14 @@
       .post.post-type-link
         .post-upvote
           .vote-count 200
-          a.vote href="#"
+          a.vote href="#" title="Like this post"
             i.fa.fa-thumbs-up
         .post-content
           a.title href="#"  Computer Scientists Ask Supreme Court to Rule APIs Can’t Be Copyrighted
           / .excerpt
           /   span EFF wants the justices to review a court decision about APIs.
           .url
-            i.fa.fa-link
-            a href="#" www.eff.org
+            a.iconify href="http://www.eff.org" www.eff.org
           .meta
             span.date  posted 1 day ago
             | &nbsp;by&nbsp;
@@ -186,11 +188,8 @@
             i.fa.fa-thumbs-up
         .post-content
           a.title href="#"  The Ultimate Smart Thermostat : Nest
-          .excerpt
-            span Now part of Google, Nest is still the king of the connected thermostats.
           .url
-            i.fa.fa-link
-            a href="#" www.nest.com
+            a.iconify href="http://www.nest.com" www.nest.com
           .meta
             span.date  posted 1 day ago
             | &nbsp;by&nbsp;
@@ -205,5 +204,21 @@
               i.fa.fa-bug.circle.grey
             a.share href="#"
               i.fa.fa-share-square-o.circle.grey
+
+- content_for :javascripts do
+  coffee:
+    $("a.vote").click (e) ->
+      e.preventDefault()
+
+      voted = $(this).hasClass("done")
+
+      if voted
+        $(this).removeClass("done").attr("title", "Like this post").
+          html("<i class='fa fa-thumbs-up'></i>").
+          closest(".post").find(".post-content").removeClass("voted")
+      else
+        $(this).addClass("done").attr("title", "Undo like").
+          html("<i class='fa fa-check'></i><i class='fa fa-close'></i>").
+          closest(".post").find(".post-content").addClass("voted")
 
 

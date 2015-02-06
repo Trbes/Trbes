@@ -1,0 +1,18 @@
+<!-- Any link with a class="cs_import" will start the import process -->
+<a class="cs_import">Add from Address Book</a>
+
+<!-- This textarea will be populated with the contacts returned by CloudSponge -->
+<textarea id="contact_list" style="width:450px;height:82px"></textarea>
+
+<!-- Include the script anywhere on your page -->
+<script>
+// set any options here, for this example, we'll simply populate the contacts in the textarea above
+window.csPageOptions = {
+  textarea_id:"contact_list"
+};
+// Asynchronously include the widget library.
+(function(u){
+  var d=document,s='script',a=d.createElement(s),m=d.getElementsByTagName(s)[0];
+  a.async=1;a.src=u;m.parentNode.insertBefore(a,m);
+})('//api.cloudsponge.com/widget/363b2edeea51de27669ccd7104aa79f5796cb0a4.js');
+</script>
