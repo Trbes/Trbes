@@ -41,3 +41,6 @@ class FakeAlgoliaSearch < Sinatra::Base
     Capybara::Server.new(new).tap(&:boot)
   end
 end
+
+server = FakeAlgoliaSearch.boot
+ALGOLIA_HOSTS = [[server.host, server.port].join(":")]
