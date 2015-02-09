@@ -6,6 +6,8 @@ $.validator.addMethod "subdomain", (value, element) ->
 
 # Document ready
 $ ->
+  $('[data-toggle="tooltip"]').tooltip()
+
   # Show favicon before external urls
   iconify_links(16)
 

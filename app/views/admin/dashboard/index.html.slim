@@ -1,32 +1,76 @@
-.container
+.container.admin-dashboard
   .row
     .col-md-2
-      = link_to "Dashboard", admin_dashboard_index_path, class: "btn btn-block"
-      = link_to "Account", admin_dashboard_index_path, class: "btn btn-block"
-      = link_to "Group", admin_dashboard_index_path, class: "btn btn-block"
-      = link_to "Posts", admin_dashboard_index_path, class: "btn btn-block"
+      = link_to admin_dashboard_index_path, class: "admin-navigation btn btn-block btn-info active" do
+        i.fa.fa-tachometer
+        span.title Dashboard
+      = link_to admin_dashboard_index_path, class: "admin-navigation btn btn-block btn-info" do
+        i.fa.fa-user
+        span.title Account
+      = link_to admin_dashboard_index_path, class: "admin-navigation btn btn-block btn-info" do
+        i.fa.fa-group
+        span.title Group
+      = link_to admin_dashboard_index_path, class: "admin-navigation btn btn-block btn-info" do
+        i.fa.fa-file
+        span.title Posts
 
-    .col-md-10
-      h1 Dashboard
+    .col-md-8
+      h2
+        i.fa.fa-tachometer
+        'Dashboard
 
-      h4 Overview
-      hr
-      p You are using <strong>Trbes for Customer Feedback</strong>.
-      p #{group.name} was created <strong>#{group.created_time_ago} ago</strong> and has #{group.memberships_count_link}.
-      p This group is #{group.privacy_type}
+      .overview
+        h4.text-uppercase Overview
+        hr
+        p You are using <strong>Trbes for Customer Feedback</strong>.
+        p #{group.name} was created <strong>#{group.created_time_ago} ago</strong> and has #{group.memberships_count_link}.
+        p This group is #{group.privacy_type}.
 
-      h4 Notifications
-      'TODO
+      .notifications
+        h4.text-uppercase Notifications
+        hr
+        .notification
+          span.label.label-warning
+            'Warning
+          '&nbsp;
+          span Please review comments, some appear to be spammy.
+        .notification
+          span.label.label-success
+            'Success
+          '&nbsp;
+          span You now have more than 50 posts in your group. Congratulations!
 
-      h4 Latest posts
-      hr
+      .latest-posts
+        h4.text-uppercase Latest posts
+        hr
 
-      - group.latest_posts.each do |post|
-        .post
-          .post-content
+        - group.latest_posts.each do |post|
+          .post
             = link_to post.title, post_path(post)
-            span #{post.created_time_ago} ago
-            = image_tag post.user_avatar
+            '&nbsp;
+            '#{post.created_time_ago} ago
+            = image_tag post.user_avatar,
+                class: "pull-right img-circle",
+                data: { toggle: "tooltip", placement: "top" },
+                title: post.user_full_name
 
-      h4 Members (#{group.memberships_count})
-      'TODO
+      .members
+        h4.text-uppercase Members (#{group.memberships_count})
+        hr
+
+        dl
+          dt Pending invitations
+          dd
+            - 4.times do
+              = image_tag User.first.avatar, class: "member img-circle"
+        dl
+          dt New this week
+          dd
+            - 2.times do
+              = image_tag User.first.avatar, class: "member img-circle"
+
+    .col-md-2
+      i.fa.fa-info-circle
+      'Learn more about
+      = link_to "How to Manage your Trbes group", "#"
+      '&nbsp; in our knowledge base.

@@ -16,6 +16,6 @@ class User < ActiveRecord::Base
   end
 
   def avatar
-    attachment
+    attachment || "https://placekitten.com/g/25/25"
   end
 end
