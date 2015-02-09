@@ -1,0 +1,8 @@
+= simple_form_for(post) do |f|
+  = f.hidden_field(:post_type, value: "image_post")
+
+  = f.input :title
+  = f.fields_for(:attachments, Attachment.new) do |attachment_fields|
+    = attachment_fields.input :image, as: :file
+
+  = f.button :submit

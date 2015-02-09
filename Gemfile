@@ -37,6 +37,7 @@ gem "acts_as_votable"
 gem "friendly_id"
 gem "algoliasearch-rails"
 gem "gon"
+gem "attribute_normalizer"
 
 group :staging, :production do
   gem "rails_12factor"

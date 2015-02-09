@@ -8,6 +8,6 @@
   .posts-group
     .posts
       - posts.each do |post|
-        = render "posts/#{postable_name(post)}/#{postable_name(post)}", post: post
+        = render "posts/#{post.post_type}/post", post: post
 
     = paginate(posts)

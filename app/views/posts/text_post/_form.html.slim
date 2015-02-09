@@ -1,0 +1,7 @@
+= simple_form_for(post) do |f|
+  = f.hidden_field(:post_type, value: "text_post")
+
+  = f.input :title
+  = f.input :body
+
+  = f.button :submit

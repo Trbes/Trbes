@@ -3,7 +3,7 @@ class GroupsController < ApplicationController
 
   expose(:group, attributes: :group_attributes)
   expose(:posts, only: [:show]) do
-    current_group.posts.includes(:postable, :user).order_by_votes.page(params[:page])
+    current_group.posts.includes(:attachments, :user).order_by_votes.page(params[:page])
   end
 
   def new
