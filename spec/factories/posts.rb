@@ -1,6 +1,6 @@
 FactoryGirl.define do
   factory :post do
-    title { Faker::Hacker.say_something_smart }
+    title { Faker::Hacker.say_something_smart[0..99] }
     body { Faker::Lorem.paragraph(10) }
 
     group

@@ -19,28 +19,32 @@
         i.fa.fa-tachometer
         'Dashboard
 
-      .overview
+      section.overview
         h4.text-uppercase Overview
         hr
+
         p You are using <strong>Trbes for Customer Feedback</strong>.
         p #{group.name} was created <strong>#{group.created_time_ago} ago</strong> and has #{group.memberships_count_link}.
-        p This group is #{group.privacy_type}.
+        p This group is <a href="#">#{group.privacy_type}</a>.
 
-      .notifications
+      section.notifications
         h4.text-uppercase Notifications
         hr
-        .notification
-          span.label.label-warning
-            'Warning
-          '&nbsp;
-          span Please review comments, some appear to be spammy.
-        .notification
-          span.label.label-success
-            'Success
-          '&nbsp;
-          span You now have more than 50 posts in your group. Congratulations!
 
-      .latest-posts
+        dl
+          dt
+            span.label.label-warning
+              'Warning
+          dd
+            span Please review comments, some appear to be spammy.
+        dl
+          dt
+            span.label.label-success
+              'Success
+          dd
+            span You now have more than 50 posts in your group. Congratulations!
+
+      section.latest-posts
         h4.text-uppercase Latest posts
         hr
 
@@ -54,18 +58,18 @@
                 data: { toggle: "tooltip", placement: "top" },
                 title: post.user_full_name
 
-      .members
+      section.members
         h4.text-uppercase Members (#{group.memberships_count})
         hr
 
-        dl
-          dt Pending invitations
-          dd
+        .members-list
+          span.members-type Pending invitations
+          ul.avatars
             - 4.times do
               = image_tag User.first.avatar, class: "member img-circle"
-        dl
-          dt New this week
-          dd
+        .members-list
+          span.members-type New this week
+          ul.avatars
             - 2.times do
               = image_tag User.first.avatar, class: "member img-circle"
 

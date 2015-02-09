@@ -42,7 +42,7 @@
 
   .latest-posts {
     .post {
-      padding: 10px 0;
+      padding: 10px 0 15px;
       border-bottom: 1px solid #eaecee;
     }
 
@@ -58,22 +58,42 @@
   }
 
   .members {
+    .members-list {
+      overflow: hidden;
+      width: 100%;
+
+      .members-type {
+        float: left;
+        display: inline-block;
+        width: 15%;
+      }
+
+      ul.avatars {
+        float: left;
+        padding: 0;
+        display: inline-block;
+        width: 85%;
+      }
+    }
+  }
+
+  .notifications {
     dl {
+      margin-bottom: 0;
       width: 100%;
       overflow: hidden;
-      margin-bottom: 10px;
     }
 
     dt {
       font-weight: 300;
       float: left;
-      width: 17%;
+      width: 10%;
     }
 
     dd {
       font-weight: 300;
       float: left;
-      width: 83%;
+      width: 90%;
     }
   }
 }
