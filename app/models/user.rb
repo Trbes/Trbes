@@ -4,6 +4,8 @@ class User < ActiveRecord::Base
   has_many :groups, through: :memberships
   has_many :comments, dependent: :destroy
 
+  has_one :attachment, as: :attachable
+
   validates :full_name, presence: true
 
   devise :database_authenticatable, :registerable, :confirmable,
@@ -11,5 +13,9 @@ class User < ActiveRecord::Base
 
   def membership_for(group)
     memberships.for_group(group).first
+  end
+
+  def avatar
+    attachment
   end
 end

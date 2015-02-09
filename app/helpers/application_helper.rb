@@ -9,4 +9,16 @@ module ApplicationHelper
   def bootstrap_class_for(flash_type)
     BOOTSTRAP_FLASH_MAPPER.fetch(flash_type.to_sym, flash_type)
   end
+
+  def present(object)
+    if object.respond_to?(:map)
+      klass = "#{object.first.class}Presenter".constantize
+
+      object.map { |el| klass.new(el, self) }
+    else
+      klass = "#{object.class}Presenter".constantize
+
+      klass.new(object, self)
+    end
+  end
 end

@@ -16,6 +16,11 @@ Rails.application.routes.draw do
 
     resources :collections, only: %i( index show new create edit update destroy )
 
+    namespace :admin do
+      resources :dashboard, only: %i( index )
+      resources :memberships, only: %i( index )
+    end
+
     root to: "groups#show", as: :group_root
   end
 

@@ -1,6 +1,6 @@
 class Membership < ActiveRecord::Base
   belongs_to :user, required: true
-  belongs_to :group, required: true
+  belongs_to :group, counter_cache: true, required: true
 
   has_many :membership_roles, dependent: :destroy
   has_many :roles, through: :membership_roles, dependent: :destroy

@@ -1,0 +1,32 @@
+.container
+  .row
+    .col-md-2
+      = link_to "Dashboard", admin_dashboard_index_path, class: "btn btn-block"
+      = link_to "Account", admin_dashboard_index_path, class: "btn btn-block"
+      = link_to "Group", admin_dashboard_index_path, class: "btn btn-block"
+      = link_to "Posts", admin_dashboard_index_path, class: "btn btn-block"
+
+    .col-md-10
+      h1 Dashboard
+
+      h4 Overview
+      hr
+      p You are using <strong>Trbes for Customer Feedback</strong>.
+      p #{group.name} was created <strong>#{group.created_time_ago} ago</strong> and has #{group.memberships_count_link}.
+      p This group is #{group.privacy_type}
+
+      h4 Notifications
+      'TODO
+
+      h4 Latest posts
+      hr
+
+      - group.latest_posts.each do |post|
+        .post
+          .post-content
+            = link_to post.title, post_path(post)
+            span #{post.created_time_ago} ago
+            = image_tag post.user_avatar
+
+      h4 Members (#{group.memberships_count})
+      'TODO
