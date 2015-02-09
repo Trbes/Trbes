@@ -1,7 +1,10 @@
 Rails.application.routes.draw do
-  devise_for :users
+  devise_for :users, controllers: {
+    registrations: "registrations"
+  }
 
   resources :groups, only: %i( new create )
+  get "/welcome" => "dashboard#welcome", as: :welcome
 
   constraints(subdomain: SubdomainValidator::REG_EXP) do
     resources :groups, only: %i( show new )

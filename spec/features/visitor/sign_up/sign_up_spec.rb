@@ -16,7 +16,11 @@ feature "Sign up" do
     # fill_form(:user, user_attributes)
   end
 
+  after { switch_to_main }
+
   scenario "User signs up successfully" do
+    expect(page.current_path).to eql welcome_path
+    expect(page).to have_text("You are now subscribed to Trbes")
     open_email(user.email)
 
     expect(current_email).to have_subject "Confirmation instructions"
@@ -40,5 +44,24 @@ feature "Sign up" do
 
     expect(current_email).to have_subject "Confirmation instructions"
     expect(current_email).to have_body_text(user.full_name)
+  end
+end
+
+feature "Sign up" do
+  let(:user_attributes) { attributes_for(:user).slice(:email, :full_name, :title, :password) }
+  let(:group) { create(:group) }
+
+  scenario "User signs up via group page" do
+    switch_to_subdomain(group.subdomain)
+    visit new_user_registration_path
+
+    fill_in "Email Address", with: user_attributes[:email]
+    fill_in "Full Name", with: user_attributes[:full_name]
+    fill_in "More About You (optional)", with: user_attributes[:title]
+    fill_in "Password", with: user_attributes[:password]
+    click_button "Create my account"
+
+    expect(page.current_path).to eql welcome_path
+    expect(page).to have_text("You are now subscribed to " + group.name)
   end
 end
