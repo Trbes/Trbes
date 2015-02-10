@@ -16,6 +16,6 @@ class User < ActiveRecord::Base
   end
 
   def avatar
-    read_attribute(:avatar) || "https://placekitten.com/g/25/25"
+    self[:avatar] || "https://placekitten.com/g/25/25"
   end
 end
