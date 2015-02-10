@@ -2,51 +2,48 @@
   .row
     .col-md-2
       = link_to admin_dashboard_index_path, class: "admin-navigation btn btn-block btn-info active" do
-        i.fa.fa-tachometer
+        i.fa.fa-tachometer.admin-navigation-icon
         span.title Dashboard
       = link_to admin_dashboard_index_path, class: "admin-navigation btn btn-block btn-info" do
-        i.fa.fa-user
+        i.fa.fa-user.admin-navigation-icon
         span.title Account
       = link_to admin_dashboard_index_path, class: "admin-navigation btn btn-block btn-info" do
-        i.fa.fa-group
+        i.fa.fa-group.admin-navigation-icon
         span.title Group
       = link_to admin_dashboard_index_path, class: "admin-navigation btn btn-block btn-info" do
-        i.fa.fa-file
+        i.fa.fa-file.admin-navigation-icon
         span.title Posts
 
     .col-md-8
-      h2
-        i.fa.fa-tachometer
+      h2.current-section
+        i.fa.fa-tachometer.current-section-icon
         'Dashboard
 
       section.overview
-        h4.text-uppercase Overview
-        hr
+        h4.section-name Overview
+        hr.section-separator
 
-        p You are using <strong>Trbes for Customer Feedback</strong>.
-        p #{group.name} was created <strong>#{group.created_time_ago} ago</strong> and has #{group.memberships_count_link}.
-        p This group is <a href="#">#{group.privacy_type}</a>.
+        p.overview-text You are using <strong>Trbes for Customer Feedback</strong>.
+        p.overview-text #{group.name} was created <strong>#{group.created_time_ago} ago</strong> and has #{group.memberships_count_link}.
+        p.overview-text This group is <a href="#">#{group.privacy_type}</a>.
 
       section.notifications
-        h4.text-uppercase Notifications
-        hr
+        h4.section-name Notifications
+        hr.section-separator
 
-        dl
-          dt
-            span.label.label-warning
-              'Warning
-          dd
-            span Please review comments, some appear to be spammy.
-        dl
-          dt
-            span.label.label-success
-              'Success
-          dd
-            span You now have more than 50 posts in your group. Congratulations!
+        .notification
+          .notification-title
+            span.label.label-warning Warning
+          span.notification-body Please review comments, some appear to be spammy.
+
+        .notification
+          .notification-title
+            span.label.label-success Success
+          span.notification-body You now have more than 50 posts in your group. Congratulations!
 
       section.latest-posts
-        h4.text-uppercase Latest posts
-        hr
+        h4.section-name Latest posts
+        hr.section-separator
 
         - group.latest_posts.each do |post|
           .post
@@ -59,8 +56,8 @@
                 title: post.user_full_name
 
       section.members
-        h4.text-uppercase Members (#{group.memberships_count})
-        hr
+        h4.section-name Members (#{group.memberships_count})
+        hr.section-separator
 
         .members-list
           span.members-type Pending invitations

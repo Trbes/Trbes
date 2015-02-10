@@ -22,10 +22,11 @@ nav.navbar.navbar-default
                 button#dropdownMenu1.btn.btn-default.dropdown-toggle aria-expanded="true" data-toggle="dropdown" type="button"
                   .fa.fa-cog
                 ul.dropdown-menu aria-labelledby="dropdownMenu1" role="menu"
-                  li role="presentation"
-                    a href="#" role="menuitem" tabindex="-1"  Edit Group
-                  li role="presentation"
-                    a href="#" role="menuitem" tabindex="-1"  Manage Members
+                  - if policy(:admin_dashboard).index?
+                    li role="presentation"
+                      = link_to "Edit Group", admin_dashboard_index_path
+                    li role="presentation"
+                      a href="#" role="menuitem" tabindex="-1"  Manage Members
                   li role="presentation"
                     a href="#" role="menuitem" tabindex="-1"  Invite Someone
             .group-desc= current_group.description

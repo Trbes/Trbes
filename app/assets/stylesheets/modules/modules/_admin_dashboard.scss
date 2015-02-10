@@ -5,16 +5,13 @@
 
   .title {
     font-size: 18px;
+    display: block;
   }
 
-  i {
+  .admin-navigation-icon {
     display: block;
     width: auto;
     font-size: 4em;
-  }
-
-  span {
-    display: block;
   }
 }
 
@@ -24,19 +21,20 @@
 }
 
 .admin-dashboard {
-  h2 {
+  .current-section {
     margin: 0px 0 15px;
 
-    i {
+    .current-section-icon {
       margin-right: 18px;
     }
   }
 
-  h4 {
+  .section-name {
+    text-transform: uppercase;
     margin: 20px 0 5px;
   }
 
-  hr {
+  .section-separator {
     margin: 5px 0 5px;
   }
 
@@ -52,7 +50,7 @@
   }
 
   .overview {
-    p {
+    .overview-text {
       margin-bottom: 0;
     }
   }
@@ -68,7 +66,7 @@
         width: 15%;
       }
 
-      ul.avatars {
+      .avatars {
         float: left;
         padding: 0;
         display: inline-block;
@@ -78,22 +76,17 @@
   }
 
   .notifications {
-    dl {
-      margin-bottom: 0;
+    .notification {
       width: 100%;
-      overflow: hidden;
-    }
 
-    dt {
-      font-weight: 300;
-      float: left;
-      width: 10%;
-    }
+      .notification-title {
+        display: inline-block;
+        width: 10%;
+      }
 
-    dd {
-      font-weight: 300;
-      float: left;
-      width: 90%;
+      .notification-body {
+        width: 90%;
+      }
     }
   }
 }

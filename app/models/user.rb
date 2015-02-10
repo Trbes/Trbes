@@ -4,7 +4,7 @@ class User < ActiveRecord::Base
   has_many :groups, through: :memberships
   has_many :comments, dependent: :destroy
 
-  has_one :attachment, as: :attachable
+  has_one :avatar, as: :attachable
 
   validates :full_name, presence: true
 
@@ -16,6 +16,6 @@ class User < ActiveRecord::Base
   end
 
   def avatar
-    attachment || "https://placekitten.com/g/25/25"
+    read_attribute(:avatar) || "https://placekitten.com/g/25/25"
   end
 end
