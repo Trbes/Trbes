@@ -20,7 +20,23 @@
   border-color: #a8a8a8;
 }
 
-.admin-dashboard {
+.edit-group {
+  .group-image {
+    display: inline-block;
+    float: left;
+  }
+
+  .group-information {
+    display: inline-block;
+    float: left;
+  }
+
+  .controls {
+    float: right;
+  }
+}
+
+.admin {
   .current-section {
     margin: 0px 0 15px;
 

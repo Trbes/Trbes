@@ -21,4 +21,8 @@ module ApplicationHelper
       klass.new(object, self)
     end
   end
+
+  def current_path?(path)
+    "active" if request.url.include?(path)
+  end
 end

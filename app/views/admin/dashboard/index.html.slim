@@ -1,18 +1,7 @@
-.container.admin-dashboard
+.container.admin
   .row
     .col-md-2
-      = link_to admin_dashboard_index_path, class: "admin-navigation btn btn-block btn-info active" do
-        i.fa.fa-tachometer.admin-navigation-icon
-        span.title Dashboard
-      = link_to admin_dashboard_index_path, class: "admin-navigation btn btn-block btn-info" do
-        i.fa.fa-user.admin-navigation-icon
-        span.title Account
-      = link_to admin_dashboard_index_path, class: "admin-navigation btn btn-block btn-info" do
-        i.fa.fa-group.admin-navigation-icon
-        span.title Group
-      = link_to admin_dashboard_index_path, class: "admin-navigation btn btn-block btn-info" do
-        i.fa.fa-file.admin-navigation-icon
-        span.title Posts
+      = render "navigation_group_admin"
 
     .col-md-8
       h2.current-section

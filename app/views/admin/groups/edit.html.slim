@@ -1,0 +1,74 @@
+.container.admin.edit-group
+  .row
+    .col-md-2
+      = render "navigation_group_admin"
+
+    .col-md-8
+      h2.current-section
+        i.fa.fa-group.current-section-icon
+        'Group
+
+      section.about
+        h4.section-name #{group.subdomain}.trbes.com
+        hr.section-separator
+
+        .group-profile
+          .group-image
+            = cl_image_tag(group.logo_image.logo)
+            .preview
+            p 100x100 pixels
+            = form_for(:group, method: :put, url: admin_group_path) do |f|
+              = f.fields_for :logo, group.logo do |logo_fields|
+                = logo_fields.cl_image_upload :image, html: { data: { cloudinary_field: "group[logo_attributes][image]" } }
+
+              = f.submit "Save", class: "btn"
+
+          .group-information
+            h5= best_in_place(group, :name, url: admin_group_path)
+            h6= best_in_place(group, :headline, url: admin_group_path)
+            p #{group.memberships_count} Members
+            p #{group.posts_count} Posts
+            p #{group.collections_count} Collections
+            p #{group.comments_count} Comments
+
+          .controls
+            = link_to "edit", "#"
+            '|
+            = link_to "delete", "#"
+
+        .clearfix
+        .owner
+          span Owner
+          .controls
+            = link_to "transfer", "#"
+          .owner-wrapper
+            = image_tag User.first.avatar, class: "img-circle img-owner"
+
+        .moderators
+          span Moderators
+          .controls
+            = link_to "add moderator", "#"
+          .moderators-wrapper
+            = image_tag User.first.avatar, class: "img-circle img-owner"
+            '23
+
+      section.collections
+        h4.section-name Collections
+        hr.section-separator
+
+          .collections-list
+            - group.collections.each do |collection|
+              .collection
+                = cl_image_tag(collection.image)
+                = collection.name
+                = collection.posts_count
+                = collection.visibility
+
+                .controls
+                  = link_to "reoder", "#"
+                  '|
+                  = link_to "edit", "#"
+                  '|
+                  = link_to "delete", "#"
+            = link_to "add", "#"
+

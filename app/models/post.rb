@@ -9,7 +9,7 @@ class Post < ActiveRecord::Base
 
   has_many :comments, dependent: :destroy
   has_many :attachments, as: :attachable, dependent: :destroy
-  belongs_to :group, required: true
+  belongs_to :group, counter_cache: true, required: true
   belongs_to :user, required: true
 
   validates :title, :body, presence: true

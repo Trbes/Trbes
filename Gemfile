@@ -38,6 +38,7 @@ gem "friendly_id"
 gem "algoliasearch-rails"
 gem "gon"
 gem "attribute_normalizer"
+gem "best_in_place"
 
 group :staging, :production do
   gem "rails_12factor"

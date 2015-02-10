@@ -4,7 +4,7 @@ class User < ActiveRecord::Base
   has_many :groups, through: :memberships
   has_many :comments, dependent: :destroy
 
-  has_one :avatar, as: :attachable
+  has_one :avatar, as: :attachable, class_name: "Attachment"
 
   validates :full_name, presence: true
 
