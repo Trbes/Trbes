@@ -1,5 +1,4 @@
 class InvitationMailer < ApplicationMailer
-
   def invitation_email(user, group, email_addresses)
     @user = user
     @group = group

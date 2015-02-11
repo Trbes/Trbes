@@ -1,22 +1,24 @@
-module Group::AllowedPostTypes
-  extend ActiveSupport::Concern
+class Group
+  module AllowedPostTypes
+    extend ActiveSupport::Concern
 
-  included do
-    ALLOWED_POST_TYPES = %i( link text image )
+    included do
+      ALLOWED_POST_TYPES = %i( link text image )
 
-    attr_accessor :intended_usage
+      attr_accessor :intended_usage
 
-    before_create :update_allowed_post_types
+      before_create :update_allowed_post_types
 
-    private
+      private
 
-    def update_allowed_post_types
-      return if @intended_usage.blank?
+      def update_allowed_post_types
+        return if @intended_usage.blank?
 
-      @intended_usage.split(",").each do |type|
-        next unless ALLOWED_POST_TYPES.include?(type.to_sym)
+        @intended_usage.split(",").each do |type|
+          next unless ALLOWED_POST_TYPES.include?(type.to_sym)
 
-        self.send("allow_#{type}_posts=", true)
+          send("allow_#{type}_posts=", true)
+        end
       end
     end
   end
