@@ -2,11 +2,10 @@ class Post < ActiveRecord::Base
   include AlgoliaSearch
   extend FriendlyId
 
-  default_scope { includes(:attachments) }
-
   enum post_type: %i(text_post link_post image_post)
 
   scope :order_by_votes, -> { order(cached_votes_total: :desc) }
+  scope :order_by_created_at, -> { order(created_at: :desc) }
 
   has_many :comments, dependent: :destroy
   has_many :attachments, as: :attachable, dependent: :destroy
@@ -16,7 +15,7 @@ class Post < ActiveRecord::Base
   validates :title, :body, presence: true
   validates :title, length: { minimum: 10, maximum: 100 }
 
-  delegate :full_name, to: :user, prefix: true
+  delegate :full_name, :avatar, to: :user, prefix: true
 
   acts_as_votable
 

@@ -1,0 +1,92 @@
+.admin-navigation {
+  margin-bottom: 20px;
+  border-width: 1px;
+  border-color: #a8a8a8;
+
+  .title {
+    font-size: 18px;
+    display: block;
+  }
+
+  .admin-navigation-icon {
+    display: block;
+    width: auto;
+    font-size: 4em;
+  }
+}
+
+.admin-navigation.active {
+  color: #a8a8a8;
+  border-color: #a8a8a8;
+}
+
+.admin-dashboard {
+  .current-section {
+    margin: 0px 0 15px;
+
+    .current-section-icon {
+      margin-right: 18px;
+    }
+  }
+
+  .section-name {
+    text-transform: uppercase;
+    margin: 20px 0 5px;
+  }
+
+  .section-separator {
+    margin: 5px 0 5px;
+  }
+
+  .latest-posts {
+    .post {
+      padding: 10px 0 15px;
+      border-bottom: 1px solid #eaecee;
+    }
+
+    :first-child {
+      padding-top: 0;
+    }
+  }
+
+  .overview {
+    .overview-text {
+      margin-bottom: 0;
+    }
+  }
+
+  .members {
+    .members-list {
+      overflow: hidden;
+      width: 100%;
+
+      .members-type {
+        float: left;
+        display: inline-block;
+        width: 15%;
+      }
+
+      .avatars {
+        float: left;
+        padding: 0;
+        display: inline-block;
+        width: 85%;
+      }
+    }
+  }
+
+  .notifications {
+    .notification {
+      width: 100%;
+
+      .notification-title {
+        display: inline-block;
+        width: 10%;
+      }
+
+      .notification-body {
+        width: 90%;
+      }
+    }
+  }
+}

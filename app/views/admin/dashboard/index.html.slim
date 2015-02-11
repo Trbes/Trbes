@@ -1,0 +1,77 @@
+.container.admin-dashboard
+  .row
+    .col-md-2
+      = link_to admin_dashboard_index_path, class: "admin-navigation btn btn-block btn-info active" do
+        i.fa.fa-tachometer.admin-navigation-icon
+        span.title Dashboard
+      = link_to admin_dashboard_index_path, class: "admin-navigation btn btn-block btn-info" do
+        i.fa.fa-user.admin-navigation-icon
+        span.title Account
+      = link_to admin_dashboard_index_path, class: "admin-navigation btn btn-block btn-info" do
+        i.fa.fa-group.admin-navigation-icon
+        span.title Group
+      = link_to admin_dashboard_index_path, class: "admin-navigation btn btn-block btn-info" do
+        i.fa.fa-file.admin-navigation-icon
+        span.title Posts
+
+    .col-md-8
+      h2.current-section
+        i.fa.fa-tachometer.current-section-icon
+        'Dashboard
+
+      section.overview
+        h4.section-name Overview
+        hr.section-separator
+
+        p.overview-text You are using <strong>Trbes for Customer Feedback</strong>.
+        p.overview-text #{group.name} was created <strong>#{group.created_time_ago} ago</strong> and has #{group.memberships_count_link}.
+        p.overview-text This group is <a href="#">#{group.privacy_type}</a>.
+
+      section.notifications
+        h4.section-name Notifications
+        hr.section-separator
+
+        .notification
+          .notification-title
+            span.label.label-warning Warning
+          span.notification-body Please review comments, some appear to be spammy.
+
+        .notification
+          .notification-title
+            span.label.label-success Success
+          span.notification-body You now have more than 50 posts in your group. Congratulations!
+
+      section.latest-posts
+        h4.section-name Latest posts
+        hr.section-separator
+
+        - group.latest_posts.each do |post|
+          .post
+            = link_to post.title, post_path(post)
+            '&nbsp;
+            '#{post.created_time_ago} ago
+            = image_tag post.user_avatar,
+                class: "pull-right img-circle",
+                data: { toggle: "tooltip", placement: "top" },
+                title: post.user_full_name
+
+      section.members
+        h4.section-name Members (#{group.memberships_count})
+        hr.section-separator
+
+        .members-list
+          span.members-type Pending invitations
+          ul.avatars
+            - 4.times do
+              = image_tag User.first.avatar, class: "member img-circle"
+        .members-list
+          span.members-type New this week
+          ul.avatars
+            - 2.times do
+              = image_tag User.first.avatar, class: "member img-circle"
+
+    .col-md-2
+      i.fa.fa-info-circle
+      'Learn more about
+      = link_to "How to Manage your Trbes group", "#"
+      '&nbsp; in our knowledge base.

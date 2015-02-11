@@ -39,6 +39,10 @@ en:
         new: Didn't receive confirmation instructions?
 
   app:
+    group:
+      private:
+        false: "Public"
+        true: "Private"
     user:
       sign_in:
         title: "Sign in"
