@@ -69,6 +69,28 @@
       }
     }
   }
+
+  .tagsinput {
+    background-color: #FFFFFF;
+    border: 1px solid #DDDDDD;
+    border-radius: 4px;
+    padding: 5px 5px 0;
+
+    .tag {
+      margin-top: 0;
+      margin-bottom: 5px;
+    }
+
+    .tagsinput-add {
+      display: none;
+    }
+
+    .tagsinput-add-container {
+      input {
+        height: 32px;
+      }
+    }
+  }
 }
 
 .fic-email-body {

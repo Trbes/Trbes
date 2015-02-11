@@ -12,5 +12,10 @@ FactoryGirl.define do
     end
 
     private false
+
+    allow_image_posts { rand < 0.5 }
+    allow_link_posts { rand < 0.5 }
+    allow_text_posts { rand < 0.5 }
+
   end
 end

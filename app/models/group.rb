@@ -1,5 +1,6 @@
 class Group < ActiveRecord::Base
   include AlgoliaSearch
+  include AllowedPostTypes
 
   has_many :posts, dependent: :destroy
   has_many :comments, through: :posts
@@ -39,5 +40,13 @@ class Group < ActiveRecord::Base
 
   def moderators
     memberships.sample(3) # TODO
+  end
+
+  def add_member(user, opts={})
+    role_name = (opts[:as] || :member).to_s
+
+    membership = memberships.create(user: user)
+    role = Role.find_or_create_by(name: role_name)
+    membership_role = membership.membership_roles.create(role: role)
   end
 end

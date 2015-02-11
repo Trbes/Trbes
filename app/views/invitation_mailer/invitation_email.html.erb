@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+    <p>Hi there,</p>
+    <div class="fic-email-body">
+      <p>
+        I would like you to join our new user community about <a href="<%= root_url(subdomain: @group.subdomain) %>"><%= @group.description %></a>. Help me create some content and share some links !
+      </p>
+      <p>
+        Clic here to join :<br><a href="<%= root_url(subdomain: @group.subdomain) %>"><%= root_url(subdomain: @group.subdomain) %></a>
+      </p>
+      <p>
+        PS : I gave you <em>super user</em> rights !
+      </p>
+    </div>
+  </body>
+</html>

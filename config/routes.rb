@@ -5,6 +5,9 @@ Rails.application.routes.draw do
 
   resources :groups, only: %i( new create )
   get "/welcome" => "dashboard#welcome", as: :welcome
+  post "/welcome" => "dashboard#create_group"
+  get "/invite" => "dashboard#invite", as: :invite
+  post "/invite" => "dashboard#send_invitation"
 
   constraints(subdomain: SubdomainValidator::REG_EXP) do
     resources :groups, only: %i( show new )

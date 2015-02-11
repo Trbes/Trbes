@@ -28,6 +28,9 @@ describe Group do
     it { is_expected.to have_db_column(:description) }
     it { is_expected.to have_db_column(:subdomain) }
     it { is_expected.to have_db_column(:private) }
+    it { is_expected.to have_db_column(:allow_image_posts) }
+    it { is_expected.to have_db_column(:allow_link_posts) }
+    it { is_expected.to have_db_column(:allow_text_posts) }
   end
 
   describe "normalizations" do

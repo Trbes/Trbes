@@ -29,6 +29,8 @@ class GroupsController < ApplicationController
       :description,
       :private,
       :subdomain,
+      :allow_image_posts,
+      :intended_usage,
       logo_attributes: :image
     )
   end
