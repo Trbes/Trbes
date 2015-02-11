@@ -32,4 +32,8 @@ class Group < ActiveRecord::Base
   def comments_count
     posts.pluck(:comments_count).inject(:+)
   end
+
+  def host
+    "#{subdomain}.trbes.com"
+  end
 end

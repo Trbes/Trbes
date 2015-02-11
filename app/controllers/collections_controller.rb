@@ -15,9 +15,12 @@ class CollectionsController < ApplicationController
   end
 
   def update
-    collection.save
+    collection.update_attributes(collection_attributes)
 
-    respond_with(collection)
+    respond_to do |format|
+      format.html { render collection }
+      format.json { respond_with_bip(collection) }
+    end
   end
 
   def destroy
@@ -33,6 +36,6 @@ class CollectionsController < ApplicationController
   end
 
   def collection_attributes
-    params.require(:collection).permit(:image, :name)
+    params.require(:collection).permit(:image, :name, :visibility)
   end
 end

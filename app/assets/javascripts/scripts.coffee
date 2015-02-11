@@ -170,3 +170,6 @@ $ ->
     true
 
   $(".best_in_place").best_in_place()
+  $(".upload").on "click", (e) ->
+    e.preventDefault()
+    $(".file-uploader").toggleClass("hidden")

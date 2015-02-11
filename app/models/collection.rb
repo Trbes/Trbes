@@ -9,8 +9,4 @@ class Collection < ActiveRecord::Base
   def posts_count
     3
   end
-
-  def visibility
-    "public"
-  end
 end

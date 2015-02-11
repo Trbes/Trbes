@@ -9,15 +9,36 @@ module Admin
     def update
       authorize :admin_dashboard, :index?
 
-      group.update_attributes(attributes)
+      group.update_attributes(group_attributes)
 
-      render :edit
+      respond_to do |format|
+        format.html { render :edit }
+        format.json { respond_with_bip(group) }
+      end
+    end
+
+    def destroy
+      authorize :admin_dashboard, :index?
+
+      group.destroy
+
+      redirect_to new_group_path
     end
 
     private
 
     def group_attributes
-      params.require(:group).permit(:name, :headline, :description, :private, :subdomain, logo_attributes: :image)
+      params.require(:group).permit(
+        :name,
+        :headline,
+        :description,
+        :private,
+        :subdomain,
+        :allow_image_posts,
+        :allow_link_posts,
+        :allow_text_posts,
+        logo_attributes: :image
+      )
     end
   end
 end
