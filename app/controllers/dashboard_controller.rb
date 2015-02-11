@@ -5,22 +5,18 @@ class DashboardController < ApplicationController
   end
 
   def welcome
+    authorize :dashboard, :welcome?
     render view_for_welcome
   end
 
   def invite
+    authorize :dashboard, :invite?
     # Invite should only happen under the scope of a group
-    unless user_signed_in? && current_group
-      redirect_to root_path
-      return
-    end
+    redirect_to root_path unless current_group
   end
 
   def send_invitation
-    unless user_signed_in?
-      redirect_to root_path
-      return
-    end
+    authorize :dashboard, :send_invitation?
 
     SendInvitationEmailJob.new.async.perform(current_user.id, params[:group_id], params[:email_addresses])
     redirect_to root_path(subdomain: Group.find(params[:group_id]).subdomain),
@@ -28,10 +24,7 @@ class DashboardController < ApplicationController
   end
 
   def create_group
-    unless user_signed_in?
-      redirect_to root_path
-      return
-    end
+    authorize :dashboard, :create_group?
 
     if group.save
       group.add_member(current_user, as: :owner)

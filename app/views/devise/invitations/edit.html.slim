@@ -1,0 +1,17 @@
+.container
+  h1 = t("devise.invitations.edit.header")
+
+  .row
+    .col-md-6
+      = simple_form_for resource, :as => resource_name, :url => update_invitation_path, :html => { :method => :put } do |f|
+        = devise_error_messages!
+        = f.hidden_field :invitation_token
+
+        = f.input :full_name
+        = f.input :title
+        = f.input :password
+        = f.input :password_confirmation
+
+        = f.button :submit, t("devise.invitations.edit.submit_button")
+
+

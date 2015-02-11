@@ -22,6 +22,7 @@ gem "title"
 
 # all other gems
 gem "devise"
+gem "devise_invitable"
 gem "decent_exposure"
 gem "kaminari"
 gem "seedbank"

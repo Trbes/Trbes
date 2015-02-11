@@ -14,5 +14,9 @@ class User
     def account_update
       default_params.permit(USER_PARAMS, :current_password)
     end
+
+    def accept_invitation
+      default_params.permit(USER_PARAMS, :invitation_token)
+    end
   end
 end

@@ -4,13 +4,13 @@
     <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
   </head>
   <body>
-    <p>Hi there,</p>
+    <p>Hey,</p>
     <div class="fic-email-body">
       <p>
-        I would like you to join our new user community about <a href="<%= root_url(subdomain: @group.subdomain) %>"><%= @group.description %></a>. Help me create some content and share some links !
+        I would like you to join our new user community about <a href="<%= (aurl = accept_invitation_url(@invited_user, invitation_token: @invited_user.raw_invitation_token, subdomain: @group.subdomain)) %>"><%= @group.description %></a>. Help me create some content and share some links !
       </p>
       <p>
-        Clic here to join :<br><a href="<%= root_url(subdomain: @group.subdomain) %>"><%= root_url(subdomain: @group.subdomain) %></a>
+        Clic here to join :<br><a href="<%= aurl %>"><%= aurl %></a>
       </p>
       <p>
         PS : I gave you <em>super user</em> rights !

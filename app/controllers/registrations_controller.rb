@@ -1,13 +1,10 @@
 class RegistrationsController < Devise::RegistrationsController
-
   def create
     super
 
-    if resource.persisted?
-      if current_group = Group.find_by(subdomain: request.subdomain)
-        current_group.add_member(resource, as: :member)
-      end
-    end
+    return unless resource.persisted? && (current_group = Group.find_by(subdomain: request.subdomain))
+
+    current_group.add_member(resource, as: :member)
   end
 
   protected

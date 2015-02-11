@@ -29,10 +29,10 @@
                 span< = current_group.description
 
             label.control-label.label-invite-message  Message:
-            .fic-email-body contenteditable="true"
+            .fic-email-body
               p
                 | I would like you to join our new user community about
-                a< href=(iurl = invitation_url(code: current_user.invite_code)) = current_group.description
+                a< href=(iurl = "#{root_url(subdomain: current_group.subdomain)}join") = current_group.description
                 | .
                 |  Help me create some content and share some links !
               p
@@ -40,7 +40,7 @@
                 br
                 a href=(iurl) = iurl
               p
-                | PS : I gave you <em>super user</em> rights !
+                | PS : I gave you <em>super user</em> rights!
 
         .form-group.fnp-actions
           .col-sm-offset-2.col-sm-10
@@ -63,7 +63,7 @@
           i.fa.fa-twitter-square
           | Tweet on Twitter
 
-        a.link-go-to-group href=(root_url(subdomain: params[:group]))
+        a.link-go-to-group href=(root_url(subdomain: current_group.subdomain))
           h4 I am done. Take me to my group.
 
       hr

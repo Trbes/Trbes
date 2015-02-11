@@ -9,8 +9,6 @@ class ApplicationController < ActionController::Base
 
   before_action :load_current_membership, :push_algolia_config
 
-  before_filter :capture_invitation, only: %i( invitation )
-
   expose(:groups)
 
   helper_method :current_group
@@ -71,9 +69,5 @@ class ApplicationController < ActionController::Base
 
   decent_configuration do
     strategy DecentExposure::StrongParametersStrategy
-  end
-
-  def capture_invitation
-    session[:invitation_code] = params[:invitation_code] if params[:invitation_code]
   end
 end

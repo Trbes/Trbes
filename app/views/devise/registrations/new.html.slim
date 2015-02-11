@@ -19,7 +19,6 @@
         as: resource_name,
         url: registration_path(resource_name),
         html: { class: "su-form" } do |f|
-        = f.input :invitation_code, :as => :hidden, :input_html => { :value => session[:invitation_code] }
         .form-group.fg-su-email
           label for="su_email"  Email Address
           = f.input :email,

@@ -1,10 +1,11 @@
 Rails.application.routes.draw do
   devise_for :users, controllers: {
-    registrations: "registrations"
+    registrations: "registrations",
+    invitations: "invitations"
   }
 
   devise_scope :user do
-    get "/invite/:code" => "registrations#new", as: :invitation
+    put "/invitation" => "invitations#update", as: :update_invitation
   end
 
   get "/welcome" => "dashboard#welcome", as: :welcome
