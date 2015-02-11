@@ -45,8 +45,8 @@ class Group < ActiveRecord::Base
   def add_member(user, opts = {})
     role_name = (opts[:as] || :member).to_s
 
-    membership = memberships.create(user: user)
+    membership = memberships.find_or_create_by(user: user)
     role = Role.find_or_create_by(name: role_name)
-    membership.membership_roles.create(role: role)
+    membership.membership_roles.find_or_create_by(role: role)
   end
 end

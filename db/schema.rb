@@ -11,7 +11,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
+<<<<<<< HEAD
 ActiveRecord::Schema.define(version: 20150212094926) do
+=======
+ActiveRecord::Schema.define(version: 20150211160539) do
+>>>>>>> give each user a uniq invite code; Auto-subscribe user to a group if sign-up from the group's page
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -166,6 +170,7 @@ ActiveRecord::Schema.define(version: 20150212094926) do
     t.string   "full_name"
     t.integer  "comments_count",         default: 0,  null: false
     t.string   "title"
+    t.string   "invite_code"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree

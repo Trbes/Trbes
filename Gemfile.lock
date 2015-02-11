@@ -432,17 +432,17 @@ DEPENDENCIES
   pundit
   quiet_assets
   rails (= 4.2.0)
-  rails-assets-animate.css
-  rails-assets-bootstrap-sass-official
-  rails-assets-bootstrap-social
-  rails-assets-bourbon
-  rails-assets-breakpoint-sass
-  rails-assets-enquire
-  rails-assets-font-awesome
-  rails-assets-html5shiv
-  rails-assets-jquery-validation
-  rails-assets-modernizr
-  rails-assets-respond
+  rails-assets-animate.css!
+  rails-assets-bootstrap-sass-official!
+  rails-assets-bootstrap-social!
+  rails-assets-bourbon!
+  rails-assets-breakpoint-sass!
+  rails-assets-enquire!
+  rails-assets-font-awesome!
+  rails-assets-html5shiv!
+  rails-assets-jquery-validation!
+  rails-assets-modernizr!
+  rails-assets-respond!
   rails_12factor
   rails_best_practices
   rspec-rails (~> 3.1)

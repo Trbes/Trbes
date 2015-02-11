@@ -3,11 +3,14 @@ Rails.application.routes.draw do
     registrations: "registrations"
   }
 
-  resources :groups, only: %i( new create )
+  devise_scope :user do
+    get "/invite/:code" => "registrations#new", as: :invitation
+  end
+
   get "/welcome" => "dashboard#welcome", as: :welcome
   post "/welcome" => "dashboard#create_group"
-  get "/invite" => "dashboard#invite", as: :invite
-  post "/invite" => "dashboard#send_invitation"
+
+  resources :groups, only: %i( new create )
 
   constraints(subdomain: SubdomainValidator::REG_EXP) do
     resources :groups, only: %i( show new )
@@ -24,6 +27,9 @@ Rails.application.routes.draw do
       resources :memberships, only: %i( index )
       resources :collections, only: %i( index show new create edit update destroy )
     end
+
+    get "/invite" => "dashboard#invite", as: :invite
+    post "/invite" => "dashboard#send_invitation"
 
     root to: "groups#show", as: :group_root
   end

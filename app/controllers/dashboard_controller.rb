@@ -10,12 +10,10 @@ class DashboardController < ApplicationController
 
   def invite
     # Invite should only happen under the scope of a group
-    unless user_signed_in? && (group = Group.find_by_subdomain(params[:group]))
+    unless user_signed_in? && current_group
       redirect_to root_path
       return
     end
-
-    @group_id = group.id
   end
 
   def send_invitation
@@ -25,7 +23,8 @@ class DashboardController < ApplicationController
     end
 
     SendInvitationEmailJob.new.async.perform(current_user.id, params[:group_id], params[:email_addresses])
-    redirect_to root_path, notice: "Your invitation has been sent. Start exploring Trbes."
+    redirect_to root_path(subdomain: Group.find(params[:group_id]).subdomain),
+      notice: "Your invitation has been sent. Start exploring Trbes."
   end
 
   def create_group
@@ -36,7 +35,7 @@ class DashboardController < ApplicationController
 
     if group.save
       group.add_member(current_user, as: :owner)
-      redirect_to invite_path(group: group.subdomain)
+      redirect_to invite_url(subdomain: group.subdomain)
     else
       render view_for_welcome
     end

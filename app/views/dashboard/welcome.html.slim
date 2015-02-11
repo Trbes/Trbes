@@ -16,11 +16,11 @@
         | other
         span<> = current_group.name
         | members.
-      a.ty-invite href="#" Invite your friends to join your new tribe.
+      a.ty-invite href=(invite_path) Invite your friends to join your new tribe.
       br
       a.btn.btn-success.btn-lg.btn-fill.btn-go-to-group href=group_url(current_group)
         | Go to
-        = current_group.name
+        span<= current_group.name
 
       hr
 

@@ -4,7 +4,7 @@
       h1.iv-title
         | Your new group:
         strong<
-          = params[:group]
+          = current_group.subdomain
           | .trbes.com
         br
         | Now invite 2 or 3 teammates you trust to help you try Trbes !
@@ -14,7 +14,8 @@
       -# render "application/cloud_sponge"
 
       form#form_invite.form-horizontal.form-invite method="post" action=(invite_path)
-        input type="hidden" name="group_id" value=(@group_id)
+        = hidden_field_tag :authenticity_token, form_authenticity_token
+        input type="hidden" name="group_id" value=(current_group.id)
         .form-group.fiv-emails
           label.col-sm-2.control-label for="fiv_emails"  To:
           .col-sm-10
@@ -23,19 +24,21 @@
           label.col-sm-2.control-label Subject:
           .col-sm-10
             .fic-email-title contenteditable="true"
-              p A new place for us to share about Connected Devices.
+              p
+                | A new place for us to share about
+                span< = current_group.description
 
             label.control-label.label-invite-message  Message:
             .fic-email-body contenteditable="true"
               p
                 | I would like you to join our new user community about
-                a< href="#" Connected Devices
+                a< href=(iurl = invitation_url(code: current_user.invite_code)) = current_group.description
                 | .
                 |  Help me create some content and share some links !
               p
                 | Clic here to join :
                 br
-                a href="#" http://mygroup.trbes.com/invite/Qm387z
+                a href=(iurl) = iurl
               p
                 | PS : I gave you <em>super user</em> rights !
 
@@ -52,7 +55,7 @@
             span.input-group-addon
               i.fa.fa-link
               | Copy Link
-            input.form-control aria-describedby="inputGroupSuccess1Status" type="text" value="https://trbes.com/invitecode"
+            input.form-control type="text" value=(iurl)
         a.btn.btn-social.btn-fill.btn-facebook href="#"
           i.fa.fa-facebook-square
           | Share via Facebook

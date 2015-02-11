@@ -1,5 +1,4 @@
 source "https://rubygems.org"
-source "https://rails-assets.org"
 
 ruby "2.2.0"
 
@@ -79,15 +78,17 @@ group :development do
 end
 
 # Assets gems from rails-assets.org
-gem "rails-assets-bootstrap-sass-official"
-gem "rails-assets-bootstrap-social"
-gem "rails-assets-breakpoint-sass"
-gem "rails-assets-animate.css"
-gem "rails-assets-bourbon"
-gem "rails-assets-font-awesome"
+source "https://rails-assets.org" do
+  gem "rails-assets-bootstrap-sass-official"
+  gem "rails-assets-bootstrap-social"
+  gem "rails-assets-breakpoint-sass"
+  gem "rails-assets-animate.css"
+  gem "rails-assets-bourbon"
+  gem "rails-assets-font-awesome"
 
-gem "rails-assets-modernizr"
-gem "rails-assets-html5shiv"
-gem "rails-assets-respond"
-gem "rails-assets-enquire"
-gem "rails-assets-jquery-validation"
+  gem "rails-assets-modernizr"
+  gem "rails-assets-html5shiv"
+  gem "rails-assets-respond"
+  gem "rails-assets-enquire"
+  gem "rails-assets-jquery-validation"
+end
