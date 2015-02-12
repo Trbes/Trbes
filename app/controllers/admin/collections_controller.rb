@@ -1,7 +1,6 @@
 module Admin
   class CollectionsController < Admin::ApplicationController
     before_action :ensure_group_is_loaded!
-    before_action :authorize_collection, only: %i(new create edit update destroy)
 
     expose(:collections)
     expose(:collection, attributes: :collection_attributes)

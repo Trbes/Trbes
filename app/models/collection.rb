@@ -7,6 +7,6 @@ class Collection < ActiveRecord::Base
   mount_uploader :image, ImageUploader
 
   def posts_count
-    3
+    3 # TODO
   end
 end
