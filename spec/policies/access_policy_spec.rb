@@ -1,9 +1,9 @@
 require "rails_helper"
 
-describe AdminDashboardPolicy do
+describe AccessPolicy do
   subject { described_class }
 
-  permissions :index? do
+  permissions :admin? do
     it_behaves_like "group admin permission" do
       let(:membership) { create(:membership) }
       let(:resource) { Collection.new }
