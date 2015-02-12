@@ -1,12 +1,10 @@
 Rails.application.routes.draw do
-  get "/groups/:subdomain", to: "groups#show"
-
   devise_for :users
 
   resources :groups, only: %i( new create )
 
   constraints(subdomain: SubdomainValidator::REG_EXP) do
-    resources :groups, only: %i( show )
+    resources :groups, only: %i( show new )
     resources :posts, only: %i( show new create ) do
       resources :comments, only: %i( create destroy )
     end
@@ -14,16 +12,17 @@ Rails.application.routes.draw do
       put "upvote"
     end
 
-    resources :collections, only: %i( index show new create edit update destroy )
-
     namespace :admin do
       resources :dashboard, only: %i( index )
       resource :group, only: %i( edit update destroy )
       resources :memberships, only: %i( index )
+      resources :collections, only: %i( index show new create edit update destroy )
     end
 
     root to: "groups#show", as: :group_root
   end
+
+  get "/groups/:subdomain", to: "groups#show"
 
   get "/frontend/posts" => "frontend#posts"
   get "/frontend/sign_up" => "frontend#sign_up"
