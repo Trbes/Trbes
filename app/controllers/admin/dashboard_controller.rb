@@ -1,9 +1,5 @@
 module Admin
-  class DashboardController < ApplicationController
+  class DashboardController < Admin::ApplicationController
     expose(:group) { view_context.present(current_group) }
-
-    def index
-      authorize :admin_dashboard, :index?
-    end
   end
 end

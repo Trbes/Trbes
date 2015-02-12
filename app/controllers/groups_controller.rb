@@ -23,6 +23,13 @@ class GroupsController < ApplicationController
   private
 
   def group_attributes
-    params.require(:group).permit(:name, :headline, :description, :private, :subdomain, logo: :image)
+    params.require(:group).permit(
+      :name,
+      :tagline,
+      :description,
+      :private,
+      :subdomain,
+      logo_attributes: :image
+    )
   end
 end

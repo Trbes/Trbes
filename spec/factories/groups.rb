@@ -4,6 +4,7 @@ FactoryGirl.define do
       "#{Faker::Company.name} #{n}"
     end
 
+    tagline { Faker::Company.catch_phrase }
     description { Faker::Company.catch_phrase }
 
     sequence :subdomain do |n|

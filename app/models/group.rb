@@ -33,7 +33,11 @@ class Group < ActiveRecord::Base
     posts.pluck(:comments_count).inject(:+)
   end
 
-  def host
-    "#{subdomain}.trbes.com"
+  def owner
+    memberships.first.user # TODO
+  end
+
+  def moderators
+    memberships.sample(3) # TODO
   end
 end

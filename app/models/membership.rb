@@ -6,6 +6,11 @@ class Membership < ActiveRecord::Base
   has_many :roles, through: :membership_roles, dependent: :destroy
 
   scope :for_group, -> (group) { where(group_id: group.id) }
+  scope :with_role, ->(role_name) { joins(:roles).where(roles: { name: role_name }) }
+  scope :pending, -> { where(nil) } # TODO
+  scope :new_this_week, -> { where(nil) } # TODO
+
+  delegate :avatar, to: :user
 
   def make_admin!
     roles << Role.admin

@@ -1,14 +1,11 @@
 module Admin
-  class GroupsController < ApplicationController
+  class GroupsController < Admin::ApplicationController
     expose(:group, attributes: :group_attributes) { view_context.present(current_group) }
-
-    def edit
-      authorize :admin_dashboard, :index?
+    expose(:available_groups) do
+      view_context.present(current_user.memberships.with_role(:admin).includes(:group).map(&:group))
     end
 
     def update
-      authorize :admin_dashboard, :index?
-
       group.update_attributes(group_attributes)
 
       respond_to do |format|
@@ -18,8 +15,6 @@ module Admin
     end
 
     def destroy
-      authorize :admin_dashboard, :index?
-
       group.destroy
 
       redirect_to new_group_path
@@ -28,9 +23,8 @@ module Admin
     private
 
     def group_attributes
-      params.require(:group).permit(
-        :name,
-        :headline,
+      params.require(:group).permit(:name,
+        :tagline,
         :description,
         :private,
         :subdomain,
