@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150211135800) do
+ActiveRecord::Schema.define(version: 20150212094926) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -82,7 +82,7 @@ ActiveRecord::Schema.define(version: 20150211135800) do
     t.integer  "memberships_count", default: 0,     null: false
     t.integer  "posts_count",       default: 0,     null: false
     t.integer  "collections_count", default: 0,     null: false
-    t.string   "headline",                          null: false
+    t.string   "tagline",                           null: false
     t.boolean  "allow_image_posts", default: true,  null: false
     t.boolean  "allow_link_posts",  default: true,  null: false
     t.boolean  "allow_text_posts",  default: true,  null: false
