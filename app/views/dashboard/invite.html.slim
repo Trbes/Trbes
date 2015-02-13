@@ -17,13 +17,13 @@
         = hidden_field_tag :authenticity_token, form_authenticity_token
         input type="hidden" name="group_id" value=(current_group.id)
         .form-group.fiv-emails
-          label.col-sm-2.control-label for="fiv_emails"  To:
+          label.col-sm-2.control-label for="fiv_emails_tag"  To:
           .col-sm-10
             input#fiv_emails.tagsinput.tag-blue.tag-fill name="email_addresses" placeholder="teammate1@email.com,teammate2@email.com"
         .form-group.fiv-content
           label.col-sm-2.control-label Subject:
           .col-sm-10
-            .fic-email-title contenteditable="true"
+            .fic-email-title
               p
                 | A new place for us to share about
                 span< = current_group.description

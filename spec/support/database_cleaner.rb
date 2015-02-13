@@ -5,7 +5,9 @@ RSpec.configure do |config|
   end
 
   config.around(:each) do |example|
-    DatabaseCleaner.strategy = example.metadata[:js] ? :truncation : :transaction
+    # return if example.metadata[:sucker_punch]
+
+    DatabaseCleaner.strategy = (example.metadata[:js] || example.metadata[:job]) ? :truncation : :transaction
 
     DatabaseCleaner.cleaning do
       example.run

@@ -4,6 +4,7 @@ require File.expand_path("../../config/environment", __FILE__)
 require "rspec/rails"
 require "pundit/rspec"
 require "algolia/webmock"
+require "sucker_punch/testing/inline"
 
 Dir[Rails.root.join("spec/support/**/*.rb")].each { |f| require f }
 Dir[Rails.root.join("spec/shared/**/*.rb")].each { |f| require f }

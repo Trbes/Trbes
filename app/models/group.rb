@@ -46,7 +46,7 @@ class Group < ActiveRecord::Base
     role_name = (opts[:as] || :member).to_s
 
     membership = memberships.find_or_create_by(user: user)
-    role = Role.find_or_create_by(name: role_name)
-    membership.membership_roles.find_or_create_by(role: role)
+    role = Role.where(name: role_name).first_or_create
+    membership.membership_roles.where(role: role).first_or_create
   end
 end

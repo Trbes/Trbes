@@ -38,4 +38,26 @@ describe Group do
     it { is_expected.to normalize_attribute(:description) }
     it { is_expected.to normalize_attribute(:subdomain) }
   end
+
+  describe "add_member" do
+    let(:user) { create(:user) }
+    let(:group) { create(:group) }
+
+    it "should add the user as member with specified role" do
+      expect {
+        group.add_member(user, as: :whatever)
+      }.to change { group.memberships.count }.by(1)
+
+      membership = group.memberships.find_by(user_id: user.id)
+      expect(membership.role?(:whatever)).to be true
+
+      # Add one more role
+      group.add_member(user, as: :another)
+      membership.reload
+
+      expect(membership.role?(:another)).to be true
+      # Ensure old role isn't affected
+      expect(membership.role?(:whatever)).to be true
+    end
+  end
 end

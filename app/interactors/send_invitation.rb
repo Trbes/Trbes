@@ -3,7 +3,7 @@ class SendInvitation
 
   def call
     SendInvitationEmailJob.new.async.perform(
-      context.inviter,
+      context.inviter.id,
       context.group.id,
       context.email_addresses
     )

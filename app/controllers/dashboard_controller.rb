@@ -41,6 +41,10 @@ class DashboardController < ApplicationController
 
   private
 
+  def pundit_user
+    current_membership || current_user
+  end
+
   def view_for_welcome
     current_group ? "dashboard/welcome" : "dashboard/welcome_create_group"
   end

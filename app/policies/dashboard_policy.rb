@@ -1,10 +1,10 @@
-class DashboardPolicy < Struct.new(:membership, :user, :dashboard)
+class DashboardPolicy < Struct.new(:membership, :dashboard)
   def invite?
-    membership && membership.owner?
+    membership.is_a?(Membership) && membership.owner?
   end
 
   def welcome?
-    user
+    membership
   end
 
   def send_invitation?
@@ -12,6 +12,6 @@ class DashboardPolicy < Struct.new(:membership, :user, :dashboard)
   end
 
   def create_group?
-    user
+    membership
   end
 end
