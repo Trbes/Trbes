@@ -24,7 +24,9 @@ Rails.application.routes.draw do
     namespace :admin do
       resources :dashboard, only: %i( index )
       resource :group, only: %i( edit update destroy )
-      resources :memberships, only: %i( index )
+      resources :memberships, only: %i( index update ) do
+        put "make_owner", on: :collection
+      end
       resources :collections, only: %i( index show new create edit update destroy )
     end
 

@@ -5,9 +5,26 @@ section.members#members
   .owner
     span Owner
     .controls
-      = link_to "transfer", "#", class: "control"
+      = group.owner_full_name
+      = link_to "transfer", "#", class: "control", data: { toggle: "modal", target: "#transfer_ownership" }
     .owner-wrapper
-      = image_tag group.owner.avatar, class: "img-circle img-owner"
+      = image_tag group.owner_avatar, class: "img-circle img-owner"
+
+    .modal.fade#transfer_ownership tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true"
+      .modal-dialog
+        .modal-content
+          .modal-header
+            button.close type="button" data-dismiss="modal" aria-label="Close"
+              span aria-hidden="true" &times;
+            h4.modal-title#myModalLabel Transfer ownership
+
+          = form_tag(make_owner_admin_memberships_path, method: :put) do
+            .modal-body
+              - memberships = group.memberships.includes(:user)
+              = select_tag :membership_id, options_from_collection_for_select(memberships, :id, :full_name)
+            .modal-footer
+              button.btn.btn-default type="button" data-dismiss="modal" Close
+              = submit_tag "Save", class: "btn btn-primary"
 
   .moderators
     span Moderators
@@ -18,3 +35,4 @@ section.members#members
         = image_tag moderator.avatar, class: "img-circle img-owner"
 
   = render "admin/shared/members"
+

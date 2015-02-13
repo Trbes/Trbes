@@ -8,6 +8,7 @@ class Group < ActiveRecord::Base
   has_many :comments, through: :posts
 
   has_many :memberships, dependent: :destroy
+  has_many :membership_roles, through: :memberships
   has_many :users, through: :memberships
 
   has_many :collections, dependent: :destroy
@@ -21,6 +22,7 @@ class Group < ActiveRecord::Base
   accepts_nested_attributes_for :logo, update_only: true
 
   delegate :image, to: :logo, prefix: true, allow_nil: true
+  delegate :full_name, :avatar, to: :owner, prefix: true
 
   algoliasearch do
     attribute :name, :subdomain
@@ -37,7 +39,7 @@ class Group < ActiveRecord::Base
   end
 
   def owner
-    memberships.first.user # TODO
+    memberships.with_role(:owner).first
   end
 
   def moderators

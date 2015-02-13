@@ -10,10 +10,18 @@ class Membership < ActiveRecord::Base
   scope :pending, -> { where(nil) } # TODO
   scope :new_this_week, -> { where(nil) } # TODO
 
-  delegate :avatar, to: :user
+  delegate :full_name, :avatar, to: :user
 
   def make_admin!
     roles << Role.admin
+  end
+
+  def make_owner!
+    roles << Role.owner
+  end
+
+  def remove_owner
+    roles.delete(Role.owner)
   end
 
   def admin?
