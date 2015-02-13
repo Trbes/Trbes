@@ -41,7 +41,7 @@ class Group < ActiveRecord::Base
   end
 
   def moderators
-    memberships.sample(3) # TODO
+    memberships.includes(:user).sample(3) # TODO
   end
 
   def add_member(user, opts = {})

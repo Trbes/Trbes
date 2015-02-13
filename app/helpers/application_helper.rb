@@ -11,7 +11,7 @@ module ApplicationHelper
   end
 
   def present(object)
-    if object.respond_to?(:map)
+    if object.respond_to?(:map) && object.any?
       klass = "#{object.first.class}Presenter".constantize
 
       object.map { |el| klass.new(el, self) }
