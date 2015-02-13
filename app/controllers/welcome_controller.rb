@@ -7,13 +7,13 @@ class WelcomeController < ApplicationController
   end
 
   def invite
-    authorize :welcome, :invite?
+    authorize :invitation, :new?
     # Invite should only happen under the scope of a group
     redirect_to root_path unless current_group
   end
 
   def send_invitation
-    authorize :welcome, :send_invitation?
+    authorize :invitation, :create?
 
     SendInvitation.call(
       inviter: current_user,

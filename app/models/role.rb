@@ -5,4 +5,12 @@ class Role < ActiveRecord::Base
   def self.admin
     where(name: "admin").first_or_create
   end
+
+  def self.moderator
+    where(name: "moderator").first_or_create
+  end
+
+  def self.owner
+    where(name: "owner").first_or_create
+  end
 end

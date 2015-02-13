@@ -10,6 +10,5 @@ module Trbes
     config.noreply = "noreply@fs-rails-base.heroku.com"
     config.host = "localhost:5000"
     config.active_record.raise_in_transactional_callbacks = true
-    config.active_job.queue_adapter = :sucker_punch
   end
 end

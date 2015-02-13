@@ -7,7 +7,17 @@
     <p>Hey,</p>
     <div class="fic-email-body">
       <p>
-        I would like you to join our new user community about <a href="<%= (aurl = accept_invitation_url(@invited_user, invitation_token: @invited_user.raw_invitation_token, subdomain: @group.subdomain)) %>"><%= @group.description %></a>. Help me create some content and share some links !
+        <%
+          aurl = accept_invitation_url(@invited_user,
+            invitation_token: @invited_user.raw_invitation_token,
+            subdomain: @group.subdomain)
+        %>
+
+        I would like you to join our new user community about
+
+        <a href="<%= aurl %>"><%= @group.description %></a>.
+
+        Help me create some content and share some links !
       </p>
       <p>
         Clic here to join :<br><a href="<%= aurl %>"><%= aurl %></a>

@@ -1,6 +1,8 @@
 class Group < ActiveRecord::Base
   include AlgoliaSearch
-  include AllowedPostTypes
+
+  ALLOWED_POST_TYPES = %i( link text image )
+  attr_accessor :intended_usage
 
   has_many :posts, dependent: :destroy
   has_many :comments, through: :posts
@@ -45,8 +47,8 @@ class Group < ActiveRecord::Base
   def add_member(user, opts = {})
     role_name = (opts[:as] || :member).to_s
 
-    membership = memberships.find_or_create_by(user: user)
-    role = Role.where(name: role_name).first_or_create
+    membership = memberships.where(user: user).first_or_create
+    role = Role.public_send(role_name)
     membership.membership_roles.where(role: role).first_or_create
   end
 end

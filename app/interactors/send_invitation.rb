@@ -2,7 +2,7 @@ class SendInvitation
   include Interactor
 
   def call
-    SendInvitationEmailJob.new.async.perform(
+    SendInvitationEmailJob.perform_later(
       context.inviter.id,
       context.group.id,
       context.email_addresses

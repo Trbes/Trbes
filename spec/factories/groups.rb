@@ -13,8 +13,8 @@ FactoryGirl.define do
 
     private false
 
-    allow_image_posts { rand < 0.5 }
-    allow_link_posts { rand < 0.5 }
-    allow_text_posts { rand < 0.5 }
+    allow_image_posts { [true, false].sample }
+    allow_link_posts { [true, false].sample }
+    allow_text_posts { [true, false].sample }
   end
 end

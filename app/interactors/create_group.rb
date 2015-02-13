@@ -8,9 +8,12 @@ class CreateGroup
   private
 
   def create_group
-    context.attributes[:allow_image_posts] ||= false
-
     group = Group.new(context.attributes)
+
+    Group::ALLOWED_POST_TYPES.select { |t| t != :image }.each do |type|
+      group.send("allow_#{type}_posts=", group.intended_usage.include?(type.to_s))
+    end
+
     group.add_member(context.user, as: :owner) if group.save
 
     group
