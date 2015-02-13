@@ -1,6 +1,6 @@
 require "rails_helper"
 
-describe CollectionsController do
+describe Admin::CollectionsController do
   let(:collection) { create(:collection) }
   let!(:collections) { [collection] }
 
@@ -101,7 +101,7 @@ describe CollectionsController do
       end
 
       it "redirects to collection" do
-        expect(controller).to redirect_to(Collection.last)
+        expect(controller).to redirect_to([:admin, Collection.last])
       end
     end
 
@@ -129,7 +129,7 @@ describe CollectionsController do
       end
 
       it "redirects to collection" do
-        expect(controller).to redirect_to(collection)
+        expect(controller).to redirect_to([:admin, collection])
       end
     end
 

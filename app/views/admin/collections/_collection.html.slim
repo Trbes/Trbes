@@ -1,0 +1,6 @@
+li.collection
+  = link_to collection do
+    h1= collection.name
+  = link_to "Edit", edit_admin_collection_path
+  = cl_image_tag(collection.image.icon)
+  = link_to "Delete", admin_collection_path(collection), method: :delete, confirm: "Are you sure?"

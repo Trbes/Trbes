@@ -1,0 +1,49 @@
+section.about.clearfix
+  h4.section-name.group-url= group.subdomain
+  span.text-muted .trbes.com
+  hr.section-separator
+
+  .group-profile
+    .group-image
+      = group.preview_logo
+
+      #preview
+      p 100x100 pixels
+
+      = form_for(:group, method: :put, url: admin_group_path) do |f|
+        = link_to "add image", "#", class: "upload control"
+
+        .file-uploader.hidden
+          = f.fields_for :logo, group.logo do |logo_fields|
+            = logo_fields.cl_image_upload :image,
+                html: { data: { cloudinary_field: "group[logo_attributes][image]" } }
+                / ^^^ Hack related to bug in cl_image_upload related to nested fields
+
+          = f.submit "Save", class: "btn btn-info"
+
+    .group-information
+      span.group-name= best_in_place(group, :name, url: admin_group_path)
+      = best_in_place group,
+          :private,
+          as: :checkbox,
+          collection: [raw('<span class="fa fa-unlock"></span>'), raw('<span class="fa fa-lock"></span>')],
+          url: admin_group_path
+      br
+      span.text-muted= best_in_place(group, :tagline, url: admin_group_path)
+
+      .group-statistics
+        .group-statistics-element
+          .count= group.memberships_count
+          .entity-wrapper= link_to group.pluralized_noun("Member"), "#members"
+        .group-statistics-element
+          .count= group.posts_count
+          .entity-wrapper= link_to group.pluralized_noun("Post"), root_path
+        .group-statistics-element
+          .count= group.collections_count
+          .entity-wrapper= link_to group.pluralized_noun("Collection"), "#collections"
+        .group-statistics-element
+          .count= group.comments_count
+          .entity-wrapper= link_to group.pluralized_noun("Comment"), "#"
+
+    .controls
+      = link_to "delete", admin_group_path, method: :delete, class: "control", data: { confirm: "Are you sure?" }

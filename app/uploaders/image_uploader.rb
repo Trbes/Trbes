@@ -8,4 +8,8 @@ class ImageUploader < CarrierWave::Uploader::Base
   version :thumbnail do
     process resize_to_fill: [96, 96]
   end
+
+  version :logo do
+    process resize_to_fill: [100, 100]
+  end
 end

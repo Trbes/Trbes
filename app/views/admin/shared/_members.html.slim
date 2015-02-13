@@ -1,0 +1,10 @@
+.members-list
+  span.members-type Pending invitations
+  ul.avatars
+    - group.memberships.pending.includes(:user).each do |membership|
+      = image_tag membership.avatar, class: "member img-circle"
+.members-list
+  span.members-type New this week
+  ul.avatars
+    - group.memberships.new_this_week.includes(:user).each do |membership|
+      = image_tag membership.avatar, class: "member img-circle"

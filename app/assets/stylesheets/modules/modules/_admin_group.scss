@@ -1,0 +1,86 @@
+.edit-group {
+  .group-url {
+    display: inline-block;
+  }
+
+  .group-image {
+    display: inline-block;
+    width: 20%;
+    float: left;
+  }
+
+  .group-information {
+    display: inline-block;
+    float: left;
+  }
+
+  .collections-list {
+    .collection-image {
+      vertical-align: middle;
+    }
+
+    .collection-posts-count {
+      margin-left: 10px;
+    }
+
+    .collection-name {
+      vertical-align: middle;
+      text-transform: uppercase;
+    }
+
+    .collection-visibility {
+      margin-left: 40px;
+    }
+  }
+
+  .groups-list {
+    .group-title {
+      float: left;
+      width: 20%;
+    }
+
+    .group-host {
+      float: left;
+    }
+
+    .group.active {
+      color: #a8a8a8;
+      text-decoration: none;
+    }
+  }
+
+  .group-statistics {
+    .group-statistics-element {
+      width: 100%;
+      overflow: hidden;
+    }
+
+    .count {
+      display: inline-block;
+      width: 10%;
+
+      text-align: right;
+    }
+
+    .entity-wrapper {
+      display: inline-block;
+    }
+  }
+
+  .control {
+    text-decoration: underline;
+  }
+
+  .controls {
+    float: right;
+
+    .controls-separator {
+      display: inline;
+
+      &:before {
+        content: "|";
+        color: $link-color;
+      }
+    }
+  }
+}

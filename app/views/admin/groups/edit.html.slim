@@ -1,0 +1,15 @@
+.container.admin.edit-group
+  .row
+    .col-md-2
+      = render "navigation_group_admin"
+
+    .col-md-8
+      h2.current-section
+        i.fa.fa-group.current-section-icon
+        'Group
+
+      = render "admin/groups/edit/about", group: group
+      = render "admin/groups/edit/collections", group: group
+      = render "admin/groups/edit/members", group: group
+      = render "admin/groups/edit/preferences", group: group
+      = render "admin/groups/edit/your_groups", group: group, groups: available_groups

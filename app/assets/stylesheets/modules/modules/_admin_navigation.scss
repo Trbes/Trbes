@@ -1,0 +1,21 @@
+.admin-navigation {
+  margin-bottom: 20px;
+  border-width: 1px;
+  border-color: #a8a8a8;
+
+  .title {
+    font-size: 18px;
+    display: block;
+  }
+
+  .admin-navigation-icon {
+    display: block;
+    width: auto;
+    font-size: 4em;
+  }
+}
+
+.admin-navigation.active {
+  color: #a8a8a8;
+  border-color: #a8a8a8;
+}

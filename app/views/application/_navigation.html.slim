@@ -22,7 +22,7 @@ nav.navbar.navbar-default
                 button#group_menu.btn.btn-default.dropdown-toggle aria-expanded="true" data-toggle="dropdown" type="button"
                   .fa.fa-cog
                 ul.dropdown-menu aria-labelledby="group_menu" role="menu"
-                  - if policy(:admin_dashboard).index?
+                  - if policy(:access).admin?
                     li role="presentation"
                       = link_to "Edit Group", admin_dashboard_index_path
                     li role="presentation"

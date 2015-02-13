@@ -1,18 +1,7 @@
-.container.admin-dashboard
+.container.admin.admin-dashboard
   .row
     .col-md-2
-      = link_to admin_dashboard_index_path, class: "admin-navigation btn btn-block btn-info active" do
-        i.fa.fa-tachometer.admin-navigation-icon
-        span.title Dashboard
-      = link_to admin_dashboard_index_path, class: "admin-navigation btn btn-block btn-info" do
-        i.fa.fa-user.admin-navigation-icon
-        span.title Account
-      = link_to admin_dashboard_index_path, class: "admin-navigation btn btn-block btn-info" do
-        i.fa.fa-group.admin-navigation-icon
-        span.title Group
-      = link_to admin_dashboard_index_path, class: "admin-navigation btn btn-block btn-info" do
-        i.fa.fa-file.admin-navigation-icon
-        span.title Posts
+      = render "navigation_group_admin"
 
     .col-md-8
       h2.current-section
@@ -59,16 +48,7 @@
         h4.section-name Members (#{group.memberships_count})
         hr.section-separator
 
-        .members-list
-          span.members-type Pending invitations
-          ul.avatars
-            - 4.times do
-              = image_tag User.first.avatar, class: "member img-circle"
-        .members-list
-          span.members-type New this week
-          ul.avatars
-            - 2.times do
-              = image_tag User.first.avatar, class: "member img-circle"
+        = render "admin/shared/members", group: group
 
     .col-md-2
       i.fa.fa-info-circle

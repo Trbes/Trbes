@@ -26,6 +26,7 @@ RSpec.configure do |config|
       .to_return(body: '{ "hits": [ { "objectID": 42 } ], "page": 1, "hitsPerPage": 1 }')
 
     allow(Cloudinary::Utils).to receive(:cloudinary_url).and_return("")
+    allow_any_instance_of(ActionView::Helpers::FormBuilder).to receive(:cl_image_upload).and_return("")
 
     ActionMailer::Base.deliveries.clear
   end
