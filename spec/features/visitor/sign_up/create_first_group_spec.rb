@@ -17,9 +17,10 @@ feature "Create first group" do
       sign_in(user.email, "123456")
       visit welcome_path
 
-      fill_in "Group Name (Your group or company full name)", with: group_attributes[:name]
-      fill_in "Short Name (Alphabetical. Max 20 chars", with: group_attributes[:subdomain]
-      fill_in "Description or Tagline (Will be shown under your group name)", with: group_attributes[:description]
+      fill_in "Group Name", with: group_attributes[:name]
+      fill_in "Short Name", with: group_attributes[:subdomain]
+      fill_in "Tagline", with: group_attributes[:tagline]
+      fill_in "Description", with: group_attributes[:description]
     end
 
     after(:each) do

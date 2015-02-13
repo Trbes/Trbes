@@ -108,6 +108,7 @@
 
     &.fg-cg-name,
     &.fg-cg-short-name,
+    &.fg-cg-tagline,
     &.fg-cg-description {
       max-width: 370px;
 
@@ -186,6 +187,7 @@
 
     @include breakpoint(0 320px) {
       &.fg-cg-name,
+      &.fg-cg-tagline,
       &.fg-cg-description  {
         .form-control-feedback {
           margin-top: 31px;

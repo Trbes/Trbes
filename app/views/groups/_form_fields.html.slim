@@ -3,6 +3,7 @@
   ul
     - group.errors.full_messages.each do |msg|
       li.text-danger= msg
+
 .form-group.fg-cg-name
   label for="cg_name"
     | Group Name
@@ -15,6 +16,7 @@
     input_html: { id: "cg_name",
                   class: "form-control" }
   span.fa.fa-check-circle.form-control-feedback aria-hidden="true"
+
 .form-group.clearfix.fg-cg-short-name
   label for="cg_short_name"
     | Short Name
@@ -27,20 +29,32 @@
     input_html: { id: "cg_short_name",
                   class: "form-control" }
   .form-control-static .trbes.com
-
   span.fa.fa-check-circle.form-control-feedback aria-hidden="true"
-.form-group.fg-cg-description
-  label for="cg_description"
-    | Description or Tagline
+
+.form-group.fg-cg-tagline
+  label for="cg_tagline"
+    | Tagline
     small<
       | (Will be shown under your group name)
+  = f.input :tagline,
+    label: false,
+    wrapper: false,
+    error: false,
+    input_html: { id: "cg_tagline",
+                  class: "form-control" }
+  span.fa.fa-check-circle.form-control-feedback aria-hidden="true"
+
+.form-group.fg-cg-description
+  label for="cg_description" Description
   = f.input :description,
+    as: :text,
     label: false,
     wrapper: false,
     error: false,
     input_html: { id: "cg_description",
                   class: "form-control" }
   span.fa.fa-check-circle.form-control-feedback aria-hidden="true"
+
 .form-group.fg-cg-privacy
   label for="cg_privacy"
     | Privacy

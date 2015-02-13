@@ -14,10 +14,8 @@ class Group
       def update_allowed_post_types
         return if @intended_usage.blank?
 
-        @intended_usage.split(",").each do |type|
-          next unless ALLOWED_POST_TYPES.include?(type.to_sym)
-
-          send("allow_#{type}_posts=", true)
+        ALLOWED_POST_TYPES.select { |t| t != :image }.each do |type|
+          send("allow_#{type}_posts=", @intended_usage.include?(type.to_s))
         end
       end
     end

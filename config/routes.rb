@@ -8,8 +8,8 @@ Rails.application.routes.draw do
     put "/invitation" => "invitations#update", as: :update_invitation
   end
 
-  get "/welcome" => "dashboard#welcome", as: :welcome
-  post "/welcome" => "dashboard#create_group"
+  get "/welcome" => "welcome#index", as: :welcome
+  post "/welcome" => "welcome#create_group"
 
   resources :groups, only: %i( new create )
 
@@ -29,8 +29,8 @@ Rails.application.routes.draw do
       resources :collections, only: %i( index show new create edit update destroy )
     end
 
-    get "/invite" => "dashboard#invite", as: :invite
-    post "/invite" => "dashboard#send_invitation"
+    get "/invite" => "welcome#invite", as: :invite
+    post "/invite" => "welcome#send_invitation"
 
     root to: "groups#show", as: :group_root
   end

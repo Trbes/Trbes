@@ -69,13 +69,17 @@ feature "Invite to group" do
       clear_cookies
     end
 
+    after do
+      switch_to_main
+    end
+
     scenario "User confirms invitation" do
       open_email(invited_user_attributes[:email])
       click_first_link_in_email
 
       email_field = page.find("#su_email")
       expect(email_field.value).to eql invited_user_attributes[:email]
-      expect(email_field['disabled']).to eql 'disabled'
+      expect(email_field["disabled"]).to eql "disabled"
 
       fill_in "Full Name", with: invited_user_attributes[:full_name]
       fill_in "More About You (optional)", with: invited_user_attributes[:title]
