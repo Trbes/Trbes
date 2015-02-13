@@ -28,8 +28,6 @@ class GetRidOfPostables < ActiveRecord::Migration
       post.update_attributes(post_type: post.postable.class.to_s.underscore.split("_").first)
     end
 
-    change_column_null :posts, :body, false
-
     [TextPostable, LinkPostable, ImagePostable].each(&:destroy_all)
 
     remove_columns :posts, :postable_type, :postable_id

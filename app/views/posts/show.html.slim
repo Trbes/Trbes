@@ -1,3 +1,5 @@
+= render "posts/add_a_post", post: Post.new
+
 .container
   = render "posts/#{post.post_type}/post"
   = render post.comments.includes(:user)

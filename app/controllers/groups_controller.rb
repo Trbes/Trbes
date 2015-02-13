@@ -2,6 +2,7 @@ class GroupsController < ApplicationController
   before_action :ensure_group_is_loaded!, only: [:show]
 
   expose(:group, attributes: :group_attributes)
+  expose(:post, attributes: :post_attributes)
   expose(:posts, only: [:show]) do
     current_group.posts.includes(:attachments, :user).order_by_votes.page(params[:page])
   end
@@ -47,6 +48,15 @@ class GroupsController < ApplicationController
       :allow_image_posts,
       :intended_usage,
       logo_attributes: :image
+    )
+  end
+
+  def post_attributes
+    params.require(:post).permit(
+      :title,
+      :body,
+      :post_type,
+      attachments_attributes: [:image]
     )
   end
 end

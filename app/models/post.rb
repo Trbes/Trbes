@@ -12,8 +12,9 @@ class Post < ActiveRecord::Base
   belongs_to :group, counter_cache: true, required: true
   belongs_to :user, required: true
 
-  validates :title, :body, presence: true
+  validates :title, presence: true
   validates :title, length: { minimum: 10, maximum: 100 }
+  validates_presence_of :body, if: Proc.new { |p| p.post_type == :text_post }
 
   delegate :full_name, :avatar, to: :user, prefix: true
 
@@ -23,7 +24,8 @@ class Post < ActiveRecord::Base
 
   friendly_id :title, use: %i( slugged finders )
 
-  normalize_attributes :title, :body
+  normalize_attributes :title
+  normalize_attributes :body, with: :squish
 
   algoliasearch do
     attribute :title, :body, :slug
