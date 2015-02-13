@@ -18,8 +18,13 @@ class DashboardController < ApplicationController
   def send_invitation
     authorize :dashboard, :send_invitation?
 
-    SendInvitationEmailJob.new.async.perform(current_user.id, params[:group_id], params[:email_addresses])
-    redirect_to root_path(subdomain: Group.find(params[:group_id]).subdomain),
+    SendInvitation.call(
+      inviter: current_user,
+      group: (group = Group.find(params[:group_id])),
+      email_addresses: params[:email_addresses]
+    )
+
+    redirect_to root_path(subdomain: group.subdomain),
       notice: t("invitation.success")
   end
 
