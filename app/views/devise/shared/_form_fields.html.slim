@@ -1,0 +1,88 @@
+.form-group.fg-su-email
+  label for="su_email"  Email Address
+  - case variant
+  - when :new_registration
+    = f.input :email,
+      required: true,
+      autofocus: true,
+      label: false,
+      wrapper: false,
+      error: false,
+      input_html: { id: "su_email",
+                    class: "form-control",
+                    placeholder: "Example: hello@trbes.com",
+                    data: { point_to_class: "point-to-email" } }
+  - when :edit_invitation
+    = f.input :email,
+      label: false,
+      disabled: true,
+      wrapper: false,
+      error: false,
+      input_html: { id: "su_email",
+                    class: "form-control",
+                    readonly: true,
+                    disabled: true,
+                    data: { point_to_class: "point-to-email" } }
+  span.fa.fa-check-circle.form-control-feedback aria-hidden="true"
+  p.help-block
+    | If you prefer, you can sign up with:
+    br
+    a href="#" Facebook
+    | ,
+    a< href="#" Twitter
+    | ,
+    a< href="#" Groove
+    | ,
+    a<> href="#" Hipchat
+    | or
+    a< href="#" other services
+    | .
+.form-group.fg-su-name
+  label for="su_name" Full Name
+  = f.input :full_name,
+    required: true,
+    autofocus: variant == :edit_invitation,
+    label: false,
+    wrapper: false,
+    error: false,
+    input_html: { id: "su_name",
+                  class: "form-control",
+                  placeholder: "Awesome Doe",
+                  data: { point_to_class: "point-to-name" } }
+  span.fa.fa-check-circle.form-control-feedback aria-hidden="true"
+.form-group.fg-su-title
+  label for="su_title"
+    | More About You
+    small
+      |  (optional)
+  = f.input :title,
+    required: true,
+    label: false,
+    wrapper: false,
+    error: false,
+    input_html: { id: "su_title",
+                  class: "form-control",
+                  placeholder: "CEO at My Company Inc",
+                  data: { point_to_class: "point-to-name" } }
+  span.fa.fa-check-circle.form-control-feedback aria-hidden="true"
+.form-group.fg-su-password
+  label for="su_password"
+    | Choose a Password
+    small
+      |  (8 characters or longer)
+  = f.input :password,
+    required: true,
+    label: false,
+    wrapper: false,
+    error: false,
+    input_html: { id: "su_password",
+                  class: "form-control",
+                  placeholder: "Password",
+                  data: { point_to_class: "point-to-password" } }
+  span.fa.fa-check-circle.form-control-feedback aria-hidden="true"
+.checkbox.fg-su-show-password
+  label
+    input type="checkbox" data-toggle="checkbox"
+    | Show my password
+= f.button :submit, t("app.user.sign_up.link"), class: "btn btn-success btn-lg btn-fill btn-sign-up"
+

@@ -20,7 +20,7 @@ class DashboardController < ApplicationController
 
     SendInvitationEmailJob.new.async.perform(current_user.id, params[:group_id], params[:email_addresses])
     redirect_to root_path(subdomain: Group.find(params[:group_id]).subdomain),
-      notice: "Your invitation has been sent. Start exploring Trbes."
+      notice: t("invitation.success")
   end
 
   def create_group

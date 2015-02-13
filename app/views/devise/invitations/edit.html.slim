@@ -1,17 +1,25 @@
 .container
-  h1 = t("devise.invitations.edit.header")
+  .module-sign-up
+    header.su-header
+      h1.su-title Hello. Welcome to Trbes.
+      .su-subtitle
+        | Just Enter your Information to join
+        strong<
+          = current_group.name
+          | :&nbsp;
+          = current_group.description
+      .su-anti-spam.visible-xs-block
+        strong We won't share your email ever! We do not spam.
+    .su-body
+      #su_cody.point-to-name
+      = simple_form_for resource,
+        as: resource_name,
+        url: update_invitation_path,
+        html: { class: "su-form", method: :put } do |f|
 
-  .row
-    .col-md-6
-      = simple_form_for resource, :as => resource_name, :url => update_invitation_path, :html => { :method => :put } do |f|
         = devise_error_messages!
         = f.hidden_field :invitation_token
 
-        = f.input :full_name
-        = f.input :title
-        = f.input :password
-        = f.input :password_confirmation
-
-        = f.button :submit, t("devise.invitations.edit.submit_button")
-
-
+        = render "devise/shared/form_fields",
+          f: f,
+          variant: :edit_invitation

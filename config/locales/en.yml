@@ -97,6 +97,9 @@ en:
     main_sliding_menu:
       create_group: 'CREATE'
 
+    invitation:
+      success: "Your invitation has been sent. Start adding posts to your group."
+
   time:
     formats:
       short_date: "%x"
