@@ -16,15 +16,10 @@ $ ->
     $(".js-menu,.js-menu-screen").toggleClass "is-visible"
     e.preventDefault()
 
-
   new SignUp($("form.su-form"))
   new SignIn($("form.si-form"))
   new CreateGroup($("form.cg-form"))
   new AddPost($("#btn_add_post"))
-
-
-
-
   new GroupSearch($("input#group_search"))
   new PostSearch($("input#post_search"))
 
@@ -43,3 +38,15 @@ $ ->
   $(".upload").on "click", (e) ->
     e.preventDefault()
     $(".file-uploader").toggleClass("hidden")
+
+  $("a.vote").on "click", (e) ->
+    e.preventDefault()
+    target = $(this)
+    $.ajax
+      method: "PUT"
+      url: target.attr("href")
+      success: (result) ->
+        target.
+          siblings(".vote-count").html(result.new_total_votes).addClass("voted").
+          closest(".post-upvote").closest(".post").find(".post-content").addClass("voted")
+

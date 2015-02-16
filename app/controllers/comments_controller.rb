@@ -18,9 +18,17 @@ class CommentsController < ApplicationController
     redirect_to comment.post
   end
 
+  def upvote
+    comment.upvote_by(current_user)
+
+    render json: {
+      new_total_votes: comment.cached_votes_total
+    }
+  end
+
   private
 
   def comment_attributes
-    params.require(:comment).permit(:body)
+    params.require(:comment).permit(:body) if action_name != "upvote"
   end
 end

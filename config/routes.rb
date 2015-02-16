@@ -12,9 +12,12 @@ Rails.application.routes.draw do
   constraints(subdomain: SubdomainValidator::REG_EXP) do
     resources :groups, only: %i( show new )
     resources :posts, only: %i( show new create ) do
+      put "upvote"
+
       resources :comments, only: %i( create destroy )
     end
-    resources :votes, only: [] do
+
+    resources :comments, only: [] do
       put "upvote"
     end
 

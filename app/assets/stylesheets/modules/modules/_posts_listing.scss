@@ -104,7 +104,6 @@ $post-right-min-width: $post-actions-min-width + $post-component-spacing + $post
       animation: post-vote-cooldown 4s ease-out;
     }
 
-
     .title {
       @include ellipsis();
       font-size: 1.3em;

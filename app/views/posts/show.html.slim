@@ -1,14 +1,75 @@
 = render "posts/add_a_post", post: Post.new
 
 .container
-  = render "posts/#{post.post_type}/post"
-  = render post.comments.includes(:user)
+  .post-unit
+    = div_for(post, class: "post-type-text")
+      .post-left
+        .post-upvote
+          = link_to(post_upvote_path(post), class: "vote") do
+            i.fa.fa-thumbs-up
+          .vote-count = post.cached_votes_total
+        .post-share
+          a.share href="#" Share
 
-  - if policy(Comment).create?
-    .col-md-4
-      h4 New comment
-      = simple_form_for([post, Comment.new]) do |f|
-        = f.input :body, label: false
-        = f.submit "Post", class: "btn btn-success"
+      .post-right
+        .post-author
+          a.user-avatar href="#"
+            = image_tag(post.user_avatar, width: 64, height: 64)
+          a.user-name href="#" = post.user_full_name
+          .user-title = post.user_title
 
-      = link_to "Back", root_path
+      .post-content
+        header.post-header
+          h2.post-title = post.title
+          .post-meta
+              span.date posted #{distance_of_time_in_words_to_now(post.created_at) } ago
+        .post-body
+          - if post.post_type == "text_post"
+            = post.body
+          - elsif post.post_type == "link_post"
+            .url
+              = link_to post.link, post.link, class: "iconify"
+            = post.body
+          - elsif post.post_type == "image_post"
+            = cl_image_tag(post.preview_image)
+
+    / This is temporary. Need to use best comment later.
+    - if post.comments.count > 0
+      section.list-section.best-comment
+        header.section-header.sbc-header
+          i.fa.fa-star-o
+          span.section-count.sbc-count 1
+        = render "comments/comment", comment: post.comments.first
+
+    section.list-section.all-comments
+      header.section-header.sbc-header
+        i.fa.fa-comment-o
+        span.section-count.sbc-count = post.comments_count
+
+      = render "comments/form"
+
+      .comments
+        = render post.comments.includes(:user)
+
+
+- content_for :javascripts do
+  coffee:
+    $("a.reply").click (e) ->
+      e.preventDefault()
+
+      comment = $(this).closest(".comment")
+
+      # Hide form if is showing
+      if comment.next(".post-a-comment").length > 0
+        comment.next(".post-a-comment").remove()
+
+      # Show form
+      else
+        # Will need to use some javascript template engine later when
+        # there are too much of adhoc cloning usage.
+        form = $(".post-a-comment").eq(0).clone()
+        form.addClass("nested").
+          find("textarea").val("").prop("placeholder", "Write a nice reply...")
+        form.insertAfter(comment)
+
+

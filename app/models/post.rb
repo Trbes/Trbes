@@ -19,7 +19,7 @@ class Post < ActiveRecord::Base
   validates :body, presence: true, if: proc { |p| p.post_type == :text_post }
   validates :link, presence: true, if: proc { |p| p.post_type == :link_post }
 
-  delegate :full_name, :avatar, to: :user, prefix: true
+  delegate :full_name, :avatar, :title, to: :user, prefix: true
 
   acts_as_votable
 

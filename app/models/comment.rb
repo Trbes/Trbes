@@ -4,5 +4,9 @@ class Comment < ActiveRecord::Base
 
   validates :body, presence: true
 
-  delegate :full_name, to: :user, prefix: true
+  delegate :full_name, :title, :avatar, to: :user, prefix: true
+
+  acts_as_votable
+
+  scope :order_by_votes, -> { order(cached_votes_total: :desc) }
 end

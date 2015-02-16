@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150216113921) do
+ActiveRecord::Schema.define(version: 20150216162533) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -49,13 +49,15 @@ ActiveRecord::Schema.define(version: 20150216113921) do
   add_index "collections", ["group_id"], name: "index_collections_on_group_id", using: :btree
 
   create_table "comments", force: :cascade do |t|
-    t.integer  "post_id",    null: false
-    t.integer  "user_id",    null: false
-    t.text     "body",       null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.integer  "post_id",                        null: false
+    t.integer  "user_id",                        null: false
+    t.text     "body",                           null: false
+    t.datetime "created_at",                     null: false
+    t.datetime "updated_at",                     null: false
+    t.integer  "cached_votes_total", default: 0
   end
 
+  add_index "comments", ["cached_votes_total"], name: "index_comments_on_cached_votes_total", using: :btree
   add_index "comments", ["post_id"], name: "index_comments_on_post_id", using: :btree
   add_index "comments", ["user_id"], name: "index_comments_on_user_id", using: :btree
 

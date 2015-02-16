@@ -1,0 +1,33 @@
+- if policy(Comment).create?
+  .post-a-comment
+    header.pac-header
+      .pac-author
+        | Posting as
+        a.user-avatar< href="#"
+          = image_tag(current_user.avatar, width: 16, height: 16)
+        a.user-name> href="#" = current_user.full_name
+        | •
+        div.user-title< = current_user.title
+
+    = simple_form_for([post, Comment.new], html: { class: "form-pac" }) do |f|
+      = f.input :body,
+        as: :text,
+        label: false,
+        wrapper: false,
+        error: false,
+        input_html: { class: nil, row: 5, placeholder: "Join the discussion" }
+      button class="btn btn-fill btn-primary" Submit
+
+- else
+  .post-a-comment.not-logged-in
+    header.pac-header
+      .pac-author
+        span.user-avatar<
+          = image_tag("default_avatar.jpg", width: 16, height: 16)
+        span.user-name> href="#" Join the conversation
+
+    .actions
+      a.btn.btn-fill.btn-primary href=(new_user_session_path) Login to Trbes
+      .link-create-account
+        | No account yet?
+        a< href=(new_user_registration_path) Create one free

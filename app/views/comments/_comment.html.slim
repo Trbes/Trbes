@@ -1,7 +1,28 @@
 = div_for(comment)
-  blockquote
-    p= comment.body
-    footer= comment.user_full_name
+  .comment-left
+    .comment-upvote
+      = link_to(comment_upvote_path(comment), class: "vote") do
+        i.fa.fa-thumbs-up
+      .vote-count = comment.cached_votes_total
+    .comment-reply
+      a.reply href="#"
+        i.fa.fa-mail-reply
+        | reply
 
-    - if policy(comment).destroy?
-      = link_to "Delete", post_comment_path(post, comment), method: :delete, data: { confirm: "Are you sure?" }
+  .comment-content
+    header.comment-header
+      .comment-author
+        a.user-avatar href="#"
+          = image_tag(comment.user_avatar, width: 16, height: 16)
+        a.user-name> href="#" = comment.user_full_name
+        | •
+        div.user-title< = comment.user_title
+        - if comment.user.membership_for(current_group).moderator?
+          span.label.label-info.user-label MOD
+
+      .comment-meta
+        span.date
+          i.fa.fa-clock-o
+          | posted #{distance_of_time_in_words_to_now(comment.created_at) } ago
+    .comment-body
+      = comment.body

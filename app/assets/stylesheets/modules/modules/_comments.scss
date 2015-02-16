@@ -112,6 +112,7 @@ $comment-right-width: 170px;
       background-color: #f6f5f5;
       font-size: 16px;
       outline: 0;
+      padding: 0;
     }
 
     button {
@@ -167,6 +168,19 @@ $comment-right-width: 170px;
     display: inline;
     font-weight: bold;
     color: #777777;
+
+    @include keyframes(cooldown) {
+      from {
+        color: green;
+      }
+      to {
+        color: #777777;
+      }
+    }
+
+    &.voted {
+      @include animation(cooldown 1s ease-out);
+    }
   }
 
   .comment-reply {
@@ -185,13 +199,6 @@ $comment-right-width: 170px;
     border: 1px solid #e5e5e5;
     border-radius: 5px;
     padding: 10px;
-  }
-
-
-  &.best {
-    .comment-content {
-      background-color: #dbf3da;
-    }
   }
 
   .comment-header {
@@ -248,6 +255,14 @@ $comment-right-width: 170px;
     margin-top: 5px;
     font-size: 16px;
     color: #333333;
+  }
+}
+
+.best-comment {
+  .comment {
+    .comment-content {
+      background-color: #dbf3da;
+    }
   }
 }
 
