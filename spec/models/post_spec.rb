@@ -22,6 +22,7 @@ describe Post do
 
   describe "normalizations" do
     it { is_expected.to normalize_attribute(:title) }
-    it { is_expected.to normalize_attribute(:body) }
+    it { is_expected.to normalize_attribute(:body).from("").to("") }
+    it { is_expected.to normalize_attribute(:body).from("  Test  Body ").to("Test Body") }
   end
 end
