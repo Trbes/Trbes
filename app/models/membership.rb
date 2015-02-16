@@ -12,6 +12,10 @@ class Membership < ActiveRecord::Base
 
   delegate :full_name, :avatar, to: :user
 
+  def owner_membership_role
+    membership_roles.where(role: Role.owner).first
+  end
+
   def make_admin!
     roles << Role.admin
   end

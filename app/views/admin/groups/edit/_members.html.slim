@@ -18,13 +18,13 @@ section.members#members
               span aria-hidden="true" &times;
             h4.modal-title#myModalLabel Transfer ownership
 
-          = form_tag(make_owner_admin_memberships_path, method: :put) do
+          = form_for([:admin, group.owner_membership_role]) do |f|
             .modal-body
               - memberships = group.memberships.includes(:user)
-              = select_tag :membership_id, options_from_collection_for_select(memberships, :id, :full_name)
+              = f.select :membership_id, options_from_collection_for_select(memberships, :id, :full_name)
             .modal-footer
               button.btn.btn-default type="button" data-dismiss="modal" Close
-              = submit_tag "Save", class: "btn btn-primary"
+              = f.submit "Save", class: "btn btn-primary"
 
   .moderators
     span Moderators
@@ -35,4 +35,3 @@ section.members#members
         = image_tag moderator.avatar, class: "img-circle img-owner"
 
   = render "admin/shared/members"
-

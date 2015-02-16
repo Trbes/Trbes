@@ -23,6 +23,7 @@ class Group < ActiveRecord::Base
 
   delegate :image, to: :logo, prefix: true, allow_nil: true
   delegate :full_name, :avatar, to: :owner, prefix: true
+  delegate :owner_membership_role, to: :owner
 
   algoliasearch do
     attribute :name, :subdomain
