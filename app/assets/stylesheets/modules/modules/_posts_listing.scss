@@ -108,10 +108,10 @@ $post-right-min-width: $post-actions-min-width + $post-component-spacing + $post
     .title {
       @include ellipsis();
       font-size: 1.3em;
+      line-height: 1.3em;
       font-weight: bold;
       color: #727272;
-      line-height: 1.5em;
-      display: block;
+      display: inline-block;
 
       @include on_link_actions {
         text-decoration: underline;
@@ -135,17 +135,16 @@ $post-right-min-width: $post-actions-min-width + $post-component-spacing + $post
     }
 
     .image {
-      display: inline-block;
+      display: block;
       padding-bottom: 2px;
       border-bottom: 1px dashed #a0a0a0;
 
       .image-wrapper {
-        height: 48px;
+        height: 42px;
         overflow: hidden;
 
         img {
           max-width: 100%;
-          max-height: 256px;
         }
       }
 
