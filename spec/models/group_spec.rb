@@ -45,19 +45,19 @@ describe Group do
 
     it "should add the user as member with specified role" do
       expect {
-        group.add_member(user, as: :whatever)
+        group.add_member(user, as: :member)
       }.to change { group.memberships.count }.by(1)
 
       membership = group.memberships.find_by(user_id: user.id)
-      expect(membership.role?(:whatever)).to be true
+      expect(membership.role?(:member)).to be true
 
       # Add one more role
-      group.add_member(user, as: :another)
+      group.add_member(user, as: :moderator)
       membership.reload
 
-      expect(membership.role?(:another)).to be true
+      expect(membership.role?(:moderator)).to be true
       # Ensure old role isn't affected
-      expect(membership.role?(:whatever)).to be true
+      expect(membership.role?(:member)).to be true
     end
   end
 end
