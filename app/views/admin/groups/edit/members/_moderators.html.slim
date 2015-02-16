@@ -11,7 +11,7 @@
               span aria-hidden="true" &times;
             h4.modal-title#add_moderator Add moderator
 
-            = select_tag :moderator_id, options_from_collection_for_select(memberships, :id, :full_name)
+            = select_tag :moderator_id, options_from_collection_for_select(memberships.member, :id, :full_name)
 
           = simple_form_for([:admin, group.memberships.first], html: { id: "add_moderator" }) do |f|
             .modal-body

@@ -3,6 +3,7 @@ class Membership < ActiveRecord::Base
   belongs_to :group, counter_cache: true, required: true
 
   scope :for_group, -> (group) { where(group_id: group.id) }
+  scope :not_owner, -> { where.not(role: roles[:owner]) }
   scope :pending, -> { where(nil) } # TODO
   scope :new_this_week, -> { where(nil) } # TODO
 

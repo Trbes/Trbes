@@ -19,7 +19,7 @@
         = simple_form_for([:admin, group.owner]) do |f|
           .modal-body
             = f.input :role, as: :hidden, input_html: { value: :moderator }
-            = f.select :new_group_owner_id, options_from_collection_for_select(memberships, :id, :full_name)
+            = f.select :new_group_owner_id, options_from_collection_for_select(memberships.not_owner, :id, :full_name)
             .modal-footer
             button.btn.btn-default type="button" data-dismiss="modal" Close
             = f.submit "Save", class: "btn btn-primary"
