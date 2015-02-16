@@ -3,7 +3,10 @@ module Admin
     expose(:membership_role, attributes: :membership_roles_attributes)
 
     def update
-      membership_role.update_attributes(membership_roles_attributes)
+      UpdateMembershipRole.call(
+        membership_role: membership_role,
+        attributes: membership_roles_attributes
+      )
 
       redirect_to edit_admin_group_path
     end

@@ -20,7 +20,6 @@ section.members#members
 
           = form_for([:admin, group.owner_membership_role]) do |f|
             .modal-body
-              - memberships = group.memberships.includes(:user)
               = f.select :membership_id, options_from_collection_for_select(memberships, :id, :full_name)
             .modal-footer
               button.btn.btn-default type="button" data-dismiss="modal" Close

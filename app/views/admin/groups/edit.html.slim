@@ -10,6 +10,6 @@
 
       = render "admin/groups/edit/about", group: group
       = render "admin/groups/edit/collections", group: group
-      = render "admin/groups/edit/members", group: group
+      = render "admin/groups/edit/members", group: group, memberships: available_memberships
       = render "admin/groups/edit/preferences", group: group
       = render "admin/groups/edit/your_groups", group: group, groups: available_groups
