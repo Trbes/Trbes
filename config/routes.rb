@@ -4,10 +4,6 @@ Rails.application.routes.draw do
     invitations: "invitations"
   }
 
-  devise_scope :user do
-    put "/invitation" => "invitations#update", as: :update_invitation
-  end
-
   get "/welcome" => "welcome#index", as: :welcome
   post "/welcome" => "welcome#create_group"
 
@@ -29,8 +25,11 @@ Rails.application.routes.draw do
       resources :collections, only: %i( index show new create edit update destroy )
     end
 
-    get "/invite" => "welcome#invite", as: :invite
-    post "/invite" => "welcome#send_invitation"
+    devise_scope :user do
+      get "/invitation/new" => "invitations#new", as: :new_invitation
+      post "/invitation" => "invitations#create", as: :create_invitation
+      put "/invitation" => "invitations#update", as: :update_invitation
+    end
 
     root to: "groups#show", as: :group_root
   end

@@ -1,8 +1,11 @@
-- if group.errors.any?
+- if group.errors.any? || @errors.present?
   p.error-title Please check and fix the following errors:
   ul
     - group.errors.full_messages.each do |msg|
       li.text-danger= msg
+    - if @errors.present?
+      - @errors.full_messages.each do |msg|
+        li.text-danger= msg
 
 .form-group.fg-cg-name
   label for="cg_name"
@@ -63,31 +66,31 @@
   #cg_privacy.switch.cg-privacy-switch data-off-label=("<i class='fa fa-unlock'></i>") data-on-label=("<i class='fa fa-lock'></i>")
     input id="cg_privacy" name="group[private]" type="checkbox"
 
-.form-group.fg-cg-intended-usage
-  label for="cg_intended_usage"
-    | Intended Usage
-    small<
-      | (You can change it at any time later)
-  #cg_intended_usage.options
-    label.radio
-      input data-toggle="radio" name="group[intended_usage]" type="radio" value="text,link" checked="checked"
-        i<
-        | Knowledge Base, Questions and Answers or General Discussions
-        small<
-          | (Allows for Text & Link posts)
-    label.radio
-      input data-toggle="radio" name="group[intended_usage]" type="radio" value="link"
-        i<
-        | Collection of links to awesome stuff
-        small<
-          | (Members share & discuss links)
-.form-group.fg-cg-allowed-content
-  label for="cg_allowed_content"
-    | Allowed Content
-    small<
-      | (You can change it at any time later)
-  .checkbox.checkbox-allowed-content
-    label
-      input type="checkbox" data-toggle="checkbox" name="group[allow_image_posts]"
-      | Accept Image-Only posts
+/ .form-group.fg-cg-intended-usage
+/   label for="cg_intended_usage"
+/     | Intended Usage
+/     small<
+/       | (You can change it at any time later)
+/   #cg_intended_usage.options
+/     label.radio
+/       input data-toggle="radio" name="group[intended_usage]" type="radio" value="text,link" checked="checked"
+/         i<
+/         | Knowledge Base, Questions and Answers or General Discussions
+/         small<
+/           | (Allows for Text & Link posts)
+/     label.radio
+/       input data-toggle="radio" name="group[intended_usage]" type="radio" value="link"
+/         i<
+/         | Collection of links to awesome stuff
+/         small<
+/           | (Members share & discuss links)
+/ .form-group.fg-cg-allowed-content
+/   label for="cg_allowed_content"
+/     | Allowed Content
+/     small<
+/       | (You can change it at any time later)
+/   .checkbox.checkbox-allowed-content
+/     label
+/       input type="checkbox" data-toggle="checkbox" name="group[allow_image_posts]"
+/       | Accept Image-Only posts
 button.btn.btn-success.btn-lg.btn-fill.btn-create-group type="submit"  Create Trbes Group

@@ -31,44 +31,49 @@ feature "Create first group" do
       click_button "Create Trbes Group"
 
       # Redirect to group invite url
-      expect(page.current_path).to eql invite_path
+      expect(page.current_path).to eql new_invitation_path
       expect(URI.parse(page.current_url).host.match(/([^\.]*)\..*$/)[1]).to eql group.subdomain
 
       # Group is created
       expect(group).to be_persisted
       expect(group.users).to include(user)
+      expect(group.allow_text_posts).to be true
+      expect(group.allow_link_posts).to be true
+      expect(group.allow_image_posts).to be false
 
       # User is added as owner
       membership = group.memberships.find_by(user: user)
       expect(membership.owner?).to be true
     end
 
-    scenario "User set Intended Usage as Knowledge Base" do
-      find("#cg_intended_usage label:first-child input[name='group[intended_usage]']").set(true)
+    # Temporarily disable these test because we removed Intended Usage & Accept Image-Only posts
+    # in group creation form. We might need these later.
+    # scenario "User set Intended Usage as Knowledge Base" do
+    #   find("#cg_intended_usage label:first-child input[name='group[intended_usage]']").set(true)
 
-      click_button "Create Trbes Group"
+    #   click_button "Create Trbes Group"
 
-      expect(group.allow_text_posts).to be true
-      expect(group.allow_link_posts).to be true
-      expect(group.allow_image_posts).to_not be true
-    end
+    #   expect(group.allow_text_posts).to be true
+    #   expect(group.allow_link_posts).to be true
+    #   expect(group.allow_image_posts).to_not be true
+    # end
 
-    scenario "User set Intended Usage as Collection of Links" do
-      find("#cg_intended_usage label:last-child input[name='group[intended_usage]']").set(true)
+    # scenario "User set Intended Usage as Collection of Links" do
+    #   find("#cg_intended_usage label:last-child input[name='group[intended_usage]']").set(true)
 
-      click_button "Create Trbes Group"
+    #   click_button "Create Trbes Group"
 
-      expect(group.allow_text_posts).to_not be true
-      expect(group.allow_link_posts).to be true
-      expect(group.allow_image_posts).to_not be true
-    end
+    #   expect(group.allow_text_posts).to_not be true
+    #   expect(group.allow_link_posts).to be true
+    #   expect(group.allow_image_posts).to_not be true
+    # end
 
-    scenario "User check Accept Image-Only posts" do
-      find("input[name='group[allow_image_posts]']").set(true)
+    # scenario "User check Accept Image-Only posts" do
+    #   find("input[name='group[allow_image_posts]']").set(true)
 
-      click_button "Create Trbes Group"
+    #   click_button "Create Trbes Group"
 
-      expect(group.allow_image_posts).to be true
-    end
+    #   expect(group.allow_image_posts).to be true
+    # end
   end
 end

@@ -8,7 +8,7 @@ class SendInvitationEmailJob < ActiveJob::Base
 
     email_addresses = email_addresses.scan(/\b[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}\b/i)
     email_addresses.each do |email|
-      transaction do
+      User.transaction do
         invite_user_with_email(email)
       end
     end

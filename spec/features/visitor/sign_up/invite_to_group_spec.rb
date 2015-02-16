@@ -12,7 +12,7 @@ feature "Invite to group" do
     scenario "User goes to invite page" do
       switch_to_subdomain(group.subdomain)
       sign_in(user.email, "123456")
-      visit invite_path
+      visit new_invitation_path
 
       expect(page.current_path).to eql root_path
     end
@@ -23,7 +23,7 @@ feature "Invite to group" do
       group.add_member(user, as: :owner)
       switch_to_subdomain(group.subdomain)
       sign_in(user.email, "123456")
-      visit invite_path
+      visit new_invitation_path
     end
 
     after(:each) do
@@ -31,7 +31,7 @@ feature "Invite to group" do
     end
 
     scenario "User goes to invite page" do
-      expect(page.current_path).to eql invite_path
+      expect(page.current_path).to eql new_invitation_path
     end
 
     scenario "User invites another user" do
@@ -63,9 +63,11 @@ feature "Invite to group" do
       group.add_member(user, as: :owner)
       switch_to_subdomain(group.subdomain)
       sign_in(user.email, "123456")
-      visit invite_path
+      visit new_invitation_path
       find("#fiv_emails").set(invited_user_attributes[:email])
       click_button "Send Invitation"
+
+      # Clear cookies to sign-out current user (to do invited user tests)
       clear_cookies
     end
 

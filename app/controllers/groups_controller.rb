@@ -10,17 +10,32 @@ class GroupsController < ApplicationController
   end
 
   def create
-    if group.save
-      redirect_to root_url(subdomain: group.subdomain)
-    else
-      render :new
-    end
+    authorize :group, :create?
+
+    group = CreateGroup.call(
+      user: current_user,
+      attributes: group_attributes
+    ).group
+
+    redirect_to after_create_url and return if group.persisted?
+
+    # Temporary workaround for possible decent_exposure bug that clears group.errors in views
+    @errors = group.errors
+    render "new"
   end
 
   def show
   end
 
   private
+
+  def pundit_user
+    action_name == "create" ? current_user : current_membership
+  end
+
+  def after_create_url
+    params[:welcome] ? new_invitation_url(subdomain: group.subdomain) : group_url(group)
+  end
 
   def group_attributes
     params.require(:group).permit(

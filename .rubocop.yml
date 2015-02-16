@@ -25,6 +25,9 @@ Style/AlignParameters:
     - with_first_parameter
     - with_fixed_indentation
 
+Style/AndOr:
+  Enabled: false
+
 Style/StringLiterals:
   EnforcedStyle: double_quotes
   SupportedStyles:
