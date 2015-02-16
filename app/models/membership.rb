@@ -12,32 +12,22 @@ class Membership < ActiveRecord::Base
 
   delegate :full_name, :avatar, to: :user
 
-  def owner_membership_role
-    membership_roles.where(role: Role.owner).first
-  end
+  Role::ALLOWED_ROLES.each do |role|
+    define_method("make_#{role}!") do
+      roles << Role.public_send(role)
+    end
 
-  def make_admin!
-    roles << Role.admin
-  end
+    define_method("remove_#{role}!") do
+      roles.delete(Role.public_send(role))
+    end
 
-  def make_owner!
-    roles << Role.owner
-  end
+    define_method("#{role}?") do
+      role?(role)
+    end
 
-  def make_member!
-    roles << Role.member
-  end
-
-  def remove_owner
-    roles.delete(Role.owner)
-  end
-
-  def admin?
-    role?(:admin)
-  end
-
-  def owner?
-    role?(:owner)
+    define_method("#{role}_membership_role") do
+      membership_roles.where(role: Role.public_send(role)).first
+    end
   end
 
   def moderator?

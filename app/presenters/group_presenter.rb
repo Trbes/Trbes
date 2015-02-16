@@ -1,6 +1,6 @@
 class GroupPresenter < BasePresenter
   def memberships_count_link
-    h.link_to h.pluralize(@model.memberships_count, "member"), h.admin_memberships_path
+    h.link_to h.pluralize(@model.memberships_count, "member"), "#"
   end
 
   def privacy_type
