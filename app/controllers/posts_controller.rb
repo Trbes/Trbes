@@ -27,6 +27,7 @@ class PostsController < ApplicationController
     params.require(:post).permit(
       :title,
       :body,
+      :link,
       :post_type,
       attachments_attributes: [:image]
     )

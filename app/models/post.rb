@@ -12,6 +12,8 @@ class Post < ActiveRecord::Base
   belongs_to :group, counter_cache: true, required: true
   belongs_to :user, required: true
 
+  accepts_nested_attributes_for :attachments
+
   validates :title, presence: true
   validates :title, length: { minimum: 10, maximum: 100 }
   validates_presence_of :body, if: Proc.new { |p| p.post_type == :text_post }
