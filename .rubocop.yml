@@ -1,6 +1,7 @@
 AllCops:
   RunRailsCops: true
   Exclude:
+    - .bundle/**/*
     - bin/**/*
     - db/**/*
     - lib/templates/**/*

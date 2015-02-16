@@ -93,19 +93,6 @@
   }
 }
 
-.sliding-menu-button {
-  @include button(flat, #477DCA);
-  padding: 10px 16px;
-  display: inline-block;
-  cursor: pointer;
-  position: relative;
-  outline: none;
-
-  img {
-    height: 1.3em;
-  }
-}
-
 #main_sliding_menu {
 
   @include breakpoint(0 $screen-xs) {
