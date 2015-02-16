@@ -1,6 +1,7 @@
 AllCops:
   RunRailsCops: true
   Exclude:
+    - .bundle/**/*
     - bin/**/*
     - db/**/*
     - lib/templates/**/*
@@ -24,6 +25,9 @@ Style/AlignParameters:
   SupportedStyles:
     - with_first_parameter
     - with_fixed_indentation
+
+Style/AndOr:
+  Enabled: false
 
 Style/StringLiterals:
   EnforcedStyle: double_quotes

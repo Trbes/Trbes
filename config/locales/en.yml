@@ -50,10 +50,11 @@ en:
       sign_up:
         title: "Sign up"
         legend_html: "Create your <strong>%{app_name}</strong> account"
-        link: "Create a new account"
+        link: "Create my account"
+        suggestion: No account yet? Sign up now.
       password:
         forgot:
-          title: "Forgot password?"
+          title: "Forgot Password?"
           legend: "Enter your email address"
           submit: "Send me reset password instructions"
           link: "Forgot your password?"

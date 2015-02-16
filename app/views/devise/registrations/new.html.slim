@@ -1,27 +1,26 @@
 .container
-  .row
-    .col-md-12
-      h2= title
-
-  .row
-    .col-md-6
+  .module-sign-up
+    header.su-header
+      h1.su-title Hello. Welcome to Trbes.
+      .su-subtitle
+        | Just Enter your Email Address to join
+        - if current_group
+          strong<
+            = current_group.name
+            | :&nbsp;
+            = current_group.description
+        - else
+          strong< Trbes
+      .su-anti-spam.visible-xs-block
+        strong We won't share your email ever! We do not spam.
+    .error-messages
+      = devise_error_messages!
+    .su-body
+      #su_cody.point-to-email
       = simple_form_for resource,
-          as: resource_name,
-          url: registration_path(resource_name) do |f|
-
-        legend= t("app.user.sign_up.legend_html", app_name: t("titles.application"))
-
-        .form-group
-          = f.input :full_name, required: true, autofocus: true
-        .form-group
-          = f.input :email, required: true
-        .form-group
-          = f.input :password, required: true
-        .form-group
-          = f.input :password_confirmation, required: true
-
-        .form-group
-          = f.button :submit, t("app.user.sign_up.title")
-
-    .col-md-5.col-md-offset-1
-      = render "devise/shared/links"
+        as: resource_name,
+        url: registration_path(resource_name),
+        html: { class: "su-form" } do |f|
+        = render "devise/shared/form_fields",
+          f: f,
+          variant: :new_registration

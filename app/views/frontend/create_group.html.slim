@@ -21,16 +21,19 @@
             | Short Name
             small<
               | (Alphabetical. Max 20 chars)
-          input#cg_short_name.form-control type="text" name="short_name" data-point-to-class="point-to-name"
+          input#cg_short_name.form-control type="text" name="short_name"
           .form-control-static .trbes.com
           span.fa.fa-check-circle.form-control-feedback aria-hidden="true"
-        .form-group.fg-cg-description
-          label for="cg_description"
-            | Description or Tagline
+        .form-group.fg-cg-tagline
+          label for="cg_tagline"
+            | Tagline
             small<
               | (Will be shown under your group name)
-          input#cg_description.form-control type="text" name="description" data-point-to-class="point-to-name"
+          input#cg_description.form-control type="text" name="tagline"
           span.fa.fa-check-circle.form-control-feedback aria-hidden="true"
+        .form-group.fg-cg-description
+          label for="cg_description" Description
+          textarea#cg_description.form-control row="3"
         .form-group.fg-cg-privacy
           label for="cg_privacy"
             | Privacy

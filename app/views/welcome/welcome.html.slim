@@ -1,0 +1,38 @@
+.container
+  .module-thank-you
+    header.ty-header
+      h1.ty-title Thank you!
+      .ty-subtitle
+        = image_tag("text_welcome.png")
+    .ty-crew
+      = image_tag("sprite_crew.png")
+    .ty-body
+      .ty-announcement
+        | You are now subscribed to
+        a< href=(group_url(current_group)) = current_group.name
+        br
+        | Start sharing <strong>publicly</strong> with
+        strong<> = current_group.memberships.size
+        | other
+        span<> = current_group.name
+        | members.
+      a.ty-invite href=(new_invitation_path) Invite your friends to join your new tribe.
+      br
+      a.btn.btn-success.btn-lg.btn-fill.btn-go-to-group href=group_url(current_group)
+        | Go to
+        span<= current_group.name
+
+      hr
+
+      p You might also be interested in:
+      p
+        a.ty-link href="#" Browse groups
+        |  ::&nbsp;
+        a.ty-link href="#" Start your own group <em>free</em>
+        |  ::&nbsp;
+        a.ty-link href="#" Subscribe to Trbes
+        |  ::&nbsp;
+        a.ty-link href="#" Complete your profile
+
+
+

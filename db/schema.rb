@@ -83,7 +83,7 @@ ActiveRecord::Schema.define(version: 20150212094926) do
     t.integer  "posts_count",       default: 0,     null: false
     t.integer  "collections_count", default: 0,     null: false
     t.string   "tagline",                           null: false
-    t.boolean  "allow_image_posts", default: true,  null: false
+    t.boolean  "allow_image_posts", default: false, null: false
     t.boolean  "allow_link_posts",  default: true,  null: false
     t.boolean  "allow_text_posts",  default: true,  null: false
   end
@@ -123,7 +123,7 @@ ActiveRecord::Schema.define(version: 20150212094926) do
     t.integer  "cached_votes_total", default: 0
     t.integer  "comments_count",     default: 0, null: false
     t.string   "slug",                           null: false
-    t.string   "title",                          null: false
+    t.string   "title",             default: "", null: false
     t.integer  "post_type",          default: 0, null: false
     t.string   "body",                           null: false
   end
@@ -145,7 +145,7 @@ ActiveRecord::Schema.define(version: 20150212094926) do
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
-    t.string   "encrypted_password",     default: "", null: false
+    t.string   "encrypted_password",     default: ""
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
@@ -163,9 +163,20 @@ ActiveRecord::Schema.define(version: 20150212094926) do
     t.string   "full_name"
     t.integer  "comments_count",         default: 0,  null: false
     t.string   "title"
+    t.string   "invitation_token"
+    t.datetime "invitation_created_at"
+    t.datetime "invitation_sent_at"
+    t.datetime "invitation_accepted_at"
+    t.integer  "invitation_limit"
+    t.integer  "invited_by_id"
+    t.string   "invited_by_type"
+    t.integer  "invitations_count",      default: 0
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
+  add_index "users", ["invitation_token"], name: "index_users_on_invitation_token", unique: true, using: :btree
+  add_index "users", ["invitations_count"], name: "index_users_on_invitations_count", using: :btree
+  add_index "users", ["invited_by_id"], name: "index_users_on_invited_by_id", using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
   create_table "votes", force: :cascade do |t|

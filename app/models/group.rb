@@ -1,6 +1,9 @@
 class Group < ActiveRecord::Base
   include AlgoliaSearch
 
+  ALLOWED_POST_TYPES = %i( link text image )
+  attr_accessor :intended_usage
+
   has_many :posts, dependent: :destroy
   has_many :comments, through: :posts
 
@@ -12,7 +15,7 @@ class Group < ActiveRecord::Base
   validates :name, :subdomain, presence: true, uniqueness: true
   validates :subdomain, subdomain: true
 
-  normalize_attributes :name, :description, :subdomain
+  normalize_attributes :name, :description, :subdomain, :tagline
 
   has_one :logo, as: :attachable, class_name: "Attachment"
   accepts_nested_attributes_for :logo, update_only: true
@@ -39,5 +42,13 @@ class Group < ActiveRecord::Base
 
   def moderators
     memberships.sample(3) # TODO
+  end
+
+  def add_member(user, opts = {})
+    role_name = (opts[:as] || :member).to_s
+
+    membership = memberships.where(user: user).first_or_create
+    role = Role.public_send(role_name)
+    membership.membership_roles.where(role: role).first_or_create
   end
 end

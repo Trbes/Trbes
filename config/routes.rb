@@ -1,5 +1,11 @@
 Rails.application.routes.draw do
-  devise_for :users
+  devise_for :users, controllers: {
+    registrations: "registrations",
+    invitations: "invitations"
+  }
+
+  get "/welcome" => "welcome#index", as: :welcome
+  post "/welcome" => "welcome#create_group"
 
   resources :groups, only: %i( new create )
 
@@ -17,6 +23,12 @@ Rails.application.routes.draw do
       resource :group, only: %i( edit update destroy )
       resources :memberships, only: %i( index )
       resources :collections, only: %i( index show new create edit update destroy )
+    end
+
+    devise_scope :user do
+      get "/invitation/new" => "invitations#new", as: :new_invitation
+      post "/invitation" => "invitations#create", as: :create_invitation
+      put "/invitation" => "invitations#update", as: :update_invitation
     end
 
     root to: "groups#show", as: :group_root

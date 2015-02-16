@@ -1,26 +1,81 @@
 .container
-  .row
-    .col-md-12
-      h2= title
+  .module-sign-in
+    header.si-header
+      - if current_group
+        h1.si-title
+          | Hello. Welcome to
+          = current_group.name
+        .si-powered.visible-xs-block
+          strong This group is powered by Trbes!
+        .si-subtitle
+          | Sign in to Share and Participate on
+          strong<
+            = current_group.name
+            | :&nbsp;
+            = current_group.description
+      - else
+        h1.si-title Hello. Welcome to Trbes.
+        .si-subtitle
+          | Sign in to Share and Participate on our community.
 
-  .row
-    .col-md-6
+    .si-body
+      #si_cody
       = simple_form_for resource,
-          as: resource_name,
-          url: session_path(resource_name) do |f|
+        as: resource_name,
+        url: session_path(resource_name),
+        html: { class: "si-form" } do |f|
 
-        legend= t("app.user.sign_in.legend_html", app_name: t("titles.application"))
+        = image_tag("logo_full_gray.png", class: "si-logo")
 
-        .form-group
-          = f.input :email, required: false, autofocus: true
-        .form-group
-          = f.input :password, required: false
+        .form-group.fg-si-email
+          = f.input :email,
+            required: true,
+            autofocus: true,
+            label: false,
+            wrapper: false,
+            input_html: { id: "si_email",
+                          class: "form-control",
+                          placeholder: "Email Address" }
+
+          span.fg-si-addon.fa.fa-user
+          span.fa.fa-check-circle.form-control-feedback aria-hidden="true"
+
+        .form-group.fg-si-password
+          = f.input :password,
+            required: true,
+            autofocus: true,
+            label: false,
+            wrapper: false,
+            input_html: { id: "si_password",
+                          class: "form-control",
+                          placeholder: "Password" }
+          span.fg-si-addon.fa.fa-lock
+          span.fa.fa-check-circle.form-control-feedback aria-hidden="true"
+        .si-already-signed-up
+          strong You sign up with FACEBOOK
+          br
+          | Please
+          a< href="#" sign in here
+
         .form-group
           = f.input :remember_me, as: :boolean, input_html: { data: { toggle: "checkbox" } }
 
-        .form-group
-          = f.button :submit, t("app.user.sign_in.title"), class: "btn-fill btn-primary"
+        = f.button :submit, t("app.user.sign_in.title"), class: "btn btn-success btn-lg btn-fill btn-sign-in"
 
-    .col-md-5.col-md-offset-1
-      = render "devise/shared/links"
+        = link_to t("app.user.password.forgot.link"), new_password_path(resource_name), class: "forgot-password"
+
+        .si-altenatives
+          | You can sign in with
+          a< href="#" Twitter
+          | ,
+          a< href="#" Groove
+          | ,
+          a< href="#" Facebook
+          | ,
+          a<> href="#" Hipchat
+          | or
+          a< href="#" other services
+          | . If you do not remember what service you used to sign up, enter your email address above and we will tell you.
+
+        = link_to t("app.user.sign_up.suggestion"), new_registration_path(resource_name), class: "si-sign-up"
 

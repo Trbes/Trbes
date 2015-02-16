@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+    <p>Hey,</p>
+    <div class="fic-email-body">
+      <p>
+        <%
+          aurl = accept_invitation_url(@invited_user,
+            invitation_token: @invited_user.raw_invitation_token,
+            subdomain: @group.subdomain)
+        %>
+
+        I would like you to join our new user community about
+
+        <strong><%= @group.description %></strong>.
+
+        Help me create some content and share some links !
+      </p>
+      <p>
+        <a href="<%= aurl %>">Clic here to join!</a>
+      </p>
+      <p>
+        PS : I gave you <em>super user</em> rights !
+      </p>
+    </div>
+  </body>
+</html>

@@ -20,6 +20,10 @@ class Membership < ActiveRecord::Base
     role?(:admin)
   end
 
+  def owner?
+    role?(:owner)
+  end
+
   def role?(role)
     role_names = roles.collect(&:name)
 

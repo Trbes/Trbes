@@ -1,12 +1,18 @@
 .container
-  .row
-    .col-md-6.col-md-push-3
-      h2 Create a group
+  .module-create-group
+    .cg-crew
+      = image_tag("sprite_crew.png")
+    .cg-body
+      - if params[:welcome]
+        .cg-announcement
+          | You are now subscribed to
+          a< href="/" Trbes
+        hr
+      h2.cg-title Let's create your own <em>free</em> Trbes Group.
+      = simple_form_for(group, url: groups_path, html: { class: "cg-form" }) do |f|
+        - if params[:welcome]
+          = hidden_field_tag :welcome, true
+        = render "groups/form_fields", f: f, group: group
 
-      = simple_form_for(group) do |f|
-        = f.input :name
-        = f.input :description
-        = f.input :subdomain
-        = f.input :private, as: :boolean
 
-        = f.button :submit
+

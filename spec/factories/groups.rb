@@ -12,5 +12,9 @@ FactoryGirl.define do
     end
 
     private false
+
+    allow_image_posts { [true, false].sample }
+    allow_link_posts { [true, false].sample }
+    allow_text_posts { [true, false].sample }
   end
 end
