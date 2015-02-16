@@ -50,3 +50,5 @@ $ ->
           siblings(".vote-count").html(result.new_total_votes).addClass("voted").
           closest(".post-upvote").closest(".post").find(".post-content").addClass("voted")
 
+  $("#moderator_id").on "change", (e) ->
+    $("form#add_moderator").attr("action", "/admin/memberships/#{this.value}")

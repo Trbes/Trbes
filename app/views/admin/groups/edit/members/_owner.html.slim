@@ -1,0 +1,25 @@
+.owner
+  span Owner
+  .controls
+    = link_to "transfer", "#", class: "control", data: { toggle: "modal", target: "#transfer_ownership" }
+  .owner-wrapper
+    = image_tag group.owner_avatar,
+        class: "img-circle img-owner",
+        data: { toggle: "tooltip", placement: "top" },
+        title: group.owner_full_name
+
+  .modal.fade#transfer_ownership tabindex="-1" role="dialog" aria-labelledby="transfer_ownership" aria-hidden="true"
+    .modal-dialog
+      .modal-content
+        .modal-header
+          button.close type="button" data-dismiss="modal" aria-label="Close"
+            span aria-hidden="true" &times;
+          h4.modal-title#transfer_ownership Transfer ownership
+
+        = simple_form_for([:admin, group.owner]) do |f|
+          .modal-body
+            = f.input :role, as: :hidden, input_html: { value: :moderator }
+            = f.select :new_group_owner_id, options_from_collection_for_select(memberships, :id, :full_name)
+            .modal-footer
+            button.btn.btn-default type="button" data-dismiss="modal" Close
+            = f.submit "Save", class: "btn btn-primary"

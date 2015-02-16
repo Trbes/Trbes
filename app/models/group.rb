@@ -23,7 +23,6 @@ class Group < ActiveRecord::Base
 
   delegate :image, to: :logo, prefix: true, allow_nil: true
   delegate :full_name, :avatar, to: :owner, prefix: true
-  delegate :owner_membership_role, to: :owner
 
   algoliasearch do
     attribute :name, :subdomain
@@ -40,11 +39,11 @@ class Group < ActiveRecord::Base
   end
 
   def owner
-    memberships.with_role(:owner).first
+    memberships.owner.first
   end
 
   def moderators
-    memberships.includes(:user).sample(3) # TODO
+    memberships.moderator
   end
 
   def add_member(user, opts = {})

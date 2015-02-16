@@ -24,7 +24,7 @@ Rails.application.routes.draw do
     namespace :admin do
       resources :dashboard, only: %i( index )
       resource :group, only: %i( edit update destroy )
-      resources :membership_roles, only: %i( update )
+      resources :memberships, only: %i( update )
       resources :collections, only: %i( index show new create edit update destroy )
     end
 
