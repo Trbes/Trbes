@@ -24,18 +24,17 @@ feature "Single post page" do
     expect(current_path).to eq("/posts/#{post.title.parameterize}")
 
     within("#post_#{post.id}") do
-      expect(page).to have_css(".title", text: post.title)
-      expect(page).to have_css(".excerpt", text: post.body)
+      expect(page).to have_css(".post-title", text: post.title)
+      expect(page).to have_css(".post-body", text: post.body)
     end
   end
 
-  scenario "I upvote for a post" do
+  scenario "I upvote for a post", js: true do
     expect(post.cached_votes_total).to eq(0)
 
-    expect {
-      page.find("#post_#{post.id} .vote").click
-      post.reload
-    }.to change { post.cached_votes_total }.from(0).to(1)
+    page.find("#post_#{post.id} .vote").click
+    wait_for_ajax
+    expect(post.reload.cached_votes_total).to eql 1
 
     within("#post_#{post.id} .vote-count") do
       expect(page).to have_content(1)
@@ -43,7 +42,7 @@ feature "Single post page" do
 
     expect {
       page.find("#post_#{post.id} .vote").click
-      post.reload
+      wait_for_ajax
     }.not_to change { post.cached_votes_total }
   end
 end
