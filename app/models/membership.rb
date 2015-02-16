@@ -24,6 +24,10 @@ class Membership < ActiveRecord::Base
     roles << Role.owner
   end
 
+  def make_member!
+    roles << Role.member
+  end
+
   def remove_owner
     roles.delete(Role.owner)
   end
