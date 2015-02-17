@@ -53,9 +53,34 @@ $nav-collection-link-color-hover: #333;
       }
     }
 
-    &.dropdown.open {
-      &>a {
-        background-color: transparent;
+    &.dropdown {
+      &.open {
+        &>a {
+          background-color: transparent;
+        }
+      }
+
+      &.hint-add-collection {
+        position: relative;
+
+        &:before {
+          background: transparent image-url("hint_add_collection.png") no-repeat;
+          width: 293px;
+          height: 107px;
+          content: " ";
+          position: absolute;
+          top: 8px;
+          right: 25px;
+          margin-left: 0;
+
+          @include breakpoint(0 $screen-sm - 1) {
+            $width: 293px / 2;
+            $height: 107px / 2;
+            width: $width;
+            height: $height;
+            background-size: $width $height;
+          }
+        }
       }
     }
 

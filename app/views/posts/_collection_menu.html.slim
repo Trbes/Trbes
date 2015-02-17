@@ -1,27 +1,26 @@
 ul.nav.nav-pills.nav-collections
-  li
-    input#post_search.form-control placeholder="Search for posts" type="search"
-  li
-    a href="#"
-      i.fa.fa-graduation-cap.circle
-      | Knowledge
-  li
-    a href="#"
-      i.fa.fa-lightbulb-o.circle
-      | Feature
-  li
-    a href="#"
-      i.fa.fa-bug.circle
-      | Bug report
-  li.dropdown.more
-    a.dropdown-toggle data-close-others="false" data-delay="1000" data-hover="dropdown" data-toggle="dropdown" href="#"
-      i.fa.fa-ellipsis-h.circle
-    ul.dropdown-menu
-      li
-        a href="#" tabindex="-1"  Collection 1
-      li
-        a href="#" tabindex="-1"  Collection 2
-      li
-        a href="#" tabindex="-1"  Collection 3
-      li
-        a href="#" tabindex="-1"  Collection 4
+  - current_group.collections.for_display.each do |collection|
+    li
+      a href="#"
+        i.fa.circle
+          = cl_image_tag(collection.image)
+        = collection.name
+
+  - if will_show_collection_dropdown?
+    li.dropdown.more class=('hint-add-collection' if will_show_add_collection_hint?)
+      a.dropdown-toggle data-close-others="false" data-delay="1000" data-hover="dropdown" data-toggle="dropdown" href="#"
+        i.fa.fa-ellipsis-h.circle
+      ul.dropdown-menu
+        - if current_group.collections.for_dropdown.count > 0
+          - current_group.collections.for_dropdown.each do |collection|
+            li role="presentation"
+              a href="#"
+                i.fa
+                  = cl_image_tag(collection.image)
+                = collection.name
+          li.divider role="presentation"
+        - if policy(Collection).new?
+          li role="presentation"
+            a href="#"
+              i.fa.fa-plus-circle
+              | Add Collection

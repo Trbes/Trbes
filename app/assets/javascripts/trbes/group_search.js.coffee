@@ -7,9 +7,16 @@ class window.GroupSearch
     @_initGroupSearch()
 
   _initGroupSearch: ->
-    @$container.typeahead({ hint: false }
+    @$container.typeahead({
+        hint: true
+        highlight: true
+      }
       source: @client.initIndex('Group').ttAdapter()
+      displayKey: 'name'
       templates:
+        empty: "<div class='tt-empty-message'>No group matching your query</div>"
         suggestion: (hit) ->
-          return "<li><a href='/groups/#{hit.subdomain}'>#{hit.name}</a></li>";
-    )
+          return "<div class='tt-item-group'><a href='/groups/#{hit.subdomain}'>#{hit.name}</a></div>";
+    ).on 'typeahead:selected', (event, selection) ->
+      window.location.href = "/groups/" + selection.subdomain
+
