@@ -9,8 +9,8 @@ module GroupsHelper
 
   def will_show_add_collection_hint?
     current_group.posts_count == 0 &&
-    current_group.collections_count == 0 &&
-    policy(Collection).new?
+      current_group.collections_count == 0 &&
+      policy(Collection).new?
   end
 
   def can_add_collection?
