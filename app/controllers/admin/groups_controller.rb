@@ -31,8 +31,7 @@ module Admin
         :allow_image_posts,
         :allow_link_posts,
         :allow_text_posts,
-        logo_attributes: :image,
-        membership_roles_attributes: %i( role_id membership_id )
+        logo_attributes: :image
       )
     end
   end

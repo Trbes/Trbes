@@ -14,12 +14,13 @@
 
             = select_tag :moderator_id, options_from_collection_for_select(memberships.member, :id, :full_name)
 
-          = simple_form_for([:admin, group.memberships.first], html: { id: "add_moderator" }) do |f|
-            .modal-body
-              = f.input :role, as: :hidden, input_html: { value: :moderator }
-            .modal-footer
-              button.btn.btn-default type="button" data-dismiss="modal" Close
-              = f.submit "Save", class: "btn btn-primary"
+          - if group.memberships.member.any?
+            = simple_form_for([:admin, group.memberships.member.first], html: { id: "add_moderator" }) do |f|
+              .modal-body
+                = f.input :role, as: :hidden, input_html: { value: :moderator }
+              .modal-footer
+                button.btn.btn-default type="button" data-dismiss="modal" Close
+                = f.submit "Save", class: "btn btn-primary"
   .moderators-wrapper
     - group.moderators.each do |moderator|
       = div_for(moderator)

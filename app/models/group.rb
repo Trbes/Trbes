@@ -8,7 +8,6 @@ class Group < ActiveRecord::Base
   has_many :comments, through: :posts
 
   has_many :memberships, dependent: :destroy
-  has_many :membership_roles, through: :memberships
   has_many :users, through: :memberships
 
   has_many :collections, dependent: :destroy

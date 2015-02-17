@@ -9,7 +9,6 @@ class Membership < ActiveRecord::Base
   scope :new_this_week, -> { where(nil) } # TODO
 
   delegate :full_name, :avatar, to: :user
-  delegate :name, to: :role, prefix: true
 
   enum role: %i(member moderator owner)
 
