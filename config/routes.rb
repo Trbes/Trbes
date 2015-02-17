@@ -46,6 +46,7 @@ Rails.application.routes.draw do
   get "/frontend/invite" => "frontend#invite"
   get "/frontend/create_group" => "frontend#create_group"
   get "/frontend/single_post" => "frontend#single_post"
+  get "/frontend/home" => "frontend#home"
 
   root to: "dashboard#index"
 end
