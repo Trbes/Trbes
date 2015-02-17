@@ -56,7 +56,7 @@ class ApplicationController < ActionController::Base
   def push_algolia_config
     configuration = AlgoliaSearch.configuration
     configuration.merge!(
-      api_key_search: Algolia.generate_secured_api_key(
+      group_scope_api_key_search: Algolia.generate_secured_api_key(
         ENV["ALGOLIASEARCH_API_KEY_SEARCH"],
         "(public,group_#{current_group.id})"
       ),
