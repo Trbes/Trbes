@@ -8,7 +8,16 @@
   .post-right
     = preview_image(post)
     .post-actions
-      a.collection-tag href="#"
-        i.fa.fa-bug.circle.grey
+      - post.collections.each do |collection|
+        = link_to root_path(collection_id: collection.id) do
+          i.fa.fa-bug.circle.grey
+      - if policy(Collection).create?
+        'Add to collection
+        = simple_form_for([:admin, CollectionPost.new]) do |f|
+          = f.input :collection_id, collection: current_group.collections
+          = f.input :post_id, as: :hidden, input_html: { value: post.id }
+
+          = f.submit "Add"
+
       a.share href="#"
         i.fa.fa-share-square-o.circle.grey

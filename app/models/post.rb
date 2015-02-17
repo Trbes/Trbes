@@ -9,6 +9,8 @@ class Post < ActiveRecord::Base
 
   has_many :comments, dependent: :destroy
   has_many :attachments, as: :attachable, dependent: :destroy
+  has_many :collection_posts, dependent: :destroy
+  has_many :collections, through: :collection_posts
   belongs_to :group, counter_cache: true, required: true
   belongs_to :user, required: true
 
