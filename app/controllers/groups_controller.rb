@@ -26,6 +26,10 @@ class GroupsController < ApplicationController
   end
 
   def show
+    # So that search result click will redirects to group's url
+    if params[:id]
+      redirect_to root_url(subdomain: params[:id])
+    end
   end
 
   private

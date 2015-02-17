@@ -19,4 +19,12 @@
     border-color: #049F0C;
     margin-top: 30px;
   }
+
+  @include breakpoint(0 $screen-md) {
+    margin-top: 80px;
+  }
+
+  @include breakpoint(0 $screen-sm - 1) {
+    margin-top: 30px;
+  }
 }

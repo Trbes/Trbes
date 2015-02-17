@@ -1,4 +1,4 @@
-ul.nav.nav-pills.nav-collections class=('hint-add-collection' if will_show_add_collection_hint?)
+ul.nav.nav-pills.nav-collections
   - current_group.collections.for_display.each do |collection|
     li
       a href="#"
@@ -7,7 +7,7 @@ ul.nav.nav-pills.nav-collections class=('hint-add-collection' if will_show_add_c
         = collection.name
 
   - if will_show_collection_dropdown?
-    li.dropdown.more
+    li.dropdown.more class=('hint-add-collection' if will_show_add_collection_hint?)
       a.dropdown-toggle data-close-others="false" data-delay="1000" data-hover="dropdown" data-toggle="dropdown" href="#"
         i.fa.fa-ellipsis-h.circle
       ul.dropdown-menu
