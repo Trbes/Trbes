@@ -4,6 +4,7 @@ class Membership < ActiveRecord::Base
 
   scope :for_group, -> (group) { where(group_id: group.id) }
   scope :not_owner, -> { where.not(role: roles[:owner]) }
+  scope :not_member, -> { where.not(role: roles[:member]) }
   scope :pending, -> { where(nil) } # TODO
   scope :new_this_week, -> { where(nil) } # TODO
 

@@ -31,10 +31,6 @@ module Admin
 
     private
 
-    def authorize_collection
-      authorize(collection)
-    end
-
     def collection_attributes
       params.require(:collection).permit(:image, :name, :visibility)
     end

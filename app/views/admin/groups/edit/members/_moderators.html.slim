@@ -1,7 +1,8 @@
 .moderators
   span Moderators
-  .controls
-    = link_to "add moderator", "#", class: "control", data: { toggle: "modal", target: "#add_moderator" }
+  - if policy(current_membership).manage_moderators?
+    .controls
+      = link_to "add moderator", "#", class: "control", data: { toggle: "modal", target: "#add_moderator" }
 
     .modal.fade#add_moderator tabindex="-1" role="dialog" aria-labelledby="add_moderator" aria-hidden="true"
       .modal-dialog
@@ -26,4 +27,5 @@
             class: "img-circle img-owner",
             data: { toggle: "tooltip", placement: "top" },
             title: moderator.full_name
-        = link_to "[x]", admin_membership_path(moderator, membership: { role: :member }), method: :put
+        - if policy(current_membership).manage_moderators?
+          = link_to "[x]", admin_membership_path(moderator, membership: { role: :member }), method: :put

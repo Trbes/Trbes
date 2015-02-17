@@ -8,13 +8,12 @@ class UpdateMembership
   private
 
   def update_membership
-    if id = attributes[:new_group_owner_id]
-      Membership.find(id).owner!
+    if attributes[:new_group_owner_id]
+      Membership.find(attributes[:new_group_owner_id]).owner!
     end
 
     context.membership.update_attributes(attributes)
   end
-
 
   def attributes
     context.attributes

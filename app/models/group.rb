@@ -47,10 +47,8 @@ class Group < ActiveRecord::Base
   end
 
   def add_member(user, opts = {})
-    role_name = (opts[:as] || :member).to_s
+    role_name = (opts[:as] || :member)
 
-    membership = memberships.where(user: user).first_or_create
-    role = Role.public_send(role_name)
-    membership.membership_roles.where(role: role).first_or_create
+    memberships.where(user: user, role: role_name).first_or_create
   end
 end

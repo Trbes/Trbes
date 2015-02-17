@@ -1,7 +1,8 @@
 .owner
   span Owner
-  .controls
-    = link_to "transfer", "#", class: "control", data: { toggle: "modal", target: "#transfer_ownership" }
+  - if policy(current_membership).transfer_ownership?
+    .controls
+      = link_to "transfer", "#", class: "control", data: { toggle: "modal", target: "#transfer_ownership" }
   .owner-wrapper
     = image_tag group.owner_avatar,
         class: "img-circle img-owner",

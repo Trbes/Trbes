@@ -9,9 +9,9 @@ feature "Create collection" do
     sign_in(user.email, "123456")
   end
 
-  context "when I'm group admin" do
+  context "when I'm group owner" do
     background do
-      user.membership_for(group).make_admin!
+      user.membership_for(group).owner!
       visit new_admin_collection_path
     end
 
@@ -27,7 +27,7 @@ feature "Create collection" do
     end
   end
 
-  context "when I'm not group admin" do
+  context "when I'm not group owner" do
     background do
       visit new_admin_collection_path
     end
