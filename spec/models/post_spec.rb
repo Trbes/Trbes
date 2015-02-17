@@ -5,6 +5,7 @@ describe Post do
     it { is_expected.to belong_to(:group) }
     it { is_expected.to belong_to(:user) }
     it { is_expected.to have_many(:comments) }
+    it { is_expected.to have_many(:attachments) }
   end
 
   describe "columns" do
@@ -13,6 +14,7 @@ describe Post do
     it { is_expected.to have_db_column(:comments_count) }
     it { is_expected.to have_db_column(:slug) }
     it { is_expected.to have_db_column(:title) }
+    it { is_expected.to have_db_column(:link) }
     it { is_expected.to have_db_column(:body) }
 
     it { is_expected.to have_db_index(:group_id) }
@@ -22,6 +24,7 @@ describe Post do
 
   describe "normalizations" do
     it { is_expected.to normalize_attribute(:title) }
-    it { is_expected.to normalize_attribute(:body) }
+    it { is_expected.to normalize_attribute(:body).from("").to("") }
+    it { is_expected.to normalize_attribute(:body).from("  Test  Body ").to("Test Body") }
   end
 end

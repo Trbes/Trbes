@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150212094926) do
+ActiveRecord::Schema.define(version: 20150216162533) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -49,13 +49,15 @@ ActiveRecord::Schema.define(version: 20150212094926) do
   add_index "collections", ["group_id"], name: "index_collections_on_group_id", using: :btree
 
   create_table "comments", force: :cascade do |t|
-    t.integer  "post_id",    null: false
-    t.integer  "user_id",    null: false
-    t.text     "body",       null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.integer  "post_id",                        null: false
+    t.integer  "user_id",                        null: false
+    t.text     "body",                           null: false
+    t.datetime "created_at",                     null: false
+    t.datetime "updated_at",                     null: false
+    t.integer  "cached_votes_total", default: 0
   end
 
+  add_index "comments", ["cached_votes_total"], name: "index_comments_on_cached_votes_total", using: :btree
   add_index "comments", ["post_id"], name: "index_comments_on_post_id", using: :btree
   add_index "comments", ["user_id"], name: "index_comments_on_user_id", using: :btree
 
@@ -79,13 +81,13 @@ ActiveRecord::Schema.define(version: 20150212094926) do
     t.string   "subdomain",                         null: false
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.boolean  "allow_image_posts", default: true,  null: false
+    t.boolean  "allow_text_posts",  default: true,  null: false
+    t.boolean  "allow_link_posts",  default: true,  null: false
     t.integer  "memberships_count", default: 0,     null: false
     t.integer  "posts_count",       default: 0,     null: false
     t.integer  "collections_count", default: 0,     null: false
     t.string   "tagline",                           null: false
-    t.boolean  "allow_image_posts", default: false, null: false
-    t.boolean  "allow_link_posts",  default: true,  null: false
-    t.boolean  "allow_text_posts",  default: true,  null: false
   end
 
   create_table "image_postables", force: :cascade do |t|
@@ -123,9 +125,10 @@ ActiveRecord::Schema.define(version: 20150212094926) do
     t.integer  "cached_votes_total", default: 0
     t.integer  "comments_count",     default: 0, null: false
     t.string   "slug",                           null: false
-    t.string   "title",             default: "", null: false
+    t.string   "title",                          null: false
     t.integer  "post_type",          default: 0, null: false
-    t.string   "body",                           null: false
+    t.string   "body"
+    t.string   "link"
   end
 
   add_index "posts", ["cached_votes_total"], name: "index_posts_on_cached_votes_total", using: :btree

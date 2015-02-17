@@ -11,10 +11,13 @@
           html: { method: :put } do |f|
 
         .form-group
+          = f.input :email, required: true
+
+        .form-group
           = f.input :full_name, required: true, autofocus: true
 
         .form-group
-          = f.input :email, required: true
+          = f.input :title, required: true, autofocus: true
 
         .form-group
           = f.input :password,

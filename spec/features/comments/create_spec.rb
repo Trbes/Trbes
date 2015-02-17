@@ -17,7 +17,7 @@ feature "Post a comment" do
     expect {
       within "#new_comment" do
         fill_in "comment[body]", with: "Comment body"
-        click_button "Post"
+        click_button "Submit"
       end
     }.to change { post.comments.count }.from(0).to(1)
 

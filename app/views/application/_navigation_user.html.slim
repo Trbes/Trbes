@@ -14,13 +14,9 @@ ul.nav.navbar-nav.navbar-right
         li
           a href=destroy_user_session_path
             = t("app.navigation.user.sign_out")
-    li.pull-right.add-post
-      - if @test_post_form
+    - if current_group
+      li.pull-right.add-post
         a#btn_add_post.btn.btn-fill.btn-primary.navbar-btn.btn-add-post href="#"
-          i.fa.fa-plus
-          span Add
-      - else
-        a.btn.btn-fill.btn-primary.navbar-btn.btn-add-post href=(new_post_path)
           i.fa.fa-plus
           span Add
   - else

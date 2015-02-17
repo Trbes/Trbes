@@ -1,7 +1,29 @@
-= simple_form_for(post) do |f|
+= simple_form_for(post,
+  html: { id: "form_new_text_post",
+          class: "form-horizontal form-new-post active" }) do |f|
   = f.hidden_field(:post_type, value: "text_post")
-
-  = f.input :title
-  = f.input :body
-
-  = f.button :submit
+  .form-group.fnp-title
+    label.col-sm-2.control-label for="fnp_text_post_title"  Title *
+    .col-sm-10
+      = f.input :title,
+        label: false,
+        wrapper: false,
+        error: false,
+        input_html: { id: "fnp_text_post_title",
+                      class: "form-control" }
+  .form-group.fnp-text
+    label.col-sm-2.control-label for="fnp_text_post_text"  Your Text *
+    .col-sm-10
+      = f.input :body,
+        as: :text,
+        label: false,
+        wrapper: false,
+        error: false,
+        input_html: { id: "fnp_text_post_text",
+                      class: "form-control",
+                      row: 5 }
+  .form-group.fnp-actions
+    .col-sm-offset-2.col-sm-10
+      button.btn.btn-success.btn-lg.btn-fill.btn-submit-post type="submit"  Publish Post
+      a.link-write-more href="#" Write more
+      / a.cancel-post href="#" Cancel

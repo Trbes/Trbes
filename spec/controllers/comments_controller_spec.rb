@@ -34,4 +34,16 @@ describe CommentsController do
       expect(controller).to redirect_to(some_post)
     end
   end
+
+  describe "PUT #upvote" do
+    let!(:comment) { create(:comment, post: some_post) }
+
+    before do
+      put :upvote, comment_id: comment.id
+    end
+
+    it "returns json with new_total_votes" do
+      expect(JSON.parse(response.body)["new_total_votes"]).to eql comment.reload.cached_votes_total
+    end
+  end
 end

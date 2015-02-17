@@ -24,6 +24,19 @@
         width: auto;
         clear: both;
       }
+
+      &.voted {
+        @include keyframes(post-vote-cooldown) {
+          0% {
+            background-color: rgb(231, 252, 228);
+          }
+          100% {
+            background-color: white;
+          }
+        }
+
+        animation: post-vote-cooldown 4s ease-out;
+      }
     }
 
     .post-right {
@@ -69,6 +82,19 @@
 
     .vote-count {
       color: #777;
+
+      @include keyframes(cooldown) {
+        from {
+          color: green;
+        }
+        to {
+          color: #777777;
+        }
+      }
+
+      &.voted {
+        @include animation(cooldown 1s ease-out);
+      }
     }
 
     a.share {
@@ -112,6 +138,10 @@
 
       p {
         font-size: 18px;
+      }
+
+      img {
+        max-width: 100%;
       }
     }
 

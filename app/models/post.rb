@@ -12,10 +12,14 @@ class Post < ActiveRecord::Base
   belongs_to :group, counter_cache: true, required: true
   belongs_to :user, required: true
 
-  validates :title, :body, presence: true
-  validates :title, length: { minimum: 10, maximum: 100 }
+  accepts_nested_attributes_for :attachments
 
-  delegate :full_name, :avatar, to: :user, prefix: true
+  validates :title, presence: true
+  validates :title, length: { minimum: 10, maximum: 100 }
+  validates :body, presence: true, if: proc { |p| p.post_type == :text_post }
+  validates :link, presence: true, if: proc { |p| p.post_type == :link_post }
+
+  delegate :full_name, :avatar, :title, to: :user, prefix: true
 
   acts_as_votable
 
@@ -23,7 +27,8 @@ class Post < ActiveRecord::Base
 
   friendly_id :title, use: %i( slugged finders )
 
-  normalize_attributes :title, :body
+  normalize_attributes :title
+  normalize_attributes :body, with: :squish
 
   algoliasearch do
     attribute :title, :body, :slug

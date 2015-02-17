@@ -39,7 +39,7 @@ feature "Create first group" do
       expect(group.users).to include(user)
       expect(group.allow_text_posts).to be true
       expect(group.allow_link_posts).to be true
-      expect(group.allow_image_posts).to be false
+      expect(group.allow_image_posts).to be true
 
       # User is added as owner
       membership = group.memberships.find_by(user: user)

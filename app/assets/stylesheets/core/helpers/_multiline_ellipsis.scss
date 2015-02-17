@@ -23,7 +23,7 @@
     content: "\02026";
 
     float: right; position: relative;
-    top: -25px; left: 100%;
+    top: -$height / 2; left: 100%;
     width: $ellipsiswidth; margin-left: -$ellipsiswidth;
     padding-right: 5px;
     box-sizing: content-box;

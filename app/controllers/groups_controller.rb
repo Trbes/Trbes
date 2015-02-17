@@ -2,6 +2,7 @@ class GroupsController < ApplicationController
   before_action :ensure_group_is_loaded!, only: [:show]
 
   expose(:group, attributes: :group_attributes)
+  expose(:post)
   expose(:posts, only: [:show]) do
     current_group.posts.includes(:attachments, :user).order_by_votes.page(params[:page])
   end

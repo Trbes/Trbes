@@ -8,12 +8,12 @@ class CreatePost
   private
 
   def create_post
-    Post.create!(
-      title: attributes[:title],
-      body: attributes[:body],
-      post_type: attributes[:post_type],
-      user: context.current_user,
-      group: context.current_group
+    Post.create(
+      attributes.merge(
+        user: context.current_user,
+        group: context.current_group,
+        attachments_attributes: attributes[:attachments_attributes] || []
+      )
     )
   end
 

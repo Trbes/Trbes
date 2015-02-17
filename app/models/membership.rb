@@ -24,6 +24,10 @@ class Membership < ActiveRecord::Base
     role?(:owner)
   end
 
+  def moderator?
+    role?(:moderator)
+  end
+
   def role?(role)
     role_names = roles.collect(&:name)
 

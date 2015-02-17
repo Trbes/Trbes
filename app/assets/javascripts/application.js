@@ -10,8 +10,7 @@
 //= require bootstrap-sass-official
 //= require jquery-validation
 //= require gsdk
-//= require trbes/group_search
-//= require trbes/post_search
+//= require_tree ./trbes
 //= require grabicon
 //= require scripts
 //= require algolia/algoliasearch.min

@@ -21,14 +21,23 @@ class PostsController < ApplicationController
   def show
   end
 
+  def upvote
+    post.upvote_by(current_user)
+
+    render json: {
+      new_total_votes: post.cached_votes_total
+    }
+  end
+
   private
 
   def post_attributes
     params.require(:post).permit(
       :title,
       :body,
+      :link,
       :post_type,
       attachments_attributes: [:image]
-    )
+    ) if action_name != "upvote"
   end
 end
