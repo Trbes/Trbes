@@ -13,11 +13,7 @@ module GroupsHelper
       policy(Collection).new?
   end
 
-  def can_add_collection?
-    policy(Collection).new?
-  end
-
   def will_show_collection_dropdown?
-    current_group.collections.for_dropdown.count > 0 || can_add_collection?
+    current_group.collections.for_dropdown.count > 0 || policy(Collection).new?
   end
 end

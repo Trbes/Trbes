@@ -19,7 +19,7 @@ ul.nav.nav-pills.nav-collections
                   = cl_image_tag(collection.image)
                 = collection.name
           li.divider role="presentation"
-        - if can_add_collection?
+        - if policy(Collection).new?
           li role="presentation"
             a href="#"
               i.fa.fa-plus-circle
