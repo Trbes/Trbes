@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150216162533) do
+ActiveRecord::Schema.define(version: 20150217130850) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -44,6 +44,7 @@ ActiveRecord::Schema.define(version: 20150216162533) do
     t.datetime "created_at",                  null: false
     t.datetime "updated_at",                  null: false
     t.boolean  "visibility",  default: false, null: false
+    t.integer  "row_order"
   end
 
   add_index "collections", ["group_id"], name: "index_collections_on_group_id", using: :btree
@@ -81,13 +82,13 @@ ActiveRecord::Schema.define(version: 20150216162533) do
     t.string   "subdomain",                         null: false
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.boolean  "allow_image_posts", default: true,  null: false
-    t.boolean  "allow_text_posts",  default: true,  null: false
-    t.boolean  "allow_link_posts",  default: true,  null: false
     t.integer  "memberships_count", default: 0,     null: false
     t.integer  "posts_count",       default: 0,     null: false
     t.integer  "collections_count", default: 0,     null: false
     t.string   "tagline",                           null: false
+    t.boolean  "allow_image_posts", default: true,  null: false
+    t.boolean  "allow_link_posts",  default: true,  null: false
+    t.boolean  "allow_text_posts",  default: true,  null: false
   end
 
   create_table "image_postables", force: :cascade do |t|

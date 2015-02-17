@@ -2,21 +2,22 @@ section.collections#collections
   h4.section-name Collections
   hr.section-separator
 
-    .collections-list
-      - group.collections.each do |collection|
-        .collection.clearfix
+    .collections-list#sortable
+      - group.collections.ordered.each do |collection|
+        .collection.item.clearfix data-id=(collection.id)
           = cl_image_tag(collection.image.icon, class: "collection-image")
           span.collection-name= collection.name
           span.collection-posts-count= link_to collection.posts_count, "#"
           span.collection-visibility
-            = best_in_place collection,
-                :visibility,
-                as: :checkbox,
-                collection: ["Shown on group pages", "Not shown on group pages"],
-                url: admin_collection_path(collection)
+            = link_to "#" do
+              = best_in_place collection,
+                  :visibility,
+                  as: :checkbox,
+                  collection: ["Shown on group pages", "Not shown on group pages"],
+                  url: admin_collection_path(collection)
 
           .controls
-            = link_to "reoder", "#", class: "control"
+            = link_to "drag to reoder", "#", class: "control"
             .controls-separator
             = link_to "edit", edit_admin_collection_path(collection), class: "control"
             .controls-separator

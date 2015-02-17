@@ -1,4 +1,6 @@
 class Collection < ActiveRecord::Base
+  include RankedModel
+
   belongs_to :group, counter_cache: true, required: true
 
   validates :name, :image, presence: true
@@ -8,6 +10,9 @@ class Collection < ActiveRecord::Base
 
   scope :for_display, -> { limit(3) }  # TODO
   scope :for_dropdown, -> { limit(3) } # TODO
+  scope :ordered, -> { rank(:row_order) }
+
+  ranks :row_order, with_same: :group_id
 
   def posts_count
     3 # TODO

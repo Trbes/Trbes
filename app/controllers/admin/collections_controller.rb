@@ -32,7 +32,7 @@ module Admin
     private
 
     def collection_attributes
-      params.require(:collection).permit(:image, :name, :visibility)
+      params.require(:collection).permit(:image, :name, :visibility, :row_order_position)
     end
   end
 end
