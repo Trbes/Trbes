@@ -6,4 +6,18 @@ module GroupsHelper
   def group_url(group)
     root_url(subdomain: group.subdomain)
   end
+
+  def will_show_add_collection_hint?
+    current_group.posts_count == 0 &&
+    current_group.collections_count == 0 &&
+    policy(Collection).new?
+  end
+
+  def can_add_collection?
+    policy(Collection).new?
+  end
+
+  def will_show_collection_dropdown?
+    current_group.collections.for_dropdown.count > 0 || can_add_collection?
+  end
 end

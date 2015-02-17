@@ -1,5 +1,4 @@
-ul.nav.nav-pills.nav-collections class=('hint-add-collection' if \
-  current_group.posts_count == 0 && current_group.collections_count == 0)
+ul.nav.nav-pills.nav-collections class=('hint-add-collection' if will_show_add_collection_hint?)
   - current_group.collections.for_display.each do |collection|
     li
       a href="#"
@@ -7,19 +6,21 @@ ul.nav.nav-pills.nav-collections class=('hint-add-collection' if \
           = cl_image_tag(collection.image)
         = collection.name
 
-  li.dropdown.more
-    a.dropdown-toggle data-close-others="false" data-delay="1000" data-hover="dropdown" data-toggle="dropdown" href="#"
-      i.fa.fa-ellipsis-h.circle
-    ul.dropdown-menu
-      - if current_group.collections.for_dropdown.count > 0
-        - current_group.collections.for_dropdown.each do |collection|
+  - if will_show_collection_dropdown?
+    li.dropdown.more
+      a.dropdown-toggle data-close-others="false" data-delay="1000" data-hover="dropdown" data-toggle="dropdown" href="#"
+        i.fa.fa-ellipsis-h.circle
+      ul.dropdown-menu
+        - if current_group.collections.for_dropdown.count > 0
+          - current_group.collections.for_dropdown.each do |collection|
+            li role="presentation"
+              a href="#"
+                i.fa
+                  = cl_image_tag(collection.image)
+                = collection.name
+          li.divider role="presentation"
+        - if can_add_collection?
           li role="presentation"
             a href="#"
-              i.fa
-                = cl_image_tag(collection.image)
-              = collection.name
-        li.divider role="presentation"
-      li role="presentation"
-        a href="#"
-          i.fa.fa-plus-circle
-          | Add Collection
+              i.fa.fa-plus-circle
+              | Add Collection
