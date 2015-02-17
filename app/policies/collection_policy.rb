@@ -4,11 +4,11 @@ class CollectionPolicy < Struct.new(:membership, :collection)
   end
 
   def new?
-    membership.admin?
+    membership.owner? || membership.moderator?
   end
 
   def create?
-    membership.admin?
+    membership.owner? || membership.moderator?
   end
 
   def show?
@@ -16,14 +16,14 @@ class CollectionPolicy < Struct.new(:membership, :collection)
   end
 
   def edit?
-    membership.admin?
+    membership.owner? || membership.moderator?
   end
 
   def update?
-    membership.admin?
+    membership.owner? || membership.moderator?
   end
 
   def destroy?
-    membership.admin?
+    membership.owner? || membership.moderator?
   end
 end

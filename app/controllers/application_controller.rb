@@ -16,6 +16,7 @@ class ApplicationController < ActionController::Base
     @current_group ||= Group.find_by(subdomain: request.subdomain)
   end
 
+  helper_method :current_membership
   def current_membership
     @current_membership ||= FindOrCreateMembership.call(user: current_user, group: current_group).membership
   end

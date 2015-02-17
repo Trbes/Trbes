@@ -2,35 +2,15 @@ class Membership < ActiveRecord::Base
   belongs_to :user, required: true
   belongs_to :group, counter_cache: true, required: true
 
-  has_many :membership_roles, dependent: :destroy
-  has_many :roles, through: :membership_roles, dependent: :destroy
-
   scope :for_group, -> (group) { where(group_id: group.id) }
-  scope :with_role, ->(role_name) { joins(:roles).where(roles: { name: role_name }) }
+  scope :not_owner, -> { where.not(role: roles[:owner]) }
+  scope :not_member, -> { where.not(role: roles[:member]) }
   scope :pending, -> { where(nil) } # TODO
   scope :new_this_week, -> { where(nil) } # TODO
 
-  delegate :avatar, to: :user
+  delegate :full_name, :avatar, to: :user
 
-  def make_admin!
-    roles << Role.admin
-  end
+  enum role: %i(member moderator owner)
 
-  def admin?
-    role?(:admin)
-  end
-
-  def owner?
-    role?(:owner)
-  end
-
-  def moderator?
-    role?(:moderator)
-  end
-
-  def role?(role)
-    role_names = roles.collect(&:name)
-
-    role_names.include?(role.to_s)
-  end
+  attr_accessor :new_group_owner_id
 end

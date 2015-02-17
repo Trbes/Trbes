@@ -1,5 +1,5 @@
 li.collection
-  = link_to collection do
+  = link_to [:admin, collection] do
     h1= collection.name
   = link_to "Edit", edit_admin_collection_path
   = cl_image_tag(collection.image.icon)

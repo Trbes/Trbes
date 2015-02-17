@@ -16,26 +16,6 @@
     }
   }
 
-  .members {
-    .members-list {
-      overflow: hidden;
-      width: 100%;
-
-      .members-type {
-        float: left;
-        display: inline-block;
-        width: 15%;
-      }
-
-      .avatars {
-        float: left;
-        padding: 0;
-        display: inline-block;
-        width: 85%;
-      }
-    }
-  }
-
   .notifications {
     .notification {
       width: 100%;

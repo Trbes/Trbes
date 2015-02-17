@@ -2,19 +2,6 @@ section.members#members
   h4.section-name Members
   hr.section-separator
 
-  .owner
-    span Owner
-    .controls
-      = link_to "transfer", "#", class: "control"
-    .owner-wrapper
-      = image_tag group.owner.avatar, class: "img-circle img-owner"
-
-  .moderators
-    span Moderators
-    .controls
-      = link_to "add moderator", "#", class: "control"
-    .moderators-wrapper
-      - group.moderators.each do |moderator|
-        = image_tag moderator.avatar, class: "img-circle img-owner"
-
+  = render "admin/groups/edit/members/owner", group: group, memberships: memberships
+  = render "admin/groups/edit/members/moderators", group: group, memberships: memberships
   = render "admin/shared/members"

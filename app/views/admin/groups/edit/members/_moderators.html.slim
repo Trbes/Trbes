@@ -1,0 +1,32 @@
+.moderators
+  span Moderators
+  - if policy(current_membership).manage_moderators?
+    .controls
+      = link_to "add moderator", "#", class: "control", data: { toggle: "modal", target: "#add_moderator" }
+
+    .modal.fade#add_moderator tabindex="-1" role="dialog" aria-labelledby="add_moderator" aria-hidden="true"
+      .modal-dialog
+        .modal-content
+          .modal-header
+            button.close type="button" data-dismiss="modal" aria-label="Close"
+              span aria-hidden="true" &times;
+            h4.modal-title#add_moderator Add moderator
+
+            = select_tag :moderator_id, options_from_collection_for_select(memberships.member, :id, :full_name)
+
+          - if group.memberships.member.any?
+            = simple_form_for([:admin, group.memberships.member.first], html: { id: "add_moderator" }) do |f|
+              .modal-body
+                = f.input :role, as: :hidden, input_html: { value: :moderator }
+              .modal-footer
+                button.btn.btn-default type="button" data-dismiss="modal" Close
+                = f.submit "Save", class: "btn btn-primary"
+  .moderators-wrapper
+    - group.moderators.each do |moderator|
+      = div_for(moderator)
+        = image_tag moderator.avatar,
+            class: "img-circle img-owner",
+            data: { toggle: "tooltip", placement: "top" },
+            title: moderator.full_name
+        - if policy(current_membership).manage_moderators?
+          = link_to "[x]", admin_membership_path(moderator, membership: { role: :member }), method: :put

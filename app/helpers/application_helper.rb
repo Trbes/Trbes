@@ -12,13 +12,21 @@ module ApplicationHelper
 
   def present(object)
     if object.respond_to?(:map)
-      klass = "#{object.first.class}Presenter".constantize
-
-      object.map { |el| klass.new(el, self) }
+      present_as_array(object)
     else
       klass = "#{object.class}Presenter".constantize
 
       klass.new(object, self)
+    end
+  end
+
+  def present_as_array(object)
+    if object.any?
+      klass = "#{object.first.class}Presenter".constantize
+
+      object.map { |el| klass.new(el, self) }
+    else
+      []
     end
   end
 

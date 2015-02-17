@@ -5,7 +5,7 @@ module Admin
     protected
 
     def authorize_admin!
-      authorize(:access, :admin?)
+      authorize(:access, :admin_access?)
     end
   end
 end

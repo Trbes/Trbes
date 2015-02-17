@@ -5,7 +5,7 @@ describe CollectionPolicy do
 
   %i(new create edit update destroy).each do |action|
     permissions "#{action}?".to_sym do
-      it_behaves_like "group admin permission" do
+      it_behaves_like "group owner permission" do
         let(:membership) { create(:membership) }
         let(:resource) { Collection.new }
       end

@@ -49,15 +49,7 @@ describe Group do
       }.to change { group.memberships.count }.by(1)
 
       membership = group.memberships.find_by(user_id: user.id)
-      expect(membership.role?(:member)).to be true
-
-      # Add one more role
-      group.add_member(user, as: :moderator)
-      membership.reload
-
-      expect(membership.role?(:moderator)).to be true
-      # Ensure old role isn't affected
-      expect(membership.role?(:member)).to be true
+      expect(membership.member?).to be true
     end
   end
 end

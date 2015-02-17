@@ -21,6 +21,7 @@ class Group < ActiveRecord::Base
   accepts_nested_attributes_for :logo, update_only: true
 
   delegate :image, to: :logo, prefix: true, allow_nil: true
+  delegate :full_name, :avatar, to: :owner, prefix: true
 
   algoliasearch do
     attribute :name, :subdomain
@@ -37,18 +38,16 @@ class Group < ActiveRecord::Base
   end
 
   def owner
-    memberships.first.user # TODO
+    memberships.owner.first
   end
 
   def moderators
-    memberships.sample(3) # TODO
+    memberships.moderator
   end
 
   def add_member(user, opts = {})
-    role_name = (opts[:as] || :member).to_s
+    role_name = (opts[:as] || :member)
 
-    membership = memberships.where(user: user).first_or_create
-    role = Role.public_send(role_name)
-    membership.membership_roles.where(role: role).first_or_create
+    memberships.where(user: user, role: role_name).first_or_create
   end
 end

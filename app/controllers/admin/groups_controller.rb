@@ -1,8 +1,9 @@
 module Admin
   class GroupsController < Admin::ApplicationController
     expose(:group, attributes: :group_attributes) { view_context.present(current_group) }
+    expose(:available_memberships) { current_group.memberships.includes(:user) }
     expose(:available_groups) do
-      view_context.present(current_user.memberships.with_role(:admin).includes(:group).map(&:group))
+      view_context.present(current_user.memberships.not_member.includes(:group).map(&:group).compact)
     end
 
     def update
@@ -23,8 +24,7 @@ module Admin
     private
 
     def group_attributes
-      params.require(:group).permit(:name,
-        :tagline,
+      params.require(:group).permit(:name, :tagline,
         :description,
         :private,
         :subdomain,

@@ -11,7 +11,7 @@ feature "Admin dashboard" do
 
   context "when I'm group admin" do
     background do
-      user.membership_for(group).make_admin!
+      user.membership_for(group).owner!
       visit root_path
     end
 
