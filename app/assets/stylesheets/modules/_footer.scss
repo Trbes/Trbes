@@ -4,5 +4,13 @@
 
   p {
     margin: 0;
+
+    &.powered-by {
+      font-size: 12pxl
+
+      img {
+        vertical-align: baseline;
+      }
+    }
   }
 }

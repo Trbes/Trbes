@@ -94,4 +94,19 @@ $nav-collection-link-color-hover: #333;
       font-size: 0.85em;
     }
   }
+
+  &.hint-add-collection {
+    position: relative;
+
+    &:before {
+      background: transparent image-url("hint_add_collection.png") no-repeat;
+      width: 293px;
+      height: 107px;
+      content: " ";
+      position: absolute;
+      top: 8px;
+      right: 25px;
+      margin-left: 0;
+    }
+  }
 }

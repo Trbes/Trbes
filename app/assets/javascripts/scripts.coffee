@@ -19,7 +19,7 @@ $ ->
   new SignUp($("form.su-form"))
   new SignIn($("form.si-form"))
   new CreateGroup($("form.cg-form"))
-  new AddPost($("#btn_add_post"))
+  new AddPost($(".btn-add-post"))
   new GroupSearch($("input#group_search"))
   new PostSearch($("input#post_search"))
 

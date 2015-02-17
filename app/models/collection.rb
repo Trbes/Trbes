@@ -6,6 +6,9 @@ class Collection < ActiveRecord::Base
 
   mount_uploader :image, ImageUploader
 
+  scope :for_display, -> { limit(3) }  # TODO
+  scope :for_dropdown, -> { limit(3) } # TODO
+
   def posts_count
     3 # TODO
   end

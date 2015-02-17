@@ -4,12 +4,27 @@
   .row
     .col-md-3
       = render "posts/filter_menu"
-    .col-md-9
+    .col-md-3
+      - if current_group.posts_count > 0
+        input#post_search.form-control placeholder="Search for posts" type="search"
+    .col-md-6
       = render "posts/collection_menu"
 
-  .posts-group
-    .posts
-      - posts.each do |post|
-        = render "posts/#{post.post_type}/post", post: post
+  - if current_group.posts_count > 0
+    .posts-group
+      .posts
+        - posts.each do |post|
+          = render "posts/#{post.post_type}/post", post: post
 
-    = paginate(posts)
+      = paginate(posts)
+  - else
+    .group-welcome
+      = image_tag("icons/icon_write_big.png")
+      br
+      | Welcome to #{current_group.name}.
+      br
+      | This group is empty.
+      em< Write something.
+      br
+      a.btn.btn-success.btn-fill.btn-lg.btn-add-post href="#" Create the first post
+
