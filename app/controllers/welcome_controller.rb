@@ -20,6 +20,6 @@ class WelcomeController < ApplicationController
   end
 
   def view_for_welcome
-    current_group ? "welcome/welcome" : "groups/new"
+    current_group ? "welcome/index" : "groups/new"
   end
 end

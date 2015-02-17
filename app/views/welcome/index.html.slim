@@ -16,8 +16,9 @@
         | other
         span<> = current_group.name
         | members.
-      a.ty-invite href=(new_invitation_path) Invite your friends to join your new tribe.
-      br
+      - if policy(:invitation).new?
+        a.ty-invite href=(new_invitation_path) Invite your friends to join your new tribe.
+        br
       a.btn.btn-success.btn-lg.btn-fill.btn-go-to-group href=group_url(current_group)
         | Go to
         span<= current_group.name

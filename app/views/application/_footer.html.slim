@@ -3,7 +3,7 @@ footer#footer
     - if current_group
       p.text-right.powered-by
         | This group is powered by
-        a< href=(root_url)
+        a< href=(root_url(subdomain: nil))
           = image_tag("logo_full_black.png")
     - else
       p &copy; Trbes #{Time.now.strftime("%Y")}
