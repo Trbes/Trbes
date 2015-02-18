@@ -122,6 +122,46 @@
   }
 
   .toggle-target-type {
-    margin-left: 20px;
+    margin-left: 50px;
+
+    &.target-customers {
+      margin-left: 25px;
+    }
+
+    @include breakpoint(0 $screen-lg - 1) {
+      margin-left: 10px;
+    }
+  }
+
+  &.target-customers {
+    .navbar {
+      &.navbar-default {
+        .navbar-nav {
+          & > li {
+            & > a {
+              // Medium desktop
+              @include breakpoint(0 $screen-lg - 1) {
+                padding-left: 10px;
+                padding-right: 10px;
+              }
+
+              // Ipad
+              @include breakpoint($screen-sm $screen-md - 1) {
+                padding-left: 5px;
+                padding-right: 5px;
+              }
+            }
+          }
+        }
+      }
+    }
+
+    .toggle-target-type {
+      margin-left: 25px;
+
+      @include breakpoint(0 $screen-lg - 1) {
+        margin-left: 5px;
+      }
+    }
   }
 }

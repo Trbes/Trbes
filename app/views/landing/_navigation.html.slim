@@ -1,4 +1,4 @@
-#landing_navbar
+#landing_navbar class=(request.path.starts_with?("/teams") ? "target-teams" : "target-customers")
   nav.navbar.navbar-default role="navigation"
     .container
       .navbar-header
@@ -34,35 +34,28 @@
               li
                 a href="#"  The Team
           li
-            a href="#"  Blog
+            a href="http://trbes.com/blog/"  Blog
 
         ul.nav.navbar-nav.toggle-target-type
           li.dropdown
-            a.dropdown-toggle data-toggle="dropdown" href="#"
-              | ...for Small Teams
-              b.caret
-            ul.dropdown-menu
-              li
-                a href="#"  ...for Customer Communities
+            - if request.path.starts_with? "/teams"
+              a.dropdown-toggle data-toggle="dropdown" href="#"
+                | ...for Small Teams
+                b.caret
+              ul.dropdown-menu
+                li
+                  a href="/customer-communities"  ...for Customer Communities
+            - elsif request.path.starts_with? "/customer-communities"
+              a.dropdown-toggle data-toggle="dropdown" href="#"
+                | ...for Customer Communities
+                b.caret
+              ul.dropdown-menu
+                li
+                  a href="/teams"  ...for Small Teams
         ul.nav.navbar-nav.navbar-right.landing-authentication
           li
-            a.btn.btn-simple.btn-sign-in href="#" Sign In
+            a.btn.btn-simple.btn-sign-in href=(new_user_session_path) Sign In
           li
-            a.btn.btn-fill.btn-lg.btn-primary.btn-sign-up href="#" Sign Up
+            a.btn.btn-fill.btn-lg.btn-primary.btn-sign-up href=(new_user_registration_path) Sign Up
       hr.border-bottom
-
-
-/ nav.navbar.navbar-default
-/   .container
-/     /! Brand and toggle get grouped for better mobile display
-/     .navbar-header
-/       button.navbar-toggle.collapsed data-target="#navbar_navigation" data-toggle="collapse" type="button"
-/         span.sr-only Toggle navigation
-/         span.icon-bar
-/         span.icon-bar
-/         span.icon-bar
-/       = link_to image_tag("logo_mini_black.png"), root_url(subdomain: nil), class: "js-menu-trigger navbar-brand"
-/     /! Collect the nav links, forms, and other content for toggling
-/     / #navbar_navigation.collapse.navbar-collapse
-/     #navbar_navigation.collapse.navbar-collapse
 
