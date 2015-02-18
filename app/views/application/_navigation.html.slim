@@ -1,42 +1,42 @@
-nav.navbar.navbar-default
-  .container
+#main_navbar
+  nav.navbar.navbar-default
+    .container
 
-    /! Brand and toggle get grouped for better mobile display
-    .navbar-header
-      button.navbar-toggle.collapsed data-target="#navbar_navigation" data-toggle="collapse" type="button"
-        span.sr-only Toggle navigation
-        span.icon-bar
-        span.icon-bar
-        span.icon-bar
+      /! Brand and toggle get grouped for better mobile display
+      .navbar-header
+        button.navbar-toggle.collapsed data-target="#navbar_navigation" data-toggle="collapse" type="button"
+          span.sr-only Toggle navigation
+          span.icon-bar
+          span.icon-bar
+          span.icon-bar
 
-      = link_to image_tag("logo_mini_black.png"), root_url(subdomain: nil), class: "js-menu-trigger navbar-brand"
+        = link_to image_tag("logo_mini_black.png"), root_url(subdomain: nil), class: "js-menu-trigger navbar-brand"
 
-      - if current_group
-        .navbar-group
-          = link_to root_url(subdomain: current_group.subdomain), class: "group-logo" do
-            = image_tag("sample/group_logo.jpg", height: 115)
-          .group-info
-            .group-name
-              = link_to current_group.name, root_url(subdomain: current_group.subdomain)
-              - if policy(:access).admin_access?
-                .dropdown
-                  button#group_menu.btn.btn-default.dropdown-toggle aria-expanded="true" data-toggle="dropdown" type="button"
-                    .fa.fa-cog
-                  ul.dropdown-menu aria-labelledby="group_menu" role="menu"
-                    li role="presentation"
-                      = link_to "Edit Group", admin_dashboard_index_path
-                    li role="presentation"
-                      a href="#" role="menuitem" tabindex="-1"  Manage Members
-                    - if policy(:invitation).new?
+        - if current_group
+          .navbar-group
+            = link_to root_url(subdomain: current_group.subdomain), class: "group-logo" do
+              = image_tag("sample/group_logo.jpg", height: 115)
+            .group-info
+              .group-name
+                = link_to current_group.name, root_url(subdomain: current_group.subdomain)
+                - if policy(:access).admin_access?
+                  .dropdown
+                    button#group_menu.btn.btn-default.dropdown-toggle aria-expanded="true" data-toggle="dropdown" type="button"
+                      .fa.fa-cog
+                    ul.dropdown-menu aria-labelledby="group_menu" role="menu"
                       li role="presentation"
-                        a href=(new_invitation_path) role="menuitem" tabindex="-1"  Invite Someone
-            .group-desc= current_group.description
+                        = link_to "Edit Group", admin_dashboard_index_path
+                      li role="presentation"
+                        a href="#" role="menuitem" tabindex="-1"  Manage Members
+                      - if policy(:invitation).new?
+                        li role="presentation"
+                          a href=(new_invitation_path) role="menuitem" tabindex="-1"  Invite Someone
+              .group-desc= current_group.description
 
+      /! Collect the nav links, forms, and other content for toggling
+      / #navbar_navigation.collapse.navbar-collapse
+      #navbar_navigation.collapse.navbar-collapse
+        - render "navigation_main"
+        = render "navigation_user"
 
-    /! Collect the nav links, forms, and other content for toggling
-    / #navbar_navigation.collapse.navbar-collapse
-    #navbar_navigation.collapse.navbar-collapse
-      - render "navigation_main"
-      = render "navigation_user"
-
-= render "navigation_main_slide_menu"
+  = render "navigation_main_slide_menu"

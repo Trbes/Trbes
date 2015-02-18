@@ -26,13 +26,13 @@ html class="no-js" lang="en"
 
   body
     #root
-      = render "navigation_landing"
+      = render "landing/navigation"
       = render "messages"
 
       #main.wrapper
         = yield
 
-    = render "footer_landing"
+    = render "landing/footer"
 
     = javascript_include_tag :application
     = cloudinary_js_config

@@ -1,0 +1,66 @@
+#landing_navbar
+  nav.navbar.navbar-default role="navigation"
+    .container
+      .navbar-header
+        button.navbar-toggle data-target="#landing_collapse_bar" data-toggle="collapse" type="button"
+          span.sr-only Toggle navigation
+          span.icon-bar
+          span.icon-bar
+          span.icon-bar
+        = link_to image_tag("logo_full_black_huge.png"), root_url(subdomain: nil), class: "navbar-brand"
+      #landing_collapse_bar.collapse.navbar-collapse
+        ul.nav.navbar-nav
+          li.dropdown
+            a.dropdown-toggle data-toggle="dropdown" href="#"
+              | Features
+              b.caret
+            ul.dropdown-menu
+              li
+                a href="#"  Create Collections
+              li
+                a href="#"  Manage links
+              li.divider
+              li
+                a href="#"  More
+          li.active
+            a href="#"  Pricing
+          li.dropdown
+            a.dropdown-toggle data-toggle="dropdown" href="#"
+              | Company
+              b.caret
+            ul.dropdown-menu
+              li
+                a href="#"  About
+              li
+                a href="#"  The Team
+          li
+            a href="#"  Blog
+
+        ul.nav.navbar-nav.toggle-target-type
+          li.dropdown
+            a.dropdown-toggle data-toggle="dropdown" href="#"
+              | ...for Small Teams
+              b.caret
+            ul.dropdown-menu
+              li
+                a href="#"  ...for Customer Communities
+        .nav.navbar-nav.navbar-right.landing-authentication
+          a.btn.btn-simple.btn-sign-in Sign In
+          a.btn.btn-fill.btn-lg.btn-primary.btn-sign-up Sign Up
+      hr.border-bottom
+
+
+/ nav.navbar.navbar-default
+/   .container
+/     /! Brand and toggle get grouped for better mobile display
+/     .navbar-header
+/       button.navbar-toggle.collapsed data-target="#navbar_navigation" data-toggle="collapse" type="button"
+/         span.sr-only Toggle navigation
+/         span.icon-bar
+/         span.icon-bar
+/         span.icon-bar
+/       = link_to image_tag("logo_mini_black.png"), root_url(subdomain: nil), class: "js-menu-trigger navbar-brand"
+/     /! Collect the nav links, forms, and other content for toggling
+/     / #navbar_navigation.collapse.navbar-collapse
+/     #navbar_navigation.collapse.navbar-collapse
+
