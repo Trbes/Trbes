@@ -8,10 +8,16 @@ module Admin
       redirect_to :back
     end
 
+    def update
+      collection_post.save
+
+      redirect_to admin_edit_collection_path(collection_post.collection)
+    end
+
     private
 
     def collection_post_attributes
-      params.require(:collection_post).permit(:post_id, :collection_id)
+      params.require(:collection_post).permit(:post_id, :collection_id, :row_order_position)
     end
   end
 end

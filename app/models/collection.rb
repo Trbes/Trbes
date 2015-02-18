@@ -2,6 +2,9 @@ class Collection < ActiveRecord::Base
   include RankedModel
 
   belongs_to :group, counter_cache: true, required: true
+  has_many :collection_posts, -> { ordered }
+  has_many :posts, through: :collection_posts
+  accepts_nested_attributes_for :collection_posts, allow_destroy: true
 
   validates :name, :image, presence: true
   validates :name, uniqueness: true

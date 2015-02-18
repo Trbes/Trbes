@@ -21,3 +21,4 @@
 //= require algolia/typeahead.jquery
 //= require best_in_place
 //= require best_in_place.jquery-ui
+//= require jquery_nested_form

@@ -15,10 +15,10 @@ module Admin
     end
 
     def update
-      success = collection.update_attributes(collection_attributes)
+      success = collection.save
 
       respond_to do |format|
-        format.html { success ? redirect_to([:admin, collection]) : render(:edit) }
+        format.html { redirect_to(edit_admin_collection_path(collection)) }
         format.json { respond_with_bip(collection) }
       end
     end
@@ -32,7 +32,13 @@ module Admin
     private
 
     def collection_attributes
-      params.require(:collection).permit(:image, :name, :visibility, :row_order_position)
+      params.require(:collection).permit(
+        :image,
+        :name,
+        :visibility,
+        :row_order_position,
+        collection_posts_attributes: [:post_id, :id, :_destroy]
+      )
     end
   end
 end

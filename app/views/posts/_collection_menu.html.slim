@@ -3,7 +3,7 @@ ul.nav.nav-pills.nav-collections
     li
       a href="#"
         i.fa.circle
-          = cl_image_tag(collection.image)
+          = cl_image_tag(collection.image.icon)
         = collection.name
 
   - if will_show_collection_dropdown?
@@ -16,7 +16,7 @@ ul.nav.nav-pills.nav-collections
             li role="presentation"
               a href="#"
                 i.fa
-                  = cl_image_tag(collection.image)
+                  = cl_image_tag(collection.image.icon)
                 = collection.name
           li.divider role="presentation"
         - if policy(Collection).new?

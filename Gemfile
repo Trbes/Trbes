@@ -19,6 +19,7 @@ gem "uglifier", ">= 1.3.0"
 gem "best_in_place", git: "https://github.com/airatshigapov/best_in_place", ref: "4a515a6"
 
 gem "simple_form", "~> 3.1"
+gem "nested_form"
 gem "active_link_to"
 gem "title"
 
