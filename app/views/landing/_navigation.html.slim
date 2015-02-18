@@ -1,0 +1,61 @@
+#landing_navbar class=(request.path.starts_with?("/teams") ? "target-teams" : "target-customers")
+  nav.navbar.navbar-default role="navigation"
+    .container
+      .navbar-header
+        button.navbar-toggle data-target="#landing_collapse_bar" data-toggle="collapse" type="button"
+          span.sr-only Toggle navigation
+          span.icon-bar
+          span.icon-bar
+          span.icon-bar
+        = link_to image_tag("logo_full_black_huge.png"), root_url(subdomain: nil), class: "navbar-brand"
+      #landing_collapse_bar.collapse.navbar-collapse
+        ul.nav.navbar-nav
+          li.dropdown
+            a.dropdown-toggle data-toggle="dropdown" href="#"
+              | Features
+              b.caret
+            ul.dropdown-menu
+              li
+                a href="#"  Create Collections
+              li
+                a href="#"  Manage links
+              li.divider
+              li
+                a href="#"  More
+          li.active
+            a href="#"  Pricing
+          li.dropdown
+            a.dropdown-toggle data-toggle="dropdown" href="#"
+              | Company
+              b.caret
+            ul.dropdown-menu
+              li
+                a href="#"  About
+              li
+                a href="#"  The Team
+          li
+            a href="http://trbes.com/blog/"  Blog
+
+        ul.nav.navbar-nav.toggle-target-type
+          li.dropdown
+            - if request.path.starts_with? "/teams"
+              a.dropdown-toggle data-toggle="dropdown" href="#"
+                | ...for Small Teams
+                b.caret
+              ul.dropdown-menu
+                li
+                  a href="/customer-communities"  ...for Customer Communities
+            - elsif request.path.starts_with? "/customer-communities"
+              a.dropdown-toggle data-toggle="dropdown" href="#"
+                | ...for Customer Communities
+                b.caret
+              ul.dropdown-menu
+                li
+                  a href="/teams"  ...for Small Teams
+        ul.nav.navbar-nav.navbar-right.landing-authentication
+          li
+            a.btn.btn-simple.btn-sign-in href=(new_user_session_path) Sign In
+          li
+            a.btn.btn-fill.btn-lg.btn-primary.btn-sign-up href=(new_user_registration_path) Sign Up
+      hr.border-bottom
+

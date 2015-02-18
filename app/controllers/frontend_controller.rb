@@ -20,4 +20,8 @@ class FrontendController < ApplicationController
 
   def invite
   end
+
+  def home
+    render layout: "landing"
+  end
 end
