@@ -39,6 +39,7 @@ Rails.application.routes.draw do
 
   get "/groups/:subdomain", to: "groups#show"
 
+  # Front pages
   get "/teams", to: "landing#teams"
   get "/customer-communities", to: "landing#customer_communities"
 
