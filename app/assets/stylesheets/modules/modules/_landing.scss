@@ -107,7 +107,7 @@
       }
 
       &.last {
-        .feature-image {
+        .feature-image, .feature-content {
           vertical-align: bottom;
         }
       }
@@ -163,7 +163,7 @@
         font-style: normal;
         color: #202020;
         font-size: 14px;
-        margin-top: 25px;
+        margin-top: 15px;
         line-height: 1.6em;
 
         @include breakpoint(0 $screen-sm - 1) {
