@@ -53,3 +53,4 @@ $ ->
 
   $("#moderator_id").on "change", (e) ->
     $("form#add_moderator").attr("action", "/admin/memberships/#{this.value}")
+
