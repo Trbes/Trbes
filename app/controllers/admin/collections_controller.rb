@@ -6,16 +6,16 @@ module Admin
     expose(:collection, attributes: :collection_attributes)
 
     def create
-      collection = CreateCollection.call(
+      CreateCollection.call(
         attributes: collection_attributes,
         current_group: current_group
-      ).collection
+      )
 
       redirect_to edit_admin_group_path
     end
 
     def update
-      success = collection.save
+      collection.save
 
       respond_to do |format|
         format.html { redirect_to(edit_admin_group_path) }
@@ -38,7 +38,7 @@ module Admin
         :name,
         :visibility,
         :row_order_position,
-        collection_posts_attributes: [:post_id, :id, :_destroy]
+        collection_posts_attributes: %i( post_id id _destroy )
       )
     end
   end

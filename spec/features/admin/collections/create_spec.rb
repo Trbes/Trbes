@@ -9,31 +9,25 @@ feature "Create collection" do
     sign_in(user.email, "123456")
   end
 
-  context "when I'm group owner" do
+  context "when I'm group owner", js: true do
     background do
       user.membership_for(group).owner!
-      visit new_admin_collection_path
+      visit edit_admin_group_path
     end
 
     scenario "I can create a collection" do
+      within(".collections") do
+        click_link "add"
+      end
+
       fill_in "Name", with: "Name"
-      attach_file "Image", "spec/support/trbes.png"
+      attach_file "collection_image", "spec/support/trbes.png"
 
-      expect {
-        click_button "Save"
-      }.to change { Collection.count }.from(0).to(1)
+      click_button "Save"
 
-      expect(current_path).to eq(admin_collection_path(Collection.last))
-    end
-  end
-
-  context "when I'm not group owner" do
-    background do
-      visit new_admin_collection_path
-    end
-
-    scenario "I can't create a collection" do
-      expect(page).to have_content("You are not authorized to perform this action.")
+      expect(page).to have_content("Group")
+      expect(Collection.count).to eq(1)
+      expect(current_path).to eq(edit_admin_group_path)
     end
   end
 end
