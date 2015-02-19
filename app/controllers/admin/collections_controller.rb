@@ -11,7 +11,7 @@ module Admin
         current_group: current_group
       ).collection
 
-      respond_with(collection, location: [:admin, collection])
+      respond_with(collection, location: edit_admin_group_path)
     end
 
     def update

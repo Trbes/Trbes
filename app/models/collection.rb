@@ -1,4 +1,6 @@
 class Collection < ActiveRecord::Base
+  VISIBLE_COLLECTIONS_COUNT = 3
+
   include RankedModel
 
   belongs_to :group, counter_cache: true, required: true
@@ -11,13 +13,13 @@ class Collection < ActiveRecord::Base
 
   mount_uploader :image, ImageUploader
 
-  scope :for_display, -> { limit(3) }  # TODO
-  scope :for_dropdown, -> { limit(3) } # TODO
+  scope :visible, -> { where(visibility: true) }
+  scope :not_used_for, -> (post) { where.not(id: post.collections.pluck(:id)) }
   scope :ordered, -> { rank(:row_order) }
 
   ranks :row_order, with_same: :group_id
 
-  def posts_count
-    3 # TODO
+  def collection_post_for(post)
+    collection_posts.where(post: post).first
   end
 end

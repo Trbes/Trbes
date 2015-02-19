@@ -7,31 +7,4 @@
     = render "posts/meta", post: post
   .post-right
     = preview_image(post)
-    .post-actions
-      - post.collection_posts.each do |collection_post|
-        = link_to root_path(collection_id: collection_post.collection_id) do
-          i.fa
-            = cl_image_tag(collection_post.collection_image.icon, data: { toggle: "tooltip" }, title: collection_post.collection_name)
-          - if policy(collection_post).destroy?
-            = link_to "[x]", admin_collection_post_path(collection_post), method: :delete, data: { confirm: "Are you sure?" }
-      - if policy(Collection).create?
-        = link_to "[+]", "#", data: { toggle: "modal", target: "#add_to_collection" }
-
-      a.share href="#"
-        i.fa.fa-share-square-o.circle.grey
-
-.modal.fade#add_to_collection tabindex="-1" role="dialog" aria-labelledby="add_to_collection" aria-hidden="true"
-  .modal-dialog
-    .modal-content
-      .modal-header
-        button.close type="button" data-dismiss="modal" aria-label="Close"
-          span aria-hidden="true" &times;
-        h4.modal-title#add_to_collection Add post to collection
-
-      = simple_form_for([:admin, CollectionPost.new]) do |f|
-        .modal-body
-          = f.input :collection_id, collection: current_group.collections
-          = f.input :post_id, as: :hidden, input_html: { value: post.id }
-          .modal-footer
-            button.btn.btn-default type="button" data-dismiss="modal" Close
-            = f.submit "Add", class: "btn btn-primary"
+    = render "posts/actions", post: post

@@ -1,26 +1,23 @@
 ul.nav.nav-pills.nav-collections
-  - current_group.collections.for_display.each do |collection|
+  - current_group.collections.visible.limit(Collection::VISIBLE_COLLECTIONS_COUNT).each do |collection|
     li
       a href="#"
         i.fa.circle
           = cl_image_tag(collection.image.icon)
         = collection.name
 
-  - if will_show_collection_dropdown?
-    li.dropdown.more class=('hint-add-collection' if will_show_add_collection_hint?)
-      a.dropdown-toggle data-close-others="false" data-delay="1000" data-hover="dropdown" data-toggle="dropdown" href="#"
-        i.fa.fa-ellipsis-h.circle
-      ul.dropdown-menu
-        - if current_group.collections.for_dropdown.count > 0
-          - current_group.collections.for_dropdown.each do |collection|
-            li role="presentation"
-              a href="#"
-                i.fa
-                  = cl_image_tag(collection.image.icon)
-                = collection.name
-          li.divider role="presentation"
-        - if policy(Collection).new?
-          li role="presentation"
-            a href="#"
-              i.fa.fa-plus-circle
-              | Add Collection
+  li.dropdown.more class=('hint-add-collection' if will_show_add_collection_hint?)
+    a.dropdown-toggle data-close-others="false" data-delay="1000" data-hover="dropdown" data-toggle="dropdown" href="#"
+      i.fa.fa-ellipsis-h.circle
+    ul.dropdown-menu
+      - current_group.collections.offset(Collection::VISIBLE_COLLECTIONS_COUNT).each do |collection|
+        li role="presentation"
+          a href="#"
+            = cl_image_tag(collection.image.icon)
+            = collection.name
+        li.divider role="presentation"
+      - if policy(Collection).new?
+        li role="presentation"
+          a href="#"
+            i.fa.fa-plus-circle
+            | Add Collection
