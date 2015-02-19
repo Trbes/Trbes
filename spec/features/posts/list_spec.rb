@@ -36,7 +36,7 @@ feature "Posts list" do
   context "when there are too much posts" do
     background do
       create_list(:post, 20, :text, group: group)
-      visit root_url(subdomain: group.subdomain)
+      visit root_path
     end
 
     scenario "pagination happens" do

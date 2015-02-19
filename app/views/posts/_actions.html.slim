@@ -3,9 +3,11 @@
     = link_to root_path(collection_id: collection.id) do
       = cl_image_tag(collection.image.icon, data: { toggle: "tooltip", placement: "top" }, title: collection.name)
       - if policy(collection.collection_post_for(post)).destroy?
-        = link_to "[x]", admin_collection_post_path(collection.collection_post_for(post)), method: :delete, data: { confirm: "Are you sure?" }
+        = link_to admin_collection_post_path(collection.collection_post_for(post)), method: :delete, data: { confirm: "Are you sure?" } do
+          i.fa.fa-close data-toggle="tooltip" data-placement="top" title="Remove from this collection"
   - if policy(Collection).create?
-    = link_to "[+]", "#", data: { toggle: "modal", target: "#add_to_collection_#{post.id}" }
+    = link_to "#", data: { toggle: "modal", target: "#add_to_collection_#{post.id}" } do
+      i.fa.fa-plus-circle data-toggle="tooltip" data-placement="top" title="Add to collection"
   a.share href="#"
     i.fa.fa-share-square-o.circle.grey
 

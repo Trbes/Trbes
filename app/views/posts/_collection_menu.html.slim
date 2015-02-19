@@ -1,9 +1,8 @@
 ul.nav.nav-pills.nav-collections
   - current_group.collections.visible.limit(Collection::VISIBLE_COLLECTIONS_COUNT).each do |collection|
     li
-      a href="#"
-        i.fa.circle
-          = cl_image_tag(collection.image.icon)
+      = link_to root_path(collection_id: collection.id) do
+        = cl_image_tag(collection.image.icon)
         = collection.name
 
   li.dropdown.more class=('hint-add-collection' if will_show_add_collection_hint?)
