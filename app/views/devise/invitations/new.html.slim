@@ -43,8 +43,23 @@
                 | PS : I gave you <em>super user</em> rights!
 
         .form-group.fnp-actions
-          .col-sm-offset-2.col-sm-10
-            button.btn.btn-success.btn-lg.btn-fill.btn-send-invite type="submit" Send Invitation
+          .col-sm-offset-2.col-sm-4
+            button#btn_send_invite_template.btn.btn-success.btn-lg.btn-block.btn-fill.btn-send-invite data-rotation-color="azure" style="display: none;" type="submit" Send Invitation
+
+            button.btn.btn-success.btn-lg.btn-block.btn-fill.btn-send-invite data-toggle="morphing" data-rotation-color="azure" type="submit" Send Invitation
+
+      #modal_invitation_success.modal.fade
+        .modal-dialog
+          .modal-content
+            .modal-header
+              button.close aria-label="Close" data-dismiss="modal" type="button"
+                span aria-hidden="true"  &times;
+              h4.modal-title Invitation sent
+            .modal-body
+              p Your invitation has been sent to entered email addresses.
+              p You can invite more friends or go to the group page and start adding content.
+            .modal-footer
+              button.btn.btn-primary.btn-fill data-dismiss="modal" type="button"  OK, I got it.
 
       hr
       .iv-more
