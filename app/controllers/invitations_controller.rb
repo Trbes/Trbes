@@ -18,8 +18,7 @@ class InvitationsController < Devise::InvitationsController
       email_addresses: params[:email_addresses]
     )
 
-    redirect_to root_path(subdomain: group.subdomain),
-      notice: t("devise.invitations.success")
+    head :ok
   end
 
   protected

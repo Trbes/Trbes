@@ -11,7 +11,9 @@
     .iv-crew
       = image_tag("sprite_invite.png")
     .iv-body
-      -# render "application/cloud_sponge"
+      .row
+        .col-sm-10.col-sm-offset-2
+          = render "application/cloud_sponge"
 
       form#form_invite.form-horizontal.form-invite method="post" action=(create_invitation_path)
         = hidden_field_tag :authenticity_token, form_authenticity_token
