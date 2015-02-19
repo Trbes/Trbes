@@ -26,7 +26,7 @@ module Admin
     def destroy
       collection.destroy
 
-      render(:index)
+      redirect_to edit_admin_group_path
     end
 
     private

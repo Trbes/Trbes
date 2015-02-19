@@ -14,6 +14,12 @@ module Admin
       redirect_to admin_edit_collection_path(collection_post.collection)
     end
 
+    def destroy
+      collection_post.destroy
+
+      redirect_to root_path
+    end
+
     private
 
     def collection_post_attributes

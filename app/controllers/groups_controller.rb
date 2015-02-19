@@ -4,7 +4,7 @@ class GroupsController < ApplicationController
   expose(:group, attributes: :group_attributes)
   expose(:post)
   expose(:posts, only: [:show]) do
-    scope = current_group.posts.includes(:attachments, :user, :collections).order_by_votes.page(params[:page])
+    scope = current_group.posts.includes(:attachments, :user, collection_posts: :collection).order_by_votes.page(params[:page])
     scope = scope.where(collection_posts: { collection_id: params[:collection_id] }) if params[:collection_id]
     scope
   end
