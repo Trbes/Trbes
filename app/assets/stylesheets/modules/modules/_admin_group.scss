@@ -1,4 +1,19 @@
 .edit-group {
+  .collection-modal {
+    .inline-select {
+      display: inline-block;
+      width: 90%;
+    }
+
+    .collection-preview {
+      margin-right: 15px;
+    }
+
+    .remove-link {
+      display: inline-block;
+    }
+  }
+
   .group-url {
     display: inline-block;
   }

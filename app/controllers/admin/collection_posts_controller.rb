@@ -11,7 +11,7 @@ module Admin
     def update
       collection_post.save
 
-      redirect_to admin_edit_collection_path(collection_post.collection)
+      redirect_to edit_admin_group_path
     end
 
     def destroy

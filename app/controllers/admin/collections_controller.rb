@@ -11,14 +11,14 @@ module Admin
         current_group: current_group
       ).collection
 
-      respond_with(collection, location: edit_admin_group_path)
+      redirect_to edit_admin_group_path
     end
 
     def update
       success = collection.save
 
       respond_to do |format|
-        format.html { redirect_to(edit_admin_collection_path(collection)) }
+        format.html { redirect_to(edit_admin_group_path) }
         format.json { respond_with_bip(collection) }
       end
     end
@@ -34,6 +34,7 @@ module Admin
     def collection_attributes
       params.require(:collection).permit(
         :image,
+        :image_cache,
         :name,
         :visibility,
         :row_order_position,

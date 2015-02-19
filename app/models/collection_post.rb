@@ -4,7 +4,7 @@ class CollectionPost < ActiveRecord::Base
   scope :ordered, -> { rank(:row_order) }
 
   belongs_to :post, required: true
-  belongs_to :collection, required: true, counter_cache: true
+  belongs_to :collection, required: true, counter_cache: true, inverse_of: :collection_posts
 
   delegate :image, :name, to: :collection, prefix: true
 
