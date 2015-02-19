@@ -136,8 +136,10 @@
     vertical-align: top;
   }
 
-  .link-go-to-group {
-    text-decoration: underline;
+  .btn-go-to-group {
+    display: block;
+    max-width: 320px;
+    margin: 30px auto;
   }
 }
 
