@@ -100,6 +100,26 @@ feature "Posts list" do
     end
   end
 
+  context "when I'm usual member" do
+    let!(:collection) { create(:collection, :visible, group: group) }
+
+    background do
+      user.membership_for(group).member!
+      visit root_path
+    end
+
+    scenario "I can't see any collection-management-related controls on page" do
+      within("#post_#{post.id}") do
+        expect(page).not_to have_css(".add-to-collection")
+        expect(page).not_to have_css(".remove-from-collection")
+      end
+
+      page.find(".dropdown-toggle").click
+
+      expect(page).not_to have_content("Add Collection")
+    end
+  end
+
   context "when I'm group owner" do
     let!(:collection) { create(:collection, :visible, group: group) }
 
