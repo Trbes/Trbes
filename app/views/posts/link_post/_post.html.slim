@@ -6,8 +6,4 @@
       = link_to post.link, post.link, class: "iconify"
     = render "posts/meta", post: post
   .post-right
-    .post-actions
-      a.collection-tag href="#"
-        i.fa.fa-bug.circle.grey
-      a.share href="#"
-        i.fa.fa-share-square-o.circle.grey
+    = render "posts/actions", post: post

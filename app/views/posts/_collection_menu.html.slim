@@ -15,7 +15,7 @@ ul.nav.nav-pills.nav-collections
             = cl_image_tag(collection.image.icon)
             = collection.name
         li.divider role="presentation"
-      - if policy(Collection).new?
+      - if policy(Collection).create?
         li role="presentation"
           = link_to edit_admin_group_path do
             i.fa.fa-plus-circle
