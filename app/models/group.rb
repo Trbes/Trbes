@@ -24,7 +24,6 @@ class Group < ActiveRecord::Base
   delegate :full_name, :avatar, to: :owner, prefix: true
 
   scope :all_public, -> { where(private: false) }
-  scope :all_private, -> { where(private: true) }
 
   algoliasearch do
     attribute :name, :subdomain
