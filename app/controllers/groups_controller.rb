@@ -9,7 +9,7 @@ class GroupsController < ApplicationController
   end
   expose(:public_groups, only: [:index]) do
     presented_groups = view_context.present(Group.all_public.includes(:logo))
-    Kaminari.paginate_array(presented_groups).page(params[:page]).per(10)
+    Kaminari.paginate_array(presented_groups).page(params[:page]).per(20)
   end
 
   def index

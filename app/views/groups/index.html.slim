@@ -7,7 +7,7 @@
 
     .groups-listing
       - public_groups.each do |group|
-        .media.group
+        .media.group id=("group_#{group.id}")
           .media-left
             = link_to group_url(group) do
               = group.listing_logo
