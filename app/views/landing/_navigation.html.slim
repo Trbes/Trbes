@@ -38,24 +38,20 @@
 
         ul.nav.navbar-nav.toggle-target-type
           li.dropdown
-            - if request.path.starts_with? "/teams"
+            - if params[:teams]
               a.dropdown-toggle data-toggle="dropdown" href="#"
                 | ...for Small Teams
                 b.caret
               ul.dropdown-menu
                 li
-                  a href="/customer-communities"  ...for Customer Communities
-            - elsif request.path.starts_with? "/customer-communities"
+                  a href="/"  ...for Customer Communities
+            - else
               a.dropdown-toggle data-toggle="dropdown" href="#"
                 | ...for Customer Communities
                 b.caret
               ul.dropdown-menu
                 li
-                  a href="/teams"  ...for Small Teams
-        ul.nav.navbar-nav.navbar-right.landing-authentication
-          li
-            a.btn.btn-simple.btn-sign-in href=(new_user_session_path) Sign In
-          li
-            a.btn.btn-fill.btn-lg.btn-primary.btn-sign-up href=(new_user_registration_path) Sign Up
+                  a href="/?teams=true"  ...for Small Teams
+        = render "landing/navigation_user"
       hr.border-bottom
 

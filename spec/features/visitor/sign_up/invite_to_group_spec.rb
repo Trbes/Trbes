@@ -35,17 +35,17 @@ feature "Invite to group" do
     end
 
     scenario "User invites another user", js: true do
-      wait_for_ajax
       find("#fiv_emails_tag").set("user1@example.com")
       click_button "Send Invitation"
-      wait_for_ajax
+
+      # Should show success popup.
+      # This also waits for the ajax request to complete,
+      # Which makes the tests that follow pass
+      expect(page).to have_selector("#modal_invitation_success", visible: true)
 
       # Should stay on the page after sending invitation
       expect(page.current_path).to eql new_invitation_path
       expect(User.count).to eql 2
-
-      # Should show success popup
-      expect(page).to have_selector("#modal_invitation_success", visible: true)
 
       # Close popup should reset the emails
       click_button "OK, I got it."
@@ -62,7 +62,6 @@ feature "Invite to group" do
 
     scenario "User invites multiple users", js: true do
       expect {
-        wait_for_ajax
         find("#fiv_emails_tag").set("user1@example.com, user2@example.com")
         click_button "Send Invitation"
         wait_for_ajax
@@ -71,7 +70,6 @@ feature "Invite to group" do
 
     scenario "User enters invalid emails", js: true do
       expect {
-        wait_for_ajax
         find("#fiv_emails_tag").set("user1@example., @example.com, some name")
         click_button "Send Invitation"
         wait_for_ajax

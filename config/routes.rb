@@ -40,19 +40,7 @@ Rails.application.routes.draw do
 
   get "/groups/:subdomain", to: "groups#show"
 
-  # Front pages
-  get "/teams", to: "landing#teams"
-  get "/customer-communities", to: "landing#customer_communities"
+  get "/explore", to: "groups#index"
 
-  # Plain front-end templates
-  get "/frontend/posts" => "frontend#posts"
-  get "/frontend/sign_up" => "frontend#sign_up"
-  get "/frontend/sign_in" => "frontend#sign_in"
-  get "/frontend/thank_you" => "frontend#thank_you"
-  get "/frontend/invite" => "frontend#invite"
-  get "/frontend/create_group" => "frontend#create_group"
-  get "/frontend/single_post" => "frontend#single_post"
-  get "/frontend/home" => "frontend#home"
-
-  root to: "dashboard#index"
+  root to: "landing#index"
 end

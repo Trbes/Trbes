@@ -1,9 +1,5 @@
 class LandingController < ApplicationController
-  layout "landing"
-
-  def teams
-  end
-
-  def customer_communities
+  def index
+    render(params[:teams] ? "teams" : "customer_communities")
   end
 end

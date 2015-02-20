@@ -11,7 +11,7 @@ feature "Cancel account" do
     visit edit_user_registration_path(user)
     click_link "Cancel my account"
 
-    expect(page).to have_content("Sign in")
+    expect(page).to have_content("Sign In")
     expect(page).to have_content("Bye! Your account was successfully cancelled. We hope to see you again soon.")
 
     visit new_user_session_path

@@ -23,6 +23,8 @@ class Group < ActiveRecord::Base
   delegate :image, to: :logo, prefix: true, allow_nil: true
   delegate :full_name, :avatar, to: :owner, prefix: true
 
+  scope :all_public, -> { where(private: false) }
+
   algoliasearch do
     attribute :name, :subdomain
 

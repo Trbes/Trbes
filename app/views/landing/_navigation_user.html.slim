@@ -1,12 +1,12 @@
 - if user_signed_in?
-  ul.nav.navbar-nav.navbar-right
+  ul.nav.navbar-nav.navbar-right.landing-profile
     li.pull-left.dropdown.dropdown-profile
       a.dropdown-toggle aria-expanded="false" data-toggle="dropdown" href="#" role="button"
         div.profile-info
+          = image_tag("default_avatar.jpg", class: "profile-photo", width: 32, height: 32)
           = current_user.full_name
-          div Using <strong>default</strong> profile
-        = image_tag("default_avatar.jpg", class: "profile-photo", width: 48, height: 48)
-        / span.caret
+
+          span.caret
       ul.dropdown-menu role="menu"
         li
           a href=edit_user_registration_path
@@ -14,13 +14,8 @@
         li
           a href=destroy_user_session_path
             = t("app.navigation.user.sign_out")
-    - if current_group
-      li.pull-right.add-post
-        a#btn_add_post.btn.btn-fill.btn-primary.navbar-btn.btn-add-post href="#"
-          i.fa.fa-plus
-          span Add
 - else
-  ul.nav.navbar-nav.navbar-right.authentication-links
+  ul.nav.navbar-nav.navbar-right.landing-authentication
     li
       a.btn.btn-simple.btn-sign-in href=(new_user_session_path) Sign In
     li

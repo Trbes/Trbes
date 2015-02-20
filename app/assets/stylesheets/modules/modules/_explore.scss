@@ -1,0 +1,64 @@
+.explore-trbes {
+  margin-bottom: 60px;
+
+  .page-header {
+    @include clearfix;
+    margin-bottom: 40px;
+
+    .page-title {
+      margin: 0;
+      float: left;
+    }
+  }
+}
+
+.groups-listing {
+  .group-info {
+    display: table-cell;
+    width: 10000px;
+    vertical-align: top;
+  }
+
+  .group-actions {
+    display: table-cell;
+    vertical-align: top;
+    padding-top: 30px;
+  }
+
+  .group-name {
+    display: block;
+    font-size: 1.3em;
+    line-height: 1.3em;
+    font-weight: bold;
+    color: #727272;
+    margin: 0;
+
+    @include on_link_actions {
+      text-decoration: underline;
+    }
+  }
+
+  .group-tagline {
+    font-style: italic;
+    color: #908F8F;
+    font-size: 1.1em;
+    line-height: 1.5em;
+  }
+
+  .group-desc {
+    margin-top: 5px;
+    font-size: 1.1em;
+    color: #908F8F;
+  }
+
+  .group-meta {
+    margin-top: 10px;
+    color: #B8B8B8;
+
+    .group-owner {
+      img {
+        border-radius: 64px;
+      }
+    }
+  }
+}
