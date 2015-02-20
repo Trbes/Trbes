@@ -4,11 +4,27 @@
 .btn-success.btn-bright-success {
   $color: #049F0C;
 
-  background-color: $color;
-  border-color: $color;
+  color: white !important;
+  background-color: $color !important;
+  border-color: $color !important;
 
   @include on_link_actions {
-    background-color: darken($color, 5%);
-    border-color: darken($color, 5%);
+    background-color: darken($color, 5%) !important;
+    border-color: darken($color, 5%) !important;
   }
 }
+
+.btn-primary.btn-bright-primary {
+  $color: #2ca8ff;
+  $active_color: #1D62F0;
+
+  color: white !important;
+  background-color: $color !important;
+  border-color: $color !important;
+
+  @include on_link_actions {
+    background-color: $active_color !important;
+    border-color: $active_color !important;
+  }
+}
+

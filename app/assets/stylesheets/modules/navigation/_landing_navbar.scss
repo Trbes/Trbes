@@ -62,15 +62,7 @@
             }
 
             &.btn-sign-up {
-              color: white;
-              background-color: #2ca8ff;
-              border-color: #2ca8ff;
               min-width: 170px;
-
-              @include on_link_actions {
-                background-color: #1D62F0;
-                border-color: #1D62F0;
-              }
 
               // Ipad
               @include breakpoint($screen-sm $screen-md - 1) {

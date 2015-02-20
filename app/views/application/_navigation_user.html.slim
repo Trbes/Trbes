@@ -1,5 +1,5 @@
-ul.nav.navbar-nav.navbar-right
-  - if user_signed_in?
+- if user_signed_in?
+  ul.nav.navbar-nav.navbar-right
     li.pull-left.dropdown.dropdown-profile
       a.dropdown-toggle aria-expanded="false" data-toggle="dropdown" href="#" role="button"
         div.profile-info
@@ -19,6 +19,9 @@ ul.nav.navbar-nav.navbar-right
         a#btn_add_post.btn.btn-fill.btn-primary.navbar-btn.btn-add-post href="#"
           i.fa.fa-plus
           span Add
-  - else
-    = active_link_to t("app.navigation.user.sign_in"), new_user_session_path, active: :exclusive, wrap_tag: :li
-    = active_link_to t("app.navigation.user.sign_up"), new_user_registration_path, active: :exclusive, wrap_tag: :li
+- else
+  ul.nav.navbar-nav.navbar-right.authentication-links
+    li
+      a.btn.btn-simple.btn-sign-in href=(new_user_session_path) Sign In
+    li
+      a.btn.btn-fill.btn-lg.btn-primary.btn-bright-primary.btn-sign-up href=(new_user_registration_path) Sign Up
