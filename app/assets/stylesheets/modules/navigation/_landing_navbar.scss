@@ -79,6 +79,20 @@
             }
           }
         }
+
+        &.landing-profile {
+          margin-top: 64px;
+
+          // Medium desktop
+          @include breakpoint(0 $screen-lg - 1) {
+            margin-top: 64px;
+          }
+
+          // Ipad
+          @include breakpoint($screen-sm $screen-md - 1) {
+            margin-top: 28px;
+          }
+        }
       }
     }
 

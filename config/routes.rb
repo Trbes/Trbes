@@ -40,7 +40,7 @@ Rails.application.routes.draw do
 
   get "/groups/:subdomain", to: "groups#show"
 
-  get "/explore", to: "landing#explore"
+  get "/explore", to: "groups#index"
 
   root to: "landing#index"
 end

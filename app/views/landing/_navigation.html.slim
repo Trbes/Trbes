@@ -52,10 +52,6 @@
               ul.dropdown-menu
                 li
                   a href="/?teams=true"  ...for Small Teams
-        ul.nav.navbar-nav.navbar-right.landing-authentication
-          li
-            a.btn.btn-simple.btn-sign-in href=(new_user_session_path) Sign In
-          li
-            a.btn.btn-fill.btn-lg.btn-primary.btn-sign-up href=(new_user_registration_path) Sign Up
+        = render "landing/navigation_user"
       hr.border-bottom
 
