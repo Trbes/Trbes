@@ -22,6 +22,7 @@ $ ->
   new AddPost($(".btn-add-post"))
   new GroupSearch($("input#group_search"))
   new PostSearch($("input#post_search"))
+  new SendInvite($(".form-invite"))
 
   $('.cloudinary-fileupload').bind 'cloudinarydone', (e, data) ->
     $('#preview').html $.cloudinary.image(data.result.public_id,
@@ -52,3 +53,5 @@ $ ->
 
   $("#moderator_id").on "change", (e) ->
     $("form#add_moderator").attr("action", "/admin/memberships/#{this.value}")
+
+

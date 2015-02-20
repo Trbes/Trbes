@@ -1,0 +1,24 @@
+// Fix cloud sponge popup visual bug
+#fbBox {
+  box-sizing: content-box;
+
+  * {
+    box-sizing: content-box;
+  }
+}
+
+.section-cloud-sponge {
+  margin-bottom: 30px;
+
+  #contact_list {
+    display: none;
+  }
+
+  .title {
+    margin-bottom: 5px;
+  }
+
+  a.deep-link {
+    margin-right: 7px;
+  }
+}

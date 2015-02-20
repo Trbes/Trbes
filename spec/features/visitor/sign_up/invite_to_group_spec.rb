@@ -34,25 +34,48 @@ feature "Invite to group" do
       expect(page.current_path).to eql new_invitation_path
     end
 
-    scenario "User invites another user" do
-      expect {
-        find("#fiv_emails").set("user1@example.com")
-        click_button "Send Invitation"
-      }.to change { User.count }.by(1)
+    scenario "User invites another user", js: true do
+      wait_for_ajax
+      find("#fiv_emails_tag").set("user1@example.com")
+      click_button "Send Invitation"
+      wait_for_ajax
+
+      # Should stay on the page after sending invitation
+      expect(page.current_path).to eql new_invitation_path
+      expect(User.count).to eql 2
+
+      # Should show success popup
+      expect(page).to have_selector("#modal_invitation_success", visible: true)
+
+      # Close popup should reset the emails
+      click_button "OK, I got it."
+      expect(page).to have_selector("#modal_invitation_success", visible: false)
+      expect(find("#fiv_emails", visible: false).value).to eql ""
+
+      # Test the flow once again
+      find("#fiv_emails_tag").set("user2@example.com")
+      click_button "Send Invitation"
+      wait_for_ajax
+      expect(page.current_path).to eql new_invitation_path
+      expect(User.count).to eql 3
     end
 
-    scenario "User invites multiple users" do
+    scenario "User invites multiple users", js: true do
       expect {
-        find("#fiv_emails").set("user1@example.com,user2@example.com")
+        wait_for_ajax
+        find("#fiv_emails_tag").set("user1@example.com, user2@example.com")
         click_button "Send Invitation"
+        wait_for_ajax
       }.to change { User.count }.by(2)
     end
 
-    scenario "User enters invalid emails" do
+    scenario "User enters invalid emails", js: true do
       expect {
-        find("#fiv_emails").set("user1@example.,@example.com")
+        wait_for_ajax
+        find("#fiv_emails_tag").set("user1@example., @example.com, some name")
         click_button "Send Invitation"
-      }.to_not change { User.count }
+        wait_for_ajax
+      }.not_to change { User.count }
     end
   end
 

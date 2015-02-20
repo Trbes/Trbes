@@ -75,6 +75,7 @@
     border: 1px solid #DDDDDD;
     border-radius: 4px;
     padding: 5px 5px 0;
+    max-height: 160px;
 
     .tag {
       margin-top: 0;
@@ -136,8 +137,10 @@
     vertical-align: top;
   }
 
-  .link-go-to-group {
-    text-decoration: underline;
+  .btn-go-to-group {
+    display: block;
+    max-width: 320px;
+    margin: 30px auto;
   }
 }
 

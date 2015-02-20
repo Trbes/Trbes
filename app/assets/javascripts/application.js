@@ -7,7 +7,9 @@
 //= require jquery
 //= require jquery_ujs
 //= require cloudinary
+//= require cloud_sponge
 //= require bootstrap-sass-official
+//= require jquery-form
 //= require jquery-validation
 //= require gsdk
 //= require_tree ./trbes

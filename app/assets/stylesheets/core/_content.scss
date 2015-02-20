@@ -1,2 +1,14 @@
 @import 'fonts';
 @import 'icons';
+
+.btn-success.btn-bright-success {
+  $color: #049F0C;
+
+  background-color: $color;
+  border-color: $color;
+
+  @include on_link_actions {
+    background-color: darken($color, 5%);
+    border-color: darken($color, 5%);
+  }
+}

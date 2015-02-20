@@ -14,12 +14,11 @@ class InvitationsController < Devise::InvitationsController
 
     SendInvitation.call(
       inviter: current_user,
-      group: (group = Group.find(params[:group_id])),
+      group: Group.find(params[:group_id]),
       email_addresses: params[:email_addresses]
     )
 
-    redirect_to root_path(subdomain: group.subdomain),
-      notice: t("devise.invitations.success")
+    head :ok
   end
 
   protected

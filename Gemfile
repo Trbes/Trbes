@@ -92,4 +92,5 @@ source "https://rails-assets.org" do
   gem "rails-assets-respond"
   gem "rails-assets-enquire"
   gem "rails-assets-jquery-validation"
+  gem "rails-assets-jquery-form"
 end
