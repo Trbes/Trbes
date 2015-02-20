@@ -4,9 +4,10 @@ nav#main_sliding_menu.js-menu.sliding-menu-content
       | ← Back
     = link_to root_url(subdomain: nil), class: "pull-left brand" do
       = image_tag("logo_full_white.png")
-    = link_to new_group_path, class: "pull-right btn-create-group" do
-      | +&nbsp;
-      span= t("app.main_sliding_menu.create_group")
+    - if user_signed_in?
+      = link_to new_group_path, class: "pull-right btn-create-group" do
+        | +&nbsp;
+        span= t("app.main_sliding_menu.create_group")
 
   - if user_signed_in?
     .container-fluid.my-trbes
@@ -24,8 +25,9 @@ nav#main_sliding_menu.js-menu.sliding-menu-content
       span#search_sliding_menu.input-group-addon
         i.fa.fa-search
       input#group_search.form-control aria-describedby="search_sliding_menu" placeholder="Search for groups" type="search"
-    a.favorites href="#"
-      i.fa.fa-star-o
-      span.text Favorites
+    - if user_signed_in?
+      a.favorites href="#"
+        i.fa.fa-star-o
+        span.text Favorites
 
 .js-menu-screen.sliding-menu-fade-screen
