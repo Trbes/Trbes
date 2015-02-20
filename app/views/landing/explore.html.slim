@@ -1,0 +1,34 @@
+.container
+  .explore-trbes
+    header.page-header
+      h1.page-title Explore Public Trbes
+      - if user_signed_in?
+        = link_to "Create your FREE Trbes", new_group_path, class: "btn btn-success btn-fill pull-right"
+
+    .groups-listing
+      - groups.each do |group|
+        .media.group
+          .media-left
+            = link_to group_url(group) do
+              = group.listing_logo
+          .media-body
+            .group-info
+              a.media-heading.group-name href=(group_url(group)) = group.name
+              .group-tagline = group.tagline
+
+              .group-desc
+                = group.description
+
+              .group-meta
+                - if (owner = group.owner)
+                  | Created by
+                  a.group-owner<> href="#" #{image_tag(owner.avatar, width: 16, height: 16)} #{owner.full_name}
+                  | •&nbsp;
+                |  #{group.memberships_count_link} • #{group.posts_count_link}
+            .group-actions
+              a.btn.btn-fill href="#" Join
+
+      = paginate(groups)
+
+
+
