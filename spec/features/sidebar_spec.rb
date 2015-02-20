@@ -4,7 +4,7 @@ feature "Sidebar" do
   let!(:group) { create(:group) }
 
   background do
-    visit root_path
+    visit "/explore"
   end
 
   scenario "Search for groups", js: true do

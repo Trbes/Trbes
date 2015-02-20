@@ -1,5 +1,5 @@
 class LandingController < ApplicationController
   def index
-    render (params[:teams] ? "teams" : "customer_communities")
+    render(params[:teams] ? "teams" : "customer_communities")
   end
 end

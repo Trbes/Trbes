@@ -29,8 +29,10 @@ class GroupPresenter < BasePresenter
 
   def listing_logo
     tag_options = { class: "media-object group-logo", width: 138, height: 115 }
-    @model.logo_image ?
-      h.cl_image_tag(@model.logo_image.logo, tag_options) :
+    if @model.logo_image
+      h.cl_image_tag(@model.logo_image.logo, tag_options)
+    else
       h.cl_image_tag("http://placekitten.com/g/138/115", tag_options)
+    end
   end
 end
