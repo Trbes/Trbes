@@ -9,7 +9,7 @@
             method: :delete,
             data: { confirm: "Are you sure?" } do
           i.fa.fa-close data-toggle="tooltip" data-placement="top" title="Remove from this collection"
-  - if policy(Collection).create?
+  - if policy(CollectionPost).create?
     = link_to "#", class: "add-to-collection", data: { toggle: "modal", target: "#add_to_collection_#{post.id}" } do
       i.fa.fa-plus-circle data-toggle="tooltip" data-placement="top" title="Add to collection"
   a.share href="#"
