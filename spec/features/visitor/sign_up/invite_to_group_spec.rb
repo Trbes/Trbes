@@ -55,8 +55,13 @@ feature "Invite to group" do
       # Test the flow once again
       find("#fiv_emails_tag").set("user2@example.com")
       click_button "Send Invitation"
+      wait_for_ajax
+      expect(page).to have_selector("#modal_invitation_success", visible: true)
       expect(page.current_path).to eql new_invitation_path
       expect(User.count).to eql 3
+      click_button "OK, I got it."
+      expect(page).to have_selector("#modal_invitation_success", visible: false)
+      expect(find("#fiv_emails", visible: false).value).to eql ""
     end
 
     scenario "User invites multiple users", js: true do
