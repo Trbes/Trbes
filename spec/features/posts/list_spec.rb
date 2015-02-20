@@ -49,4 +49,94 @@ feature "Posts list" do
       expect(page).to have_css(".post", count: 1)
     end
   end
+
+  describe "filtering" do
+    let!(:collection) { create(:collection, :visible, group: group) }
+    let!(:another_collection) { create(:collection, :visible, group: group) }
+    let!(:another_post) { create(:post, :text, group: group) }
+
+    background do
+      post.collections << collection
+      another_post.collections << another_collection
+      visit root_path
+    end
+
+    context "by clicking on collection within post" do
+      scenario "I can filter posts by selected collection" do
+        within("#post_#{post.id}") do
+          page.find("#collection_#{collection.id} a").click
+        end
+
+        expect(page).to have_content(post.title)
+        expect(page).not_to have_content(another_post.title)
+
+        visit root_path
+
+        within("#post_#{another_post.id}") do
+          page.find("#collection_#{another_collection.id} a").click
+        end
+
+        expect(page).to have_content(another_post.title)
+        expect(page).not_to have_content(post.title)
+      end
+    end
+
+    context "by clicking on collection within collections list" do
+      scenario "I can filter posts by selected collection" do
+        within(".nav-collections") do
+          page.find("#collection_#{collection.id}").click
+        end
+
+        expect(page).to have_content(post.title)
+        expect(page).not_to have_content(another_post.title)
+
+        within(".nav-collections") do
+          page.find("#collection_#{another_collection.id}").click
+        end
+
+        expect(page).to have_content(another_post.title)
+        expect(page).not_to have_content(post.title)
+      end
+    end
+  end
+
+  context "when I'm group owner" do
+    let!(:collection) { create(:collection, :visible, group: group) }
+
+    background do
+      user.membership_for(group).owner!
+      visit root_path
+    end
+
+    scenario "I can add post to collection" do
+      within("#post_#{post.id}") do
+        page.find(".add-to-collection").click
+      end
+
+      select(collection.name, from: "Collection")
+      click_button "Add"
+
+      within("#post_#{post.id}") do
+        expect(page).to have_css("#collection_#{collection.id}")
+      end
+
+      expect(post.reload.collections).to eq([collection])
+    end
+
+    scenario "I can remove post from collection" do
+      post.collections << collection
+
+      visit root_path
+
+      within("#post_#{post.id} #collection_#{collection.id}") do
+        page.find(".remove-from-collection").click
+      end
+
+      within("#post_#{post.id}") do
+        expect(page).not_to have_css("#collection_#{collection.id}")
+      end
+
+      expect(post.reload.collections).to be_empty
+    end
+  end
 end

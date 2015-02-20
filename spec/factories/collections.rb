@@ -9,5 +9,9 @@ FactoryGirl.define do
     description { Faker::Company.catch_phrase }
 
     group
+
+    trait :visible do
+      visibility { true }
+    end
   end
 end
