@@ -6,6 +6,8 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require jquery-ui/sortable
+//= require jquery-ui/effect-highlight
 //= require cloudinary
 //= require cloud_sponge
 //= require bootstrap-sass-official
@@ -19,3 +21,4 @@
 //= require algolia/typeahead.jquery
 //= require best_in_place
 //= require best_in_place.jquery-ui
+//= require jquery_nested_form

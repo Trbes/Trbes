@@ -7,8 +7,4 @@
     = render "posts/meta", post: post
   .post-right
     = preview_image(post)
-    .post-actions
-      a.collection-tag href="#"
-        i.fa.fa-bug.circle.grey
-      a.share href="#"
-        i.fa.fa-share-square-o.circle.grey
+    = render "posts/actions", post: post

@@ -12,7 +12,7 @@ section.about.clearfix
       = form_for(:group, method: :put, url: admin_group_path) do |f|
         - if policy(group).update?
           p 100x100 pixels
-          = link_to "add image", "#", class: "upload control"
+          = link_to "upload image", "#", class: "upload control"
 
         .file-uploader.hidden
           = f.fields_for :logo, group.logo do |logo_fields|

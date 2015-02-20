@@ -1,8 +1,9 @@
 require "rails_helper"
 
-feature "Create collection" do
+feature "Destroy collection" do
   let(:user) { create(:user, :confirmed) }
   let(:group) { create(:group, users: [user]) }
+  let(:collection) { create(:collection, :visible) }
 
   background do
     switch_to_subdomain(group.subdomain)
@@ -12,22 +13,19 @@ feature "Create collection" do
   context "when I'm group owner", js: true do
     background do
       user.membership_for(group).owner!
+      group.collections << collection
       visit edit_admin_group_path
     end
 
-    scenario "I can create a collection" do
-      within(".collections") do
-        click_link "add"
+    scenario "I can destroy a collection" do
+      within(".collection[data-id='#{collection.id}']") do
+        click_link "delete"
       end
 
-      fill_in "Name", with: "Name"
-      attach_file "collection_image", "spec/support/trbes.png"
-
-      click_button "Save"
-
       expect(page).to have_content("Group")
-      expect(Collection.count).to eq(1)
       expect(current_path).to eq(edit_admin_group_path)
+      expect(page).not_to have_css(".collection[data-id='#{collection.id}']")
+      expect(Collection.count).to eq(0)
     end
   end
 end

@@ -26,6 +26,7 @@ Rails.application.routes.draw do
       resource :group, only: %i( edit update destroy )
       resources :memberships, only: %i( update )
       resources :collections, only: %i( index show new create edit update destroy )
+      resources :collection_posts, only: %i( create update destroy )
     end
 
     devise_scope :user do

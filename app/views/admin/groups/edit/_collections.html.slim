@@ -2,24 +2,58 @@ section.collections#collections
   h4.section-name Collections
   hr.section-separator
 
-    .collections-list
-      - group.collections.each do |collection|
-        .collection.clearfix
+    .collections-list data-items=".collection"
+      - group.collections.ordered.includes(:collection_posts).each do |collection|
+        .collection.clearfix data-id=(collection.id) data-path="/admin/collections" data-resource="collection"
           = cl_image_tag(collection.image.icon, class: "collection-image")
           span.collection-name= collection.name
-          span.collection-posts-count= link_to collection.posts_count, "#"
+          span.collection-posts-count= link_to collection.collection_posts_count, "#"
           span.collection-visibility
-            = best_in_place collection,
-                :visibility,
-                as: :checkbox,
-                collection: ["Shown on group pages", "Not shown on group pages"],
-                url: admin_collection_path(collection)
+            = link_to "#" do
+              = best_in_place collection,
+                  :visibility,
+                  as: :checkbox,
+                  collection: ["Not shown on group pages", "Shown on group pages"],
+                  url: admin_collection_path(collection)
 
           .controls
-            = link_to "reoder", "#", class: "control"
+            = link_to "#" do
+              i.fa.fa-arrows
             .controls-separator
-            = link_to "edit", edit_admin_collection_path(collection), class: "control"
+            = link_to "edit", "#", class: "control", data: { toggle: "modal", target: "#edit_collection_#{collection.id}" }
             .controls-separator
             = link_to "delete", admin_collection_path(collection), method: :delete, class: "control", data: { confirm: "Are you sure?" }
 
-      = link_to "add", new_admin_collection_path, class: "control"
+      = link_to "add", "#", class: "control", data: { toggle: "modal", target: "#add_collection" }
+
+      - group.collections.ordered.includes(:collection_posts).each do |collection|
+        .modal.collection-modal.fade id="edit_collection_#{collection.id}" tabindex="-1" role="dialog" aria-labelledby="edit_collection" aria-hidden="true"
+          .modal-dialog
+            .modal-content
+              .modal-header
+                button.close type="button" data-dismiss="modal" aria-label="Close"
+                  span aria-hidden="true" &times;
+                h4.modal-title#edit_collection Edit collection
+
+                = simple_nested_form_for([:admin, collection]) do |f|
+                  .modal-body
+                    = render "admin/collections/fields", f: f, collection: collection
+                  .modal-footer
+                    button.btn.btn-default type="button" data-dismiss="modal" Close
+                    = f.submit "Save", class: "btn btn-primary"
+
+      .modal.collection-modal.fade id="add_collection" tabindex="-1" role="dialog" aria-labelledby="add_collection" aria-hidden="true"
+        .modal-dialog
+          .modal-content
+            .modal-header
+              button.close type="button" data-dismiss="modal" aria-label="Close"
+                span aria-hidden="true" &times;
+              h4.modal-title#add_collection Edit collection
+
+              = simple_nested_form_for([:admin, Collection.new]) do |f|
+                .modal-body
+                  = render "admin/collections/fields", f: f, collection: Collection.new
+                .modal-footer
+                  button.btn.btn-default type="button" data-dismiss="modal" Close
+                  = f.submit "Save", class: "btn btn-primary"
+

@@ -17,9 +17,9 @@
         i.fa.fa-info-circle
         | Use the «<u>Write more</u>» link to use rich text and publish long form How-To articles.
 
-    = render "posts/text_post/form", post: post
-    = render "posts/link_post/form", post: post
-    = render "posts/image_post/form", post: post
+    = render "posts/text_post/form", post: Post.new
+    = render "posts/link_post/form", post: Post.new
+    = render "posts/image_post/form", post: Post.new
 
     .row
       .col-sm-2

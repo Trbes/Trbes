@@ -2,9 +2,10 @@ class GroupsController < ApplicationController
   before_action :ensure_group_is_loaded!, only: [:show]
 
   expose(:group, attributes: :group_attributes)
-  expose(:post)
   expose(:posts, only: [:show]) do
-    current_group.posts.includes(:attachments, :user).order_by_votes.page(params[:page])
+    scope = current_group.posts.includes(:attachments, :user).order_by_votes.page(params[:page])
+
+    params[:collection_id] ? scope.includes(:collection_posts).for_collection(params[:collection_id]) : scope
   end
 
   def new

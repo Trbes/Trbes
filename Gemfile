@@ -12,11 +12,14 @@ gem "sass-rails", "~> 5.0"
 gem "slim"
 gem "coffee-rails", "~> 4.1.0"
 gem "jquery-rails"
+gem "jquery-ui-rails"
 gem "autoprefixer-rails"
 gem "therubyracer", platforms: :ruby
 gem "uglifier", ">= 1.3.0"
+gem "best_in_place", git: "https://github.com/airatshigapov/best_in_place", ref: "4a515a6"
 
 gem "simple_form", "~> 3.1"
+gem "nested_form"
 gem "active_link_to"
 gem "title"
 
@@ -38,8 +41,8 @@ gem "friendly_id"
 gem "algoliasearch-rails"
 gem "gon"
 gem "attribute_normalizer"
-gem "best_in_place", git: "https://github.com/airatshigapov/best_in_place", ref: "4a515a6"
 gem "sucker_punch"
+gem "ranked-model"
 
 group :staging, :production do
   gem "rails_12factor"

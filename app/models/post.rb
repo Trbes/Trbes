@@ -6,9 +6,12 @@ class Post < ActiveRecord::Base
 
   scope :order_by_votes, -> { order(cached_votes_total: :desc) }
   scope :order_by_created_at, -> { order(created_at: :desc) }
+  scope :for_collection, -> (collection_id) { where(collection_posts: { collection_id: collection_id }) }
 
   has_many :comments, dependent: :destroy
   has_many :attachments, as: :attachable, dependent: :destroy
+  has_many :collection_posts, dependent: :destroy
+  has_many :collections, through: :collection_posts
   belongs_to :group, counter_cache: true, required: true
   belongs_to :user, required: true
 

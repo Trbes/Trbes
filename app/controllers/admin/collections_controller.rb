@@ -6,19 +6,19 @@ module Admin
     expose(:collection, attributes: :collection_attributes)
 
     def create
-      collection = CreateCollection.call(
+      CreateCollection.call(
         attributes: collection_attributes,
         current_group: current_group
-      ).collection
+      )
 
-      respond_with(collection, location: [:admin, collection])
+      redirect_to edit_admin_group_path
     end
 
     def update
-      success = collection.update_attributes(collection_attributes)
+      collection.save
 
       respond_to do |format|
-        format.html { success ? redirect_to([:admin, collection]) : render(:edit) }
+        format.html { redirect_to(edit_admin_group_path) }
         format.json { respond_with_bip(collection) }
       end
     end
@@ -26,13 +26,20 @@ module Admin
     def destroy
       collection.destroy
 
-      render(:index)
+      redirect_to edit_admin_group_path
     end
 
     private
 
     def collection_attributes
-      params.require(:collection).permit(:image, :name, :visibility)
+      params.require(:collection).permit(
+        :image,
+        :image_cache,
+        :name,
+        :visibility,
+        :row_order_position,
+        collection_posts_attributes: %i( post_id id _destroy )
+      )
     end
   end
 end
