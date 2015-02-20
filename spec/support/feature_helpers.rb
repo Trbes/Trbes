@@ -24,6 +24,7 @@ RSpec.configure do |config|
   Capybara.default_host = "http://#{DEFAULT_HOST}"
   Capybara.server_port = DEFAULT_PORT
   Capybara.app_host = "http://#{DEFAULT_HOST}:#{Capybara.server_port}"
+  Capybara.default_wait_time = 5
 
   config.before :each, :js, type: :feature do |example|
     if example.metadata[:js]

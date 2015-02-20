@@ -38,7 +38,7 @@ class FakeAlgoliaSearch < Sinatra::Base
   end
 
   def self.boot
-    Capybara::Server.new(new).tap(&:boot)
+    Capybara::Server.new(new, 4567).tap(&:boot)
   end
 end
 
