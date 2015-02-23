@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150223082934) do
+ActiveRecord::Schema.define(version: 20150223141853) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -106,7 +106,7 @@ ActiveRecord::Schema.define(version: 20150223082934) do
     t.integer  "group_id"
     t.datetime "created_at",             null: false
     t.datetime "updated_at",             null: false
-    t.integer  "role",       default: 0, null: false
+    t.integer  "role",       default: 3, null: false
   end
 
   add_index "memberships", ["group_id"], name: "index_memberships_on_group_id", using: :btree
@@ -124,6 +124,7 @@ ActiveRecord::Schema.define(version: 20150223082934) do
     t.integer  "post_type",          default: 0, null: false
     t.string   "body"
     t.string   "link"
+    t.integer  "state",              default: 0, null: false
   end
 
   add_index "posts", ["cached_votes_total"], name: "index_posts_on_cached_votes_total", using: :btree

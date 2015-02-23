@@ -1,4 +1,5 @@
 class CreatePost
+  include Pundit
   include Interactor
 
   def call
@@ -12,9 +13,14 @@ class CreatePost
       attributes.merge(
         user: context.current_user,
         group: context.current_group,
-        attachments_attributes: attributes[:attachments_attributes] || []
+        attachments_attributes: attributes[:attachments_attributes] || [],
+        state: policy(Post).publish? ? :published : :moderation
       )
     )
+  end
+
+  def pundit_user
+    context.current_user.membership_for(context.current_group)
   end
 
   def attributes

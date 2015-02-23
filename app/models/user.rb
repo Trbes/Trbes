@@ -14,8 +14,4 @@ class User < ActiveRecord::Base
   def membership_for(group)
     memberships.for_group(group).first
   end
-
-  def avatar
-    self[:avatar] || "https://placekitten.com/g/25/25"
-  end
 end

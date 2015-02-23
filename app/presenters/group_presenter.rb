@@ -12,7 +12,7 @@ class GroupPresenter < BasePresenter
   end
 
   def latest_posts
-    posts.order_by_created_at.limit(4).includes(:user).map { |post| h.present(post) }
+    posts.order_by_created_at.limit(4).includes(user: :avatar).map { |post| h.present(post) }
   end
 
   def host

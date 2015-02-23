@@ -29,4 +29,5 @@
             data: { toggle: "tooltip", placement: "top" },
             title: moderator.full_name
         - if policy(current_membership).manage_moderators?
-          = link_to "[x]", admin_membership_path(moderator, membership: { role: :member }), method: :put
+          = link_to admin_membership_path(moderator, membership: { role: :member }), method: :put do
+            i.fa.fa-times

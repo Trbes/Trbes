@@ -10,7 +10,7 @@ class Membership < ActiveRecord::Base
 
   delegate :full_name, :avatar, to: :user
 
-  enum role: %i(member moderator owner)
+  enum role: %i(member moderator owner pending)
 
   attr_accessor :new_group_owner_id
 end
