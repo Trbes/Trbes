@@ -10,6 +10,7 @@
         div.user-title< = current_user.title
 
     = simple_form_for([post, Comment.new], html: { class: "form-pac" }) do |f|
+      = f.input :parent_comment_id, as: :hidden, input_html: { class: "parent-comment-id" }
       = f.input :body,
         as: :text,
         label: false,

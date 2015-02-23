@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150219122412) do
+ActiveRecord::Schema.define(version: 20150223082934) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -58,6 +58,7 @@ ActiveRecord::Schema.define(version: 20150219122412) do
     t.datetime "created_at",                     null: false
     t.datetime "updated_at",                     null: false
     t.integer  "cached_votes_total", default: 0
+    t.integer  "parent_comment_id"
   end
 
   add_index "comments", ["cached_votes_total"], name: "index_comments_on_cached_votes_total", using: :btree

@@ -1,13 +1,14 @@
-= div_for(comment)
+= div_for(comment, data: { id: comment.id} )
   .comment-left
     .comment-upvote
       = link_to(comment_upvote_path(comment), class: "vote") do
         i.fa.fa-thumbs-up
       .vote-count = comment.cached_votes_total
-    .comment-reply
-      a.reply href="#"
-        i.fa.fa-mail-reply
-        | reply
+    - if policy(comment).create_nested?
+      .comment-reply
+        a.reply href="#"
+          i.fa.fa-mail-reply
+          | reply
 
   .comment-content
     header.comment-header
@@ -26,3 +27,7 @@
           | posted #{distance_of_time_in_words_to_now(comment.created_at) } ago
     .comment-body
       = comment.body
+
+- comment.child_comments.each do |child_comment|
+  .comment-nested
+    = render "comments/comment", comment: child_comment

@@ -33,13 +33,11 @@
           - elsif post.post_type == "image_post"
             = cl_image_tag(post.preview_image)
 
-    / This is temporary. Need to use best comment later.
-    - if post.comments.count > 0
-      section.list-section.best-comment
-        header.section-header.sbc-header
-          i.fa.fa-star-o
-          span.section-count.sbc-count 1
-        = render "comments/comment", comment: post.comments.first
+    section.list-section.best-comment
+      header.section-header.sbc-header
+        i.fa.fa-star-o
+        span.section-count.sbc-count 1
+      = render "comments/comment", comment: post.best_comment
 
     section.list-section.all-comments
       header.section-header.sbc-header
@@ -49,8 +47,7 @@
       = render "comments/form"
 
       .comments
-        = render post.comments.includes(:user)
-
+        = render post.comments.root.includes(:user, :child_comments)
 
 - content_for :javascripts do
   coffee:
@@ -70,6 +67,5 @@
         form = $(".post-a-comment").eq(0).clone()
         form.addClass("nested").
           find("textarea").val("").prop("placeholder", "Write a nice reply...")
+        form.find(".parent-comment-id").val(comment.data("id"))
         form.insertAfter(comment)
-
-

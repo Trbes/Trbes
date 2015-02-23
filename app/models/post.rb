@@ -44,4 +44,8 @@ class Post < ActiveRecord::Base
   def preview_image
     attachments.first.image if attachments.any?
   end
+
+  def best_comment
+    comments.first
+  end
 end
