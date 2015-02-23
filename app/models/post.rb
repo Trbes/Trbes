@@ -45,6 +45,7 @@ class Post < ActiveRecord::Base
     attachments.first.image if attachments.any?
   end
 
+  # TODO
   def best_comment
     comments.first
   end

@@ -33,11 +33,12 @@
           - elsif post.post_type == "image_post"
             = cl_image_tag(post.preview_image)
 
-    section.list-section.best-comment
-      header.section-header.sbc-header
-        i.fa.fa-star-o
-        span.section-count.sbc-count 1
-      = render "comments/comment", comment: post.best_comment
+    - if post.comments.exists?
+      section.list-section.best-comment
+        header.section-header.sbc-header
+          i.fa.fa-star-o
+          span.section-count.sbc-count 1
+        = render "comments/comment", comment: post.best_comment
 
     section.list-section.all-comments
       header.section-header.sbc-header
@@ -47,7 +48,7 @@
       = render "comments/form"
 
       .comments
-        = render post.comments.root.includes(:user, :child_comments)
+        = render post.comments.root.includes(:user)
 
 - content_for :javascripts do
   coffee:

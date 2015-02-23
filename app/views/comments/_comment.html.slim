@@ -1,4 +1,4 @@
-= div_for(comment, data: { id: comment.id} )
+= div_for(comment, data: { id: comment.id } )
   .comment-left
     .comment-upvote
       = link_to(comment_upvote_path(comment), class: "vote") do
@@ -28,6 +28,6 @@
     .comment-body
       = comment.body
 
-- comment.child_comments.each do |child_comment|
+- comment.child_comments.includes(:user).each do |child_comment|
   .comment-nested
     = render "comments/comment", comment: child_comment
