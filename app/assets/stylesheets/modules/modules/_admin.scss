@@ -35,4 +35,16 @@
       }
     }
   }
+
+  .posts {
+    .post {
+      padding: 10px 0 15px;
+      border-bottom: 1px solid #eaecee;
+    }
+
+    :first-child {
+      padding-top: 0;
+    }
+  }
+
 }

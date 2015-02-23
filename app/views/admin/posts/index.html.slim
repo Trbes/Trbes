@@ -1,0 +1,15 @@
+.container.admin
+  .row
+    .col-md-2
+      = render "navigation_group_admin"
+
+    .col-md-8
+      h2.current-section
+        i.fa.fa-tachometer.current-section-icon
+        'Posts
+
+      section.posts
+        h4.section-name Posts
+        hr.section-separator
+
+        = render group.posts

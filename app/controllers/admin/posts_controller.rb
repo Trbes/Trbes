@@ -1,5 +1,6 @@
 module Admin
   class PostsController < Admin::ApplicationController
+    expose(:group) { view_context.present(current_group) }
     expose(:post, attributes: :post_attributes)
 
     def update

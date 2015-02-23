@@ -30,26 +30,11 @@
             span.label.label-success Success
           span.notification-body You now have more than 50 posts in your group. Congratulations!
 
-      section.latest-posts
+      section.posts
         h4.section-name Latest posts
         hr.section-separator
 
-        - group.latest_posts.each do |post|
-          .post
-            = link_to post.title, post_path(post)
-            '&nbsp;
-            '#{post.created_time_ago} ago
-            = link_to "#" do
-              = best_in_place post,
-                  :state,
-                  as: :select,
-                  collection: Hash[Post.states.keys.zip(Post.states.keys)],
-                  place_holder: post.state,
-                  url: admin_post_path(post)
-            = image_tag post.user_avatar,
-                class: "pull-right img-circle",
-                data: { toggle: "tooltip", placement: "top" },
-                title: post.user_full_name
+        = render group.latest_posts
 
       section.members
         h4.section-name Members (#{group.memberships_count})

@@ -1,0 +1,15 @@
+.post
+  = link_to post.title, post_path(post)
+  '&nbsp;
+  '#{post.created_time_ago} ago
+  = link_to "#" do
+    = best_in_place post,
+        :state,
+        as: :select,
+        collection: Hash[Post.states.keys.zip(Post.states.keys)],
+        place_holder: post.state,
+        url: admin_post_path(post)
+  = image_tag post.user_avatar,
+      class: "pull-right img-circle",
+      data: { toggle: "tooltip", placement: "top" },
+      title: post.user_full_name
