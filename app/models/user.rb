@@ -14,4 +14,8 @@ class User < ActiveRecord::Base
   def membership_for(group)
     memberships.for_group(group).first
   end
+
+  def avatar
+    super || "http://placekitten.com/g/34/34"
+  end
 end

@@ -1,5 +1,5 @@
 .post
-  = link_to post.title, post_path(post)
+  = link_to truncate(post.title, length: 60), post_path(post)
   '&nbsp;
   '#{post.created_time_ago} ago
   = link_to "#" do

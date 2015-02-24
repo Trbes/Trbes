@@ -22,7 +22,7 @@
                 button.btn.btn-default type="button" data-dismiss="modal" Close
                 = f.submit "Save", class: "btn btn-primary"
   .moderators-wrapper
-    - group.moderators.each do |moderator|
+    - group.moderators.includes(user: :avatar).each do |moderator|
       = div_for(moderator)
         = image_tag moderator.avatar,
             class: "img-circle img-owner",
