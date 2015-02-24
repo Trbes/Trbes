@@ -3,7 +3,7 @@ require "rails_helper"
 feature "Single post page" do
   let(:user) { create(:user, :confirmed) }
   let(:group) { create(:group) }
-  let!(:post) { create(:post, :text, group: group) }
+  let!(:post) { create(:post, :text, :published, group: group) }
 
   before(:each) do
     switch_to_subdomain(group.subdomain)
