@@ -34,13 +34,13 @@ class Post < ActiveRecord::Base
   normalize_attributes :title
   normalize_attributes :body, with: :squish
 
-  # algoliasearch do
-  #   attribute :title, :body, :slug
+  algoliasearch do
+    attribute :title, :body, :slug
 
-  #   tags do
-  #     ["group_#{group_id}"]
-  #   end
-  # end
+    tags do
+      ["group_#{group_id}"]
+    end
+  end
 
   def preview_image
     attachments.first.image if attachments.any?
