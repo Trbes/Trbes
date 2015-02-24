@@ -4,6 +4,13 @@ describe Comment do
   describe "associations" do
     it { is_expected.to belong_to(:post) }
     it { is_expected.to belong_to(:user) }
+    it { is_expected.to belong_to(:parent_comment).class_name("Comment").with_foreign_key("parent_comment_id") }
+    it {
+      is_expected.to have_many(:child_comments)
+        .class_name("Comment")
+        .with_foreign_key("parent_comment_id")
+        .dependent(:destroy)
+    }
   end
 
   describe "validations" do

@@ -29,6 +29,6 @@ class CommentsController < ApplicationController
   private
 
   def comment_attributes
-    params.require(:comment).permit(:body) if action_name != "upvote"
+    params.require(:comment).permit(:body, :parent_comment_id) if action_name != "upvote"
   end
 end
