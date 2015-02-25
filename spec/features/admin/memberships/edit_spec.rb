@@ -14,6 +14,7 @@ feature "Edit memberships" do
 
   context "when I'm group owner" do
     background do
+      member.membership_for(group).member!
       owner.membership_for(group).owner!
       visit edit_admin_group_path
     end
@@ -43,7 +44,7 @@ feature "Edit memberships" do
 
     scenario "I can remove moderator rights" do
       within("#membership_#{moderator.membership_for(group).id}") do
-        click_link("[x]")
+        click_link("remove_moderator")
       end
 
       expect(page).to have_content("Group")

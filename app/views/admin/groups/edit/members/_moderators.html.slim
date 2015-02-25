@@ -22,11 +22,14 @@
                 button.btn.btn-default type="button" data-dismiss="modal" Close
                 = f.submit "Save", class: "btn btn-primary"
   .moderators-wrapper
-    - group.moderators.each do |moderator|
+    - group.moderators.includes(user: :avatar).each do |moderator|
       = div_for(moderator)
         = image_tag moderator.avatar,
             class: "img-circle img-owner",
             data: { toggle: "tooltip", placement: "top" },
             title: moderator.full_name
         - if policy(current_membership).manage_moderators?
-          = link_to "[x]", admin_membership_path(moderator, membership: { role: :member }), method: :put
+          = link_to admin_membership_path(moderator, membership: { role: :member }),
+              method: :put,
+              id: "remove_moderator" do
+            i.fa.fa-times

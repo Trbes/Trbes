@@ -6,11 +6,11 @@ class Membership < ActiveRecord::Base
   scope :not_owner, -> { where.not(role: roles[:owner]) }
   scope :not_member, -> { where.not(role: roles[:member]) }
   scope :pending, -> { where(nil) } # TODO
-  scope :new_this_week, -> { where(nil) } # TODO
+  scope :new_this_week, -> { where("created_at > ?", Date.today.beginning_of_week) }
 
   delegate :full_name, :avatar, to: :user
 
-  enum role: %i(member moderator owner)
+  enum role: %i(member moderator owner pending)
 
   attr_accessor :new_group_owner_id
 end

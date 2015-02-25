@@ -6,6 +6,10 @@ FactoryGirl.define do
     group
     user
 
+    trait :published do
+      state :published
+    end
+
     trait :text do
       post_type :text_post
 

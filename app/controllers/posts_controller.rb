@@ -8,8 +8,8 @@ class PostsController < ApplicationController
     result = CreatePost.call(
       attributes: post_attributes,
       current_group: current_group,
-      current_user: current_user
-    )
+      current_user: current_user,
+      allow_publish: policy(Post).publish?)
 
     if result.success?
       redirect_to(result.post, subdomain: current_group.subdomain)

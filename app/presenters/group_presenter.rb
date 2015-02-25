@@ -11,10 +11,6 @@ class GroupPresenter < BasePresenter
     @model.private? ? "private" : "public"
   end
 
-  def latest_posts
-    posts.order_by_created_at.limit(4).includes(:user).map { |post| h.present(post) }
-  end
-
   def host
     "#{subdomain}.trbes.com"
   end

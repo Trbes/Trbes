@@ -16,6 +16,6 @@ class User < ActiveRecord::Base
   end
 
   def avatar
-    self[:avatar] || "https://placekitten.com/g/25/25"
+    super || "http://placekitten.com/g/25/25"
   end
 end

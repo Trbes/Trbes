@@ -3,7 +3,7 @@ require "rails_helper"
 feature "Posts list" do
   let(:user) { create(:user, :confirmed) }
   let(:group) { create(:group) }
-  let!(:post) { create(:post, :text, group: group) }
+  let!(:post) { create(:post, :text, :published, group: group) }
 
   background do
     switch_to_subdomain(group.subdomain)
@@ -35,7 +35,7 @@ feature "Posts list" do
 
   context "when there are too much posts" do
     background do
-      create_list(:post, 20, :text, group: group)
+      create_list(:post, 20, :text, :published, group: group)
       visit root_path
     end
 
@@ -53,7 +53,7 @@ feature "Posts list" do
   describe "filtering" do
     let!(:collection) { create(:collection, :visible, group: group) }
     let!(:another_collection) { create(:collection, :visible, group: group) }
-    let!(:another_post) { create(:post, :text, group: group) }
+    let!(:another_post) { create(:post, :text, :published, group: group) }
 
     background do
       post.collections << collection

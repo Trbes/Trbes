@@ -12,7 +12,8 @@ class CreatePost
       attributes.merge(
         user: context.current_user,
         group: context.current_group,
-        attachments_attributes: attributes[:attachments_attributes] || []
+        attachments_attributes: attributes[:attachments_attributes] || [],
+        state: context.allow_publish ? :published : :moderation
       )
     )
   end

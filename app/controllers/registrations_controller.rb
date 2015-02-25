@@ -4,7 +4,7 @@ class RegistrationsController < Devise::RegistrationsController
 
     return unless resource.persisted? && (current_group = Group.find_by(subdomain: request.subdomain))
 
-    current_group.add_member(resource, as: :member)
+    current_group.add_member(resource, as: :pending)
   end
 
   protected

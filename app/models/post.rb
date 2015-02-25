@@ -3,6 +3,7 @@ class Post < ActiveRecord::Base
   extend FriendlyId
 
   enum post_type: %i(text_post link_post image_post)
+  enum state: %i(moderation published)
 
   scope :order_by_votes, -> { order(cached_votes_total: :desc) }
   scope :order_by_created_at, -> { order(created_at: :desc) }
