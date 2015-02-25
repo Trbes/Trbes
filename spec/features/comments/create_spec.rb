@@ -7,6 +7,7 @@ feature "Post a comment" do
 
   background do
     switch_to_subdomain(group.subdomain)
+    group.users << user
     sign_in(user.email, "123456")
     visit post_path(post)
   end

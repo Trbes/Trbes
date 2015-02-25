@@ -1,3 +1,6 @@
-= simple_form_for(Membership.new) do |f|
-  = f.input :group_id, as: :hidden, input_html: { value: group.id }
-  = f.submit "Join", class: "btn btn-fill"
+- if user_signed_in?
+  = simple_form_for(Membership.new) do |f|
+    = f.input :group_id, as: :hidden, input_html: { value: group.id }
+    = f.submit "Join", class: "btn btn-fill"
+- else
+  = link_to "Join", new_user_registration_url(subdomain: group.subdomain), class: "btn btn-fill"

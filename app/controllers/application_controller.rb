@@ -18,6 +18,8 @@ class ApplicationController < ActionController::Base
 
   helper_method :current_membership
   def current_membership
+    return unless current_group && current_user
+
     @current_membership ||= current_user.membership_for(current_group)
   end
 
