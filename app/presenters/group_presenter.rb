@@ -11,14 +11,6 @@ class GroupPresenter < BasePresenter
     @model.private? ? "private" : "public"
   end
 
-  def latest_posts
-    posts.first(4)
-  end
-
-  def posts
-    @model.posts.order_by_created_at.includes(user: :avatar).map { |post| h.present(post) }
-  end
-
   def host
     "#{subdomain}.trbes.com"
   end
