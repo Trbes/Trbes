@@ -12,6 +12,8 @@ class GroupsController < ApplicationController
     Kaminari.paginate_array(presented_groups).page(params[:page]).per(20)
   end
 
+  expose(:user) { view_context.present(current_user) }
+
   def index
   end
 
