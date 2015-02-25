@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   post "/welcome" => "welcome#create_group"
 
   resources :groups, only: %i( new create )
+  resources :memberships, only: %i( create )
 
   constraints(subdomain: SubdomainValidator::REG_EXP) do
     resources :groups, only: %i( show new )

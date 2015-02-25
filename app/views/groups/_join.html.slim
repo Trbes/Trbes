@@ -1,1 +1,3 @@
-= link_to "Join", "#", class: "btn btn-fill"
+= simple_form_for(Membership.new) do |f|
+  = f.input :group_id, as: :hidden, input_html: { value: group.id }
+  = f.submit "Join", class: "btn btn-fill"
