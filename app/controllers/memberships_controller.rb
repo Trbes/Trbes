@@ -8,6 +8,12 @@ class MembershipsController < ApplicationController
     redirect_to "/explore"
   end
 
+  def destroy
+    membership.destroy
+
+    redirect_to "/explore"
+  end
+
   private
 
   def membership_attributes

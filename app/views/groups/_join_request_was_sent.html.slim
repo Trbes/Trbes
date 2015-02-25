@@ -1,0 +1,6 @@
+span.label.inline Join request was sent
+
+= link_to membership_path(current_user.membership_for(group)),
+    method: :delete,
+    data: { confirm: "Are you sure?" } do
+  i.fa.fa-times data-toggle="tooltip" title="Cancel request"
