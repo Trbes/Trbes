@@ -46,6 +46,7 @@ gem "sucker_punch"
 gem "ranked-model"
 gem "omniauth"
 gem "omniauth-twitter"
+gem "omniauth-facebook"
 
 group :staging, :production do
   gem "rails_12factor"

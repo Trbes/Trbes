@@ -15,7 +15,7 @@ class FindOrCreateProfile
     user = User.new(
       full_name: auth_data.extra.raw_info.name,
       password: Devise.friendly_token[0,20],
-      email: auth_data.email || "#{auth_data.info.nickname}@#{auth_data.provider}.com"
+      email: auth_data.info.email || "#{auth_data.info.nickname}@#{auth_data.provider}.com"
     )
 
     user.skip_confirmation!
