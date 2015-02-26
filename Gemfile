@@ -44,6 +44,8 @@ gem "gon"
 gem "attribute_normalizer"
 gem "sucker_punch"
 gem "ranked-model"
+gem "omniauth"
+gem "omniauth-twitter"
 
 group :staging, :production do
   gem "rails_12factor"

@@ -66,7 +66,7 @@
 
         .si-altenatives
           | You can sign in with
-          a< href="#" Twitter
+          = link_to " Twitter", user_omniauth_authorize_path(:twitter)
           | ,
           a< href="#" Groove
           | ,

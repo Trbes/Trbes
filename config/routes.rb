@@ -1,7 +1,8 @@
 Rails.application.routes.draw do
   devise_for :users, controllers: {
     registrations: "registrations",
-    invitations: "invitations"
+    invitations: "invitations",
+    omniauth_callbacks: "omniauth_callbacks"
   }
 
   get "/welcome" => "welcome#index", as: :welcome

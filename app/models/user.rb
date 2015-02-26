@@ -10,7 +10,7 @@ class User < ActiveRecord::Base
   validates :full_name, presence: true
 
   devise :invitable, :database_authenticatable, :registerable, :confirmable,
-    :recoverable, :rememberable, :trackable, :validatable
+    :recoverable, :rememberable, :trackable, :validatable, :omniauthable
 
   def membership_for(group)
     memberships.for_group(group).first
