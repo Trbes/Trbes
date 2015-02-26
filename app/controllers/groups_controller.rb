@@ -8,7 +8,7 @@ class GroupsController < ApplicationController
     params[:collection_id] ? scope.includes(:collection_posts).for_collection(params[:collection_id]) : scope
   end
   expose(:public_groups, only: [:index]) do
-    presented_groups = view_context.present(Group.all_public.includes(:logo))
+    presented_groups = view_context.present(Group.all_public.includes(:logo).order_by_created_at)
     Kaminari.paginate_array(presented_groups).page(params[:page]).per(20)
   end
 

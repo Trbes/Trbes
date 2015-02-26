@@ -7,7 +7,7 @@ class ApplicationController < ActionController::Base
 
   rescue_from Pundit::NotAuthorizedError, with: :not_authorized
 
-  before_action :load_current_membership, :push_algolia_config
+  before_action :push_algolia_config
 
   expose(:groups)
 
@@ -18,7 +18,9 @@ class ApplicationController < ActionController::Base
 
   helper_method :current_membership
   def current_membership
-    @current_membership ||= FindOrCreateMembership.call(user: current_user, group: current_group).membership
+    return unless current_group && current_user
+
+    @current_membership ||= current_user.membership_for(current_group)
   end
 
   def ensure_group_is_loaded!

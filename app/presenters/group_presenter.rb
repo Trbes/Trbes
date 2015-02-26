@@ -31,4 +31,16 @@ class GroupPresenter < BasePresenter
       h.cl_image_tag("http://placekitten.com/g/138/115", tag_options)
     end
   end
+
+  def join_partial_path(user)
+    if user && user.membership_for(@model)
+      if user.membership_for(@model).pending?
+        "join_request_was_sent"
+      else
+        "enter"
+      end
+    else
+      "join"
+    end
+  end
 end

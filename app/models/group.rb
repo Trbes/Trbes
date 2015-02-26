@@ -24,6 +24,7 @@ class Group < ActiveRecord::Base
   delegate :full_name, :avatar, to: :owner, prefix: true
 
   scope :all_public, -> { where(private: false) }
+  scope :order_by_created_at, -> { order(created_at: :desc) }
 
   algoliasearch do
     attribute :name, :subdomain

@@ -23,6 +23,10 @@
     display: table-cell;
     vertical-align: top;
     padding-top: 30px;
+
+    .inline {
+      display: inline;
+    }
   }
 
   .group-name {
