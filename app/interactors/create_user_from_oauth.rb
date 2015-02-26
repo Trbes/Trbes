@@ -24,19 +24,11 @@ class CreateUserFromOauth
   end
 
   def facebook_attributes
-    shared_attributes.merge(
-      {
-        email: auth_data.info.email
-      }
-    )
+    shared_attributes.merge(email: auth_data.info.email)
   end
 
   def twitter_attributes
-    shared_attributes.merge(
-      {
-       email: "#{auth_data.info.nickname}@#{auth_data.provider}.com"
-      }
-    )
+    shared_attributes.merge(email: "#{auth_data.info.nickname}@#{auth_data.provider}.com")
   end
 
   def auth_data
