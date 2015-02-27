@@ -23,6 +23,10 @@ class CreateUserFromOauth
     }
   end
 
+  def google_oauth2_attributes
+    shared_attributes.merge(email: auth_data.info.email)
+  end
+
   def facebook_attributes
     shared_attributes.merge(email: auth_data.info.email)
   end
