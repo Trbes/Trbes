@@ -23,6 +23,13 @@ class CreateUserFromOauth
     }
   end
 
+  def linkedin_attributes
+    shared_attributes.merge(
+      email: auth_data.info.email,
+      full_name: auth_data.info.name
+    )
+  end
+
   def google_oauth2_attributes
     shared_attributes.merge(email: auth_data.info.email)
   end

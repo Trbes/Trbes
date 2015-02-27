@@ -48,6 +48,7 @@ gem "omniauth"
 gem "omniauth-twitter"
 gem "omniauth-facebook"
 gem "omniauth-google-oauth2"
+gem "omniauth-linkedin-oauth2"
 
 group :staging, :production do
   gem "rails_12factor"
