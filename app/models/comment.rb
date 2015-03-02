@@ -13,6 +13,8 @@ class Comment < ActiveRecord::Base
   scope :order_by_votes, -> { order(cached_votes_total: :desc) }
   scope :root, -> { where(parent_comment_id: nil) }
 
+  enum state: %i(moderation published)
+
   def root?
     parent_comment_id.nil?
   end

@@ -6,7 +6,8 @@ class CommentsController < ApplicationController
     comment = CreateComment.call(
       user: current_user,
       post: post,
-      attributes: comment_attributes
+      attributes: comment_attributes,
+      allow_publish: policy(Comment).publish?
     ).comment
 
     redirect_to comment.post
