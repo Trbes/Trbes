@@ -48,7 +48,7 @@
       = render "comments/form"
 
       .comments
-        = render post.comments.root.includes(:user)
+        = render post.comments.root.published.includes(:user)
 
 - content_for :javascripts do
   coffee:
