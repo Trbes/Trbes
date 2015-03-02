@@ -5,5 +5,9 @@ FactoryGirl.define do
     body { Faker::Hacker.say_something_smart }
     post
     user
+
+    trait :published do
+      state :published
+    end
   end
 end

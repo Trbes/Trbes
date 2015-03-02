@@ -7,7 +7,7 @@ feature "Post a comment" do
 
   background do
     switch_to_subdomain(group.subdomain)
-    group.users << user
+    group.add_member(user, as: :member)
     sign_in(user.email, "123456")
     visit post_path(post)
   end
@@ -31,7 +31,7 @@ feature "Post a comment" do
   end
 
   context "when there are existing comments" do
-    let!(:comment) { create(:comment, post: post, user: user) }
+    let!(:comment) { create(:comment, :published, post: post, user: user) }
 
     background do
       visit post_path(post)
