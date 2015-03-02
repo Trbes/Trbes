@@ -1,0 +1,15 @@
+.comment
+  = link_to truncate(comment.body, length: 60), post_path(comment.post)
+  '&nbsp;
+  '#{comment.created_time_ago} ago
+  = link_to "#" do
+    = best_in_place comment,
+        :state,
+        as: :select,
+        collection: Hash[Comment.states.keys.zip(Comment.states.keys)],
+        place_holder: comment.state,
+        url: admin_comment_path(comment)
+  = image_tag comment.user_avatar,
+      class: "pull-right img-circle",
+      data: { toggle: "tooltip", placement: "top" },
+      title: comment.user_full_name

@@ -1,5 +1,6 @@
 class PostsController < ApplicationController
   expose(:post, attributes: :post_attributes, finder: :find_by_slug)
+  expose(:comments, ancestor: :post) { |collection| collection.root.published }
 
   def new
   end

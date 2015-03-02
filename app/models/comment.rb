@@ -11,6 +11,7 @@ class Comment < ActiveRecord::Base
   acts_as_votable
 
   scope :order_by_votes, -> { order(cached_votes_total: :desc) }
+  scope :order_by_created_at, -> { order(created_at: :desc) }
   scope :root, -> { where(parent_comment_id: nil) }
 
   enum state: %i(moderation published)

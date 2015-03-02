@@ -33,7 +33,7 @@
           - elsif post.post_type == "image_post"
             = cl_image_tag(post.preview_image)
 
-    - if post.comments.exists?
+    - if comments.exists?
       section.list-section.best-comment
         header.section-header.sbc-header
           i.fa.fa-star-o
@@ -43,12 +43,12 @@
     section.list-section.all-comments
       header.section-header.sbc-header
         i.fa.fa-comment-o
-        span.section-count.sbc-count = post.comments_count
+        span.section-count.sbc-count = comments.count
 
       = render "comments/form"
 
       .comments
-        = render post.comments.root.published.includes(:user)
+        = render comments
 
 - content_for :javascripts do
   coffee:

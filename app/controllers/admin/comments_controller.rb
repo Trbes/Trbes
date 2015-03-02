@@ -1,10 +1,9 @@
 module Admin
   class CommentsController < Admin::ApplicationController
-    expose(:group) { view_context.present(current_group) }
-    expose(:comment, attributes: :comment_attributes)
     expose(:comments, ancestor: :current_group) do |collection|
       collection.order_by_created_at.includes(user: :avatar).page(params[:page])
     end
+    expose(:comment, attributes: :comment_attributes)
 
     def update
       comment.save
