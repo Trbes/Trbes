@@ -36,6 +36,9 @@ Rails.application.routes.draw do
       resources :collection_posts, only: %i( create update destroy )
     end
 
+    resources :collections, only: %i( show create )
+    resources :collection_posts, only: %i( create update destroy )
+
     devise_scope :user do
       get "/invitation/new" => "invitations#new", as: :new_invitation
       post "/invitation" => "invitations#create", as: :create_invitation
