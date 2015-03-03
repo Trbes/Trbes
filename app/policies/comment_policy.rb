@@ -14,4 +14,8 @@ class CommentPolicy < Struct.new(:membership, :comment)
   def publish?
     membership && (membership.owner? || membership.moderator? || membership.member?)
   end
+
+  def favourite?
+    membership && (membership.owner? || membership.moderator?)
+  end
 end

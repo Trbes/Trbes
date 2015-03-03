@@ -9,6 +9,9 @@
         a.reply href="#"
           i.fa.fa-mail-reply
           | reply
+    - if policy(comment).favourite?
+      = link_to favourite_admin_comment_path(comment) do
+        i.fa.fa-star
 
   .comment-content
     header.comment-header

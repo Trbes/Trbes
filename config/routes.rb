@@ -27,7 +27,9 @@ Rails.application.routes.draw do
       resources :dashboard, only: %i( index )
       resource :group, only: %i( edit update destroy )
       resources :posts, only: %i( index update )
-      resources :comments, only: %i( index update )
+      resources :comments, only: %i( index update ) do
+        get :favourite, on: :member
+      end
       resources :memberships, only: %i( update )
       resources :collections, only: %i( index show new create edit update destroy )
       resources :collection_posts, only: %i( create update destroy )
