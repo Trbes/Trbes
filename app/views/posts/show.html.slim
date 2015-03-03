@@ -36,7 +36,7 @@
     section.list-section.best-comment
       header.section-header.sbc-header
         i.fa.fa-star-o
-        span.section-count.sbc-count comments.best.count
+        span.section-count.sbc-count= comments.best.count
       - comments.best.each do |comment|
         = render "comments/comment", comment: comment
 
