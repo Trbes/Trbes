@@ -29,6 +29,7 @@ Rails.application.routes.draw do
       resources :posts, only: %i( index update )
       resources :comments, only: %i( index update ) do
         get :favourite, on: :member
+        get :unfavourite, on: :member
       end
       resources :memberships, only: %i( update )
       resources :collections, only: %i( index show new create edit update destroy )

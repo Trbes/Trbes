@@ -10,18 +10,24 @@
           i.fa.fa-mail-reply
           | reply
     - if policy(comment).favourite?
-      = link_to favourite_admin_comment_path(comment) do
-        i.fa.fa-star
+      - if comment.favourite?
+        = link_to unfavourite_admin_comment_path(comment) do
+          i.fa.fa-star data-toggle="tooltip" title="Unfavourite"
+      - else
+        = link_to favourite_admin_comment_path(comment) do
+          i.fa.fa-star-o data-toggle="tooltip" title="Favourite"
 
   .comment-content
     header.comment-header
       .comment-author
         a.user-avatar href="#"
-          = image_tag(comment.user_avatar, width: 16, height: 16)
+          = image_tag(comment.user.avatar, width: 16, height: 16)
         a.user-name> href="#" = comment.user_full_name
         | •
         div.user-title< = comment.user_title
         - if comment.user.membership_for(current_group).moderator?
+          / ^^^ This causes tons of extra DB queries.
+          / Should consider linking comment with membership instead of user. Or both.
           span.label.label-info.user-label MOD
 
       .comment-meta
@@ -31,6 +37,6 @@
     .comment-body
       = comment.body
 
-- comment.child_comments.includes(:user).each do |child_comment|
+- comment.child_comments.each do |child_comment|
   .comment-nested
     = render "comments/comment", comment: child_comment
