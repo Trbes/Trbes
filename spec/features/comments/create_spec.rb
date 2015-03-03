@@ -7,19 +7,23 @@ feature "Post a comment" do
 
   background do
     switch_to_subdomain(group.subdomain)
-    group.users << user
+    group.add_member(user, as: :member)
     sign_in(user.email, "123456")
     visit post_path(post)
   end
 
   after { switch_to_main }
 
+  def create_comment
+    within "#new_comment" do
+      fill_in "comment[body]", with: "Comment body"
+      click_button "Submit"
+    end
+  end
+
   scenario "I post a comment under post" do
     expect {
-      within "#new_comment" do
-        fill_in "comment[body]", with: "Comment body"
-        click_button "Submit"
-      end
+      create_comment
     }.to change { post.comments.count }.from(0).to(1)
 
     comment = post.comments.last
@@ -31,7 +35,7 @@ feature "Post a comment" do
   end
 
   context "when there are existing comments" do
-    let!(:comment) { create(:comment, post: post, user: user) }
+    let!(:comment) { create(:comment, :published, post: post, user: user) }
 
     background do
       visit post_path(post)
@@ -49,6 +53,32 @@ feature "Post a comment" do
 
       expect(page).to have_content("Comment response")
       expect(comment.child_comments.first.body).to eq("Comment response")
+    end
+  end
+
+  context "when I'm approved member" do
+    background do
+      user.membership_for(group).member!
+      visit post_path(post)
+    end
+
+    scenario "I post a comment" do
+      create_comment
+
+      expect(post.comments.last.state).to eq("published")
+    end
+  end
+
+  context "when I'm pending member" do
+    background do
+      user.membership_for(group).pending!
+      visit post_path(post)
+    end
+
+    scenario "I post a comment" do
+      create_comment
+
+      expect(post.comments.last.state).to eq("moderation")
     end
   end
 end

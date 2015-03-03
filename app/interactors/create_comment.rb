@@ -11,7 +11,8 @@ class CreateComment
     Comment.create!(
       context.attributes.merge(
         user: context.user,
-        post: context.post
+        post: context.post,
+        state: context.allow_publish ? :published : :moderation
       )
     )
   end
