@@ -14,12 +14,16 @@ feature "Post a comment" do
 
   after { switch_to_main }
 
+  def create_comment
+    within "#new_comment" do
+      fill_in "comment[body]", with: "Comment body"
+      click_button "Submit"
+    end
+  end
+
   scenario "I post a comment under post" do
     expect {
-      within "#new_comment" do
-        fill_in "comment[body]", with: "Comment body"
-        click_button "Submit"
-      end
+      create_comment
     }.to change { post.comments.count }.from(0).to(1)
 
     comment = post.comments.last
@@ -49,6 +53,32 @@ feature "Post a comment" do
 
       expect(page).to have_content("Comment response")
       expect(comment.child_comments.first.body).to eq("Comment response")
+    end
+  end
+
+  context "when I'm approved member" do
+    background do
+      user.membership_for(group).member!
+      visit post_path(post)
+    end
+
+    scenario "I post a comment" do
+      create_comment
+
+      expect(post.comments.last.state).to eq("published")
+    end
+  end
+
+  context "when I'm pending member" do
+    background do
+      user.membership_for(group).pending!
+      visit post_path(post)
+    end
+
+    scenario "I post a comment" do
+      create_comment
+
+      expect(post.comments.last.state).to eq("moderation")
     end
   end
 end
