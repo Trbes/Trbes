@@ -4,18 +4,20 @@
       = link_to(comment_upvote_path(comment), class: "vote") do
         i.fa.fa-thumbs-up
       .vote-count = comment.cached_votes_total
+
+      - if policy(comment).favourite?
+        - if comment.favourite?
+          = link_to unfavourite_admin_comment_path(comment), class: "unfavourite" do
+            i.fa.fa-star data-toggle="tooltip" title="Unfavourite"
+        - else
+          = link_to favourite_admin_comment_path(comment), class: "favourite" do
+            i.fa.fa-star-o data-toggle="tooltip" title="Favourite"
+
     - if policy(comment).create_nested?
       .comment-reply
         a.reply href="#"
           i.fa.fa-mail-reply
           | reply
-    - if policy(comment).favourite?
-      - if comment.favourite?
-        = link_to unfavourite_admin_comment_path(comment) do
-          i.fa.fa-star data-toggle="tooltip" title="Unfavourite"
-      - else
-        = link_to favourite_admin_comment_path(comment) do
-          i.fa.fa-star-o data-toggle="tooltip" title="Favourite"
 
   .comment-content
     header.comment-header
