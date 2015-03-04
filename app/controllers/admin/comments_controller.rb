@@ -14,6 +14,18 @@ module Admin
       end
     end
 
+    def favourite
+      comment.update_attributes(favourite: true)
+
+      redirect_to :back
+    end
+
+    def unfavourite
+      comment.update_attributes(favourite: false)
+
+      redirect_to :back
+    end
+
     private
 
     def comment_attributes

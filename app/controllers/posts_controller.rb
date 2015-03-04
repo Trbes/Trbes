@@ -1,8 +1,9 @@
 class PostsController < ApplicationController
   expose(:post, attributes: :post_attributes, finder: :find_by_slug)
-  expose(:comments, ancestor: :post) { |collection| collection.root.published }
+  expose(:comments, ancestor: :post) { |collection| collection.root.published.includes(:user, :child_comments) }
 
-  def new
+  def show
+    self.post = Post.includes(user: :avatar).find_by(slug: params[:id])
   end
 
   def create
@@ -17,9 +18,6 @@ class PostsController < ApplicationController
     else
       render :new
     end
-  end
-
-  def show
   end
 
   def upvote

@@ -33,12 +33,12 @@
           - elsif post.post_type == "image_post"
             = cl_image_tag(post.preview_image)
 
-    - if comments.exists?
-      section.list-section.best-comment
-        header.section-header.sbc-header
-          i.fa.fa-star-o
-          span.section-count.sbc-count 1
-        = render "comments/comment", comment: post.best_comment
+    section.list-section.best-comment
+      header.section-header.sbc-header
+        i.fa.fa-star-o
+        span.section-count.sbc-count= comments.favourite.count
+      - comments.favourite.each do |comment|
+        = render "comments/comment", comment: comment
 
     section.list-section.all-comments
       header.section-header.sbc-header
