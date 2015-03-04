@@ -1,0 +1,19 @@
+.membership
+  .name
+    = image_tag membership.avatar, class: "img-circle"
+    = link_to membership.full_name, admin_membership_path(membership)
+  = link_to "#" do
+    = best_in_place_if !membership.owner?, membership,
+        :role,
+        as: :select,
+        collection: Hash[Membership.roles.keys.zip(Membership.roles.keys)].delete_if { |key| key == "owner" },
+        place_holder: membership.role,
+        url: admin_membership_path(membership)
+  '&nbsp;
+  = link_to "#" do
+  .controls
+    = link_to "remove from group",
+        admin_membership_path(membership),
+        method: :delete,
+        class: "control",
+        data: { confirm: "Are you sure?" }
