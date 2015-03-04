@@ -36,8 +36,8 @@
     }
   }
 
-  .posts, .comments {
-    .post, .comment {
+  .posts, .comments, .memberships {
+    .post, .comment, .membership {
       padding: 10px 0 15px;
       border-bottom: 1px solid #eaecee;
       margin-bottom: 0;
@@ -48,4 +48,20 @@
     }
   }
 
+  .control {
+    text-decoration: underline;
+  }
+
+  .controls {
+    float: right;
+
+    .controls-separator {
+      display: inline;
+
+      &:before {
+        content: "|";
+        color: $link-color;
+      }
+    }
+  }
 }
