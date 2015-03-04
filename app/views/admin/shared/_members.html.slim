@@ -1,8 +1,8 @@
 span Join requests
 
 .moderators-wrapper
-- if group.memberships.pending.exists?
-    - group.memberships.pending.includes(user: :avatar).each do |membership|
+- if memberships.pending.exists?
+    - memberships.pending.each do |membership|
       = image_tag membership.avatar, class: "member img-circle"
       = link_to admin_membership_path(membership, membership: { role: :member }), method: :put do
         i.fa.fa-check
@@ -12,7 +12,7 @@ span Join requests
 
 span New this week
 .moderators-wrapper
-  - group.memberships.new_this_week.each do |membership|
+  - memberships.new_this_week.each do |membership|
     = div_for(membership)
       = image_tag membership.avatar,
           class: "img-circle img-owner",

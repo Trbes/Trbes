@@ -1,2 +1,22 @@
-- memberships.each do |membership|
-  = membership.full_name
+.container.admin.memberships
+  .row
+    .col-md-2
+      = render "navigation_group_admin"
+
+    .col-md-8
+      h2.current-section
+        i.fa.fa-tachometer.current-section-icon
+        'Members
+
+      section.memberships
+        h4.section-name Members
+        hr.section-separator
+
+        = render memberships
+
+        br
+        = link_to "Invite someone", new_invitation_path, class: "btn btn-primary"
+
+      = paginate memberships,
+          theme: "twitter-bootstrap-3",
+          pagination_class: "pagination pagination-azure pagination-no-border"
