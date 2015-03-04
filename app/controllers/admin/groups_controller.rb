@@ -1,7 +1,7 @@
 module Admin
   class GroupsController < Admin::ApplicationController
     expose(:group, attributes: :group_attributes) { view_context.present(current_group) }
-    expose(:available_memberships) { current_group.memberships }
+    expose(:memberships, ancestor: :current_group)
     expose(:available_groups) do
       view_context.present(current_user.memberships.not_member.includes(:group).map(&:group).compact)
     end

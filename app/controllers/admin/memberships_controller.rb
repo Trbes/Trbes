@@ -1,7 +1,7 @@
 module Admin
   class MembershipsController < Admin::ApplicationController
     expose(:membership, attributes: :membership_attributes)
-    expose(:memberships, ancestor: :current_group) { |collection| collection.includes(:user) }
+    expose(:memberships, ancestor: :current_group) { |collection| collection.includes(user: :avatar).page(params[:page]) }
 
     def update
       UpdateMembership.call(
@@ -10,6 +10,12 @@ module Admin
       )
 
       redirect_to edit_admin_group_path
+    end
+
+    def destroy
+      membership.destroy
+
+      redirect_to admin_memberships_path
     end
 
     private
