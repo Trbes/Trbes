@@ -31,7 +31,7 @@ Rails.application.routes.draw do
         get :favourite, on: :member
         get :unfavourite, on: :member
       end
-      resources :memberships, only: %i( update )
+      resources :memberships, only: %i( index update destroy )
       resources :collections, only: %i( index show new create edit update destroy )
       resources :collection_posts, only: %i( create update destroy )
     end

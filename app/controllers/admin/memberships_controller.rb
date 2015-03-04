@@ -1,6 +1,7 @@
 module Admin
   class MembershipsController < Admin::ApplicationController
     expose(:membership, attributes: :membership_attributes)
+    expose(:memberships, ancestor: :current_group) { |collection| collection.includes(:user) }
 
     def update
       UpdateMembership.call(

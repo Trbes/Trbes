@@ -1,15 +1,20 @@
-= link_to admin_dashboard_index_path, class: "admin-navigation btn btn-block btn-info #{current_path?(admin_dashboard_index_path)}" do
+= link_to admin_dashboard_index_path,
+    class: "admin-navigation btn btn-block btn-info #{current_path?(admin_dashboard_index_path)}" do
   i.fa.fa-tachometer.admin-navigation-icon
   span.title Dashboard
-= link_to admin_dashboard_index_path, class: "admin-navigation btn btn-block btn-info" do
+= link_to admin_memberships_path,
+    class: "admin-navigation btn btn-block btn-info #{current_path?(admin_memberships_path)}" do
   i.fa.fa-user.admin-navigation-icon
-  span.title Account
-= link_to edit_admin_group_path, class: "admin-navigation btn btn-block btn-info #{current_path?(edit_admin_group_path)}" do
+  span.title Members
+= link_to edit_admin_group_path,
+    class: "admin-navigation btn btn-block btn-info #{current_path?(edit_admin_group_path)}" do
   i.fa.fa-group.admin-navigation-icon
   span.title Group
-= link_to admin_posts_path, class: "admin-navigation btn btn-block btn-info" do
+= link_to admin_posts_path,
+    class: "admin-navigation btn btn-block btn-info #{current_path?(admin_posts_path)}" do
   i.fa.fa-file.admin-navigation-icon
   span.title Posts
-= link_to admin_comments_path, class: "admin-navigation btn btn-block btn-info" do
+= link_to admin_comments_path,
+    class: "admin-navigation btn btn-block btn-info #{current_path?(admin_comments_path)}" do
   i.fa.fa-file.admin-navigation-icon
   span.title Comments
