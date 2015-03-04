@@ -10,16 +10,17 @@ ul.nav.nav-pills.nav-collections
       a.dropdown-toggle data-close-others="false" data-delay="1000" data-hover="dropdown" data-toggle="dropdown" href="#"
         i.fa.fa-ellipsis-h.circle
       ul.dropdown-menu
-        - current_group.collections.visible.ordered.offset(Collection::VISIBLE_COLLECTIONS_COUNT).each do |collection|
+        - (hidden_collections = current_group.collections.visible.ordered.offset(Collection::VISIBLE_COLLECTIONS_COUNT)).each do |collection|
           li role="presentation"
-            a href="#"
+            = link_to root_path(collection_id: collection.id), id: dom_id(collection) do
               = cl_image_tag(collection.image.icon, class: "collection-image")
               = collection.name
-          li.divider role="presentation"
         - if policy(Collection).create?
+          - if hidden_collections.count > 0
+            li.divider role="presentation"
           li role="presentation"
             = link_to "#", data: { toggle: "modal", target: "#add_collection" } do
-              i.fa.fa-plus-circle
+              i.fa.fa-plus
               | Add Collection
 
 - if policy(Collection).create?
