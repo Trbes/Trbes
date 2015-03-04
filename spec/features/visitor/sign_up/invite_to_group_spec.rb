@@ -114,7 +114,7 @@ feature "Invite to group" do
 
       invited_user = User.find_by(email: invited_user_attributes[:email])
       membership = group.memberships.find_by(user_id: invited_user.id)
-      expect(membership.moderator?).to be true
+      expect(membership.member?).to be true
     end
   end
 end
