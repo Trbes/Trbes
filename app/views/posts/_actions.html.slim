@@ -16,8 +16,10 @@
               i.fa.fa-circle.fa-stack-1x
               i.fa.fa-times.fa-inverse.fa-stack-1x
 
-  a.share href="#"
-    i.fa.fa-share-square-o.circle.grey
+  .dropdown.share
+    a.dropdown-toggle aria-expanded="false" data-toggle="dropdown"
+      i.fa.fa-share-square-o.circle.grey
+    = render "posts/share_menu", post: post
 
 .modal.fade id="add_to_collection_#{post.id}" tabindex="-1" role="dialog" aria-labelledby="add_to_collection" aria-hidden="true"
   .modal-dialog

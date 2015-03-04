@@ -87,7 +87,7 @@ $post-right-min-width: $post-actions-min-width + $post-component-spacing + $post
     }
 
     @include breakpoint(0 ($screen-sm - 1)) {
-      width: calc(100% - #{$icon-circle-size + $post-component-spacing*1.5 + $post-upvote-width});
+      width: calc(100% - #{$post-component-spacing/2 + $post-upvote-width});
     }
 
     &.voted {
@@ -168,6 +168,11 @@ $post-right-min-width: $post-actions-min-width + $post-component-spacing + $post
 
   .post-right {
     float: right;
+
+    @include breakpoint(0 ($screen-sm - 1)) {
+      margin-top: 20px;
+      width: 100%;
+    }
   }
 
   a.post-thumb {
@@ -211,6 +216,11 @@ $post-right-min-width: $post-actions-min-width + $post-component-spacing + $post
     min-width: $post-actions-min-width;
     margin-top: ($post-thumb-size - $icon-circle-size) / 2;
 
+    @include breakpoint(0 ($screen-sm - 1)) {
+      float: none;
+      text-align: center;
+    }
+
     .add-to-collection {
       font-size: 2em;
       vertical-align: middle;
@@ -219,17 +229,6 @@ $post-right-min-width: $post-actions-min-width + $post-component-spacing + $post
 
     .post-collections {
       display: inline-block;
-
-      $i: 0;
-      $list: "&.post-collections-#{$i}";
-
-      @for $i from (1 + 1) through 3 {
-        $list: "&.post-collections-#{$i}";
-      }
-
-      #{$list} {
-        position: relative;
-      }
 
       .post-collection {
         position: relative;
@@ -268,27 +267,33 @@ $post-right-min-width: $post-actions-min-width + $post-component-spacing + $post
       }
     }
 
-
-    a {
-      margin-left: $post-component-spacing;
+    .share {
       display: inline-block;
+      margin-left: $post-component-spacing;
 
-      &:first-child {
-        margin-left: 0;
+      .dropdown-menu {
+        right: 0;
+        left: auto;
       }
     }
+
 
     @include breakpoint(0 ($screen-sm - 1)) {
       margin-top: 0;
       min-width: $icon-circle-size;
 
-      a {
-        display: block;
-        margin-left: 0;
-        margin-bottom: 5px;
-      }
+
     }
   }
 }
 
+.touch {
+  .posts {
+    .post-actions {
+      .add-to-collection {
+        visibility: visible;
+      }
+    }
+  }
+}
 
