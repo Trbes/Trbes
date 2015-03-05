@@ -19,18 +19,18 @@
             .group-info
               .group-name
                 = link_to current_group.name, root_url(subdomain: current_group.subdomain)
-                - if policy(:access).admin_access?
-                  .dropdown
-                    button#group_menu.btn.btn-default.dropdown-toggle aria-expanded="true" data-toggle="dropdown" type="button"
-                      .fa.fa-cog
-                    ul.dropdown-menu aria-labelledby="group_menu" role="menu"
+                .dropdown
+                  button#group_menu.btn.btn-default.dropdown-toggle aria-expanded="true" data-toggle="dropdown" type="button"
+                    .fa.fa-cog
+                  ul.dropdown-menu aria-labelledby="group_menu" role="menu"
+                    - if policy(:access).admin_access?
                       li role="presentation"
                         = link_to "Edit Group", admin_dashboard_index_path
                       li role="presentation"
-                        a href="#" role="menuitem" tabindex="-1"  Manage Members
-                      - if policy(:invitation).new?
-                        li role="presentation"
-                          a href=(new_invitation_path) role="menuitem" tabindex="-1"  Invite Someone
+                        = link_to "Manage Members", admin_memberships_path, tabindex: "-1", role: "menuitem"
+                    - if policy(:invitation).new?
+                      li role="presentation"
+                        a href=(new_invitation_path) role="menuitem" tabindex="-1"  Invite Someone
               .group-desc= current_group.description
 
       /! Collect the nav links, forms, and other content for toggling

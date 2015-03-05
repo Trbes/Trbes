@@ -29,7 +29,9 @@ feature "Admin dashboard" do
     end
 
     scenario "link to admin dashboard is not visible for me" do
-      expect(page).not_to have_css("#group_menu")
+      click_button("group_menu")
+      expect(page).not_to have_content("Edit Group")
+      expect(page).not_to have_content("Manage Members")
     end
 
     scenario "even if I try to load admin dashboard by URL" do

@@ -22,6 +22,6 @@ class SendInvitationEmailJob < ActiveJob::Base
     end
 
     InvitationMailer.invitation_email(@user, @group, invited_user).deliver_now
-    @group.add_member(invited_user, as: :moderator)
+    @group.add_member(invited_user, as: :member)
   end
 end

@@ -4,4 +4,4 @@ section.members#members
 
   = render "admin/groups/edit/members/owner", group: group, memberships: memberships
   = render "admin/groups/edit/members/moderators", group: group, memberships: memberships
-  = render "admin/shared/members"
+  = render "admin/shared/members", memberships: memberships.includes(user: :avatar)

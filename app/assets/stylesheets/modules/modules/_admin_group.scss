@@ -87,21 +87,4 @@
       display: inline-block;
     }
   }
-
-  .control {
-    text-decoration: underline;
-  }
-
-  .controls {
-    float: right;
-
-    .controls-separator {
-      display: inline;
-
-      &:before {
-        content: "|";
-        color: $link-color;
-      }
-    }
-  }
 }
