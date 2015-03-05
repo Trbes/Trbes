@@ -3,9 +3,9 @@
 coffee:
   window.fbAsyncInit = ->
     FB.init
-      appId: '1547148358870501'
+      appId: ENV["FACEBOOK_APP_ID"]
       xfbml: true
-      version: 'v2.2'
+      version: "v2.2"
     return
 
   ((d, s, id) ->
@@ -15,7 +15,7 @@ coffee:
       return
     js = d.createElement(s)
     js.id = id
-    js.src = '//connect.facebook.net/en_US/sdk.js'
+    js.src = "//connect.facebook.net/en_US/sdk.js"
     fjs.parentNode.insertBefore js, fjs
     return
-  ) document, 'script', 'facebook-jssdk'
+  ) document, "script", "facebook-jssdk"
