@@ -12,7 +12,6 @@ module GroupsHelper
   end
 
   def will_show_collection_dropdown?
-    # Rails.logger.debug "policy: #{policy(Collection).create?}, #{current_membership.id}"
     policy(Collection).create? || current_group.collections.visible.count > Collection::VISIBLE_COLLECTIONS_COUNT
   end
 end

@@ -11,7 +11,7 @@ module Admin
         current_group: current_group
       )
 
-      redirect_to edit_admin_group_path
+      redirect_to :back
     end
 
     def update

@@ -10,6 +10,7 @@ describe Admin::CollectionsController do
 
   describe "POST #create" do
     before do
+      request.env["HTTP_REFERER"] = root_path
       post :create, collection: collection_attributes
     end
 
@@ -22,7 +23,7 @@ describe Admin::CollectionsController do
       end
 
       it "redirects to group edit page" do
-        expect(controller).to redirect_to(edit_admin_group_path)
+        expect(controller).to redirect_to(root_path)
       end
     end
 
@@ -30,7 +31,7 @@ describe Admin::CollectionsController do
       let(:collection_attributes) { attributes_for(:collection).slice!(:name) }
 
       it "redirects to group edit page" do
-        expect(controller).to redirect_to(edit_admin_group_path)
+        expect(controller).to redirect_to(root_path)
       end
     end
   end
