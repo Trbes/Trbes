@@ -187,4 +187,17 @@ feature "Posts list" do
       expect(post.reload.collections).to be_empty
     end
   end
+
+  context "when I'm not logged in" do
+    background do
+      click_link "Sign out"
+      visit post_path(post)
+    end
+
+    scenario "I can't vote" do
+      within("#post_#{post.id}") do
+        expect(page.find(".vote")["href"]).to eq("#")
+      end
+    end
+  end
 end

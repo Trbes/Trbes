@@ -5,7 +5,7 @@
     = div_for(post, class: "post-type-text")
       .post-left
         .post-upvote
-          = link_to(post_upvote_path(post), class: "vote") do
+          = link_to(policy(post).vote?(current_user) ? post_upvote_path(post) : "#", class: "vote") do
             i.fa.fa-thumbs-up
           .vote-count = post.cached_votes_total
         .post-share
