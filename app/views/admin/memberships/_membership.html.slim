@@ -1,7 +1,7 @@
-.membership
+= div_for(membership) do
   .name
     = image_tag membership.avatar, class: "img-circle"
-    = link_to membership.full_name, admin_membership_path(membership)
+    = membership.full_name
   = link_to "#" do
     = best_in_place_if !membership.owner?, membership,
         :role,

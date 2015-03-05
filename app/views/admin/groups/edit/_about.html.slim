@@ -36,7 +36,7 @@ section.about.clearfix
       .group-statistics
         .group-statistics-element
           .count= group.memberships_count
-          .entity-wrapper= link_to group.pluralized_noun("Member"), "#members"
+          .entity-wrapper= link_to group.pluralized_noun("Member"), admin_memberships_path
         .group-statistics-element
           .count= group.posts_count
           .entity-wrapper= link_to group.pluralized_noun("Post"), root_path

@@ -5,6 +5,7 @@ require "rspec/rails"
 require "pundit/rspec"
 require "algolia/webmock"
 require "sucker_punch/testing/inline"
+require "best_in_place/test_helpers"
 
 Dir[Rails.root.join("spec/support/**/*.rb")].each { |f| require f }
 Dir[Rails.root.join("spec/shared/**/*.rb")].each { |f| require f }
@@ -19,6 +20,7 @@ RSpec.configure do |config|
   config.include Formulaic::Dsl
   config.include ControllerHelpers, type: :controller
   config.include AttributeNormalizer::RSpecMatcher, type: :model
+  config.include BestInPlace::TestHelpers, type: :feature
 
   config.before do
     WebMock.enable!
