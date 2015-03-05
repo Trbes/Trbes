@@ -8,10 +8,10 @@ module GroupsHelper
   end
 
   def will_show_add_collection_hint?
-    current_group.collections_count == 0 && policy(Collection).create?
+    current_group.posts_count == 0 && current_group.collections_count == 0 && policy(Collection).create?
   end
 
   def will_show_collection_dropdown?
-    current_group.collections.for_dropdown.count > 0 || policy(Collection).new?
+    policy(Collection).create? || current_group.collections.visible.count > Collection::VISIBLE_COLLECTIONS_COUNT
   end
 end

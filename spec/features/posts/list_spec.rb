@@ -129,12 +129,12 @@ feature "Posts list" do
       visit root_path
     end
 
-    scenario "I can add post to collection" do
+    scenario "I can add post to collection", js: true do
       within("#post_#{post.id}") do
-        page.find(".add-to-collection").click
+        page.find(".add-to-collection", visible: false).click
       end
 
-      select(collection.name, from: "Collection")
+      select(collection.name, from: "Select a collection")
       click_button "Add"
 
       within("#post_#{post.id}") do

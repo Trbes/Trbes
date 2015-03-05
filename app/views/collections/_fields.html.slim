@@ -1,0 +1,7 @@
+= f.input :name
+= f.input :visibility, as: :hidden
+
+.form-group.form-inline
+  = image_tag(f.object.image.icon, class: "collection-preview", id: "#collection_preview")
+  = f.input :image, as: :file, required: false, label: false
+  = f.input :image_cache, as: :hidden

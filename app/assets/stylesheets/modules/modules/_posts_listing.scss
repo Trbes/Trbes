@@ -36,6 +36,14 @@ $post-right-min-width: $post-actions-min-width + $post-component-spacing + $post
         }
       }
     }
+
+    &:hover {
+      .post-actions {
+        .add-to-collection {
+          visibility: visible;
+        }
+      }
+    }
   }
 
   .post-upvote {
@@ -211,6 +219,64 @@ $post-right-min-width: $post-actions-min-width + $post-component-spacing + $post
     float: right;
     min-width: $post-actions-min-width;
     margin-top: ($post-thumb-size - $icon-circle-size) / 2;
+
+    .add-to-collection {
+      font-size: 2em;
+      vertical-align: middle;
+      visibility: hidden;
+    }
+
+    .post-collections {
+      display: inline-block;
+
+      $i: 0;
+      $list: "&.post-collections-#{$i}";
+
+      @for $i from (1 + 1) through 3 {
+        $list: "&.post-collections-#{$i}";
+      }
+
+      #{$list} {
+        position: relative;
+      }
+
+      .post-collection {
+        position: relative;
+        display: inline-block;
+        margin-left: 5px;
+
+        &:first-child {
+          margin-left: 15px;
+        }
+
+        img {
+          border-radius: $icon-circle-size;
+        }
+      }
+
+      .remove-from-collection {
+        margin-left: 0;
+        color: black;
+        position: absolute;
+        top: -5px;
+        right: -1px;
+
+        &:hover {
+          color: red;
+        }
+
+        .fa-stack {
+          width: 1em;
+          height: 1em;
+          line-height: 1em;
+
+          .fa-times {
+            font-size: 0.8em;
+          }
+        }
+      }
+    }
+
 
     a {
       margin-left: $post-component-spacing;

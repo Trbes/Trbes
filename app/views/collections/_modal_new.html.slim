@@ -1,0 +1,14 @@
+.modal.collection-modal.fade id="add_collection" tabindex="-1" role="dialog" aria-labelledby="add_collection" aria-hidden="true"
+  .modal-dialog
+    .modal-content
+      .modal-header
+        button.close type="button" data-dismiss="modal" aria-label="Close"
+          span aria-hidden="true" &times;
+        h4.modal-title Add collection
+
+        = simple_nested_form_for([:admin, Collection.new(visibility: true)]) do |f|
+          .modal-body
+            = render "collections/fields", f: f
+          .modal-footer
+            button.btn.btn-default type="button" data-dismiss="modal" Close
+            = f.submit "Add", class: "btn btn-primary"
