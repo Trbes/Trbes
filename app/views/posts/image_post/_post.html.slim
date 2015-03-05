@@ -3,7 +3,7 @@
   .post-content
     = link_to post, class: "title" do
       = post.title
-      a.image href="#"
+      .image
         .image-wrapper
           = cl_image_tag(post.preview_image)
     = render "posts/meta", post: post

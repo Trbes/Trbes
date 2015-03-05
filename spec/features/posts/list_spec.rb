@@ -14,11 +14,38 @@ feature "Posts list" do
 
   after { switch_to_main }
 
-  scenario "I visit posts page" do
-    within("#post_#{post.id}") do
-      expect(page).to have_css(".title", text: post.title)
-      expect(page).to have_css(".excerpt", text: post.body)
-      expect(page.find(".post-thumb img")["src"]).to have_content(post.preview_image.url)
+  context "text post" do
+    let!(:post) { create(:post, :text, :published, group: group) }
+
+    scenario "I visit posts page" do
+      within("#post_#{post.id}") do
+        expect(page).to have_css(".title", text: post.title)
+        expect(page).to have_css(".excerpt", text: post.body)
+        expect(page.find(".post-thumb img")["src"]).to have_content(post.preview_image.url)
+      end
+    end
+  end
+
+  context "link post" do
+    let!(:post) { create(:post, :link, :published, group: group) }
+
+    scenario "I visit posts page" do
+      within("#post_#{post.id}") do
+        expect(page).to have_css(".title", text: post.title)
+        expect(page).to have_css(".url", text: post.link)
+        expect(page).to have_content(post.body)
+      end
+    end
+  end
+
+  context "image post" do
+    let!(:post) { create(:post, :image, :published, group: group) }
+
+    scenario "I visit posts page" do
+      within("#post_#{post.id}") do
+        expect(page).to have_css(".title", text: post.title)
+        expect(page).to have_css(".image-wrapper")
+      end
     end
   end
 
@@ -158,6 +185,19 @@ feature "Posts list" do
       end
 
       expect(post.reload.collections).to be_empty
+    end
+  end
+
+  context "when I'm not logged in" do
+    background do
+      click_link "Sign out"
+      visit post_path(post)
+    end
+
+    scenario "I can't vote" do
+      within("#post_#{post.id}") do
+        expect(page.find(".vote")["href"]).to eq("#")
+      end
     end
   end
 end

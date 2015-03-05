@@ -29,20 +29,33 @@ feature "Single post page" do
     end
   end
 
-  scenario "I upvote for a post", js: true do
-    expect(post.cached_votes_total).to eq(0)
+  context "when I'm logged in" do
+    scenario "I upvote for a post", js: true do
+      expect(post.cached_votes_total).to eq(0)
 
-    page.find("#post_#{post.id} .vote").click
-    wait_for_ajax
-    expect(post.reload.cached_votes_total).to eql 1
-
-    within("#post_#{post.id} .vote-count") do
-      expect(page).to have_content(1)
-    end
-
-    expect {
       page.find("#post_#{post.id} .vote").click
       wait_for_ajax
-    }.not_to change { post.cached_votes_total }
+      expect(post.reload.cached_votes_total).to eql 1
+
+      within("#post_#{post.id} .vote-count") do
+        expect(page).to have_content(1)
+      end
+
+      expect {
+        page.find("#post_#{post.id} .vote").click
+        wait_for_ajax
+      }.not_to change { post.cached_votes_total }
+    end
+  end
+
+  context "when I'm not logged in" do
+    background do
+      click_link "Sign out"
+      visit post_path(post)
+    end
+
+    scenario "I can't upvote for a post" do
+      expect(page.find(".vote")["href"]).to eq("#")
+    end
   end
 end

@@ -24,7 +24,8 @@ FactoryGirl.define do
 
     trait :link do
       post_type :link_post
-      body { Faker::Internet.url }
+      link { Faker::Internet.url }
+      body { Faker::Hacker.say_something_smart }
     end
 
     trait :image do
