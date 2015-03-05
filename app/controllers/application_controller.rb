@@ -66,6 +66,7 @@ class ApplicationController < ActionController::Base
       group_tag: "group_#{current_group.id}"
     ) if current_group
     configuration.merge!(hosts: ALGOLIA_HOSTS) if defined?(ALGOLIA_HOSTS)
+    configuration.merge!(facebook_app_id: ENV["FACEBOOK_APP_ID"])
 
     gon.push(configuration)
   end

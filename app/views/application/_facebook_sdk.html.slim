@@ -3,7 +3,7 @@
 coffee:
   window.fbAsyncInit = ->
     FB.init
-      appId: ENV["FACEBOOK_APP_ID"]
+      appId: gon.facebook_app_id
       xfbml: true
       version: "v2.2"
     return
