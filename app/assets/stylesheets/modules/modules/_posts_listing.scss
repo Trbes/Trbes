@@ -28,15 +28,6 @@ $post-right-min-width: $post-actions-min-width + $post-component-spacing + $post
       border-bottom: 0;
     }
 
-    &.post-type-link {
-      .post-content {
-        .url {
-          min-height: 3 * $font-size-base * 1.1;
-          // @include multiline-ellipsis(3 * $font-size-base * 1.1, 1.5 * $font-size-base * 1.1, 3em, #908F8F);
-        }
-      }
-    }
-
     &:hover {
       .post-actions {
         .add-to-collection {
