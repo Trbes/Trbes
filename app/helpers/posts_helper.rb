@@ -23,7 +23,7 @@ module PostsHelper
     }
 
     params = []
-    opts.each { |key, value| params << "#{key}=#{URI::encode(value)}" }
-    "https://twitter.com/intent/tweet?" + params.join('&')
+    opts.each { |key, value| params << "#{key}=#{ URI.encode(value) }" }
+    "https://twitter.com/intent/tweet?" + params.join("&")
   end
 end

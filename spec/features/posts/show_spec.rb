@@ -13,7 +13,7 @@ feature "Single post page" do
 
   after { switch_to_main }
 
-  scenario "I visit single post page" do
+  scenario "I visit single post page", js: true do
     within("#post_#{post.id}") do
       expect(page).to have_css(".title", text: post.title)
       expect(page).to have_css(".excerpt", text: post.body)
@@ -26,6 +26,30 @@ feature "Single post page" do
     within("#post_#{post.id}") do
       expect(page).to have_css(".post-title", text: post.title)
       expect(page).to have_css(".post-body", text: post.body)
+
+      find("a.share").click
+      expect(page).to have_css("ul.dropdown-menu", visible: true)
+    end
+
+    within("ul.dropdown-menu") do
+      facebook_share_link = page.find(".share-on-facebook")
+      expect(facebook_share_link["data-title"]).to eql post.title
+      expect(facebook_share_link["data-link"]).to include(group.subdomain)
+      expect(facebook_share_link["data-link"]).to include(post.slug)
+
+      twitter_share_link = page.find(".share-on-twitter")
+      expect(twitter_share_link["href"]).to include(post.slug)
+      expect(twitter_share_link["href"]).to include(URI.encode(post.title))
+      expect {
+        twitter_share_link.click
+      }.to change { Capybara.current_session.windows.size }.by(1)
+    end
+
+    new_window = Capybara.current_session.windows.last
+
+    page.within_window new_window do
+      url = URI.parse(page.current_url)
+      expect(url.host).to include("twitter")
     end
   end
 
