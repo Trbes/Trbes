@@ -7,6 +7,8 @@ Rails.application.config.assets.paths << Rails.root.join("app", "assets", "fonts
 
 # Precompile additional assets.
 # application.js, application.css, and all non-JS/CSS in app/assets folder are already added.
-Rails.application.config.assets.precompile += %w( modernizr/modernizr.js )
-Rails.application.config.assets.precompile += %w( ie_lt9.js )
+Rails.application.config.assets.precompile += %w(
+  modernizr/modernizr.js
+  ie_lt9.js
+)
 Rails.application.config.assets.precompile << /.*.(?:eot|svg|ttf|woff|woof2)$/

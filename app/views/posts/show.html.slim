@@ -9,7 +9,10 @@
             i.fa.fa-thumbs-up
           .vote-count = post.cached_votes_total
         .post-share
-          a.share href="#" Share
+          .dropdown.share
+            a.share.dropdown-toggle aria-expanded="false" data-toggle="dropdown"
+              i.fa.fa-share-square-o.circle.grey
+            = render "posts/share_menu", post: post
 
       .post-right
         .post-author

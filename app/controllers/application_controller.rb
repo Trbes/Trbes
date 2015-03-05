@@ -8,6 +8,7 @@ class ApplicationController < ActionController::Base
   rescue_from Pundit::NotAuthorizedError, with: :not_authorized
 
   before_action :push_algolia_config
+  before_action :push_env_config
 
   expose(:groups)
 
@@ -68,6 +69,10 @@ class ApplicationController < ActionController::Base
     configuration.merge!(hosts: ALGOLIA_HOSTS) if defined?(ALGOLIA_HOSTS)
 
     gon.push(configuration)
+  end
+
+  def push_env_config
+    gon.push(facebook_app_id: ENV["FACEBOOK_APP_ID"])
   end
 
   decent_configuration do

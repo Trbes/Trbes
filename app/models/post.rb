@@ -20,8 +20,8 @@ class Post < ActiveRecord::Base
 
   validates :title, presence: true
   validates :title, length: { minimum: 10, maximum: 100 }
-  validates :body, presence: true, if: proc { |p| p.post_type == :text_post }
-  validates :link, presence: true, if: proc { |p| p.post_type == :link_post }
+  validates :body, presence: true, if: proc { |p| p.text_post? }
+  validates :link, presence: true, if: proc { |p| p.link_post? }
 
   delegate :full_name, :avatar, :title, to: :user, prefix: true
 
