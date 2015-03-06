@@ -10,7 +10,7 @@ class window.PostSearch
 
   _initPostSearch: ->
     @$container.typeahead({ hint: false }
-      source: @client.initIndex('Post').ttAdapter()
+      source: @client.initIndex(gon.post_index).ttAdapter()
       templates:
         suggestion: (hit) ->
           return "<li><a href='/posts/#{hit.slug}'>#{hit.title}</a></li>";

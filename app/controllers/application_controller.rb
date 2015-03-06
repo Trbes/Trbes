@@ -68,7 +68,12 @@ class ApplicationController < ActionController::Base
     ) if current_group
     configuration.merge!(hosts: ALGOLIA_HOSTS) if defined?(ALGOLIA_HOSTS)
 
-    gon.push(configuration)
+    gon.push(
+      configuration.merge(
+        post_index: "Post_#{Rails.env}",
+        group_index: "Group_#{Rails.env}"
+      )
+    )
   end
 
   def push_env_config

@@ -11,7 +11,7 @@ class window.GroupSearch
         hint: true
         highlight: true
       }
-      source: @client.initIndex('Group').ttAdapter()
+      source: @client.initIndex(gon.group_index).ttAdapter()
       displayKey: 'name'
       templates:
         empty: "<div class='tt-empty-message'>No group matching your query</div>"

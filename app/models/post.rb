@@ -34,7 +34,7 @@ class Post < ActiveRecord::Base
   normalize_attributes :title
   normalize_attributes :body, with: :squish
 
-  algoliasearch do
+  algoliasearch per_environment: true, disable_indexing: Rails.env.test? do
     attribute :title, :body, :slug
 
     tags do
@@ -46,8 +46,7 @@ class Post < ActiveRecord::Base
     attachments.first.image if attachments.any?
   end
 
-  # TODO
-  def best_comment
-    comments.first
+  def editable?
+    created_at >= 15.minutes.ago
   end
 end
