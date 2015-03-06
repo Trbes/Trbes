@@ -42,6 +42,8 @@ class Post < ActiveRecord::Base
     end
   end
 
+  acts_as_paranoid
+
   def preview_image
     attachments.first.image if attachments.any?
   end
