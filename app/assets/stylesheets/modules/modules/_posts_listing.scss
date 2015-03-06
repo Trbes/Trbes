@@ -297,3 +297,11 @@ $post-right-min-width: $post-actions-min-width + $post-component-spacing + $post
   }
 }
 
+.post.post-type-link {
+  .post-content {
+    .excerpt {
+      @include multiline-ellipsis(1.5 * $font-size-base * 1.1, 1.5 * $font-size-base * 1.1, 3em, #908F8F);
+    }
+  }
+}
+

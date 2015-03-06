@@ -4,7 +4,8 @@
     = link_to post.title, post, class: "title"
     .url
       = link_to post.link, post.link, class: "iconify"
-    span= post.body
+    .excerpt
+      span= post.body
     = render "posts/meta", post: post
   .post-right
     = render "posts/actions", post: post
