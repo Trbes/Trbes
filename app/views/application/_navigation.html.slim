@@ -25,12 +25,10 @@
                   ul.dropdown-menu aria-labelledby="group_menu" role="menu"
                     - if policy(:access).admin_access?
                       li role="presentation"
-                        = link_to "Edit Group", admin_dashboard_index_path
-                      li role="presentation"
-                        = link_to "Manage Members", admin_memberships_path, tabindex: "-1", role: "menuitem"
+                        = link_to "Manage", admin_dashboard_index_path
                     - if policy(:invitation).new?
                       li role="presentation"
-                        a href=(new_invitation_path) role="menuitem" tabindex="-1"  Invite Someone
+                        a href=(new_invitation_path) role="menuitem" tabindex="-1"  Invite
               .group-desc= current_group.description
 
       /! Collect the nav links, forms, and other content for toggling
