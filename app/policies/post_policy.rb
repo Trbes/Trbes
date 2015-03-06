@@ -1,6 +1,6 @@
 class PostPolicy < Struct.new(:membership, :post)
   def edit?
-    membership.moderator? || membership.owner? || membership && post.editable?
+    membership && (membership.moderator? || membership.owner? || post.editable?)
   end
 
   def update?

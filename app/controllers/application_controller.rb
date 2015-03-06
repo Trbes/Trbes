@@ -7,8 +7,7 @@ class ApplicationController < ActionController::Base
 
   rescue_from Pundit::NotAuthorizedError, with: :not_authorized
 
-  before_action :push_algolia_config
-  before_action :push_env_config
+  before_action :push_algolia_config, :push_env_config, :push_indices
 
   expose(:groups)
 
@@ -66,13 +65,16 @@ class ApplicationController < ActionController::Base
       ),
       group_tag: "group_#{current_group.id}"
     ) if current_group
+
     configuration.merge!(hosts: ALGOLIA_HOSTS) if defined?(ALGOLIA_HOSTS)
 
+    gon.push(configuration)
+  end
+
+  def push_indices
     gon.push(
-      configuration.merge(
-        post_index: "Post_#{Rails.env}",
-        group_index: "Group_#{Rails.env}"
-      )
+      post_index: "Post_#{Rails.env}",
+      group_index: "Group_#{Rails.env}"
     )
   end
 

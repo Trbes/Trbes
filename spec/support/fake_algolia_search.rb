@@ -1,10 +1,10 @@
 class FakeAlgoliaSearch < Sinatra::Base
-  options "/1/indexes/Group/query" do
+  options "/1/indexes/Group_test/query" do
     setup
     "{}"
   end
 
-  post "/1/indexes/Group/query" do
+  post "/1/indexes/Group_test/query" do
     setup
 
     { hits: [] }.tap do |response|
@@ -14,12 +14,12 @@ class FakeAlgoliaSearch < Sinatra::Base
     end.to_json
   end
 
-  options "/1/indexes/Post/query" do
+  options "/1/indexes/Post_test/query" do
     setup
     "{}"
   end
 
-  post "/1/indexes/Post/query" do
+  post "/1/indexes/Post_test/query" do
     setup
 
     { hits: [] }.tap do |response|
