@@ -10,6 +10,14 @@ class PostsController < ApplicationController
     authorize(post)
   end
 
+  def update
+    authorize(post)
+
+    post.save
+
+    redirect_to(post)
+  end
+
   def create
     result = CreatePost.call(
       attributes: post_attributes,
