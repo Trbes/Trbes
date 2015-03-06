@@ -4,3 +4,6 @@
   a.author href="#"= post.user_full_name
   | &nbsp;•&nbsp;
   = link_to pluralize(post.comments_count, "answer"), post_path(post)
+  - if policy(post).edit?
+    | &nbsp;•&nbsp;
+    = link_to "Edit", edit_post_path(post)

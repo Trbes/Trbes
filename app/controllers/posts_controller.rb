@@ -6,6 +6,18 @@ class PostsController < ApplicationController
     self.post = Post.includes(user: :avatar).find_by(slug: params[:id])
   end
 
+  def edit
+    authorize(post)
+  end
+
+  def update
+    authorize(post)
+
+    post.save
+
+    redirect_to(post)
+  end
+
   def create
     result = CreatePost.call(
       attributes: post_attributes,

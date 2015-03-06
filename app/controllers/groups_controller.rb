@@ -12,12 +12,6 @@ class GroupsController < ApplicationController
     Kaminari.paginate_array(presented_groups).page(params[:page]).per(20)
   end
 
-  def index
-  end
-
-  def new
-  end
-
   def create
     authorize :group, :create?
 

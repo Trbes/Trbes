@@ -24,6 +24,8 @@
       .post-content
         header.post-header
           h2.post-title = post.title
+          - if policy(post).edit?
+            = link_to "Edit post", edit_post_path(post)
           .post-meta
               span.date posted #{distance_of_time_in_words_to_now(post.created_at) } ago
         .post-body
