@@ -156,61 +156,6 @@
   }
 
   .snf {
-    .search {
-      .input-group-addon {
-        background: transparent;
-        border: 0;
-        padding-left: 0;
-        padding-right: 0;
-
-        .fa {
-          color: white;
-        }
-      }
-
-      input[type='search'] {
-
-        @include placeholder {
-          -moz-osx-font-smoothing: grayscale;
-          -webkit-font-smoothing: antialiased;
-        }
-
-        color: white;
-        background: transparent;
-        border: 0;
-        box-shadow: none;
-        padding-left: 5px;
-      }
-
-      pre {
-        color: red;
-      }
-
-      .tt-hint {
-        -moz-osx-font-smoothing: grayscale;
-        -webkit-font-smoothing: antialiased;
-      }
-
-      .tt-dropdown-menu {
-        background: rgba(0, 0, 0, 0.8);
-        padding: 5px;
-
-        .tt-suggestion {
-          a {
-            font-family: "Source Sans Pro", "Helvetica Neue", Helvetica, Arial, sans-serif;
-            text-transform: uppercase;
-            font-weight: normal;
-            font-size: 0.85em;
-            color: white;
-          }
-        }
-
-        .tt-cursor {
-          background: rgba(255,255,255,0.3)
-        }
-      }
-    }
-
     .favorites {
       color: white;
 

@@ -1,13 +1,16 @@
 = render "posts/add_a_post"
 
-.container
+.container.group-page
   - if user_signed_in?
     .row
       .col-md-3
         = render "posts/filter_menu"
-      .col-md-3
+      .col-md-3.text-center
         - if current_group.posts_count > 0
-          input#post_search.form-control placeholder="Search for posts" type="search"
+          .input-group.search
+            span#search_main.input-group-addon
+              i.fa.fa-search
+            input#post_search.form-control aria-describedby="search_main" placeholder="Search for posts" type="search"
       .col-md-6
         = render "posts/collection_menu"
 
