@@ -92,7 +92,7 @@ en:
         sign_in: 'Sign in'
         sign_out: 'Sign out'
         sign_up: 'Sign up'
-        edit_profile: 'Edit profile'
+        edit_profile: 'Settings'
 
     main_sliding_menu:
       create_group: 'CREATE'
