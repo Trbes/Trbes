@@ -26,7 +26,7 @@ class PostsController < ApplicationController
       allow_publish: policy(Post).publish?)
 
     if result.success?
-      redirect_to(result.post, subdomain: current_group.subdomain)
+      redirect_to root_url(subdomain: current_group.subdomain)
     else
       render :new
     end
