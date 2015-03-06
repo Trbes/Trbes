@@ -1,3 +1,9 @@
-= simple_form_for(post) do |f|
-  = f.input :title
+.container
+  .post-unit
+    = simple_form_for(post) do |f|
+      = f.input :title
+      = f.input :link if post.link_post?
+      = f.input :body, as: :text unless post.image_post?
+      = f.input :image if post.image_post?
 
+      = f.submit "Save", class: "btn btn-info"
