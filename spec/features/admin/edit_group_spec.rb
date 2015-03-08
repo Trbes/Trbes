@@ -14,6 +14,5 @@ feature "Admin group page" do
       user.membership_for(group).owner!
       visit root_path
     end
-
   end
 end
