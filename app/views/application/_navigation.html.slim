@@ -3,7 +3,7 @@
     .container
 
       /! Brand and toggle get grouped for better mobile display
-      .navbar-header
+      .navbar-header class=("no-group" unless current_group)
         button.navbar-toggle.collapsed data-target="#navbar_navigation" data-toggle="collapse" type="button"
           span.sr-only Toggle navigation
           span.icon-bar
@@ -30,7 +30,12 @@
                       li role="presentation"
                         a href=(new_invitation_path) role="menuitem" tabindex="-1"  Invite
               .group-desc= current_group.description
-
+        - else
+          .navbar-headline
+            h2.navbar-headline-title A simpler way to discover and share great resources with your teammates or customers
+            .links
+              a.btn.btn-success.btn-bright-success.btn-fill href="/small-teams" For Small Teams
+              a.btn.btn-success.btn-bright-success.btn-fill href="/customer-communities" For Customer Communities
       /! Collect the nav links, forms, and other content for toggling
       / #navbar_navigation.collapse.navbar-collapse
       #navbar_navigation.collapse.navbar-collapse

@@ -6,7 +6,7 @@ feature "Groups list" do
 
   background do
     create_list(:post, 20, :text, group: group)
-    visit "/explore"
+    visit "/"
   end
 
   scenario "I visit explore page" do
@@ -21,7 +21,7 @@ feature "Groups list" do
   context "when there are too many groups" do
     background do
       create_list(:group, 20)
-      visit "/explore"
+      visit "/"
     end
 
     scenario "pagination happens" do

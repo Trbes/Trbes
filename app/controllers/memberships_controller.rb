@@ -5,13 +5,13 @@ class MembershipsController < ApplicationController
     membership.user = current_user
     membership.save
 
-    redirect_to "/explore"
+    redirect_to "/"
   end
 
   def destroy
     membership.destroy
 
-    redirect_to "/explore"
+    redirect_to "/"
   end
 
   private
