@@ -13,6 +13,7 @@
 //= require bootstrap-sass-official
 //= require jquery-form
 //= require jquery-validation
+//= require humane
 //= require gsdk
 //= require_tree ./trbes
 //= require grabicon

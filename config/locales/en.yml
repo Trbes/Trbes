@@ -82,6 +82,9 @@ en:
       send: "Send"
       update: "Update"
       sure: "Are you sure?"
+    post:
+      message:
+        success: "'%{title}' has been added"
 
     home: 'Dashboard'
 

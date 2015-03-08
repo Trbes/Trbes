@@ -1,0 +1,10 @@
+coffee:
+  humane.clickToClose = true
+
+- flash.each do |type, content|
+  javascript:
+    $(document).ready(function () {
+      humane.log("#{content}", { addnCls: "#{humane_class_for(type)}" })
+    })
+
+

@@ -10,6 +10,17 @@ module ApplicationHelper
     BOOTSTRAP_FLASH_MAPPER.fetch(flash_type.to_sym, flash_type)
   end
 
+  HUMANE_FLASH_MAPPER = {
+    success: "humane-libnotify-success",
+    error: "humane-libnotify-error",
+    alert: "humane-libnotify-error",
+    notice: "humane-libnotify-info"
+  }.freeze
+
+  def humane_class_for(flash_type)
+    HUMANE_FLASH_MAPPER.fetch(flash_type.to_sym, flash_type)
+  end
+
   def present(object)
     if object.respond_to?(:map)
       present_as_array(object)

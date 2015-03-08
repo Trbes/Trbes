@@ -278,7 +278,7 @@ GEM
       bundler (>= 1.3.0, < 2.0)
       railties (= 4.2.0)
       sprockets-rails
-    rails-assets-animate.css (3.2.1)
+    rails-assets-animate.css (3.2.3)
     rails-assets-bootstrap (3.3.2)
       rails-assets-jquery (>= 1.9.1)
     rails-assets-bootstrap-sass-official (3.3.3)
@@ -292,6 +292,7 @@ GEM
     rails-assets-enquire (2.1.2)
     rails-assets-font-awesome (4.3.0)
     rails-assets-html5shiv (3.7.2)
+    rails-assets-humane (3.2.2)
     rails-assets-jquery (2.1.3)
     rails-assets-jquery-form (3.46.0)
       rails-assets-jquery (>= 1.5)
@@ -497,6 +498,7 @@ DEPENDENCIES
   rails-assets-enquire!
   rails-assets-font-awesome!
   rails-assets-html5shiv!
+  rails-assets-humane!
   rails-assets-jquery-form!
   rails-assets-jquery-validation!
   rails-assets-modernizr!
