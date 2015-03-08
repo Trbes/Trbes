@@ -15,12 +15,5 @@ feature "Admin group page" do
       visit root_path
     end
 
-    scenario "I can visit admin group page" do
-      click_button("group_menu")
-      click_link("Edit Group")
-      click_link("Group")
-
-      expect(current_path).to eq(edit_admin_group_path)
-    end
   end
 end

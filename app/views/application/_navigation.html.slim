@@ -19,16 +19,17 @@
             .group-info
               .group-name
                 = link_to current_group.name, root_url(subdomain: current_group.subdomain)
-                .dropdown
-                  button#group_menu.btn.btn-default.dropdown-toggle aria-expanded="true" data-toggle="dropdown" type="button"
-                    .fa.fa-cog
-                  ul.dropdown-menu aria-labelledby="group_menu" role="menu"
-                    - if policy(:access).admin_access?
-                      li role="presentation"
-                        = link_to "Manage", admin_dashboard_index_path
-                    - if policy(:invitation).new?
-                      li role="presentation"
-                        a href=(new_invitation_path) role="menuitem" tabindex="-1"  Invite
+                - if will_show_group_cog_button?
+                  .dropdown
+                    button#group_menu.btn.btn-default.dropdown-toggle aria-expanded="true" data-toggle="dropdown" type="button"
+                      .fa.fa-cog
+                    ul.dropdown-menu aria-labelledby="group_menu" role="menu"
+                      - if policy(:access).admin_access?
+                        li role="presentation"
+                          = link_to "Manage", admin_dashboard_index_path
+                      - if policy(:invitation).new?
+                        li role="presentation"
+                          a href=(new_invitation_path) role="menuitem" tabindex="-1"  Invite
               .group-desc= current_group.description
         - else
           .navbar-headline
