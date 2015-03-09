@@ -10,6 +10,12 @@
 
       section.posts
         h4.section-name Posts
+
+        = form_tag(admin_posts_path, id: "filter_posts", method: :get) do
+          = select(nil, "filter",
+              options_for_select(%w(all with_deleted deleted), params[:filter]),
+              {},
+              onchange: "$('#filter_posts').submit()")
         hr.section-separator
 
         = render posts.map { |post| present(post) }
