@@ -85,3 +85,6 @@ $ ->
     url = @href
     opts = 'status=1' + ',width=' + width + ',height=' + height + ',top=' + top + ',left=' + left
     window.open url, 'twitter', opts
+
+  $(document).on 'change', '.rails-submitable', ->
+    $(@form).trigger 'submit.rails'

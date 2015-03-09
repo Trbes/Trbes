@@ -15,7 +15,7 @@
           = select(nil, "filter",
               options_for_select({"Active" => "all", "All" => "with_deleted", "Deleted": "deleted"}, params[:filter]),
               {},
-              onchange: "$('#filter_posts').submit()")
+              class: 'rails-submitable')
         hr.section-separator
 
         = render posts.map { |post| present(post) }

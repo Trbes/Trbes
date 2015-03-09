@@ -93,7 +93,7 @@ feature "Delete post" do
 
   context "when I'm guest" do
     background do
-      # sign out
+      click_link "Sign out"
     end
 
     it_behaves_like "not deletable post"
