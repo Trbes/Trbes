@@ -51,4 +51,8 @@ class Post < ActiveRecord::Base
   def editable?
     created_at >= 15.minutes.ago
   end
+
+  def written_by?(membership)
+    user == membership.user
+  end
 end
