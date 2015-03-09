@@ -13,7 +13,7 @@
 
         = form_tag(admin_posts_path, id: "filter_posts", method: :get) do
           = select(nil, "filter",
-              options_for_select(%w(all with_deleted deleted), params[:filter]),
+              options_for_select({"Active" => "all", "All" => "with_deleted", "Deleted": "deleted"}, params[:filter]),
               {},
               onchange: "$('#filter_posts').submit()")
         hr.section-separator
