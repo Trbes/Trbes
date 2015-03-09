@@ -6,6 +6,10 @@ shared_examples_for "deletable post" do
 
     within("#post_#{post.id}") do
       expect(page).to have_link("Delete")
+
+      expect {
+        click_link("Delete")
+      }.to change { Post.count }.from(1).to(0)
     end
   end
 
@@ -13,6 +17,10 @@ shared_examples_for "deletable post" do
     visit post_path(post)
 
     expect(page).to have_link("Delete")
+
+    expect {
+      click_link("Delete")
+    }.to change { Post.count }.from(1).to(0)
   end
 end
 
