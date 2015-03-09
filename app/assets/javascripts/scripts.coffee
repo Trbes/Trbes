@@ -40,7 +40,7 @@ $ ->
 
   $(".upload").on "click", (e) ->
     e.preventDefault()
-    $(".file-uploader").toggleClass("hidden")
+    $(this).siblings().find(".file-uploader").toggleClass("hidden").prop("disabled", (i, v) -> return !v )
 
   $("a.vote").on "click", (e) ->
     e.preventDefault()
