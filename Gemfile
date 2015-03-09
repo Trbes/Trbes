@@ -49,7 +49,8 @@ gem "omniauth-twitter"
 gem "omniauth-facebook"
 gem "omniauth-google-oauth2"
 gem "omniauth-linkedin-oauth2"
-gem "paranoia"
+# Switch back to original version when patch gets merged
+gem "paranoia", git: "https://github.com/sergey-alekseev/paranoia", branch: "switch-to-rails-4-2"
 
 group :staging, :production do
   gem "rails_12factor"
