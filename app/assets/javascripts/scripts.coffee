@@ -44,7 +44,10 @@ $ ->
 
   $("a.vote").on "click", (e) ->
     e.preventDefault()
+
     target = $(this)
+    return if target.attr("href") == "#"
+
     $.ajax
       method: "PUT"
       url: target.attr("href")

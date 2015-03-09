@@ -27,7 +27,6 @@ html class="no-js" lang="en"
   body
     #root
       = render "navigation"
-      = render "messages"
 
       #main.wrapper
         = yield
@@ -37,6 +36,9 @@ html class="no-js" lang="en"
     = render "facebook_sdk"
 
     = javascript_include_tag :application
+
+    = render "notifications"
+
     = cloudinary_js_config
 
     = yield :javascripts

@@ -62,7 +62,7 @@ feature "Edit post" do
       expect(page).not_to have_link("Edit post")
     end
 
-    scenario "I can't visit 'edit' post page" do
+    scenario "I can't visit 'edit' post page", js: true do
       visit edit_post_path(post)
 
       expect(page).to have_content("You are not authorized to perform this action.")

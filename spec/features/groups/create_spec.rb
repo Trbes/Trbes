@@ -7,7 +7,7 @@ feature "Create group" do
 
   background do
     sign_in(user.email, "123456")
-    visit explore_path
+    visit root_path
 
     click_link "Create your FREE Trbes"
 

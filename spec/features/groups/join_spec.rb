@@ -8,7 +8,7 @@ feature "Join group" do
     background do
       group.add_member(user, as: :pending)
       sign_in(user.email, "123456")
-      visit "/explore"
+      visit "/"
     end
 
     scenario "I see notice about my request" do
@@ -20,7 +20,7 @@ feature "Join group" do
 
   context "when I'm not-signed-in visitor" do
     background do
-      visit "/explore"
+      visit "/"
     end
 
     scenario "I can request membership by signing in" do
@@ -36,7 +36,7 @@ feature "Join group" do
     background do
       group.add_member(user, as: :member)
       sign_in(user.email, "123456")
-      visit "/explore"
+      visit "/"
     end
 
     scenario "I can enter group" do
@@ -52,7 +52,7 @@ feature "Join group" do
   context "When I'm signed in but not a group member" do
     background do
       sign_in(user.email, "123456")
-      visit "/explore"
+      visit "/"
     end
 
     scenario "I can request membership" do
@@ -60,7 +60,7 @@ feature "Join group" do
         click_button "Join"
       end
 
-      expect(current_path).to eq("/explore")
+      expect(current_path).to eq("/")
 
       within("#group_#{group.id}") do
         expect(page).to have_content("Join request was sent")

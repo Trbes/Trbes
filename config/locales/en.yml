@@ -82,6 +82,9 @@ en:
       send: "Send"
       update: "Update"
       sure: "Are you sure?"
+    post:
+      message:
+        success: "'%{title}' has been added"
 
     home: 'Dashboard'
 
@@ -92,7 +95,7 @@ en:
         sign_in: 'Sign in'
         sign_out: 'Sign out'
         sign_up: 'Sign up'
-        edit_profile: 'Edit profile'
+        edit_profile: 'Settings'
 
     main_sliding_menu:
       create_group: 'CREATE'

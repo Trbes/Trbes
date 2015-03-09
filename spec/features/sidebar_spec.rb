@@ -4,7 +4,7 @@ feature "Sidebar" do
   let!(:group) { create(:group) }
 
   scenario "Search for groups", js: true do
-    visit "/explore"
+    visit "/"
 
     page.find(".navbar-brand").click
 
@@ -21,7 +21,7 @@ feature "Sidebar" do
 
   context "Non-logged-in User" do
     scenario "Open the sidebar", js: true do
-      visit "/explore"
+      visit "/"
 
       page.find(".navbar-brand").click
 
@@ -42,7 +42,7 @@ feature "Sidebar" do
     end
 
     scenario "Open the sidebar", js: true do
-      visit "/explore"
+      visit "/"
 
       page.find(".navbar-brand").click
 

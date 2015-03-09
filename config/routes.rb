@@ -47,7 +47,8 @@ Rails.application.routes.draw do
 
   get "/groups/:subdomain", to: "groups#show"
 
-  get "/explore", to: "groups#index"
+  get "/small-teams", to: "landing#small_teams"
+  get "/customer-communities", to: "landing#customer_communities"
 
-  root to: "landing#index"
+  root to: "groups#index"
 end

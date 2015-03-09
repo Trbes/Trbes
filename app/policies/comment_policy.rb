@@ -18,4 +18,8 @@ class CommentPolicy < Struct.new(:membership, :comment)
   def favourite?
     membership && (membership.owner? || membership.moderator?)
   end
+
+  def vote?(user)
+    user
+  end
 end

@@ -7,7 +7,7 @@ feature "Cancel account" do
     sign_in(user.email, "123456")
   end
 
-  scenario "I cancel my account" do
+  scenario "I cancel my account", js: true do
     visit edit_user_registration_path(user)
     click_link "Cancel my account"
 

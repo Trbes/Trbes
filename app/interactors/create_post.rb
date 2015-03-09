@@ -3,6 +3,8 @@ class CreatePost
 
   def call
     context.post = create_post
+
+    context.message = I18n.t("app.post.message.success", title: context.post.title) if context.success?
   end
 
   private

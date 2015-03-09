@@ -1,0 +1,19 @@
+.container
+  - if user_signed_in?
+    .text-center
+      a.btn.btn-primary.btn-fill.btn-lg href="/" Discover Popular Groups
+
+  = render "landing/small_teams/section_discover"
+
+  = render "landing/small_teams/section_seamless_sharing"
+
+  hr.landing-section-divider
+
+  = render "landing/small_teams/section_knowledge_hub"
+
+  hr.landing-section-divider
+
+  = render "landing/small_teams/section_testimonials"
+
+  hr.landing-section-divider
+

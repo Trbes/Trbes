@@ -17,7 +17,7 @@ feature "Admin dashboard" do
 
     scenario "I can visit admin dashboard" do
       click_button("group_menu")
-      click_link("Edit Group")
+      click_link("Manage")
 
       expect(current_path).to eq(admin_dashboard_index_path)
     end
@@ -29,12 +29,10 @@ feature "Admin dashboard" do
     end
 
     scenario "link to admin dashboard is not visible for me" do
-      click_button("group_menu")
-      expect(page).not_to have_content("Edit Group")
-      expect(page).not_to have_content("Manage Members")
+      expect(page).not_to have_content("Manage", visible: false)
     end
 
-    scenario "even if I try to load admin dashboard by URL" do
+    scenario "even if I try to load admin dashboard by URL", js: true do
       visit(admin_dashboard_index_path)
       expect(page).to have_content("You are not authorized to perform this action.")
     end

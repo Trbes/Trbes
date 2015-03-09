@@ -16,7 +16,7 @@ feature "Sign in" do
     expect(page).to have_content("Sign in")
   end
 
-  scenario "User has not confirmed email address" do
+  scenario "User has not confirmed email address", js: true do
     sign_in(not_confirmed_user.email, "123456")
 
     expect(page).to have_content("You have to confirm your account before continuing.")

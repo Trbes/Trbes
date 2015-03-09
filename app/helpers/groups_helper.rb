@@ -14,4 +14,8 @@ module GroupsHelper
   def will_show_collection_dropdown?
     policy(Collection).create? || current_group.collections.visible.count > Collection::VISIBLE_COLLECTIONS_COUNT
   end
+
+  def will_show_group_cog_button?
+    policy(:access).admin_access? || policy(:invitation).new?
+  end
 end

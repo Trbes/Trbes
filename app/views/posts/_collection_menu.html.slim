@@ -9,7 +9,7 @@ ul.nav.nav-pills.nav-collections
     li.dropdown.more class=('hint-add-collection' if will_show_add_collection_hint?)
       a.dropdown-toggle data-close-others="false" data-delay="1000" data-hover="dropdown" data-toggle="dropdown" href="#"
         i.fa.fa-ellipsis-h.circle
-      ul.dropdown-menu
+      ul.dropdown-menu.dropdown-right
         - (hidden_collections = current_group.collections.visible.ordered.offset(Collection::VISIBLE_COLLECTIONS_COUNT)).each do |collection|
           li role="presentation"
             = link_to root_path(collection_id: collection.id), id: dom_id(collection) do

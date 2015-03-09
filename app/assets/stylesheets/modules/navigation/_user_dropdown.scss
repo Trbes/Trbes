@@ -2,11 +2,13 @@ $profile-photo-size: 48px;
 
 #navbar_navigation {
   .navbar-nav {
+    margin-top: 30px;
+    margin-bottom: 30px;
+
     &>li {
       &.dropdown-profile {
         &>a {
           padding: 5px 0;
-          margin-top: 30px;
           height: $profile-photo-size;
           background-color: transparent;
 
@@ -30,13 +32,14 @@ $profile-photo-size: 48px;
 
         .dropdown-menu {
           text-align: center;
+          top: 62px;
         }
       }
 
       .btn-add-post {
         padding: 10px 40px;
         color: white;
-        margin: 33px 0 30px 60px;
+        margin: 3px 0 0 60px;
         font-size: 1.2em;
         border-width: 0;
         // background-color: #3ea8db !important;

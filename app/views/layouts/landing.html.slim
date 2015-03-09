@@ -27,7 +27,6 @@ html class="no-js" lang="en"
   body
     #root
       = render "landing/navigation"
-      = render "messages"
 
       #main.wrapper
         = yield
@@ -35,6 +34,9 @@ html class="no-js" lang="en"
     = render "application/footer"
 
     = javascript_include_tag :application
+
+    = render "notifications"
+
     = cloudinary_js_config
 
     = yield :javascripts
