@@ -3,8 +3,8 @@
           class: "form-horizontal form-new-post active" }) do |f|
   = f.hidden_field(:post_type, value: "text_post")
   .form-group.fnp-title
-    label.col-sm-2.control-label for="fnp_text_post_title"  Title *
-    .col-sm-10
+    label.col-sm-3.control-label for="fnp_text_post_title"  Title *
+    .col-sm-9
       = f.input :title,
         label: false,
         wrapper: false,
@@ -12,8 +12,8 @@
         input_html: { id: "fnp_text_post_title",
                       class: "form-control" }
   .form-group.fnp-text
-    label.col-sm-2.control-label for="fnp_text_post_text"  Your Text *
-    .col-sm-10
+    label.col-sm-3.control-label for="fnp_text_post_text"  Your Text *
+    .col-sm-9
       = f.input :body,
         as: :text,
         label: false,
@@ -23,7 +23,5 @@
                       class: "form-control",
                       row: 5 }
   .form-group.fnp-actions
-    .col-sm-offset-2.col-sm-10
-      button.btn.btn-success.btn-lg.btn-fill.btn-submit-post type="submit"  Publish Post
-      a.link-write-more href="#" Write more
-      / a.cancel-post href="#" Cancel
+    .col-sm-offset-3.col-sm-9
+      button.btn.btn-success.btn-bright-success.btn-lg.btn-fill.btn-submit-post type="submit"  Publish Post

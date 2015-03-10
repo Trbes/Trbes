@@ -7,24 +7,18 @@ class window.AddPost
     @_init_form_validations()
 
   _init_events: ->
-    @$container.click (e) ->
-      $("#add_a_post").toggleClass("open")
-
-    $(".cancel-post").click (e) ->
-      $("#add_a_post").removeClass("open")
-
-    $(".fnp-togglers a").click (e) ->
+    $(".toggle-post-type").click (e) ->
       e.preventDefault()
       return if $(this).hasClass("active")
 
       $(this).addClass("active").
         siblings().removeClass("active")
-      $("#add_a_post " + $(this).attr("href")).addClass("active").
+      $($(this).attr("href"), @$container).addClass("active").
         siblings().removeClass("active")
 
   # Sign-up form validation
   _init_form_validations: ->
-    $("#add_a_post form").each ()->
+    $("form", @$container).each ()->
       that = $(this)
       $(this).validate
         rules:
