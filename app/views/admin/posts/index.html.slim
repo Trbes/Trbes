@@ -13,7 +13,7 @@
 
         = form_tag(admin_posts_path, id: "filter_posts", method: :get) do
           = select(nil, "filter",
-              options_for_select({"Active" => "all", "All" => "with_deleted", "Deleted": "deleted"}, params[:filter]),
+              options_for_select({"Active" => "all", "All" => "with_deleted", "Deleted" => "deleted"}, params[:filter]),
               {},
               class: 'rails-submitable')
         hr.section-separator

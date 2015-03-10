@@ -53,6 +53,6 @@ class Post < ActiveRecord::Base
   end
 
   def written_by?(membership)
-    user == membership.user
+    user.id == membership.user_id
   end
 end
