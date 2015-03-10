@@ -1,6 +1,8 @@
 class Group < ActiveRecord::Base
   include AlgoliaSearch
 
+  VISIBLE_MEMBERS_COUNT = 5
+
   ALLOWED_POST_TYPES = %i( link text image )
   attr_accessor :intended_usage
 

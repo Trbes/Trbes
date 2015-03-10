@@ -31,6 +31,32 @@
                         li role="presentation"
                           a href=(new_invitation_path) role="menuitem" tabindex="-1"  Invite
               .group-desc= current_group.description
+              .group-members
+                - (group_memberships = current_group.memberships).limit(Group::VISIBLE_MEMBERS_COUNT).each do |membership|
+                  a href="#" data-toggle="popover" data-html="true" data-placement="bottom" data-trigger="focus" data-content=(user_popover_content(membership.user)) data-template=(user_popover_template)
+                    = image_tag membership.user.avatar, class: "img-circle", width: 16, height: 16
+
+                - if group_memberships.count > Group::VISIBLE_MEMBERS_COUNT
+                  a.more href="#" data-toggle="modal" data-target="#more_group_members"
+                    | ... and #{group_memberships.count - Group::VISIBLE_MEMBERS_COUNT} more
+                  #more_group_members.modal.fade
+                    .modal-dialog
+                      .modal-content
+                        .modal-header
+                          button.close aria-label="Close" data-dismiss="modal" type="button"
+                            span aria-hidden="true"  &times;
+                          h4.modal-title Members
+                        .modal-body
+                          p
+                            | There is #{group_memberships.count} members in
+                            em< = current_group.name
+                          - group_memberships.each do |membership|
+                            a< href="#" data-toggle="popover" data-html="true" data-placement="bottom" data-trigger="focus" data-content=(user_popover_content(membership.user)) data-template=(user_popover_template)
+                              = image_tag membership.user.avatar, class: "img-circle", width: 16, height: 16
+                              = membership.user.full_name
+                            | ,
+
+
         - else
           .navbar-headline
             h2.navbar-headline-title A simpler way to discover and share great resources with your teammates or customers

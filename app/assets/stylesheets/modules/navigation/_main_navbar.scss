@@ -62,7 +62,7 @@
   .group-info {
     float: left;
     margin: 0;
-    margin-top: 30px;
+    margin-top: 15px;
   }
 
   .group-name {
@@ -110,6 +110,15 @@
   .group-desc {
     color: #696969;
     font-size: 1.2em;
+  }
+
+  .group-members {
+    margin-top: 5px;
+
+    .more {
+        font-size: 14px;
+        color: #696969;
+    }
   }
 
   @include breakpoint(0 ($screen-sm - 1)) { // smaller than iPad
