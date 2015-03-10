@@ -2,3 +2,6 @@
   .vote-count= post.cached_votes_total
   = link_to(policy(post).vote?(current_user) ? post_upvote_path(post) : "#", class: "vote") do
     i.fa.fa-thumbs-up
+  .dropdown.share
+    a.dropdown-toggle href="#" aria-expanded="false" data-toggle="dropdown" Share
+    = render "posts/share_menu", post: post, position: "left"

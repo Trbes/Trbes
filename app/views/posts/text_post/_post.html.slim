@@ -2,8 +2,7 @@
   = render "posts/voting", post: post
   .post-content
     = link_to post.title, post, class: "title"
-    .excerpt
-      span= post.body
+    .excerpt= truncate(post.body, length: 160)
     = render "posts/meta", post: post
   .post-right
     = preview_image(post)

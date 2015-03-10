@@ -1,0 +1,25 @@
+.user-popover-content {
+  min-width: 160px;
+  text-align: center;
+  padding: 10px;
+
+  .user-name {
+    font-weight: bold;
+    margin-top: 10px;
+    color: #5c5b5b;
+  }
+
+  .user-title {
+    color: #999797;
+    font-weight: 100;
+  }
+}
+
+.popover-user {
+  .arrow {
+    &::after {
+      margin-left: 0 !important;
+      border-bottom-color: white !important;
+    }
+  }
+}

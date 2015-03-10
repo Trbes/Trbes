@@ -25,6 +25,7 @@ class window.AddPost
   # Sign-up form validation
   _init_form_validations: ->
     $("#add_a_post form").each ()->
+      that = $(this)
       $(this).validate
         rules:
           "post[title]":
@@ -32,7 +33,7 @@ class window.AddPost
             minlength: 10
             maxlength: 100
           "post[body]":
-            required: true
+            required: that.attr("id") == "form_new_text_post"
           "post[link]":
             required: true
             url: true

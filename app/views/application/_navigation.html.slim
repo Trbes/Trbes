@@ -15,7 +15,7 @@
         - if current_group
           .navbar-group
             = link_to root_url(subdomain: current_group.subdomain), class: "group-logo" do
-              = image_tag(current_group.logo || "sample/default-group.png" , height: 115)
+              = present(current_group).preview_logo
             .group-info
               .group-name
                 = link_to current_group.name, root_url(subdomain: current_group.subdomain)
