@@ -17,6 +17,6 @@ class User < ActiveRecord::Base
   end
 
   def avatar
-    super || "default_avatar.jpg"
+    super || "http://gravatar.com/avatar/#{Digest::MD5.hexdigest(email.downcase)}.png?d=mm"
   end
 end
