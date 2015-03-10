@@ -115,6 +115,10 @@
   .group-members {
     margin-top: 5px;
 
+    @include breakpoint(0 ($screen-sm - 1)) {
+      display: none;
+    }
+
     .more {
         font-size: 14px;
         color: #696969;
