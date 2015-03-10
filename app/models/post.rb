@@ -7,6 +7,7 @@ class Post < ActiveRecord::Base
 
   scope :order_by_votes, -> { order(cached_votes_total: :desc) }
   scope :order_by_created_at, -> { order(created_at: :desc) }
+  scope :order_by_trending, -> { all.sort_by(&:hot_rank).reverse }
   scope :for_collection, -> (collection_id) { where(collection_posts: { collection_id: collection_id }) }
 
   has_many :comments, dependent: :destroy
@@ -54,5 +55,12 @@ class Post < ActiveRecord::Base
 
   def written_by?(membership)
     user.id == membership.user_id
+  end
+
+  def hot_rank
+    order = Math.log([cached_votes_total, 1].max, 10)
+    seconds = created_at.to_i - 1134028003
+
+    (order + seconds / 45000).round(7)
   end
 end

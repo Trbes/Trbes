@@ -3,7 +3,9 @@ class GroupsController < ApplicationController
 
   expose(:group, attributes: :group_attributes)
   expose(:posts, only: [:show]) do
-    scope = current_group.posts.includes(:attachments, user: :avatar).published.order_by_votes.page(params[:page])
+    scope = current_group.posts.includes(:attachments, user: :avatar).published.public_send(params[:sort])
+
+    scope = Kaminari.paginate_array(scope).page(params[:page])
 
     params[:collection_id] ? scope.includes(:collection_posts).for_collection(params[:collection_id]) : scope
   end
