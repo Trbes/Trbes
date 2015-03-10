@@ -3,7 +3,9 @@ class GroupsController < ApplicationController
 
   expose(:group, attributes: :group_attributes)
   expose(:posts, only: [:show]) do
-    scope = current_group.posts.includes(:attachments, user: :avatar).published.public_send(params[:sort])
+    scope = current_group.posts.includes(:attachments, user: :avatar).published
+
+    scope = scope.public_send(params[:sort].to_sym) if params[:sort]
 
     scope = Kaminari.paginate_array(scope).page(params[:page])
 
