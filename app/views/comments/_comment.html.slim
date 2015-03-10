@@ -22,9 +22,10 @@
   .comment-content
     header.comment-header
       .comment-author
-        a.user-avatar href="#"
+        a.user-avatar href="#" data-toggle="popover" data-html="true" data-placement="bottom" data-trigger="focus" data-content=(user_popover_content(comment.user)) data-template=(user_popover_template)
           = image_tag(comment.user.avatar, width: 16, height: 16)
-        a.user-name> href="#" = comment.user_full_name
+        a.user-name> href="#" data-toggle="popover" data-html="true" data-placement="bottom" data-trigger="focus" data-content=(user_popover_content(comment.user)) data-template=(user_popover_template) 
+          = comment.user_full_name
         | •
         div.user-title< = comment.user_title
         - if comment.user.membership_for(current_group).moderator?

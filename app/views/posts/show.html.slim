@@ -12,13 +12,13 @@
           .dropdown.share
             a.share.dropdown-toggle aria-expanded="false" data-toggle="dropdown"
               i.fa.fa-share-square-o.circle.grey
-            = render "posts/share_menu", post: post
+            = render "posts/share_menu", post: post, position: "left"
 
       .post-right
         .post-author
-          a.user-avatar href="#"
+          a.user-avatar href="#" data-toggle="popover" data-html="true" data-placement="bottom" data-trigger="focus" data-content=(user_popover_content(post.user)) data-template=(user_popover_template)
             = image_tag(post.user_avatar, width: 64, height: 64)
-          a.user-name href="#" = post.user_full_name
+          a.user-name href="#" data-toggle="popover" data-html="true" data-placement="bottom" data-trigger="focus" data-content=(user_popover_content(post.user)) data-template=(user_popover_template) = post.user_full_name
           .user-title = post.user_title
 
       .post-content
