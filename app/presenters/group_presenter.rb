@@ -20,7 +20,7 @@ class GroupPresenter < BasePresenter
   end
 
   def preview_logo
-    tag_options = { width: 138, height: 115 }
+    tag_options = { height: 115 }
 
     logo_image_tag(tag_options)
   end
