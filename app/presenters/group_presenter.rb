@@ -20,15 +20,22 @@ class GroupPresenter < BasePresenter
   end
 
   def preview_logo
-    @model.logo_image ? h.cl_image_tag(@model.logo_image.logo) : h.cl_image_tag("http://placekitten.com/g/101/101")
+    tag_options = { width: 138, height: 115 }
+
+    logo_image_tag(tag_options)
   end
 
   def listing_logo
     tag_options = { class: "media-object group-logo", width: 138, height: 115 }
+
+    logo_image_tag(tag_options)
+  end
+
+  def logo_image_tag(options)
     if @model.logo_image
-      h.cl_image_tag(@model.logo_image.logo, tag_options)
+      h.cl_image_tag(@model.logo_image.logo, options)
     else
-      h.cl_image_tag("http://placekitten.com/g/138/115", tag_options)
+      h.image_tag("sample/default-group.png", options)
     end
   end
 
