@@ -17,6 +17,6 @@ class User < ActiveRecord::Base
   end
 
   def avatar
-    super || "http://placekitten.com/g/25/25"
+    super || "default_avatar.jpg"
   end
 end

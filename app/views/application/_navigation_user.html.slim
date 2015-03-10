@@ -5,7 +5,7 @@
         div.profile-info
           = current_user.full_name
           div Using <strong>default</strong> profile
-        = image_tag("default_avatar.jpg", class: "profile-photo", width: 48, height: 48)
+        = image_tag(current_user.avatar, class: "profile-photo", width: 48, height: 48)
         / span.caret
       ul.dropdown-menu role="menu"
         li
