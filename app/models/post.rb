@@ -7,7 +7,7 @@ class Post < ActiveRecord::Base
 
   scope :order_by_votes, -> { order(cached_votes_total: :desc) }
   scope :order_by_created_at, -> { order(created_at: :desc) }
-  scope :order_by_trending, -> { all.sort_by(&:hot_rank).reverse }
+  scope :order_by_trending, -> { order(hot_rank: :desc) }
   scope :for_collection, -> (collection_id) { where(collection_posts: { collection_id: collection_id }) }
 
   has_many :comments, dependent: :destroy
@@ -25,6 +25,8 @@ class Post < ActiveRecord::Base
   validates :link, presence: true, if: proc { |p| p.link_post? }
 
   delegate :full_name, :avatar, :title, to: :user, prefix: true
+
+  before_save :set_hot_rank
 
   acts_as_votable
 
@@ -57,10 +59,10 @@ class Post < ActiveRecord::Base
     user.id == membership.user_id
   end
 
-  def hot_rank
+  def set_hot_rank
     order = Math.log([cached_votes_total, 1].max, 10)
     seconds = created_at.to_i - 1134028003
 
-    (order + seconds / 45000).round(7)
+    self.hot_rank = (order + seconds / 45000).round(7)
   end
 end
