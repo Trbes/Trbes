@@ -15,9 +15,6 @@ feature "Single post page" do
 
   scenario "I visit single post page", js: true do
     within("#post_#{post.id}") do
-      expect(page).to have_css(".title", text: post.title)
-      expect(page).to have_css(".excerpt", text: post.body)
-
       click_link post.title
     end
 

@@ -5,9 +5,15 @@ module UsersHelper
     html += "<div class='user-name'>#{user.full_name}</div>"
     html += "<div class='user-title'>#{user.title}</div>" if user.title.present?
     html += "</div>"
+
+    html
   end
 
   def user_popover_template
-    '<div class="popover popover-user" role="tooltip"><div class="arrow"></div><h3 class="popover-title"></h3><div class="popover-content"></div></div>'
+    html = "<div class='popover popover-user' role='tooltip'>"
+    html += "<div class='arrow'></div><h3 class='popover-title'></h3><div class='popover-content'></div>"
+    html += "</div>"
+
+    html
   end
 end
