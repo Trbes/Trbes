@@ -62,7 +62,6 @@ class Post < ActiveRecord::Base
   def set_hot_rank
     order = Math.log([cached_votes_total, 1].max, 10)
     seconds = created_at.to_i - 1134028003
-
-    self.hot_rank = (order + seconds / 45000).round(7)
+    self.hot_rank = (order + seconds / 45000.0).round(7)
   end
 end
