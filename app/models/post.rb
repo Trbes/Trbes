@@ -42,11 +42,17 @@ class Post < ActiveRecord::Base
     end
   end
 
+  acts_as_paranoid
+
   def preview_image
     attachments.first.image if attachments.any?
   end
 
   def editable?
     created_at >= 15.minutes.ago
+  end
+
+  def written_by?(membership)
+    user.id == membership.user_id
   end
 end

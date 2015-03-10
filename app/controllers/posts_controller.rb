@@ -32,6 +32,14 @@ class PostsController < ApplicationController
     end
   end
 
+  def destroy
+    authorize(post)
+
+    post.destroy
+
+    redirect_to root_path
+  end
+
   def upvote
     post.upvote_by(current_user)
 

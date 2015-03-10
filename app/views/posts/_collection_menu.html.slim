@@ -24,5 +24,5 @@ ul.nav.nav-pills.nav-collections
               | Add Collection
 
 - if policy(Collection).create?
-  = render "collections/modal_new"
+  = render "collections/modal_new", collection: Collection.new(visibility: true)
 

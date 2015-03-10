@@ -7,6 +7,10 @@ class PostPolicy < Struct.new(:membership, :post)
     edit?
   end
 
+  def destroy?
+    membership && (membership.moderator? || membership.owner? || post.written_by?(membership))
+  end
+
   def publish?
     membership && (membership.owner? || membership.moderator? || membership.member?)
   end

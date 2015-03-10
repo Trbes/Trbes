@@ -1,8 +1,4 @@
-= f.input :name
-.form-group.form-inline
-  = image_tag(collection.image.icon, class: "collection-preview", id: "#collection_preview")
-  = f.input :image, as: :file, required: false, label: false
-  = f.input :image_cache, as: :hidden
+= render "collections/fields", f: f, collection: collection
 
 hr
 
