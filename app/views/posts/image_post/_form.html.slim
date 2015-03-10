@@ -3,8 +3,8 @@
           class: "form-horizontal form-new-post" }) do |f|
   = f.hidden_field(:post_type, value: "image_post")
   .form-group.fnp-title
-    label.col-sm-2.control-label for="fnp_image_post_title"  Title *
-    .col-sm-10
+    label.col-sm-3.control-label for="fnp_image_post_title"  Title *
+    .col-sm-9
       = f.input :title,
         label: false,
         wrapper: false,
@@ -12,8 +12,8 @@
         input_html: { id: "fnp_image_post_title",
                       class: "form-control" }
   .form-group.fnp-file
-    label.col-sm-2.control-label for="fnp_image_post_image"  Image *
-    .col-sm-10
+    label.col-sm-3.control-label for="fnp_image_post_image"  Image *
+    .col-sm-9
       = f.fields_for(:attachments, Attachment.new) do |attachment_fields|
         = attachment_fields.input :image,
           as: :file,
@@ -22,6 +22,5 @@
           error: false,
           input_html: { id: "fnp_image_post_image" }
   .form-group.fnp-actions
-    .col-sm-offset-2.col-sm-10
-      button.btn.btn-success.btn-lg.btn-fill.btn-submit-post type="submit"  Publish Post
-      / a.cancel-post href="#" Cancel
+    .col-sm-offset-3.col-sm-9
+      button.btn.btn-success.btn-bright-success.btn-lg.btn-fill.btn-submit-post type="submit"  Publish Post

@@ -1,28 +1,7 @@
 #add_a_post {
-  background-color: rgba(114, 114, 114, 0.9);
-  position: absolute;
-  width: 100%;
-  z-index: 9999;
-  top: 115px;
-  color: #f8f8f8;
-  padding: 20px;
-  overflow: hidden;
-  display: none;
-  opacity: 0;
 
-  &>.container {
-    max-width: 970px;
-  }
-
-  &.open {
-    @include transition(opacity 1s ease);
-    display: block;
-    opacity: 1;
-
-    @include breakpoint(0 ($screen-sm - 1)) {
-      position: static;
-      margin-top: -30px;
-    }
+  .modal-dialog {
+    max-width: 480px;
   }
 
   .fnp-legends {
@@ -40,8 +19,6 @@
   }
 
   .form-new-post {
-    margin-top: 20px;
-    min-height: 200px;
     display: none;
 
     &.active {
@@ -50,27 +27,9 @@
   }
 
   .form-group {
-    label {
+    label.error {
       font-weight: 100;
-      color: #d6d6d6;
-    }
-
-    &.fnp-title {
-      input {
-        max-width: 470px;
-      }
-    }
-
-    &.fnp-text {
-      textarea {
-        max-width: 385px;
-      }
-    }
-
-    &.fnp-link {
-      input {
-        max-width: 300px;
-      }
+      color: #a94442;
     }
 
     &.fnp-file {
@@ -88,7 +47,7 @@
 
   .toggle-post-type {
     display: inline-block;
-    color: #f8f8f8;
+    color: #666;
     text-decoration: underline;
     font-weight: bold;
 
@@ -98,11 +57,13 @@
 
     &.active {
       font-weight: bold;
-      color: #e1dfdf;
+      color: #3ea8db;
     }
   }
 
   .fnp-actions {
+    text-align: right;
+
     a {
       color: #d6d6d6;
       margin-left: 20px;

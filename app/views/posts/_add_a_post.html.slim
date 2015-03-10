@@ -1,31 +1,19 @@
-#add_a_post
-  .container
-    .row
-      .col-sm-8.fnp-togglers
-        a.toggle-post-type.new-link-post href="#form_new_link_post"
+#add_a_post.modal.fade data-backdrop="static"
+  .modal-dialog
+    .modal-content
+      .modal-header
+        button.close aria-label="Close" data-dismiss="modal" type="button"
+          span aria-hidden="true"  &times;
+        a.btn.btn-simple.toggle-post-type.new-link-post href="#form_new_link_post"
           i.fa.fa-link
-          | Share a link to awesome stuff
-        br
-        a.toggle-post-type.new-text-post.active href="#form_new_text_post"
+          | Share a link
+        a.btn.btn-simple.toggle-post-type.new-text-post.active href="#form_new_text_post"
           i.fa.fa-pencil
           | Write Something
-        br
-        a.toggle-post-type.new-image-post href="#form_new_image_post"
+        a.btn.btn-simple.toggle-post-type.new-image-post href="#form_new_image_post"
           i.fa.fa-photo
           | Post an image
-      .col-sm-3.fnp-legends
-        i.fa.fa-info-circle
-        | Use the «<u>Write more</u>» link to use rich text and publish long form How-To articles.
-
-    = render "posts/text_post/form", post: Post.new
-    = render "posts/link_post/form", post: Post.new
-    = render "posts/image_post/form", post: Post.new
-
-    .row
-      .col-sm-2
-      .col-sm-10.cody-container
-        #cody_thumbs_up
-
-    a.cancel-post href="#"
-      | Cancel
-      i.fa.fa-angle-double-up<
+      .modal-body
+        = render "posts/text_post/form", post: Post.new
+        = render "posts/link_post/form", post: Post.new
+        = render "posts/image_post/form", post: Post.new
