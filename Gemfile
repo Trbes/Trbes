@@ -22,6 +22,7 @@ gem "simple_form", "~> 3.1"
 gem "nested_form"
 gem "active_link_to"
 gem "title"
+gem "flutie"
 
 # all other gems
 gem "devise"

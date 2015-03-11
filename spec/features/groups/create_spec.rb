@@ -9,7 +9,7 @@ feature "Create group" do
     sign_in(user.email, "123456")
     visit root_path
 
-    click_link "Create your FREE Trbes"
+    click_link "Create a Group"
 
     fill_in "Group Name", with: group_attributes[:name]
     fill_in "Short Name", with: group_attributes[:subdomain]

@@ -10,6 +10,68 @@
       float: left;
     }
   }
+
+  .trbes-intro {
+    text-align: center;
+
+    .intro-title {
+      font-weight: bold;
+      color: #393939;
+      margin-top: 20px;
+    }
+
+    .sub-intro {
+      color: #a1a1a1;
+      font-weight: bold;
+      -moz-osx-font-smoothing: grayscale;
+      -webkit-font-smoothing: antialiased;
+      font-size: 15px;
+      line-height: 1.7em;
+    }
+  }
+
+  .links {
+    margin-top: 20px;
+    margin-bottom: 80px;
+  }
+
+  .intro-link {
+    @include size(190px 120px);
+    display: inline-block;
+    margin-left: 12px;
+    margin-right: 12px;
+    background-color: #e9e9e9;
+    color: #717171;
+    text-align: center;
+    font-weight: bold;
+    font-size: 18px;
+    margin-top: 24px;
+
+    .fa {
+      color: #adadad;
+      display: block;
+      margin: 20px auto 12px;
+      font-size: 54px;
+      width: auto;
+    }
+
+    @include on_link_actions {
+      background-color: #3a98d8;
+      color: #fff;
+
+      .fa {
+        color: #fff;
+      }
+    }
+  }
+
+  .explore-title {
+    font-weight: 100;
+    text-align: center;
+    border-bottom: 1px solid #eeeeee;
+    padding-bottom: 15px;
+    margin-bottom: 40px;
+  }
 }
 
 .groups-listing {

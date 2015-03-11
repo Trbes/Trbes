@@ -20,6 +20,10 @@ $profile-photo-size: 48px;
             div {
               color: #696969;
             }
+
+            @include breakpoint($screen-sm $screen-md - 1) {
+              display: none;
+            }
           }
 
           .profile-photo {
@@ -36,7 +40,7 @@ $profile-photo-size: 48px;
         }
       }
 
-      .btn-add-post {
+      .btn-add-post, .btn-add-group {
         padding: 10px 40px;
         color: white;
         margin: 3px 0 0 60px;
@@ -79,6 +83,24 @@ $profile-photo-size: 48px;
           margin: 20px 0;
           width: 100%;
           border-radius: 4px;
+        }
+      }
+
+      .btn-add-group {
+        padding-left: 15px;
+        padding-right: 15px;
+
+        span.alternate, .fa {
+          display: none;
+        }
+
+        @include breakpoint($screen-sm $screen-md - 1) { // iPad
+          padding: 10px;
+          width: auto;
+
+          span.alternate, .fa {
+            display: inline-block;
+          }
         }
       }
     }
