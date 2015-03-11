@@ -3,7 +3,11 @@ class GroupsController < ApplicationController
 
   expose(:group, attributes: :group_attributes)
   expose(:posts, only: [:show]) do
-    scope = current_group.posts.includes(:attachments, user: :avatar).published.order_by_votes.page(params[:page])
+    scope = current_group.posts
+      .published
+      .includes(:attachments, user: :avatar)
+      .public_send(sort_filter)
+      .page(params[:page])
 
     params[:collection_id] ? scope.includes(:collection_posts).for_collection(params[:collection_id]) : scope
   end
@@ -34,6 +38,10 @@ class GroupsController < ApplicationController
   end
 
   private
+
+  def sort_filter
+    params[:sort] || "order_by_created_at"
+  end
 
   def pundit_user
     action_name == "create" ? current_user : current_membership

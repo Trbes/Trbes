@@ -1,4 +1,7 @@
 class Post < ActiveRecord::Base
+  DATE_RANKING_INTRODUCED = DateTime.new(2015, 1, 1).to_i
+  ONE_RANKING_POINT_WEIGHT = 12.5.hours
+
   include AlgoliaSearch
   extend FriendlyId
 
@@ -7,6 +10,7 @@ class Post < ActiveRecord::Base
 
   scope :order_by_votes, -> { order(cached_votes_total: :desc) }
   scope :order_by_created_at, -> { order(created_at: :desc) }
+  scope :order_by_trending, -> { order(hot_rank: :desc) }
   scope :for_collection, -> (collection_id) { where(collection_posts: { collection_id: collection_id }) }
 
   has_many :comments, dependent: :destroy
@@ -24,6 +28,8 @@ class Post < ActiveRecord::Base
   validates :link, presence: true, if: proc { |p| p.link_post? }
 
   delegate :full_name, :avatar, :title, to: :user, prefix: true
+
+  before_save :set_hot_rank
 
   acts_as_votable
 
@@ -54,5 +60,11 @@ class Post < ActiveRecord::Base
 
   def written_by?(membership)
     user.id == membership.user_id
+  end
+
+  def set_hot_rank
+    order = Math.log([cached_votes_total, 1].max, 10)
+    seconds = created_at.to_i - DATE_RANKING_INTRODUCED
+    self.hot_rank = (order + seconds / ONE_RANKING_POINT_WEIGHT).round(7)
   end
 end

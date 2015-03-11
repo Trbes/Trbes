@@ -26,6 +26,9 @@ Style/AlignParameters:
     - with_first_parameter
     - with_fixed_indentation
 
+Style/MultilineOperationIndentation:
+  EnforcedStyle: indented
+
 Style/AndOr:
   Enabled: false
 

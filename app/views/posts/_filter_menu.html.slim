@@ -1,7 +1,7 @@
 ul.nav.nav-pills.nav-filter
-  li.active
-    a href="#"  Popular
-  li
-    a href="#"  New
-  li
-    a href="#"  Trending
+  li class=(sort_class("order_by_votes"))
+    = link_to "Popular", root_path(sort: "order_by_votes")
+  li class=(sort_class("order_by_created_at"))
+    = link_to "New", root_path(sort: "order_by_created_at")
+  li class=(sort_class("order_by_trending"))
+    = link_to "Trending", root_path(sort: "order_by_trending")
