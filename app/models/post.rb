@@ -1,4 +1,7 @@
 class Post < ActiveRecord::Base
+  DATE_RANKING_INTRODUCED = DateTime.new(2015, 1, 1).to_i
+  ONE_RANKING_POINT_WEIGHT = 12.5.hours
+
   include AlgoliaSearch
   extend FriendlyId
 
@@ -61,7 +64,7 @@ class Post < ActiveRecord::Base
 
   def set_hot_rank
     order = Math.log([cached_votes_total, 1].max, 10)
-    seconds = created_at.to_i - 1134028003
-    self.hot_rank = (order + seconds / 45000.0).round(7)
+    seconds = created_at.to_i - DATE_RANKING_INTRODUCED
+    self.hot_rank = (order + seconds / ONE_RANKING_POINT_WEIGHT).round(7)
   end
 end

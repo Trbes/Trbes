@@ -5,7 +5,9 @@ feature "Sort posts list" do
   let(:group) { create(:group, users: [user]) }
   let!(:old_popular_post) { create(:post, :published, created_at: 5.days.ago, cached_votes_total: 100, group: group) }
   let!(:fresh_post) { create(:post, :published, created_at: DateTime.now, cached_votes_total: 50, group: group) }
-  let!(:popular_but_not_so_fresh_post) { create(:post, :published, created_at: 4.hours.ago, cached_votes_total: 250, group: group) }
+  let!(:popular_but_not_so_fresh_post) do
+    create(:post, :published, created_at: 4.hours.ago, cached_votes_total: 250, group: group)
+  end
 
   background do
     switch_to_subdomain(group.subdomain)
