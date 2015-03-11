@@ -1,9 +1,27 @@
 .container
   .explore-trbes
-    header.page-header
-      h1.page-title Explore Public Trbes
-      - if user_signed_in?
-        = link_to "Create your FREE Trbes", new_group_path, class: "btn btn-success btn-fill pull-right"
+    .trbes-intro
+      h1.intro-title Instant Content Hub for your Team or Customers
+      .sub-intro
+        | This is an early version of Trbes. Start your own group, it's FREE for a limited time.
+        br
+        a[href=new_group_path] Create a group
+        '  or
+        a[href=(ENV["TRBES_GROUP_URL"] || "#")] tell us what you expect
+        '  from Trbes.
+      .links
+        a.intro-link.active
+          i.fa.fa-search
+          | Browse Group
+        a.intro-link[href="/small-teams"]
+          i.fa.fa-users
+          | Trbes for Teams
+        a.intro-link[href="/customer-communities"]
+          i.fa.fa-suitcase
+          | Trbes for Businesses
+
+
+    h1.explore-title Discover Interesting Teams
 
     .groups-listing
       - public_groups.each do |group|
