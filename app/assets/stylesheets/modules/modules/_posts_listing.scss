@@ -4,9 +4,10 @@ $post-upvote-width: 60px;
 $post-upvote-height: auto;
 $post-vertical-spacing: 30px;
 $post-component-spacing: 16px;
+$post-meta-size: 128px;
 
 $post-actions-min-width: $icon-circle-size * 2 + $post-component-spacing;
-$post-right-min-width: $post-actions-min-width + $post-component-spacing + $post-thumb-size;
+$post-right-min-width: $post-actions-min-width + $post-component-spacing + $post-meta-size;
 
 .posts-group {
   margin-top: $grid-gutter-width;
@@ -159,7 +160,7 @@ $post-right-min-width: $post-actions-min-width + $post-component-spacing + $post
 
     }
 
-    .meta {
+    .post-footer {
       color: #B8B8B8;
       font-size: 0.8em;
       margin-top: 3px;
@@ -220,6 +221,32 @@ $post-right-min-width: $post-actions-min-width + $post-component-spacing + $post
     }
   }
 
+  .meta {
+    float: left;
+    margin-right: $post-component-spacing;
+    min-width: $post-meta-size;
+    margin-top: 30px;
+
+    .post-author img {
+      vertical-align: text-top;
+    }
+
+    .date, .answers-count {
+      color: gray;
+      -moz-osx-font-smoothing: grayscale;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .answers-count {
+      @include on_link_actions {
+        text-decoration: underline;
+      }
+    }
+
+    .post-author, .date {
+      margin-right: 15px;
+    }
+  }
 
   .post-actions {
     text-align: right;

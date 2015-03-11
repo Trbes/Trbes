@@ -1,0 +1,7 @@
+.post-footer
+  - links = []
+  - if policy(post).edit?
+    - links << link_to("Edit", edit_post_path(post))
+  - if policy(post).destroy?
+    - links << link_to("Delete", post_path(post), method: :delete, data: { confirm: "Are you sure?" })
+  = raw links.join(" • ")
