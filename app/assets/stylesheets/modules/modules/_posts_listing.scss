@@ -12,7 +12,7 @@ $post-right-min-width: $post-actions-min-width + $post-component-spacing + $post
   margin-top: $grid-gutter-width;
 }
 
-.posts {
+.posts-listing {
   padding: 0;
 
   .post {
@@ -78,7 +78,7 @@ $post-right-min-width: $post-actions-min-width + $post-component-spacing + $post
 
     .share {
       margin-top: 3px;
-      
+
       a.dropdown-toggle {
         text-transform: uppercase;
         font-weight: bold;

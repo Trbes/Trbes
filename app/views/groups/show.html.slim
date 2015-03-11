@@ -16,7 +16,7 @@
 
   - if current_group.posts_count > 0
     .posts-group
-      .posts
+      .posts-listing
         - posts.each do |post|
           = render "posts/#{post.post_type}/post", post: post
 
