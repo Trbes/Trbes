@@ -1,7 +1,7 @@
 ul.nav.nav-pills.nav-filter
-  li class="#{params[:sort] == "order_by_votes" ? 'active' : ''}"
+  li class=(sort_class("order_by_votes"))
     = link_to "Popular", root_path(sort: "order_by_votes")
-  li class="#{params[:sort] == "order_by_created_at" ? 'active' : ''}"
+  li class=(sort_class("order_by_created_at"))
     = link_to "New", root_path(sort: "order_by_created_at")
-  li class="#{params[:sort] == "order_by_trending" ? 'active' : ''}"
+  li class=(sort_class("order_by_trending"))
     = link_to "Trending", root_path(sort: "order_by_trending")

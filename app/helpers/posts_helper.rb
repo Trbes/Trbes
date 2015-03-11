@@ -26,4 +26,8 @@ module PostsHelper
     opts.each { |key, value| params << "#{key}=#{ URI.encode(value) }" }
     "https://twitter.com/intent/tweet?" + params.join("&")
   end
+
+  def sort_class(filter)
+    params[:sort] == filter ? "active" : ""
+  end
 end
