@@ -180,3 +180,15 @@
     }
   }
 }
+
+.groups-index {
+  #main_navbar {
+    .group-info {
+      margin-top: 30px;
+
+      @include breakpoint(0 ($screen-sm - 1)) { // smaller than iPad
+        margin-top: 0px;
+      }
+    }
+  }
+}
