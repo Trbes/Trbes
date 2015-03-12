@@ -16,9 +16,6 @@
               i.fa.fa-circle.fa-stack-1x
               i.fa.fa-times.fa-inverse.fa-stack-1x
 
-  a.post-author href="#" data-toggle="popover" data-html="true" data-placement="bottom" data-trigger="focus" data-content=(user_popover_content(post.user)) data-template=(user_popover_template)
-    = image_tag post.user.avatar, class: "img-circle", width: 34, height: 34
-
 .modal.fade id="add_to_collection_#{post.id}" tabindex="-1" role="dialog" aria-labelledby="add_to_collection" aria-hidden="true"
   .modal-dialog
     .modal-content

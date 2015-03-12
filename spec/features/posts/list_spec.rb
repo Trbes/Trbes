@@ -23,7 +23,6 @@ feature "Posts list" do
       within("#post_#{post.id}") do
         expect(page).to have_css(".title", text: post.title)
         expect(page).to have_css(".excerpt", text: truncate(post.body, length: 160))
-        expect(page.find(".post-thumb img")["src"]).to have_content(post.preview_image.url)
       end
     end
   end

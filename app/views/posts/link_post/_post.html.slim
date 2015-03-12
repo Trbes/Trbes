@@ -1,10 +1,11 @@
 = div_for(post, class: "post-type-link")
   = render "posts/voting", post: post
   .post-content
-    = link_to post.title, post, class: "title"
+    = link_to post.title, post, class: "title", title: post.title
     .url
       = link_to post.link, post.link, class: "iconify"
     .excerpt= truncate(post.body, length: 160)
-    = render "posts/meta", post: post
+    = render "posts/footer", post: post
   .post-right
+    = render "posts/meta", post: post
     = render "posts/actions", post: post

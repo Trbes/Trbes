@@ -5,13 +5,13 @@
         button.close aria-label="Close" data-dismiss="modal" type="button"
           span aria-hidden="true"  &times;
         a.btn.btn-simple.toggle-post-type.new-link-post href="#form_new_link_post"
-          i.fa.fa-link
+          i.fa.fa-link>
           | Share a link
         a.btn.btn-simple.toggle-post-type.new-text-post.active href="#form_new_text_post"
-          i.fa.fa-pencil
+          i.fa.fa-pencil>
           | Write Something
         a.btn.btn-simple.toggle-post-type.new-image-post href="#form_new_image_post"
-          i.fa.fa-photo
+          i.fa.fa-photo>
           | Post an image
       .modal-body
         = render "posts/text_post/form", post: Post.new
