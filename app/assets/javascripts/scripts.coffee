@@ -59,6 +59,10 @@ $ ->
   $("#moderator_id").on "change", (e) ->
     $("form#add_moderator").attr("action", "/admin/memberships/#{this.value}")
 
+  $(".select-icon-class").on "click", (e) ->
+    $(this).addClass("active").siblings().removeClass("active").
+      closest("form").find("#collection_icon_class").val($(this).data("icon-class"))
+
   $(".share-on-facebook").click (e) ->
     e.preventDefault()
     that = $(this)

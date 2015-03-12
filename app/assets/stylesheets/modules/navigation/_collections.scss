@@ -125,3 +125,14 @@ $nav-collection-link-color-hover: #333;
     margin-right: 5px;
   }
 }
+
+.select-icon-class {
+  padding: 3px 4px;
+  display: inline-block;
+  color: #666;
+
+  @include on_link_actions {
+    background-color: #3ea8db;
+    color: white;
+  }
+}

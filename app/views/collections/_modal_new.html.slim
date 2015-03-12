@@ -6,9 +6,10 @@
           span aria-hidden="true" &times;
         h4.modal-title Add collection
 
-        = simple_nested_form_for([:admin, collection]) do |f|
+        = simple_nested_form_for([ :admin,
+          (collection = Collection.new(icon_class: Collection::FONT_AWESOME_ICONS[:web_application].sample, visibility: true))]) do |f|
           .modal-body
-            = render "admin/collections/fields", f: f, collection: collection
+            = render "collections/fields", f: f, collection: collection
           .modal-footer
             button.btn.btn-default type="button" data-dismiss="modal" Close
             = f.submit "Add", class: "btn btn-primary"
