@@ -27,7 +27,6 @@ shared_examples_for "social sign in for existing user" do
   end
 end
 
-
 feature "Sign in" do
   context "with Twitter" do
     let(:social_link) { "Twitter" }
