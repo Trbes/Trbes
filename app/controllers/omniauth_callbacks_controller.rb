@@ -1,19 +1,13 @@
 class OmniauthCallbacksController < Devise::OmniauthCallbacksController
-  def twitter
-    social_sign_in
-  end
+  before_action :social_sign_in
 
-  def facebook
-    social_sign_in
-  end
+  def twitter; end
 
-  def google_oauth2
-    social_sign_in
-  end
+  def facebook; end
 
-  def linkedin
-    social_sign_in
-  end
+  def google_oauth2; end
+
+  def linkedin; end
 
   private
 

@@ -12,7 +12,7 @@ class FindOrCreateProfile
   end
 
   def create_profile
-    user = CreateUserFromOauth.call(auth_data: auth_data).user
+    user = FindOrCreateUserFromOauth.call(auth_data: auth_data).user
 
     Profile.create(uid: auth_data.uid, provider: auth_data.provider, user: user)
   end
