@@ -8,11 +8,11 @@ class FindOrCreateUserFromOauth
   private
 
   def find_user
-    User.find_by(email: auth_data.info.email)
+    User.find_by(email: email_from_auth)
   end
 
   def create_user
-    user = User.new(send("#{auth_data.provider}_attributes"))
+    user = User.new(user_attributes)
 
     user.skip_confirmation!
     user.save!
@@ -20,30 +20,16 @@ class FindOrCreateUserFromOauth
     user
   end
 
-  def shared_attributes
+  def user_attributes
     {
-      full_name: auth_data.extra.raw_info.name,
-      password: Devise.friendly_token[0, 20]
+      full_name: auth_data.info.name,
+      password: Devise.friendly_token[0, 20],
+      email: email_from_auth
     }
   end
 
-  def linkedin_attributes
-    shared_attributes.merge(
-      email: auth_data.info.email,
-      full_name: auth_data.info.name
-    )
-  end
-
-  def google_oauth2_attributes
-    shared_attributes.merge(email: auth_data.info.email)
-  end
-
-  def facebook_attributes
-    shared_attributes.merge(email: auth_data.info.email)
-  end
-
-  def twitter_attributes
-    shared_attributes.merge(email: "#{auth_data.info.nickname}@#{auth_data.provider}.com")
+  def email_from_auth
+    auth_data.info.email || "#{auth_data.info.nickname}@#{auth_data.provider}.com"
   end
 
   def auth_data
