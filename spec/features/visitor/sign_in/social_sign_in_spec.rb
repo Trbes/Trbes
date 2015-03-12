@@ -14,7 +14,16 @@ end
 
 shared_examples_for "social sign in for existing user" do
   scenario "successful sign in" do
+    visit new_user_session_path
 
+    expect(user.profiles).to be_empty
+
+    expect {
+      click_link social_link
+    }.not_to change { User.count }
+
+    expect(user.profiles).not_to be_empty
+    expect(page).to have_content("Sign out")
   end
 end
 
@@ -28,7 +37,9 @@ feature "Sign in" do
     end
 
     context "when email is found in base" do
-      # it_behaves_like "social sign in for existing user"
+      let!(:user) { create(:user, email: "name@twitter.com") }
+
+      it_behaves_like "social sign in for existing user"
     end
   end
 
@@ -40,7 +51,9 @@ feature "Sign in" do
     end
 
     context "when email is found in base" do
-      # it_behaves_like "social sign in for existing user"
+      let!(:user) { create(:user, email: "user@example.com") }
+
+      it_behaves_like "social sign in for existing user"
     end
   end
 
@@ -52,7 +65,9 @@ feature "Sign in" do
     end
 
     context "when email is found in base" do
-      # it_behaves_like "social sign in for existing user"
+      let!(:user) { create(:user, email: "user@example.com") }
+
+      it_behaves_like "social sign in for existing user"
     end
   end
 
@@ -64,7 +79,9 @@ feature "Sign in" do
     end
 
     context "when email is found in base" do
-      # it_behaves_like "social sign in for existing user"
+      let!(:user) { create(:user, email: "user@example.com") }
+
+      it_behaves_like "social sign in for existing user"
     end
   end
 end
