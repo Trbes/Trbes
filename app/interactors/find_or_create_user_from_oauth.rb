@@ -1,11 +1,15 @@
-class CreateUserFromOauth
+class FindOrCreateUserFromOauth
   include Interactor
 
   def call
-    context.user = create_user
+    context.user = find_user || create_user
   end
 
   private
+
+  def find_user
+    User.find_by(email: auth_data.info.email)
+  end
 
   def create_user
     user = User.new(send("#{auth_data.provider}_attributes"))
