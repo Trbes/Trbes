@@ -21,7 +21,6 @@ feature "Create collection" do
       end
 
       fill_in "Name", with: "Name"
-      attach_file "collection_image", "spec/support/trbes.png"
 
       click_button "Save"
 
