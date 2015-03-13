@@ -69,7 +69,9 @@
 
         .form-group.fg-invite-link
           .input-group
-            span#copy_invite_link.input-group-addon
+            span#copy_invite_link.input-group-addon[
+              data-clipboard-text=(iurl)
+              title="Click to copy invitation link." ]
               i.fa.fa-link
               | Copy Link
             input.form-control type="text" value=(iurl)
