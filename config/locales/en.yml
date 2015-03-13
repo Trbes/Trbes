@@ -86,6 +86,11 @@ en:
       message:
         success: "'%{title}' has been added"
 
+    membership:
+      message:
+        join:
+          success: "Your membership request has been sent"
+
     home: 'Dashboard'
 
     navigation:

@@ -37,6 +37,17 @@ class GroupsController < ApplicationController
     redirect_to root_url(subdomain: params[:id]) and return if params[:id]
   end
 
+  def join
+    redirect_to new_user_registration_url(subdomain: group.subdomain) and return unless user_signed_in?
+    redirect_to "/" and return if current_user.membership_for(current_group).present?
+
+    membership = Membership.new(group_id: current_group.id, user_id: current_user.id)
+    membership.save
+
+    flash.keep
+    redirect_to "/", flash: { success: t("app.membership.message.join.success") }
+  end
+
   private
 
   def sort_filter
