@@ -5,26 +5,27 @@
   </head>
   <body>
     <p>Hey,</p>
-    <div class="fic-email-body">
-      <p>
-        <%
-          aurl = accept_invitation_url(@invited_user,
-            invitation_token: @invited_user.raw_invitation_token,
-            subdomain: @group.subdomain)
-        %>
 
-        I would like you to join our new user community about
+    <p>
+      <%
+        aurl = accept_invitation_url(@invited_user,
+          invitation_token: @invited_user.raw_invitation_token,
+          subdomain: @group.subdomain)
+      %>
 
-        <strong><%= @group.description %></strong>.
+      I would like you to join our new user community about
 
-        Help me create some content and share some links !
-      </p>
-      <p>
-        <a href="<%= aurl %>">Click here to join!</a>
-      </p>
-      <p>
-        PS : I gave you <em>super user</em> rights !
-      </p>
-    </div>
+      <strong><%= @group.description %></strong>.
+
+      Help me create some content and share some links !
+    </p>
+
+    <p>
+      <a href="<%= aurl %>">Click here to join!</a>
+    </p>
+
+    <p>
+      PS : I gave you <em>super user</em> rights !
+    </p>
   </body>
 </html>
