@@ -7,18 +7,8 @@ section.about.clearfix
     .group-image
       = group.preview_logo
 
-      #preview
-
       = form_for(:group, method: :put, url: admin_group_path) do |f|
         - if policy(group).update?
-          p 138x115 pixels
-          = link_to "upload image", "#", class: "upload control"
-
-        .file-uploader.hidden
-          = f.fields_for :logo, group.logo do |logo_fields|
-            = logo_fields.cl_image_upload :image,
-                html: { data: { cloudinary_field: "group[logo_attributes][image]" } }
-                / ^^^ Hack related to bug in cl_image_upload related to nested fields
 
           = f.submit "Save", class: "btn btn-info"
 

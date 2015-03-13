@@ -9,12 +9,15 @@
         = simple_nested_form_for([:admin, group], url: admin_group_path) do |f|
           .modal-body
             = f.simple_fields_for :logo, group.logo do |logo_fields|
-              = image_tag(group.logo.image.thumbnail, class: "collection-preview", id: "#collection_preview")
-              = logo_fields.input :image,
-                  as: :file,
-                  label: false,
-                  input_html: group.logo.image_url ? { disabled: true, class: "hidden file-uploader" } : { class: "file-uploader" }
-              = logo_fields.input :image_cache, as: :hidden
+              #preview
+                = image_tag(group.logo.image.thumbnail, class: "collection-preview", id: "#collection_preview")
+
+              = logo_fields.cl_image_upload :image,
+                  html: { \
+                    data: { cloudinary_field: "group[logo_attributes][image]" }, \
+                    disabled: true, class: "hidden file-uploader" \
+                  }
+              p 138x115 pixels
 
             - if group.logo.image_url
               = link_to "change image", "#", class: "upload"
