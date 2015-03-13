@@ -106,4 +106,5 @@ source "https://rails-assets.org" do
   gem "rails-assets-jquery-validation"
   gem "rails-assets-jquery-form"
   gem "rails-assets-humane"
+  gem "rails-assets-zeroclipboard"
 end

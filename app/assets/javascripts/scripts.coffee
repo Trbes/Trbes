@@ -63,6 +63,11 @@ $ ->
     $(this).addClass("active").siblings().removeClass("active").
       closest("form").find("#collection_icon_class").val($(this).data("icon-class"))
 
+  zeroclip = new ZeroClipboard(document.getElementById('copy_invite_link'))
+  zeroclip.on 'ready', (readyEvent) ->
+    zeroclip.on 'aftercopy', (event) ->
+      humane.log("Join link copied to clipboard", { addnCls: "humane-libnotify-success" })
+
   $(".share-on-facebook").click (e) ->
     e.preventDefault()
     that = $(this)

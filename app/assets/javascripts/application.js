@@ -17,9 +17,10 @@
 //= require gsdk
 //= require_tree ./trbes
 //= require grabicon
-//= require scripts
 //= require algolia/algoliasearch.min
 //= require algolia/typeahead.jquery
 //= require best_in_place
 //= require best_in_place.jquery-ui
 //= require jquery_nested_form
+//= require zeroclipboard
+//= require scripts
