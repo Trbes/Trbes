@@ -10,6 +10,7 @@
           .modal-body
             = f.input :name
             = f.input :tagline
+            = f.input :private, as: :boolean
           .modal-footer
             button.btn.btn-default type="button" data-dismiss="modal" Close
             = f.submit "Save", class: "btn btn-primary"
