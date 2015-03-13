@@ -6,7 +6,12 @@
     - post.collections.visible.each do |collection|
       = content_tag_for(:span, collection, class: "post-collection") do
         = link_to root_path(collection_id: collection.id) do
-          = cl_image_tag(collection.image.icon, data: { toggle: "tooltip", placement: "top" }, title: collection.name)
+          i.fa.circle[
+            class=(collection.icon_class.present? ? "fa-#{collection.icon_class}" : "fa-list")
+            data-toggle="tooltip"
+            data-placement="top"
+            title=collection.name]
+
         - if policy(collection.collection_post_for(post)).destroy?
           = link_to admin_collection_post_path(collection.collection_post_for(post)),
               class: "remove-from-collection",

@@ -4,8 +4,10 @@ section.collections#collections
 
     .collections-list data-items=".collection"
       - group.collections.ordered.includes(:collection_posts).each do |collection|
+
         .collection.clearfix data-id=(collection.id) data-path="/admin/collections" data-resource="collection"
-          = cl_image_tag(collection.image.icon, class: "collection-image")
+          = link_to "#" do
+            i.fa.circle[class=(collection.icon_class.present? ? "fa-#{collection.icon_class}" : "fa-list")]
           span.collection-name= collection.name
           span.collection-posts-count= link_to collection.collection_posts_count, "#"
           span.collection-visibility

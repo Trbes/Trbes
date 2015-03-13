@@ -33,11 +33,10 @@ module Admin
 
     def collection_attributes
       params.require(:collection).permit(
-        :image,
-        :image_cache,
         :name,
         :visibility,
         :row_order_position,
+        :icon_class,
         collection_posts_attributes: %i( post_id id _destroy )
       )
     end
