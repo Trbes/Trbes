@@ -10,5 +10,9 @@ module Trbes
     config.noreply = "noreply@fs-rails-base.heroku.com"
     config.host = "localhost:5000"
     config.active_record.raise_in_transactional_callbacks = true
+
+    config.to_prepare do
+      Devise::Mailer.layout "devise_mailer"
+    end
   end
 end
