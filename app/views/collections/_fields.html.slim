@@ -10,14 +10,3 @@ label Select an Icon
       data-icon-class=icon_class
       class=("active" if icon_class == f.object.icon_class) ]
       i.fa[class="fa-#{icon_class}"]
-
-/
-  .form-group.form-inline
-    = image_tag(f.object.image.icon, class: "collection-preview", id: "#collection_preview")
-    = f.input :image,
-        as: :file,
-        label: false,
-        input_html: collection.image_url ? { disabled: true, class: "hidden file-uploader" } : { class: "file-uploader" }
-    = f.input :image_cache, as: :hidden
-  - if collection.image_url
-    = link_to "change image", "#", class: "upload"
