@@ -49,4 +49,6 @@ section.about.clearfix
 
     - if policy(group).destroy?
       .controls
+        = link_to "edit", "#", class: "control"
+        .controls-separator
         = link_to "delete", admin_group_path, method: :delete, class: "control", data: { confirm: "Are you sure?" }
