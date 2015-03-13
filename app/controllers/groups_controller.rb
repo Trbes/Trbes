@@ -37,6 +37,7 @@ class GroupsController < ApplicationController
     redirect_to root_url(subdomain: params[:id]) and return if params[:id]
   end
 
+  # rubocop:disable Metrics/AbcSize
   def join
     redirect_to new_user_registration_url(subdomain: group.subdomain) and return unless user_signed_in?
     redirect_to "/" and return if current_user.membership_for(current_group).present?
@@ -47,6 +48,7 @@ class GroupsController < ApplicationController
     flash.keep
     redirect_to "/", flash: { success: t("app.membership.message.join.success") }
   end
+  # rubocop:enable Metrics/AbcSize
 
   private
 
