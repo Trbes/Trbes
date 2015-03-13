@@ -1,0 +1,15 @@
+.modal.group-modal.fade id="edit_group" tabindex="-1" role="dialog" aria-labelledby="add_collection" aria-hidden="true"
+  .modal-dialog
+    .modal-content
+      .modal-header
+        button.close type="button" data-dismiss="modal" aria-label="Close"
+          span aria-hidden="true" &times;
+        h4.modal-title Edit group
+
+        = simple_form_for([:admin, group], url: admin_group_path) do |f|
+          .modal-body
+            = f.input :name
+            = f.input :tagline
+          .modal-footer
+            button.btn.btn-default type="button" data-dismiss="modal" Close
+            = f.submit "Save", class: "btn btn-primary"
