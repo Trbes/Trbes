@@ -1,4 +1,4 @@
-.modal.group-modal.fade id="edit_group" tabindex="-1" role="dialog" aria-labelledby="add_collection" aria-hidden="true"
+.modal.group-modal.fade id="edit_group" tabindex="-1" role="dialog" aria-labelledby="edit_group" aria-hidden="true"
   .modal-dialog
     .modal-content
       .modal-header
@@ -10,14 +10,14 @@
           .modal-body
             = f.simple_fields_for :logo, group.logo do |logo_fields|
               #preview
-                = image_tag(group.logo.image.thumbnail, class: "collection-preview", id: "#collection_preview")
+                = image_tag(group.logo.image.group_logo, class: "collection-preview", id: "#collection_preview")
+                p 138x115 pixels
 
               = logo_fields.cl_image_upload :image,
                   html: { \
                     data: { cloudinary_field: "group[logo_attributes][image]" }, \
                     disabled: true, class: "hidden file-uploader" \
                   }
-              p 138x115 pixels
 
             - if group.logo.image_url
               = link_to "change image", "#", class: "upload"

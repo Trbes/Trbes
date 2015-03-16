@@ -19,24 +19,22 @@ class GroupPresenter < BasePresenter
     noun.pluralize(@model.memberships_count)
   end
 
-  def preview_logo
-    tag_options = { height: 115 }
-
-    logo_image_tag(tag_options)
-  end
-
   def listing_logo
-    tag_options = { class: "media-object group-logo", width: 138, height: 115 }
+    tag_options = { class: "media-object group-logo" }
 
     logo_image_tag(tag_options)
   end
 
-  def logo_image_tag(options)
+  def logo_image_tag(options = {})
     if @model.logo_image
-      h.cl_image_tag(@model.logo_image.logo, options)
+      h.cl_image_tag(@model.logo_image.group_logo, options)
     else
       h.image_tag("sample/default-group.png", options)
     end
+  end
+
+  def privacy_class
+    @model.private? ? "fa-unlock" : "fa-lock"
   end
 
   def join_partial_path(user)

@@ -5,16 +5,12 @@ section.about.clearfix
 
   .group-profile
     .group-image
-      = group.preview_logo
-
-      = form_for(:group, method: :put, url: admin_group_path) do |f|
-        - if policy(group).update?
-
-          = f.submit "Save", class: "btn btn-info"
+      = group.listing_logo
 
     .group-information
       span.group-name= group.name
-      = group.private
+      '&nbsp;
+      span(class="fa #{group.privacy_class}")
 
       br
       span.text-muted= group.tagline
