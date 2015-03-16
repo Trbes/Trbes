@@ -310,6 +310,7 @@ GEM
     rails-assets-modernizr (2.8.3)
     rails-assets-respond (1.4.2)
     rails-assets-sassy-maps (0.4.0)
+    rails-assets-zeroclipboard (2.2.0)
     rails-deprecated_sanitizer (1.0.3)
       activesupport (>= 4.2.0.alpha)
     rails-dom-testing (1.0.5)
@@ -514,6 +515,7 @@ DEPENDENCIES
   rails-assets-jquery-validation!
   rails-assets-modernizr!
   rails-assets-respond!
+  rails-assets-zeroclipboard!
   rails_12factor
   rails_best_practices
   ranked-model

@@ -57,14 +57,12 @@ feature "Join group" do
 
     scenario "I can request membership" do
       within("#group_#{group.id}") do
-        click_button "Join"
+        click_link "Join"
       end
 
       expect(current_path).to eq("/")
 
-      within("#group_#{group.id}") do
-        expect(page).to have_content("Join request was sent")
-      end
+      expect(page).to have_content(group.name)
 
       expect(group.memberships).to include(user.membership_for(group))
       expect(user.membership_for(group).role).to eq("pending")
