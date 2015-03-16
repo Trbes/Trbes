@@ -20,8 +20,6 @@
           i.fa.fa-plus
           span Add
 
-        = render "posts/add_a_post", post: Post.new
-
     - else
       li.pull-right.add-group
         a#btn_add_group.btn.btn-fill.btn-primary.navbar-btn.btn-add-group href=(new_group_path)

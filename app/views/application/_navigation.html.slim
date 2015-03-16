@@ -30,3 +30,5 @@
         = render "navigation_user"
 
   = render "navigation_main_slide_menu"
+
+= render "posts/add_a_post", post: Post.new if current_group
