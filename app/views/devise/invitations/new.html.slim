@@ -34,13 +34,13 @@
             .fic-email-body
               p
                 | I would like you to join our new user community about
-                a< href=(iurl = "#{group_url(current_group)}join") = current_group.tagline
+                a< href=(join_url = group_join_url(current_group)) = current_group.tagline
                 | .
                 |  Help me create some content and share some links !
               p
                 | Click here to join :
                 br
-                a href=(iurl) = iurl
+                a href=(join_url) = join_url
               p
                 | PS : I gave you <em>super user</em> rights!
 
@@ -70,20 +70,20 @@
         .form-group.fg-invite-link
           .input-group
             span#copy_invite_link.input-group-addon[
-              data-clipboard-text=(iurl)
+              data-clipboard-text=(join_url)
               title="Click to copy invitation link." ]
               i.fa.fa-link
               | Copy Link
-            input.form-control type="text" value=(iurl)
+            input.form-control type="text" value=(join_url)
         a.btn.btn-social.btn-fill.btn-facebook.share-on-facebook[
           href="#"
-          data-link=iurl
+          data-link=join_url
           data-image=current_group.logo_image.try(:group_logo)
-          data-title=share_group_title(current_group)
-          data-body=share_group_body(current_group) ]
+          data-title=group_share_title(current_group)
+          data-body=group_share_body(current_group) ]
           i.fa.fa-facebook-square
           | Share via Facebook
-        a.btn.btn-social.btn-fill.btn-twitter href="#"
+        a.btn.btn-social.btn-fill.btn-twitter.share-on-twitter href=group_tweet_intent(current_group)
           i.fa.fa-twitter-square
           | Tweet on Twitter
 

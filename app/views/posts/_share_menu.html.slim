@@ -1,9 +1,9 @@
 ul.dropdown-menu class=("dropdown-#{position}") role="menu"
   li
-    a.share-on-facebook href="#" data-link=share_link(post) data-title=(post.title) data-body=share_body(post) data-image=(post.preview_image)
+    a.share-on-facebook href="#" data-link=post_share_link(post) data-title=(post.title) data-body=post_share_body(post) data-image=(post.preview_image)
       i.fa.fa-facebook-square
       | Share on Facebook
   li
-    a.share-on-twitter href=(tweet_intent(post))
+    a.share-on-twitter href=(post_tweet_intent(post))
       i.fa.fa-twitter-square
       | Share on Twitter
