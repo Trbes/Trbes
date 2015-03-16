@@ -14,10 +14,7 @@
                 p 138x115 pixels
 
               = logo_fields.cl_image_upload :image,
-                  html: { \
-                    data: { cloudinary_field: "group[logo_attributes][image]" }, \
-                    disabled: true, class: "hidden file-uploader" \
-                  }
+                  html: {  disabled: true, class: "hidden file-uploader" }
 
             - if group.logo && group.logo.image_url
               = link_to "change image", "#", class: "upload"
