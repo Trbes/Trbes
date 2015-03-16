@@ -18,4 +18,16 @@ module GroupsHelper
   def will_show_group_cog_button?
     policy(:access).admin_access? || policy(:invitation).new?
   end
+
+  def share_group_title(group)
+    "JOIN #{group.name} on Trbes"
+  end
+
+  def share_group_body(group)
+    [
+      "Check out #{group.name} - A new place for us to share about #{group.tagline}",
+      "#{group.description}",
+      "Powered by Trbes.com"
+    ].join("<center>&nbsp;</center>")
+  end
 end

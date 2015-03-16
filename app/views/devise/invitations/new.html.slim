@@ -7,7 +7,7 @@
           = current_group.subdomain
           | .trbes.com
         br
-        | Now invite 2 or 3 teammates you trust to help you try Trbes !
+        | Now invite 2 or 3 teammates you trust to help you try Trbes!
     .iv-crew
       = image_tag("sprite_invite.png")
     .iv-body
@@ -28,13 +28,13 @@
             .fic-email-title
               p
                 | A new place for us to share about
-                span< = current_group.description
+                span< = current_group.tagline
 
             label.control-label.label-invite-message  Message:
             .fic-email-body
               p
                 | I would like you to join our new user community about
-                a< href=(iurl = "#{group_url(current_group)}join") = current_group.description
+                a< href=(iurl = "#{group_url(current_group)}join") = current_group.tagline
                 | .
                 |  Help me create some content and share some links !
               p
@@ -75,7 +75,12 @@
               i.fa.fa-link
               | Copy Link
             input.form-control type="text" value=(iurl)
-        a.btn.btn-social.btn-fill.btn-facebook href="#"
+        a.btn.btn-social.btn-fill.btn-facebook.share-on-facebook[
+          href="#"
+          data-link=iurl
+          data-image=current_group.logo_image.try(:group_logo)
+          data-title=share_group_title(current_group)
+          data-body=share_group_body(current_group) ]
           i.fa.fa-facebook-square
           | Share via Facebook
         a.btn.btn-social.btn-fill.btn-twitter href="#"
