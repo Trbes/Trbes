@@ -19,7 +19,7 @@
                     disabled: true, class: "hidden file-uploader" \
                   }
 
-            - if group.logo.image_url
+            - if group.logo && group.logo.image_url
               = link_to "change image", "#", class: "upload"
             = f.input :name
             = f.input :tagline
