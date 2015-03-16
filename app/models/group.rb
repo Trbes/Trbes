@@ -38,6 +38,8 @@ class Group < ActiveRecord::Base
     end
   end
 
+  acts_as_paranoid
+
   def comments_count
     posts.pluck(:comments_count).inject(:+)
   end
