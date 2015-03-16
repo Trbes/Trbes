@@ -48,4 +48,17 @@ feature "Create post", js: true do
       expect(user.posts.last.state).to eq("moderation")
     end
   end
+
+  context "when I'm owner on admin page" do
+    background do
+      user.membership_for(group).owner!
+      visit admin_dashboard_index_path
+    end
+
+    scenario "I post to group" do
+      create_post
+
+      expect(user.posts.last.state).to eq("published")
+    end
+  end
 end

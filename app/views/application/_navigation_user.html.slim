@@ -19,6 +19,9 @@
         a#btn_add_post.btn.btn-fill.btn-primary.navbar-btn.btn-add-post href="#" data-toggle="modal" data-target="#add_a_post"
           i.fa.fa-plus
           span Add
+
+        = render "posts/add_a_post", post: Post.new
+
     - else
       li.pull-right.add-group
         a#btn_add_group.btn.btn-fill.btn-primary.navbar-btn.btn-add-group href=(new_group_path)
