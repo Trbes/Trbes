@@ -1,0 +1,33 @@
+.modal.group-modal.fade id="edit_group" tabindex="-1" role="dialog" aria-labelledby="edit_group" aria-hidden="true"
+  .modal-dialog
+    .modal-content
+      .modal-header
+        button.close type="button" data-dismiss="modal" aria-label="Close"
+          span aria-hidden="true" &times;
+        h4.modal-title Edit group
+
+        = simple_nested_form_for([:admin, group], url: admin_group_path) do |f|
+          .modal-body
+            = f.simple_fields_for :logo, group.logo do |logo_fields|
+              #preview
+                = image_tag(group.logo.image.group_logo, class: "collection-preview", id: "#collection_preview")
+                p 138x115 pixels
+
+              = logo_fields.cl_image_upload :image,
+                  html: {  disabled: true, class: "hidden file-uploader" }
+
+            - if group.logo && group.logo.image_url
+              = link_to "change image", "#", class: "upload"
+            = f.input :name
+            = f.input :tagline
+            = f.input :description
+
+            = f.input :private,
+              as: :boolean,
+              wrapper: false,
+              wrapper_tag: nil,
+              input_html: { data: { toggle: "checkbox" } }
+
+          .modal-footer
+            button.btn.btn-default type="button" data-dismiss="modal" Close
+            = f.submit "Save", class: "btn btn-primary"

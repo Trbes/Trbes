@@ -16,5 +16,13 @@ FactoryGirl.define do
     allow_image_posts { [true, false].sample }
     allow_link_posts { [true, false].sample }
     allow_text_posts { [true, false].sample }
+
+    after(:build) do |group|
+      group.logo = build(:attachment, attachable: group)
+    end
+
+    after(:create) do |group|
+      group.logo.save!
+    end
   end
 end
