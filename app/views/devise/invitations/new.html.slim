@@ -93,11 +93,11 @@
       .iv-interest
         p You might also be interested in:
         p
-          a.iv-link href="#" Browse groups
-          |  ::&nbsp;
-          a.iv-link href="#" Start your own group <em>free</em>
-          |  ::&nbsp;
-          a.iv-link href="#" Subscribe to Trbes
-          |  ::&nbsp;
-          a.iv-link href="#" Complete your profile
+          a.iv-link>[href=root_url(subdomain: nil)] Browse groups
+          ' ::
+          a.iv-link>[href=new_group_url(subdomain: nil)] Start your own group <em>free</em>
+          ' ::
+          a.iv-link>[href=(ENV["SUBSCRIBE_TO_TRBES_URL"] || "#")] Subscribe to Trbes
+          ' ::
+          a.iv-link[href=edit_user_registration_path] Complete your profile
 
