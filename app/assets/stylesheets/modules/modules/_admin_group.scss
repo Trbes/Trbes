@@ -30,20 +30,29 @@
   }
 
   .collections-list {
+    .collection {
+      margin-top: 5px;
+    }
+
     .collection-image {
+      display: inline-block;
       vertical-align: middle;
     }
 
     .collection-posts-count {
-      margin-left: 10px;
+      display: inline-block;
     }
 
     .collection-name {
+      display: inline-block;
+      margin-left: 10px;
       vertical-align: middle;
       text-transform: uppercase;
+      width: 20%;
     }
 
     .collection-visibility {
+      display: inline-block;
       margin-left: 40px;
     }
   }

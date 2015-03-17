@@ -8,9 +8,9 @@ section.collections#collections
         .collection.clearfix data-id=(collection.id) data-path="/admin/collections" data-resource="collection"
           = link_to "#" do
             i.fa.circle[class=(collection.icon_class.present? ? "fa-#{collection.icon_class}" : "fa-list")]
-          span.collection-name= collection.name
-          span.collection-posts-count= link_to collection.collection_posts_count, "#"
-          span.collection-visibility
+          .collection-name= collection.name
+          .collection-posts-count= link_to collection.collection_posts_count, "#"
+          .collection-visibility
             = link_to "#" do
               = best_in_place collection,
                   :visibility,
@@ -30,7 +30,8 @@ section.collections#collections
                 class: "control",
                 data: { confirm: "Are you sure you want to delete #{collection.name}?" }
 
-      = link_to "add", "#", class: "control", data: { toggle: "modal", target: "#add_collection" }
+      .add-link
+        = link_to "add", "#", class: "control", data: { toggle: "modal", target: "#add_collection" }
 
       - group.collections.ordered.includes(:collection_posts).each do |collection|
         .modal.collection-modal.fade id="edit_collection_#{collection.id}" tabindex="-1" role="dialog" aria-labelledby="edit_collection" aria-hidden="true"
