@@ -24,7 +24,11 @@ section.collections#collections
             .controls-separator
             = link_to "edit", "#", class: "control", data: { toggle: "modal", target: "#edit_collection_#{collection.id}" }
             .controls-separator
-            = link_to "delete", admin_collection_path(collection), method: :delete, class: "control", data: { confirm: "Are you sure?" }
+            = link_to "delete",
+                admin_collection_path(collection),
+                method: :delete,
+                class: "control",
+                data: { confirm: "Are you sure you want to delete #{collection.name}?" }
 
       = link_to "add", "#", class: "control", data: { toggle: "modal", target: "#add_collection" }
 
