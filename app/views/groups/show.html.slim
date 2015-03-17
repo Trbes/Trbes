@@ -1,16 +1,15 @@
 .container.group-page
-  - if user_signed_in?
-    .row
-      .col-md-3
-        = render "posts/filter_menu"
-      .col-md-3.text-center
-        - if current_group.posts_count > 0
-          .input-group.search
-            span#search_main.input-group-addon
-              i.fa.fa-search
-            input#post_search.form-control aria-describedby="search_main" placeholder="Search for posts" type="search"
-      .col-md-6
-        = render "posts/collection_menu"
+  .row
+    .col-md-3
+      = render "posts/filter_menu"
+    .col-md-3.text-center
+      - if current_group.posts_count > 0
+        .input-group.search
+          span#search_main.input-group-addon
+            i.fa.fa-search
+          input#post_search.form-control aria-describedby="search_main" placeholder="Search for posts" type="search"
+    .col-md-6
+      = render "posts/collection_menu"
 
   - if current_group.posts_count > 0
     .posts-group

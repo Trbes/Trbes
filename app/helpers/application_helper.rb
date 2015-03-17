@@ -44,4 +44,10 @@ module ApplicationHelper
   def current_path?(path)
     "active" if request.url.include?(path)
   end
+
+  def tweet_intent(opts = {})
+    params = []
+    opts.each { |key, value| params << "#{key}=#{ URI.encode(value) }" }
+    "https://twitter.com/intent/tweet?" + params.join("&")
+  end
 end

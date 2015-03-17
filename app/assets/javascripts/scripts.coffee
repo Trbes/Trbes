@@ -66,7 +66,7 @@ $ ->
   zeroclip = new ZeroClipboard(document.getElementById('copy_invite_link'))
   zeroclip.on 'ready', (readyEvent) ->
     zeroclip.on 'aftercopy', (event) ->
-      humane.log("Join link copied to clipboard", { addnCls: "humane-libnotify-success" })
+      humane.log("Copied invite link to clipboard", { addnCls: "humane-libnotify-success" })
 
   $(".share-on-facebook").click (e) ->
     e.preventDefault()
@@ -82,8 +82,6 @@ $ ->
         console.log 'Success sharing to Facebook.'
       else
         console.log 'Error sharing to Facebook.'
-      return
-    return
 
   $(".share-on-twitter").click (e) ->
     e.preventDefault()
