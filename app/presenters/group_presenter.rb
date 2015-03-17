@@ -15,8 +15,8 @@ class GroupPresenter < BasePresenter
     "#{subdomain}.trbes.com"
   end
 
-  def pluralized_noun(noun)
-    noun.pluralize(@model.memberships_count)
+  def pluralized_noun(noun, count)
+    noun.pluralize(count)
   end
 
   def listing_logo

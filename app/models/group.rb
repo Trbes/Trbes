@@ -41,7 +41,7 @@ class Group < ActiveRecord::Base
   acts_as_paranoid
 
   def comments_count
-    posts.pluck(:comments_count).inject(:+)
+    posts.pluck(:comments_count).inject(:+) || 0
   end
 
   def owner

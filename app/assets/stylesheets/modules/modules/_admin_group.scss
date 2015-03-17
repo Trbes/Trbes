@@ -80,21 +80,16 @@
   }
 
   .group-statistics {
-    .group-statistics-element {
-      width: 100%;
-      overflow: hidden;
-    }
-
     .count {
       display: inline-block;
       width: 10%;
-
       text-align: right;
     }
 
     .entity-wrapper {
       display: inline-block;
-      margin-left: 5px;
+      width: 80%;
+      margin-left: 5%;
     }
   }
 }
