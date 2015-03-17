@@ -35,3 +35,14 @@ RSpec.configure do |config|
 
   config.include FeatureHelpers, type: :feature
 end
+
+shared_context "group membership and authentication" do
+  let(:membership) { create(:membership) }
+  let(:user) { membership.user }
+  let(:group) { membership.group }
+
+  background do
+    switch_to_subdomain(group.subdomain)
+    sign_in(user.email, "123456")
+  end
+end
