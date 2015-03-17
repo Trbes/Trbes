@@ -62,6 +62,19 @@ feature "Posts list" do
     end
   end
 
+  scenario "I can vote and unvote", js: true do
+    within("#post_#{post.id}") do
+      vote_link = page.find(".vote")
+      vote_link.click
+      expect(page).to have_css(".vote.done")
+      expect(post.reload.cached_votes_total).to eql 1
+
+      vote_link.click
+      expect(page).not_to have_css(".vote.done")
+      expect(post.reload.cached_votes_total).to eql 0
+    end
+  end
+
   context "when there are too much posts" do
     background do
       create_list(:post, 20, :text, :published, group: group)
