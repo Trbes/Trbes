@@ -59,17 +59,18 @@
           - elsif post.post_type == "image_post"
             = cl_image_tag(post.preview_image)
 
-    section.list-section.best-comment
-      header.section-header.sbc-header
-        i.fa.fa-star-o
-        span.section-count.sbc-count= comments.favourite.count
-      - comments.favourite.each do |comment|
-        = render "comments/comment", comment: comment
+    - if (favorite_count = comments.favourite.count) > 0
+      section.list-section.best-comment
+        header.section-header.sbc-header
+          i.fa.fa-star-o
+          span.section-count.sbc-count= favorite_count
+        - comments.favourite.each do |comment|
+          = render "comments/comment", comment: comment
 
     section.list-section.all-comments
       header.section-header.sbc-header
         i.fa.fa-comment-o
-        span.section-count.sbc-count = comments.count
+        span.section-count.sbc-count = comments.count == 0 ? "Be the first to comment" : comments.count
 
       = render "comments/form"
 
