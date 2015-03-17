@@ -1,6 +1,10 @@
 class GroupPresenter < BasePresenter
+  PRIVACY_TYPES = {
+    true => "private",
+    false => "public"
+  }
   def memberships_count_link
-    h.link_to h.pluralize(@model.memberships_count, "member"), "#"
+    h.link_to h.pluralize(@model.memberships_count, "member"), h.admin_memberships_path
   end
 
   def posts_count_link
@@ -34,7 +38,11 @@ class GroupPresenter < BasePresenter
   end
 
   def privacy_class
-    @model.private? ? "fa-unlock" : "fa-lock"
+    @model.private? ? "fa-lock" : "fa-unlock"
+  end
+
+  def privacy_text
+    "Group is #{PRIVACY_TYPES[@model.private]}"
   end
 
   def join_partial_path(user)

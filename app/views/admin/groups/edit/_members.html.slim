@@ -2,6 +2,5 @@ section.members#members
   h4.section-name Members
   hr.section-separator
 
-  = render "admin/groups/edit/members/owner", group: group, memberships: memberships
   = render "admin/groups/edit/members/moderators", group: group, memberships: memberships
   = render "admin/shared/members", memberships: memberships.includes(user: :avatar)

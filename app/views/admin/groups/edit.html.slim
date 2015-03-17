@@ -10,7 +10,6 @@
 
       = render "admin/groups/edit/about", group: group
       = render "admin/groups/edit/collections", group: group
-      = render "admin/groups/edit/members", group: group, memberships: memberships
       - if policy(group).update?
         = render "admin/groups/edit/preferences", group: group
       = render "admin/groups/edit/your_groups", group: group, groups: available_groups

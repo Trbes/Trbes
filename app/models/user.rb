@@ -19,4 +19,8 @@ class User < ActiveRecord::Base
   def avatar
     super || "http://gravatar.com/avatar/#{Digest::MD5.hexdigest(email.downcase)}.png?d=mm"
   end
+
+  def full_name
+    super || email
+  end
 end

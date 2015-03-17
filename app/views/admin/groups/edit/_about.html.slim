@@ -10,7 +10,7 @@ section.about.clearfix
     .group-information
       span.group-name= group.name
       '&nbsp;
-      span(class="fa #{group.privacy_class}")
+      span(class="fa #{group.privacy_class}" data-toggle="tooltip" title="#{group.privacy_text}")
 
       br
       span.text-muted= group.tagline
