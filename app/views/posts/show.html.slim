@@ -3,8 +3,13 @@
     = div_for(post, class: "post-type-text")
       .post-left
         .post-upvote
-          = link_to(policy(post).vote?(current_user) ? post_upvote_path(post) : "#", class: "vote") do
-            i.fa.fa-thumbs-up
+          - if current_user.try(:voted_up_on?, post)
+            = link_to(post_unvote_path(post, current_user), class: "vote done") do
+              .fa.fa-check
+              .fa.fa-close
+          - else
+            = link_to(post_vote_path(post, current_user), class: "vote") do
+              i.fa.fa-thumbs-up
           .vote-count = post.cached_votes_total
         .post-share
           .dropdown.share
@@ -37,12 +42,13 @@
       .post-content
         header.post-header
           h2.post-title = post.title
-          - if policy(post).edit?
-            = link_to "Edit post", edit_post_path(post)
-          - if policy(post).destroy?
-            = link_to "Delete", post_path(post), method: :delete, data: { confirm: "Are you sure?" }
           .post-meta
               span.date posted #{distance_of_time_in_words_to_now(post.created_at) } ago
+          - if policy(post).edit?
+            => link_to "Edit post", edit_post_path(post)
+            ' |
+          - if policy(post).destroy?
+            => link_to "Delete", post_path(post), method: :delete, data: { confirm: "Are you sure?" }
         .post-body
           - if post.post_type == "text_post"
             = post.body
