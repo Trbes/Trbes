@@ -29,6 +29,12 @@ module PostsHelper
     params[:sort] == filter ? "active" : ""
   end
 
+  def post_vote_path(post, user)
+    return "#" unless policy(post).vote?(user)
+
+    user.voted_up_on?(post) ? post_unvote_path(post) : post_upvote_path(post)
+  end
+
   # rubocop:disable Metrics/AbcSize, Metrics/CyclomaticComplexity, Metrics/MethodLength
   def short_time_distance_string(time)
     a = (Time.now - time).to_i

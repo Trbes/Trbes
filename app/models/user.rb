@@ -12,6 +12,8 @@ class User < ActiveRecord::Base
   devise :invitable, :database_authenticatable, :registerable, :confirmable,
     :recoverable, :rememberable, :trackable, :validatable, :omniauthable
 
+  acts_as_voter
+
   def membership_for(group)
     memberships.for_group(group).first
   end

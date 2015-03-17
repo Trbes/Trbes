@@ -163,6 +163,26 @@ $comment-right-width: 170px;
     .fa {
       font-size: 20px;
     }
+
+    &.done {
+      .fa-close {
+        display: none;
+      }
+
+      .fa-check {
+        display: inline-block;
+      }
+
+      &:hover {
+        .fa-close {
+          display: inline-block;
+        }
+
+        .fa-check {
+          display: none;
+        }
+      }
+    }
   }
 
   .vote-count {
