@@ -1,7 +1,7 @@
 = div_for(comment, data: { id: comment.id } )
   .comment-left
     .comment-upvote
-      = link_to(policy(comment).vote?(current_user) ? comment_upvote_path(comment) : "#", class: "vote") do
+      = link_to(comment_vote_path(comment, current_user), class: "vote") do
         i.fa.fa-thumbs-up
       .vote-count = comment.cached_votes_total
 
