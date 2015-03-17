@@ -52,9 +52,17 @@ $ ->
       method: "PUT"
       url: target.attr("href")
       success: (result) ->
-        target.
+        target.attr("href", result.new_vote_path).
           siblings(".vote-count").html(result.new_total_votes).addClass("voted").
           closest(".post-upvote").closest(".post").find(".post-content").addClass("voted")
+
+        if result.voted_up
+          target.addClass("done").attr("title", "Undo like").
+            html("<i class='fa fa-check'></i><i class='fa fa-close'></i>")
+        else
+          target.removeClass("done").attr("title", "Like this").
+            html("<i class='fa fa-thumbs-up'></i>").
+            closest(".post").find(".post-content").removeClass("voted")
 
   $("#moderator_id").on "change", (e) ->
     $("form#add_moderator").attr("action", "/admin/memberships/#{this.value}")

@@ -23,13 +23,25 @@ class CommentsController < ApplicationController
     comment.upvote_by(current_user)
 
     render json: {
-      new_total_votes: comment.cached_votes_total
+      new_total_votes: comment.cached_votes_total,
+      voted_up: true,
+      new_vote_path: comment_unvote_path(comment)
+    }
+  end
+
+  def unvote
+    comment.unvote_by(current_user)
+
+    render json: {
+      new_total_votes: comment.cached_votes_total,
+      voted_up: false,
+      new_vote_path: comment_upvote_path(comment)
     }
   end
 
   private
 
   def comment_attributes
-    params.require(:comment).permit(:body, :parent_comment_id) if action_name != "upvote"
+    params.require(:comment).permit(:body, :parent_comment_id) unless %w(upvote unvote).include?(action_name)
   end
 end
