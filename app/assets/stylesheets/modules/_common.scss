@@ -3,6 +3,20 @@
   text-align: center;
   padding: 10px;
 
+  .user-role {
+    font-weight: bold;
+    margin-bottom: 10px;
+    text-transform: uppercase;
+
+    &.user-role-owner {
+      color: $primary-color;
+    }
+
+    &.user-role-moderator {
+      color: $warning-color;
+    }
+  }
+
   .user-name {
     font-weight: bold;
     margin-top: 10px;
@@ -21,5 +35,28 @@
       margin-left: 0 !important;
       border-bottom-color: white !important;
     }
+  }
+}
+
+.role-overlay {
+  position: absolute;
+  top: -5px;
+  left: -5px;
+  color: white;
+  border-radius: 50%;
+  width: 12px;
+  height: 12px;
+  text-align: center;
+  line-height: 12px;
+  font-weight: bold;
+  text-transform: uppercase;
+  font-size: 10px;
+
+  &.role-overlay-owner {
+    background-color: $primary-color;
+  }
+
+  &.role-overlay-moderator {
+    background-color: $warning-color;
   }
 }
