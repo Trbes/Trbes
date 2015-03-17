@@ -235,13 +235,13 @@ $post-right-min-width: $post-actions-min-width + $post-component-spacing + $post
       }
     }
 
-    .date, .answers-count {
+    .date, .comments-count {
       color: gray;
       -moz-osx-font-smoothing: grayscale;
       -webkit-font-smoothing: antialiased;
     }
 
-    .answers-count {
+    .comments-count {
       @include on_link_actions {
         text-decoration: underline;
       }
