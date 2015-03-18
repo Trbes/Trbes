@@ -10,7 +10,6 @@ Devise.setup do |config|
   config.invited_by_class_name = "User"
   config.invited_by_counter_cache = :invitations_count
   config.allow_unconfirmed_access_for = 2.days
-  config.reconfirmable = true
   config.password_length = 6..128
   config.reset_password_within = 6.hours
   config.sign_out_via = :get
