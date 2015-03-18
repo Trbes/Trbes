@@ -31,7 +31,9 @@ section.collections#collections
                 data: { confirm: "Are you sure you want to delete #{collection.name}?" }
 
       .add-link
-        = link_to "add", "#", class: "control", data: { toggle: "modal", target: "#add_collection" }
+        = link_to "#", data: { toggle: "modal", target: "#add_collection" } do
+            i.fa.fa-plus
+            span Add
 
       - group.collections.ordered.includes(:collection_posts).each do |collection|
         .modal.collection-modal.fade id="edit_collection_#{collection.id}" tabindex="-1" role="dialog" aria-labelledby="edit_collection" aria-hidden="true"
