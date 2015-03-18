@@ -41,4 +41,16 @@ feature "List group members" do
       expect(membership.reload.role).to eq("moderator")
     end
   end
+
+  scenario "I can transfer ownership", js: true do
+    click_link("owner")
+
+    select(membership.full_name, from: "membership_new_group_owner_id")
+
+    click_button "Save"
+
+    expect(page).to have_content("Group")
+    expect(user.membership_for(group).reload.role).to eq("moderator")
+    expect(group.owner).to eq(membership)
+  end
 end

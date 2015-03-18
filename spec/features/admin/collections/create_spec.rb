@@ -17,7 +17,7 @@ feature "Create collection" do
 
     scenario "I can create a collection" do
       within(".collections") do
-        click_link "add"
+        click_link "Add"
       end
 
       fill_in "Name", with: "Name"
