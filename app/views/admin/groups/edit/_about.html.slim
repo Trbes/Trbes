@@ -10,7 +10,7 @@ section.about.clearfix
     .group-information
       span.group-name= group.name
       '&nbsp;
-      span(class="fa #{group.privacy_class}")
+      span(class="fa #{group.privacy_class}" data-toggle="tooltip" title="#{group.privacy_text}")
 
       br
       span.text-muted= group.tagline
@@ -18,16 +18,16 @@ section.about.clearfix
       .group-statistics
         .group-statistics-element
           .count= group.memberships_count
-          .entity-wrapper= link_to group.pluralized_noun("Member"), admin_memberships_path
+          .entity-wrapper= link_to group.pluralized_noun("Member", group.memberships_count), admin_memberships_path
         .group-statistics-element
           .count= group.posts_count
-          .entity-wrapper= link_to group.pluralized_noun("Post"), root_path
+          .entity-wrapper= link_to group.pluralized_noun("Post", group.posts_count), root_path
         .group-statistics-element
           .count= group.collections_count
-          .entity-wrapper= link_to group.pluralized_noun("Collection"), "#collections"
+          .entity-wrapper= link_to group.pluralized_noun("Collection", group.collections_count), "#collections"
         .group-statistics-element
           .count= group.comments_count
-          .entity-wrapper= link_to group.pluralized_noun("Comment"), "#"
+          .entity-wrapper= link_to group.pluralized_noun("Comment", group.comments_count), "#"
 
     .controls
       - if policy(group).edit?

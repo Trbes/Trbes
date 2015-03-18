@@ -20,4 +20,9 @@
 
         = render posts.map { |post| present(post) }
 
+        .add-link
+          = link_to "#", data: { toggle: "modal", target: "#add_a_post" } do
+              i.fa.fa-plus
+              span Add
+
       = paginate posts, theme: "twitter-bootstrap-3", pagination_class: "pagination pagination-azure pagination-no-border"

@@ -1,6 +1,10 @@
 class GroupPresenter < BasePresenter
+  PRIVACY_TYPES = {
+    true => "private",
+    false => "public"
+  }
   def memberships_count_link
-    h.link_to h.pluralize(@model.memberships_count, "member"), "#"
+    h.link_to h.pluralize(@model.memberships_count, "member"), h.admin_memberships_path
   end
 
   def posts_count_link
@@ -15,8 +19,8 @@ class GroupPresenter < BasePresenter
     "#{subdomain}.trbes.com"
   end
 
-  def pluralized_noun(noun)
-    noun.pluralize(@model.memberships_count)
+  def pluralized_noun(noun, count)
+    noun.pluralize(count)
   end
 
   def listing_logo
@@ -34,7 +38,11 @@ class GroupPresenter < BasePresenter
   end
 
   def privacy_class
-    @model.private? ? "fa-unlock" : "fa-lock"
+    @model.private? ? "fa-lock" : "fa-unlock"
+  end
+
+  def privacy_text
+    "Group is #{PRIVACY_TYPES[@model.private]}"
   end
 
   def join_partial_path(user)

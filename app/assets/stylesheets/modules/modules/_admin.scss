@@ -1,6 +1,7 @@
 .admin {
-  .img-circle {
+  .avatar {
     width: 30px;
+    margin-right: 10px;
   }
 
   .current-section {
@@ -61,11 +62,16 @@
 
     .controls-separator {
       display: inline;
+      margin: 0 3px;
 
       &:before {
         content: "|";
-        color: $link-color;
+        color: #ddd;
       }
     }
+  }
+
+  .add-link {
+    margin-top: 10px;
   }
 }

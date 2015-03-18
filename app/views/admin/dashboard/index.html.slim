@@ -12,7 +12,6 @@
         h4.section-name Overview
         hr.section-separator
 
-        p.overview-text You are using <strong>Trbes for Customer Feedback</strong>.
         p.overview-text #{group.name} was created <strong>#{group.created_time_ago} ago</strong> and has #{group.memberships_count_link}.
         p.overview-text This group is <a href="#">#{group.privacy_type}</a>.
 
@@ -22,11 +21,10 @@
 
         = render latest_posts
 
-      section.members
-        h4.section-name Members (#{group.memberships_count})
-        hr.section-separator
-
-        = render "admin/shared/members", group: group
+        .add-link
+          = link_to "#", data: { toggle: "modal", target: "#add_a_post" } do
+              i.fa.fa-plus
+              span Add
 
     .col-md-2
       i.fa.fa-info-circle
