@@ -1,15 +1,15 @@
 .meta
   a.post-author[
-    href="#"
+    href="javascript:void"
     data-toggle="popover"
     data-html="true"
     data-placement="bottom"
     data-trigger="focus"
-    data-content=(user_popover_content(post.user))
-    data-template=(user_popover_template)]
-
+    data-content=user_popover_content(post.user)
+    data-template=user_popover_template ]
+    = present(current_group).role_overlay(post.user)
     = image_tag post.user.avatar, class: "img-circle", width: 16, height: 16
 
   span.date[title="posted #{distance_of_time_in_words_to_now(post.created_at) } ago"] = short_time_distance_string(post.created_at)
 
-  = link_to pluralize(post.comments_count, "Answer"), post_path(post), class: "answers-count"
+  = link_to pluralize(post.comments_count, "Comment"), post_path(post), class: "comments-count"

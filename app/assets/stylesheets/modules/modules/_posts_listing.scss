@@ -227,17 +227,21 @@ $post-right-min-width: $post-actions-min-width + $post-component-spacing + $post
     min-width: $post-meta-size;
     margin-top: 30px;
 
-    .post-author img {
-      vertical-align: text-top;
+    .post-author {
+      position: relative;
+
+      img {
+        vertical-align: text-top;
+      }
     }
 
-    .date, .answers-count {
+    .date, .comments-count {
       color: gray;
       -moz-osx-font-smoothing: grayscale;
       -webkit-font-smoothing: antialiased;
     }
 
-    .answers-count {
+    .comments-count {
       @include on_link_actions {
         text-decoration: underline;
       }

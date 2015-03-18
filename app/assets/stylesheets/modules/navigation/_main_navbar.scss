@@ -119,9 +119,18 @@
       display: none;
     }
 
+    .group-member {
+      position: relative;
+      margin-right: 5px;
+
+      img {
+        vertical-align: text-top;
+      }
+    }
+
     .more {
-        font-size: 14px;
-        color: #696969;
+      font-size: 14px;
+      color: #696969;
     }
   }
 

@@ -149,6 +149,17 @@
       @include size(64px);
       display: block;
       margin: 0 auto 10px;
+      position: relative;
+
+      .role-overlay {
+        width: 18px;
+        height: 18px;
+        font-size: 14px;
+        line-height: 16px;
+        text-align: center;
+        top: 0;
+        left: 0;
+      }
 
       img {
         border-radius: 64px;

@@ -48,4 +48,11 @@ class GroupPresenter < BasePresenter
       "join"
     end
   end
+
+  def role_overlay(user)
+    return unless (membership = user.membership_for(@model))
+    return unless membership.moderator? || membership.owner?
+
+    h.content_tag(:span, membership.role.first, class: "role-overlay role-overlay-#{membership.role}")
+  end
 end
