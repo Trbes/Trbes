@@ -1,0 +1,13 @@
+.container
+  p Please enter your email to continue.
+
+  = simple_form_for current_user,
+      url: registration_path(current_user),
+      html: { method: :put } do |f|
+
+    .form-group
+      = f.input :email, required: true, input_html: { value: "" }
+
+    .form-group
+      = f.button :submit, t("app.form.update")
+
