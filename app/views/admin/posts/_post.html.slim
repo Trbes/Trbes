@@ -1,4 +1,9 @@
 .post
+  = image_tag post.user_avatar,
+      class: "img-circle avatar",
+      data: { toggle: "tooltip", placement: "top" },
+      title: post.user_full_name
+
   = link_to truncate(post.title, length: 60), post_path(post)
   '&nbsp;
   '#{post.created_time_ago} ago
@@ -9,7 +14,12 @@
         collection: Hash[Post.states.keys.zip(Post.states.keys)],
         place_holder: post.state,
         url: admin_post_path(post)
-  = image_tag post.user_avatar,
-      class: "pull-right img-circle",
-      data: { toggle: "tooltip", placement: "top" },
-      title: post.user_full_name
+
+  .controls
+    = link_to "edit", edit_post_path(post), class: "control"
+    .controls-separator
+    = link_to "delete",
+        post_path(post),
+        class: "control",
+        method: :delete,
+        data: { confirm: %Q{Are you sure you want to delete "#{post.title}"?}}
