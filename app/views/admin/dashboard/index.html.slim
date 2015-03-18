@@ -21,6 +21,11 @@
 
         = render latest_posts
 
+        .add-link
+          = link_to "#", data: { toggle: "modal", target: "#add_a_post" } do
+              i.fa.fa-plus
+              span Add
+
     .col-md-2
       i.fa.fa-info-circle
       'Learn more about
