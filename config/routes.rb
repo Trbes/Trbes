@@ -17,12 +17,14 @@ Rails.application.routes.draw do
 
     resources :posts, only: %i( show new create edit update destroy ) do
       put "upvote"
+      put "unvote"
 
       resources :comments, only: %i( create destroy )
     end
 
     resources :comments, only: [] do
       put "upvote"
+      put "unvote"
     end
 
     namespace :admin do

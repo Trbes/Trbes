@@ -44,7 +44,19 @@ class PostsController < ApplicationController
     post.upvote_by(current_user)
 
     render json: {
-      new_total_votes: post.cached_votes_total
+      new_total_votes: post.cached_votes_total,
+      voted_up: true,
+      new_vote_path: post_unvote_path(post)
+    }
+  end
+
+  def unvote
+    post.unvote_by(current_user)
+
+    render json: {
+      new_total_votes: post.cached_votes_total,
+      voted_up: false,
+      new_vote_path: post_upvote_path(post)
     }
   end
 
@@ -57,6 +69,6 @@ class PostsController < ApplicationController
       :link,
       :post_type,
       attachments_attributes: [:image]
-    ) if action_name != "upvote"
+    ) unless %w(upvote unvote).include?(action_name)
   end
 end
