@@ -72,7 +72,7 @@ en:
         new_password:
           hint: "Leave it blank if you don't want to change it"
         confirm_password:
-          hint: "We need your current password to confirm your changes"
+          hint: "We need your current password to confirm your changes only if you want to change your password"
       cancel:
         title: "Cancel my account"
         reason: "Unhappy?"

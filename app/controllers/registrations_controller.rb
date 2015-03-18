@@ -1,4 +1,6 @@
 class RegistrationsController < Devise::RegistrationsController
+  skip_before_action :ensure_email_is_exists, only: [:update]
+
   def create
     super
 
@@ -15,5 +17,14 @@ class RegistrationsController < Devise::RegistrationsController
 
   def after_inactive_sign_up_path_for(resource)
     after_sign_up_path_for(resource)
+  end
+
+  def update_resource(resource, params)
+    if params[:password].blank?
+      params.delete(:current_password)
+      resource.update_without_password(params)
+    else
+      resource.update_with_password(params)
+    end
   end
 end
