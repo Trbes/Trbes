@@ -4,15 +4,31 @@
       .modal-header
         button.close aria-label="Close" data-dismiss="modal" type="button"
           span aria-hidden="true"  &times;
-        a.btn.btn-simple.toggle-post-type.new-link-post href="#form_new_link_post"
-          i.fa.fa-link>
-          | Share a link
-        a.btn.btn-simple.toggle-post-type.new-text-post.active href="#form_new_text_post"
-          i.fa.fa-pencil>
-          | Write Something
-        a.btn.btn-simple.toggle-post-type.new-image-post href="#form_new_image_post"
-          i.fa.fa-photo>
-          | Post an image
+        .modal-title
+          .titles
+            .new-link-post
+              i.fa.fa-link>
+              ' Share a link
+            .new-text-post.hidden
+              i.fa.fa-pencil>
+              ' Write something
+            .new-image-post.hidden
+              i.fa.fa-photo>
+              ' Post an image
+          .post-type-switcher
+            .dropdown
+              a#select_post_type[
+                aria-expanded="false"
+                aria-haspopup="true"
+                data-toggle="dropdown"
+                href="javascript:void" ]
+                ' Post type:
+                span.post-type-text> Link
+                i.fa.fa-angle-down
+              ul.dropdown-menu.dropdown-right aria-labelledby="select_post_type" role="menu"
+                li: a.toggle-post-type.active[href="#form_new_link_post" data-post-type="link"] Link
+                li: a.toggle-post-type[href="#form_new_text_post" data-post-type="text"] Text
+                li: a.toggle-post-type[href="#form_new_image_post" data-post-type="image"] Image
       .modal-body
         = render "posts/text_post/form", post: Post.new
         = render "posts/link_post/form", post: Post.new
