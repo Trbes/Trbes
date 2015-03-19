@@ -33,6 +33,14 @@ feature "Sign in" do
 
     context "when user is completely new" do
       it_behaves_like "fresh social sign in"
+
+      scenario "email should be entered after twitter sign in" do
+        visit new_user_session_path
+
+        click_link social_link
+
+        expect(page).to have_content("Please enter your email to continue.")
+      end
     end
 
     context "when email is found in base" do
