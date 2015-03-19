@@ -10,6 +10,19 @@
 
       section.memberships
         h4.section-name Members
+
+        = form_tag(admin_memberships_path, id: "filter_memberships", method: :get) do
+          = select(nil, "filter",
+              options_for_select({ \
+                "All (#{memberships.all.count})" => "all", \
+                "Pending (#{memberships.pending.count})" => "pending", \
+                "Member (#{memberships.member.count})" => "member", \
+                "Moderator (#{memberships.moderator.count})" => "moderator", \
+                "Owner (#{memberships.owner.count})" => "owner" \
+              }, params[:filter]),
+              {},
+              class: 'rails-submitable')
+
         hr.section-separator
 
         = render memberships, memberships: memberships

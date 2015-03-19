@@ -2,6 +2,7 @@ module Admin
   class MembershipsController < Admin::ApplicationController
     expose(:membership, attributes: :membership_attributes)
     expose(:memberships, ancestor: :current_group) do |collection|
+      collection = collection.public_send(params[:filter].to_sym) if params[:filter]
       collection.includes(user: :avatar).page(params[:page])
     end
 
