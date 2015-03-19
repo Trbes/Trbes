@@ -83,9 +83,8 @@ class ApplicationController < ActionController::Base
   end
 
   def ensure_email_is_exists
-    if current_user && current_user.email.ends_with?("twitter.com")
-      render "devise/registrations/email_is_required"
-    end
+    return unless current_user && current_user.email.ends_with?("twitter.com")
+    render "devise/registrations/email_is_required"
   end
 
   decent_configuration do

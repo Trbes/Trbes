@@ -21,7 +21,7 @@ feature "Update account with valid data" do
 
   scenario "Wrong current password" do
     fill_form(:user,
-      full_name: "New Name",
+      password: "new password",
       current_password: "wrong"
     )
 
