@@ -21,13 +21,13 @@ section.about.clearfix
           .entity-wrapper= link_to group.pluralized_noun("Member", group.memberships_count), admin_memberships_path
         .group-statistics-element
           .count= group.posts_count
-          .entity-wrapper= link_to group.pluralized_noun("Post", group.posts_count), root_path
+          .entity-wrapper= link_to group.pluralized_noun("Post", group.posts_count), admin_posts_path
         .group-statistics-element
           .count= group.collections_count
           .entity-wrapper= link_to group.pluralized_noun("Collection", group.collections_count), "#collections"
         .group-statistics-element
           .count= group.comments_count
-          .entity-wrapper= link_to group.pluralized_noun("Comment", group.comments_count), "#"
+          .entity-wrapper= link_to group.pluralized_noun("Comment", group.comments_count), admin_comments_path
 
     .controls
       - if policy(group).edit?
