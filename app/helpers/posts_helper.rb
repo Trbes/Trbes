@@ -26,6 +26,7 @@ module PostsHelper
   end
 
   def sort_class(filter)
+    return "active" if filter == "order_by_votes" && !params[:sort] && !params[:collection_id]
     params[:sort] == filter ? "active" : ""
   end
 

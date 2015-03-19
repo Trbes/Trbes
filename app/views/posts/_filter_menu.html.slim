@@ -1,6 +1,6 @@
 ul.nav.nav-pills.nav-filter
   li class=(sort_class("order_by_votes"))
-    = link_to "Popular", root_path(sort: "order_by_votes")
+    = link_to "Popular", root_path
   li class=(sort_class("order_by_created_at"))
     = link_to "New", root_path(sort: "order_by_created_at")
   li class=(sort_class("order_by_trending"))
