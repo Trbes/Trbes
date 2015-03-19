@@ -7,7 +7,7 @@ class ApplicationController < ActionController::Base
 
   rescue_from Pundit::NotAuthorizedError, with: :not_authorized
 
-  before_action :push_algolia_config, :push_env_config, :push_indexes
+  before_action :push_algolia_config, :push_env_config, :push_indexes, :ensure_email_is_exists
 
   expose(:groups)
 
@@ -80,6 +80,11 @@ class ApplicationController < ActionController::Base
 
   def push_env_config
     gon.push(facebook_app_id: ENV["FACEBOOK_APP_ID"])
+  end
+
+  def ensure_email_is_exists
+    return unless current_user && current_user.email.ends_with?("twitter.com")
+    render "devise/registrations/email_is_required"
   end
 
   decent_configuration do
