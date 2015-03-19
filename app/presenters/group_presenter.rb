@@ -30,7 +30,7 @@ class GroupPresenter < BasePresenter
   end
 
   def logo_image_tag(options = {})
-    if @model.logo_image
+    if @model.logo_image && @model.logo_image.model.persisted?
       h.cl_image_tag(@model.logo_image.group_logo, options)
     else
       h.image_tag("sample/default-group.png", options)

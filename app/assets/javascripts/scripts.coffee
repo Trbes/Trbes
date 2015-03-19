@@ -31,8 +31,8 @@ $ ->
       format: data.result.format
       version: data.result.version
       crop: 'fill'
-      width: 150
-      height: 100)
+      width: 138
+      height: 115)
     $('.image_public_id').val data.result.public_id
     true
 
