@@ -1,5 +1,5 @@
-- if policy(Comment).create?
-  .post-a-comment
+.post-a-comment[class=("not-logged-in" unless policy(Comment).create?)]
+  - if user_signed_in?
     header.pac-header
       .pac-author
         | Posting as
@@ -24,7 +24,14 @@
           = current_user.full_name
         | •
         div.user-title< = current_user.title
+  - else
+    header.pac-header
+      .pac-author
+        span.user-avatar<
+          = image_tag("default_avatar.jpg", width: 16, height: 16)
+        span.user-name> href="#" Join the conversation
 
+  - if policy(Comment).create?
     = simple_form_for([post, Comment.new], html: { class: "form-pac" }) do |f|
       = f.input :parent_comment_id, as: :hidden, input_html: { class: "parent-comment-id" }
       = f.input :body,
@@ -34,17 +41,16 @@
         error: false,
         input_html: { class: nil, row: 5, placeholder: "Join the discussion" }
       button class="btn btn-fill btn-primary" Submit
+  - elsif user_signed_in?
+    .actions
+      .link-create-account You need to join before you can comment.
+      br
+      a.btn.btn-fill.btn-primary href=join_url(subdomain: current_group.subdomain) Join now
 
-- else
-  .post-a-comment.not-logged-in
-    header.pac-header
-      .pac-author
-        span.user-avatar<
-          = image_tag("default_avatar.jpg", width: 16, height: 16)
-        span.user-name> href="#" Join the conversation
-
+  - else
     .actions
       a.btn.btn-fill.btn-primary href=(new_user_session_path) Login to Trbes
       .link-create-account
         | No account yet?
         a< href=(new_user_registration_path) Create one free
+
