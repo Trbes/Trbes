@@ -98,6 +98,7 @@ source "https://rails-assets.org" do
   gem "rails-assets-animate.css"
   gem "rails-assets-bourbon"
   gem "rails-assets-font-awesome"
+  gem "rails-assets-webhostinghub-glyphs"
 
   gem "rails-assets-modernizr"
   gem "rails-assets-html5shiv"
