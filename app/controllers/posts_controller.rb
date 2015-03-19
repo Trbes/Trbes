@@ -15,7 +15,7 @@ class PostsController < ApplicationController
 
     post.save
 
-    redirect_to(post)
+    redirect_to :back
   end
 
   def create
