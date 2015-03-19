@@ -25,6 +25,33 @@ feature "List group members" do
     end
   end
 
+  context "when there are different membership types" do
+    let(:moderator) { memberships.first }
+    let(:pending) { memberships.last }
+
+    background do
+      moderator.moderator!
+      pending.pending!
+      visit admin_memberships_path
+    end
+
+    scenario "I can filter members by their membership type", js: true do
+      select "Moderator", from: "[filter]"
+
+      within(".memberships") do
+        expect(page).to have_css("#membership_#{moderator.id}")
+        expect(page).not_to have_css("#membership_#{pending.id}")
+      end
+
+      select "Pending", from: "[filter]"
+
+      within(".memberships") do
+        expect(page).to have_css("#membership_#{pending.id}")
+        expect(page).not_to have_css("#membership_#{moderator.id}")
+      end
+    end
+  end
+
   scenario "I can remove member from group" do
     within("#membership_#{memberships.first.id}") do
       expect {
