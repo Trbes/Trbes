@@ -29,6 +29,10 @@ module PostsHelper
     params[:sort] == filter ? "active" : ""
   end
 
+  def collection_class(collection_id)
+    params[:collection_id].to_i == collection_id ? "active" : ""
+  end
+
   def post_vote_path(post, user)
     return "#" unless policy(post).vote?(user)
 
