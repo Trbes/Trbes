@@ -288,6 +288,12 @@ $post-right-min-width: $post-actions-min-width + $post-component-spacing + $post
         img {
           border-radius: $icon-circle-size;
         }
+
+        &:hover {
+          .remove-from-collection {
+            display: inline;
+          }
+        }
       }
 
       .remove-from-collection {
@@ -296,6 +302,7 @@ $post-right-min-width: $post-actions-min-width + $post-component-spacing + $post
         position: absolute;
         top: -5px;
         right: -1px;
+        display: none;
 
         &:hover {
           color: red;
