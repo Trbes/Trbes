@@ -1,10 +1,10 @@
 = simple_form_for(post,
   html: { id: "form_new_link_post",
-          class: "form-horizontal form-new-post" }) do |f|
+          class: "form-horizontal form-new-post active" }) do |f|
   = f.hidden_field(:post_type, value: "link_post")
   .form-group.fnp-link
-    label.col-sm-3.control-label for="fnp_link_post_link"  Link *
-    .col-sm-9
+    label.col-sm-2.control-label for="fnp_link_post_link"  Link *
+    .col-sm-10
       = f.input :link,
         label: false,
         wrapper: false,
@@ -13,8 +13,8 @@
                       class: "form-control",
                       placeholder: "http://" }
   .form-group.fnp-title
-    label.col-sm-3.control-label for="fnp_link_post_title"  Title *
-    .col-sm-9
+    label.col-sm-2.control-label for="fnp_link_post_title"  Title *
+    .col-sm-10
       = f.input :title,
         label: false,
         wrapper: false,
@@ -22,8 +22,8 @@
         input_html: { id: "fnp_link_post_title",
                       class: "form-control" }
   .form-group.fnp-text
-    label.col-sm-3.control-label for="fnp_link_post_desc"  Description or Comment
-    .col-sm-9
+    label.col-sm-2.control-label for="fnp_link_post_desc"  Tagline
+    .col-sm-10
       = f.input :body,
         as: :text,
         label: false,
@@ -33,5 +33,6 @@
                       class: "form-control",
                       row: 5 }
   .form-group.fnp-actions
-    .col-sm-offset-3.col-sm-9
+    .col-sm-offset-2.col-sm-10
       button.btn.btn-success.btn-bright-success.btn-lg.btn-fill.btn-submit-post type="submit"  Publish Post
+      a.btn.btn-simple.cancel-post[href="javascript:void" data-dismiss="modal"] Cancel

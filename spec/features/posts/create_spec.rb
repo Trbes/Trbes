@@ -15,8 +15,9 @@ feature "Create post", js: true do
   def create_post
     page.find("#btn_add_post").click
 
+    fill_in "Link", with: "http://sample-link.com"
     fill_in "Title", with: "Long enough title"
-    fill_in "Your Text", with: "Your Text"
+    fill_in "Tagline", with: "Tagline"
 
     click_button "Publish Post"
 

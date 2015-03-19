@@ -242,6 +242,10 @@ $post-right-min-width: $post-actions-min-width + $post-component-spacing + $post
     }
 
     .comments-count {
+      .fa {
+        color: #aaa;
+      }
+
       @include on_link_actions {
         text-decoration: underline;
       }

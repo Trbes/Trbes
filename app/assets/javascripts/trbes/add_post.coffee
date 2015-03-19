@@ -9,12 +9,19 @@ class window.AddPost
   _init_events: ->
     $(".toggle-post-type").click (e) ->
       e.preventDefault()
-      return if $(this).hasClass("active")
+      that = $(this)
+      return if that.hasClass("active")
 
-      $(this).addClass("active").
+      that.addClass("active").
+        closest("li").siblings().find("a").removeClass("active")
+
+      $(that.attr("href"), @$container).addClass("active").
         siblings().removeClass("active")
-      $($(this).attr("href"), @$container).addClass("active").
-        siblings().removeClass("active")
+
+      $(".new-" + that.data("post-type") + "-post", @$container).removeClass("hidden").
+        siblings().addClass("hidden")
+
+      that.closest(".dropdown").find("#select_post_type .post-type-text").text(that.data("post-type"))
 
   # Sign-up form validation
   _init_form_validations: ->
