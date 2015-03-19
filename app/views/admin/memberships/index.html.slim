@@ -10,6 +10,13 @@
 
       section.memberships
         h4.section-name Members
+
+        = form_tag(admin_memberships_path, id: "filter_memberships", method: :get) do
+          = select(nil, "filter",
+              options_for_select(membership_roles_options, params[:filter]),
+              {},
+              class: 'rails-submitable')
+
         hr.section-separator
 
         = render memberships, memberships: memberships
