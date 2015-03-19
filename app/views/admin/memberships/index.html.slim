@@ -13,13 +13,7 @@
 
         = form_tag(admin_memberships_path, id: "filter_memberships", method: :get) do
           = select(nil, "filter",
-              options_for_select({ \
-                "All (#{memberships.all.count})" => "all", \
-                "Pending (#{memberships.pending.count})" => "pending", \
-                "Member (#{memberships.member.count})" => "member", \
-                "Moderator (#{memberships.moderator.count})" => "moderator", \
-                "Owner (#{memberships.owner.count})" => "owner" \
-              }, params[:filter]),
+              options_for_select(membership_roles_options, params[:filter]),
               {},
               class: 'rails-submitable')
 
