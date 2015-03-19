@@ -30,6 +30,12 @@ $post-right-min-width: $post-actions-min-width + $post-component-spacing + $post
     }
 
     &:hover {
+      .post-content {
+        .post-footer {
+          visibility: visible;
+        }
+      }
+
       .post-actions {
         .add-to-collection {
           visibility: visible;
@@ -164,6 +170,7 @@ $post-right-min-width: $post-actions-min-width + $post-component-spacing + $post
       color: #B8B8B8;
       font-size: 0.8em;
       margin-top: 3px;
+      visibility: hidden;
 
       a {
         // color: #908F8F;
@@ -340,6 +347,12 @@ $post-right-min-width: $post-actions-min-width + $post-component-spacing + $post
 
 .touch {
   .posts {
+    .post-content {
+      .post-footer {
+        visibility: visible;
+      }
+    }
+
     .post-actions {
       .add-to-collection {
         visibility: visible;
