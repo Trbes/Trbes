@@ -43,7 +43,7 @@
           .post-meta
               span.date posted #{distance_of_time_in_words_to_now(post.created_at) } ago
           - if policy(post).edit?
-            => link_to "Edit post", edit_post_path(post)
+            => link_to "Edit post", "javascript:void(0)", data: { toggle: "modal", target: "#edit_post_#{post.id}" }
             ' |
           - if policy(post).destroy?
             => link_to "Delete", post_path(post), method: :delete, data: { confirm: "Are you sure?" }
@@ -56,6 +56,16 @@
             = post.body
           - elsif post.post_type == "image_post"
             = cl_image_tag(post.preview_image)
+
+        .modal.fade data-backdrop="static" id=("edit_post_#{post.id}")
+          .modal-dialog
+            .modal-content
+              .modal-header
+                button.close aria-label="Close" data-dismiss="modal" type="button"
+                  span aria-hidden="true"  &times;
+                h4.modal-title Edit Post
+              .modal-body
+                = render "posts/#{post.post_type}/form", post: post
 
     - if (favorite_count = comments.favourite.count) > 0
       section.list-section.best-comment

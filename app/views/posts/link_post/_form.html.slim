@@ -34,5 +34,5 @@
                       row: 5 }
   .form-group.fnp-actions
     .col-sm-offset-2.col-sm-10
-      button.btn.btn-success.btn-bright-success.btn-lg.btn-fill.btn-submit-post type="submit"  Publish Post
+      button.btn.btn-success.btn-bright-success.btn-lg.btn-fill.btn-submit-post type="submit" = post.new_record? ? "Publish Post" : "Save"
       a.btn.btn-simple.cancel-post[href="javascript:void(0)" data-dismiss="modal"] Cancel
