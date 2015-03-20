@@ -45,38 +45,5 @@ feature "Create first group" do
       membership = group.memberships.find_by(user: user)
       expect(membership.owner?).to be true
     end
-
-    # Temporarily disable these test because we removed Intended Usage & Accept Image-Only posts
-    # in group creation form. We might need these later.
-    scenario "User set Intended Usage as Knowledge Base" do
-      pending
-      find("#cg_intended_usage label:first-child input[name='group[intended_usage]']").set(true)
-
-      click_button "Create Trbes Group"
-
-      expect(group.allow_text_posts).to be true
-      expect(group.allow_link_posts).to be true
-      expect(group.allow_image_posts).to_not be true
-    end
-
-    scenario "User set Intended Usage as Collection of Links" do
-      pending
-      find("#cg_intended_usage label:last-child input[name='group[intended_usage]']").set(true)
-
-      click_button "Create Trbes Group"
-
-      expect(group.allow_text_posts).to_not be true
-      expect(group.allow_link_posts).to be true
-      expect(group.allow_image_posts).to_not be true
-    end
-
-    scenario "User check Accept Image-Only posts" do
-      pending
-      find("input[name='group[allow_image_posts]']").set(true)
-
-      click_button "Create Trbes Group"
-
-      expect(group.allow_image_posts).to be true
-    end
   end
 end

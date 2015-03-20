@@ -3,9 +3,6 @@ class Group < ActiveRecord::Base
 
   VISIBLE_MEMBERS_COUNT = 5
 
-  ALLOWED_POST_TYPES = %i( link text image )
-  attr_accessor :intended_usage
-
   has_many :posts, dependent: :destroy
   has_many :comments, through: :posts
 
