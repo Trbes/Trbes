@@ -1,7 +1,7 @@
 .comment
-  = link_to truncate(comment.body, length: 60), post_path(comment.post)
+  = link_to truncate(comment.body, length: 60), post_path(comment.post), class: "title"
   '&nbsp;
-  '#{comment.created_time_ago} ago
+  span class="created-at" #{comment.created_time_ago} ago
   = link_to "#" do
     = best_in_place comment,
         :state,
