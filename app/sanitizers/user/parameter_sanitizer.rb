@@ -13,7 +13,7 @@ class User
     end
 
     def account_update
-      default_params.permit(USER_PARAMS, :current_password, avatar_attributes: :image )
+      default_params.permit(USER_PARAMS, :current_password, avatar_attributes: :image)
     end
 
     def accept_invitation
