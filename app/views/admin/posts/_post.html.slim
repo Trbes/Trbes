@@ -4,16 +4,17 @@
       data: { toggle: "tooltip", placement: "top" },
       title: post.user_full_name
 
-  = link_to truncate(post.title, length: 60), post_path(post)
+  = link_to truncate(post.title, length: 60), post_path(post), class: "title"
   '&nbsp;
-  '#{post.created_time_ago} ago
+  span class="created-at" #{post.created_time_ago} ago
   = link_to "#" do
     = best_in_place post,
         :state,
         as: :select,
         collection: Hash[Post.states.keys.zip(Post.states.keys)],
         place_holder: post.state,
-        url: admin_post_path(post)
+        url: admin_post_path(post),
+        class: "state"
 
   .controls
     = link_to "edit", edit_post_path(post), class: "control"
