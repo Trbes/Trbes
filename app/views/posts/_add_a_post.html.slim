@@ -6,29 +6,29 @@
           span aria-hidden="true"  &times;
         .modal-title
           .titles
-            .new-link-post
-              i.fa.fa-link>
-              ' Share a link
-            .new-text-post.hidden
-              i.fa.fa-pencil>
-              ' Write something
-            .new-image-post.hidden
-              i.fa.fa-photo>
-              ' Post an image
-          .post-type-switcher
-            .dropdown
-              a#select_post_type[
-                aria-expanded="false"
-                aria-haspopup="true"
-                data-toggle="dropdown"
-                href="javascript:void(0)" ]
-                ' Post type:
-                span.post-type-text> Link
-                i.fa.fa-angle-down
-              ul.dropdown-menu.dropdown-right aria-labelledby="select_post_type" role="menu"
-                li: a.toggle-post-type.active[href="#form_new_link_post" data-post-type="link"] Link
-                li: a.toggle-post-type[href="#form_new_text_post" data-post-type="text"] Text
-                li: a.toggle-post-type[href="#form_new_image_post" data-post-type="image"] Image
+            - current_group.allowed_post_types.each do |post_type|
+              div class="new-#{humanized_post_type(post_type)}-post #{'hidden' unless current_group.default_post_type == post_type}"
+                i class="fa fa-#{post_type_icon(post_type)}"
+                = post_type_title(post_type)
+
+          - if current_group.allowed_post_types.count > 1
+            .post-type-switcher
+              .dropdown
+                a#select_post_type[
+                  aria-expanded="false"
+                  aria-haspopup="true"
+                  data-toggle="dropdown"
+                  href="javascript:void(0)" ]
+                  ' Post type:
+                  span.post-type-text>= humanized_post_type(current_group.default_post_type)
+                  i.fa.fa-angle-down
+                ul.dropdown-menu.dropdown-right aria-labelledby="select_post_type" role="menu"
+                  - current_group.allowed_post_types.each do |post_type|
+                    li
+                      = link_to humanized_post_type(post_type).capitalize,
+                          "#form_new_#{post_type}",
+                          class: "toggle-post-type #{'active' if current_group.default_post_type == post_type}",
+                          data: { post_type: humanized_post_type(post_type) }
       .modal-body
         = render "posts/text_post/form", post: Post.new
         = render "posts/link_post/form", post: Post.new

@@ -12,8 +12,11 @@ feature "Create post", js: true do
 
   after { switch_to_main }
 
-  def create_post
+  def create_link_post
     page.find("#btn_add_post").click
+
+    page.find("#select_post_type").click
+    click_link "Link"
 
     fill_in "Link", with: "http://sample-link.com"
     fill_in "Title", with: "Long enough title"
@@ -31,7 +34,7 @@ feature "Create post", js: true do
     end
 
     scenario "I post to group" do
-      create_post
+      create_link_post
 
       expect(user.posts.last.state).to eq("published")
     end
@@ -44,7 +47,7 @@ feature "Create post", js: true do
     end
 
     scenario "I post to group" do
-      create_post
+      create_link_post
 
       expect(user.posts.last.state).to eq("moderation")
     end
@@ -57,7 +60,7 @@ feature "Create post", js: true do
     end
 
     scenario "I post to group" do
-      create_post
+      create_link_post
 
       expect(user.posts.last.state).to eq("published")
     end

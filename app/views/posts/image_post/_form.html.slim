@@ -1,6 +1,6 @@
 = simple_form_for(post,
   html: { id: "form_new_image_post",
-          class: "form-horizontal form-new-post" }) do |f|
+          class: "form-horizontal form-new-post #{'active' if current_group.default_post_type == 'image_post'}" }) do |f|
   = f.hidden_field(:post_type, value: "image_post")
   .form-group.fnp-title
     label.col-sm-2.control-label for="fnp_image_post_title"  Title *

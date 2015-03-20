@@ -2,24 +2,10 @@ section.preferences
   h4.section-name Preferences
   hr.section-separator
 
-  .allow-image-posts
-    = best_in_place group,
-        :allow_image_posts,
-        as: :checkbox,
-        collection: [raw('<span class="fa fa-square-o"></span>'), raw('<span class="fa fa-check-square-o"></span>')],
-        url: admin_group_path
-    span Allow image posts
-  .allow-link-posts
-    = best_in_place group,
-        :allow_link_posts,
-        as: :checkbox,
-        collection: [raw('<span class="fa fa-square-o"></span>'), raw('<span class="fa fa-check-square-o"></span>')],
-        url: admin_group_path
-    span Allow link posts
-  .allow-text-posts
-    = best_in_place group,
-        :allow_text_posts,
-        as: :checkbox,
-        collection: [raw('<span class="fa fa-square-o"></span>'), raw('<span class="fa fa-check-square-o"></span>')],
-        url: admin_group_path
-    span Allow text posts
+  = simple_form_for([:admin, group], url: admin_group_path) do |f|
+    - Post.post_types.keys.each do |post_type|
+      = f.input :"allow_#{post_type}s",
+          as: :boolean,
+          wrapper: false,
+          wrapper_tag: nil,
+          input_html: { data: { toggle: "checkbox" }, class: "rails-submitable" }

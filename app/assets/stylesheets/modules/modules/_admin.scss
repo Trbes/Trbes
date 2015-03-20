@@ -1,3 +1,7 @@
+.admin-column {
+  padding-left: 0;
+}
+
 .admin {
   .avatar {
     width: 30px;
@@ -53,6 +57,25 @@
     }
   }
 
+  .membership {
+    .item-name {
+      width: 30%;
+    }
+  }
+
+  .post, .comment {
+    .item-name {
+      width: 50%;
+      display: inline-block;
+    }
+
+    .created-at {
+      width: 20%;
+      display: inline-block;
+    }
+  }
+
+
   .control {
     text-decoration: underline;
   }
@@ -73,5 +96,11 @@
 
   .add-link {
     margin-top: 10px;
+  }
+
+  .preferences {
+    .checkbox label {
+      font-weight: 300;
+    }
   }
 }

@@ -3,9 +3,6 @@ class Group < ActiveRecord::Base
 
   VISIBLE_MEMBERS_COUNT = 5
 
-  ALLOWED_POST_TYPES = %i( link text image )
-  attr_accessor :intended_usage
-
   has_many :posts, dependent: :destroy
   has_many :comments, through: :posts
 
@@ -56,5 +53,15 @@ class Group < ActiveRecord::Base
     role_name = (opts[:as] || :member)
 
     memberships.where(user: user, role: role_name).first_or_create
+  end
+
+  def allowed_post_types
+    Post.post_types.keys.select do |post_type|
+      self["allow_#{post_type}s"]
+    end
+  end
+
+  def default_post_type
+    allowed_post_types.first
   end
 end

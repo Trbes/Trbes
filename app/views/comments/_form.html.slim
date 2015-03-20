@@ -20,8 +20,9 @@
           data-content=user_popover_content(current_user)
           data-template=user_popover_template ]
           = current_user.full_name
-        | •
-        div.user-title< = current_user.title
+        - if current_user.title
+          | •
+          div.user-title< = current_user.title
   - else
     header.pac-header
       .pac-author

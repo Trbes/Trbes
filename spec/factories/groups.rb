@@ -13,9 +13,9 @@ FactoryGirl.define do
 
     private false
 
-    allow_image_posts { [true, false].sample }
-    allow_link_posts { [true, false].sample }
-    allow_text_posts { [true, false].sample }
+    allow_image_posts { true }
+    allow_link_posts { true }
+    allow_text_posts { true }
 
     after(:build) do |group|
       group.logo = build(:attachment, attachable: group)

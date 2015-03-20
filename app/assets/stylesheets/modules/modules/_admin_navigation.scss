@@ -1,11 +1,16 @@
 .admin-navigation {
   margin-bottom: 20px;
   border-width: 1px;
-  border-color: #a8a8a8;
+  border-color: #ddd;
   width: 138px;
 
+  &:hover {
+    border-color: #ddd;
+    color: #3ea8db;
+  }
+
   .title {
-    font-size: 18px;
+    font-size: 14px;
     display: block;
   }
 
@@ -18,5 +23,9 @@
 
 .admin-navigation.active {
   color: #a8a8a8;
-  border-color: #a8a8a8;
+  border-color: #ddd;
+
+  &:hover {
+    opacity: 0.8;
+  }
 }

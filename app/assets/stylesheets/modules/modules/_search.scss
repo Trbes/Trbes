@@ -36,6 +36,7 @@
   .tt-dropdown-menu {
     background: rgba(0, 0, 0, 0.8);
     padding: 5px;
+    text-align: left;
 
     .tt-suggestion {
       a {
@@ -49,6 +50,11 @@
 
     .tt-cursor {
       background: rgba(255,255,255,0.3)
+    }
+
+    .tt-empty-message {
+      color: white;
+      font-size: 0.85em;
     }
   }
 }
@@ -76,7 +82,6 @@
   }
 
   .tt-dropdown-menu {
-
     .tt-suggestion {
       a {
         text-transform: none;
