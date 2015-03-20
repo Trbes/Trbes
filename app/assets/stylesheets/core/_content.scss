@@ -13,7 +13,35 @@
   -ms-transform: translateY(40px);
   -o-transform: translateY(40px);
   transform: translateY(40px);
+  font-family: "Source Sans Pro", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  box-shadow: none;
 }
+
+.humane-libnotify-success,
+.humane-libnotify-error,
+.humane-libnotify-info {
+  background-image: none !important;
+  background-color: #fff;
+  box-shadow: none;
+  border: 1px solid;
+  border-radius: 4px;
+}
+
+.humane-libnotify-success {
+  border-color: #4cae4c;
+  color: #4cae4c;
+}
+
+.humane-libnotify-error {
+  border-color: #d43f3a;
+  color: #d43f3a;
+}
+
+.humane-libnotify-info {
+  border-color: #46b8da;
+  color: #46b8da;
+}
+
 
 .btn-success.btn-bright-success {
   $color: #049F0C;
