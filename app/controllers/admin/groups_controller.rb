@@ -11,7 +11,6 @@ module Admin
 
       respond_to do |format|
         format.html { redirect_to edit_admin_group_path }
-        format.json { respond_with_bip(group) }
       end
     end
 

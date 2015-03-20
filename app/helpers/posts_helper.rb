@@ -40,6 +40,26 @@ module PostsHelper
     user.voted_up_on?(post) ? post_unvote_path(post) : post_upvote_path(post)
   end
 
+  def post_type_icon(post_type)
+    {
+      link_post: "link",
+      text_post: "pencil",
+      image_post: "photo"
+    }[post_type.to_sym]
+  end
+
+  def post_type_title(post_type)
+    {
+      link_post: "Share a link",
+      text_post: "Write something",
+      image_post: "Post an image"
+    }[post_type.to_sym]
+  end
+
+  def humanized_post_type(post_type)
+    post_type.gsub("_post", "")
+  end
+
   # rubocop:disable Metrics/AbcSize, Metrics/CyclomaticComplexity, Metrics/MethodLength
   def short_time_distance_string(time)
     a = (Time.now - time).to_i
