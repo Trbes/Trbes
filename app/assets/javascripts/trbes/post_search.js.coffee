@@ -12,6 +12,7 @@ class window.PostSearch
     @$container.typeahead({ hint: false }
       source: @client.initIndex(gon.post_index).ttAdapter()
       templates:
+        empty: "<div class='tt-empty-message'>No post matching your query</div>"
         suggestion: (hit) ->
-          return "<li><a href='/posts/#{hit.slug}'>#{hit.title}</a></li>";
+          return "<div><a href='/groups/#{hit.slug}'>#{hit.title}</a></div>"
     )
