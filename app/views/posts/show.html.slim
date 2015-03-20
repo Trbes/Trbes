@@ -43,7 +43,7 @@
           .post-meta
               span.date posted #{distance_of_time_in_words_to_now(post.created_at) } ago
           - if policy(post).edit?
-            => link_to "Edit post", "javascript:void(0)", data: { toggle: "modal", target: "#edit_post_#{post.id}" }
+            => link_to "Edit post", "#", data: { toggle: "modal", target: "#edit_post_#{post.id}" }
             ' |
           - if policy(post).destroy?
             => link_to "Delete", post_path(post), method: :delete, data: { confirm: "Are you sure?" }
