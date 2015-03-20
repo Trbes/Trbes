@@ -4,12 +4,10 @@
     max-width: 640px;
   }
 
-  .modal-content {
-    border-radius: 0;
-  }
-
   .modal-header {
     background-color: #e5e5e5;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
   }
 
   .modal-title {
