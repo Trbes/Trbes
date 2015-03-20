@@ -6,12 +6,12 @@
           span aria-hidden="true"  &times;
         .modal-title
           .titles
-            - group.allowed_post_types.each do |post_type|
-              div class="new-#{humanized_post_type(post_type)}-post #{'hidden' unless group.default_post_type == post_type}"
+            - current_group.allowed_post_types.each do |post_type|
+              div class="new-#{humanized_post_type(post_type)}-post #{'hidden' unless current_group.default_post_type == post_type}"
                 i class="fa fa-#{post_type_icon(post_type)}"
                 = post_type_title(post_type)
 
-          - if group.allowed_post_types.count > 1
+          - if current_group.allowed_post_types.count > 1
             .post-type-switcher
               .dropdown
                 a#select_post_type[
@@ -20,14 +20,14 @@
                   data-toggle="dropdown"
                   href="javascript:void(0)" ]
                   ' Post type:
-                  span.post-type-text>= humanized_post_type(group.default_post_type)
+                  span.post-type-text>= humanized_post_type(current_group.default_post_type)
                   i.fa.fa-angle-down
                 ul.dropdown-menu.dropdown-right aria-labelledby="select_post_type" role="menu"
-                  - group.allowed_post_types.each do |post_type|
+                  - current_group.allowed_post_types.each do |post_type|
                     li
                       = link_to humanized_post_type(post_type).capitalize,
                           "#form_new_#{post_type}",
-                          class: "toggle-post-type #{'active' if group.default_post_type == post_type}",
+                          class: "toggle-post-type #{'active' if current_group.default_post_type == post_type}",
                           data: { post_type: humanized_post_type(post_type) }
       .modal-body
         = render "posts/text_post/form", post: Post.new
