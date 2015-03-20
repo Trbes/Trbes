@@ -8,7 +8,7 @@
 
         = simple_nested_form_for([:admin, group], url: admin_group_path) do |f|
           .modal-body
-            = f.simple_fields_for :logo, group.logo do |logo_fields|
+            = f.simple_fields_for :logo, group.logo || group.build_logo do |logo_fields|
               #preview
                 = group.listing_logo
                 p 138x115 pixels
