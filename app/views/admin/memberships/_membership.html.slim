@@ -1,6 +1,6 @@
 = div_for(membership) do
-    = image_tag membership.user.avatar_url, class: "avatar img-circle"
-    = membership.full_name
+  => image_tag membership.user.avatar_url, class: "avatar img-circle"
+  => membership.full_name
   = link_to "#" do
     - if membership.owner?
       = link_to "owner", "#", data: { toggle: "modal", target: "#transfer_ownership" }
