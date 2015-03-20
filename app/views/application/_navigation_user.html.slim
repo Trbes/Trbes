@@ -4,7 +4,7 @@
       a.dropdown-toggle aria-expanded="false" data-toggle="dropdown" href="#" role="button"
         div.profile-info
           = current_user.full_name
-        = image_tag(current_user.avatar, class: "profile-photo", width: 48, height: 48)
+        = image_tag(current_user.avatar_url, class: "profile-photo", width: 48, height: 48)
         / span.caret
       ul.dropdown-menu role="menu"
         li

@@ -20,6 +20,11 @@
           = f.input :title, autofocus: true
 
         .form-group
+          - f.object.build_avatar unless f.object.avatar
+          = f.simple_fields_for :avatar do |avatar_fields|
+            = avatar_fields.input :image, as: :file
+
+        .form-group
           = f.input :password,
               autocomplete: "off",
               hint: t("app.user.edit.new_password.hint"),

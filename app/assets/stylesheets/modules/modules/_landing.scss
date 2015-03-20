@@ -184,4 +184,8 @@
 
 .landing-section-divider {
   margin: 60px 0;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
 }

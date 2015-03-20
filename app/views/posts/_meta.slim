@@ -7,7 +7,7 @@
     data-content=user_popover_content(post.user)
     data-template=user_popover_template ]
     = present(current_group).role_overlay(post.user)
-    = image_tag post.user.avatar, class: "img-circle", width: 16, height: 16
+    = image_tag post.user.avatar_url, class: "img-circle", width: 16, height: 16
 
   span.date[title="posted #{distance_of_time_in_words_to_now(post.created_at) } ago"] = short_time_distance_string(post.created_at)
 

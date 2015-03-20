@@ -11,7 +11,7 @@
           data-content=user_popover_content(current_user)
           data-template=user_popover_template ]
           = present(current_group).role_overlay(current_user)
-          = image_tag(current_user.avatar, width: 16, height: 16)
+          = image_tag(current_user.avatar_url, width: 16, height: 16)
         a.user-name>[
           href="javascript:void(0)"
           data-toggle="popover"

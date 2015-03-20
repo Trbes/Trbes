@@ -40,7 +40,7 @@
               .group-meta
                 - if (owner = group.owner)
                   | Created by
-                  a.group-owner<> href="#" #{image_tag(owner.avatar, width: 16, height: 16)} #{owner.full_name}
+                  a.group-owner<> href="#" #{image_tag(owner.avatar_url, width: 16, height: 16)} #{owner.full_name}
                   | •&nbsp;
                 |  #{group.memberships_count_link} • #{group.posts_count_link}
             .group-actions

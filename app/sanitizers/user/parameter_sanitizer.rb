@@ -4,7 +4,6 @@ class User
       email
       full_name
       title
-      avatar
       password
       password_confirmation
     )
@@ -14,7 +13,7 @@ class User
     end
 
     def account_update
-      default_params.permit(USER_PARAMS, :current_password)
+      default_params.permit(USER_PARAMS, :current_password, avatar_attributes: :image )
     end
 
     def accept_invitation
