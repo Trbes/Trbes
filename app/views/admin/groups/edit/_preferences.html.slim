@@ -3,20 +3,9 @@ section.preferences
   hr.section-separator
 
   = simple_form_for([:admin, group], url: admin_group_path) do |f|
-    = f.input :allow_image_posts,
-        as: :boolean,
-        wrapper: false,
-        wrapper_tag: nil,
-        input_html: { data: { toggle: "checkbox" }, class: "rails-submitable" }
-
-    = f.input :allow_link_posts,
-        as: :boolean,
-        wrapper: false,
-        wrapper_tag: nil,
-        input_html: { data: { toggle: "checkbox" }, class: "rails-submitable" }
-
-    = f.input :allow_text_posts,
-        as: :boolean,
-        wrapper: false,
-        wrapper_tag: nil,
-        input_html: { data: { toggle: "checkbox" }, class: "rails-submitable" }
+    - Post.post_types.keys.each do |post_type|
+      = f.input :"allow_#{post_type}s",
+          as: :boolean,
+          wrapper: false,
+          wrapper_tag: nil,
+          input_html: { data: { toggle: "checkbox" }, class: "rails-submitable" }

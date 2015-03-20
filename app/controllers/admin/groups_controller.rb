@@ -9,9 +9,7 @@ module Admin
     def update
       group.update_attributes(group_attributes)
 
-      respond_to do |format|
-        format.html { redirect_to edit_admin_group_path }
-      end
+      redirect_to edit_admin_group_path
     end
 
     def destroy
