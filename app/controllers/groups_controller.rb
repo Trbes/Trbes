@@ -40,7 +40,7 @@ class GroupsController < ApplicationController
   private
 
   def sort_filter
-    params[:sort] || "order_by_created_at"
+    params[:sort] || "order_by_votes"
   end
 
   def pundit_user

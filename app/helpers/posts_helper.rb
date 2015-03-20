@@ -26,7 +26,12 @@ module PostsHelper
   end
 
   def sort_class(filter)
+    return "active" if filter == "order_by_votes" && !params[:sort] && !params[:collection_id]
     params[:sort] == filter ? "active" : ""
+  end
+
+  def collection_class(collection_id)
+    params[:collection_id].to_i == collection_id ? "active" : ""
   end
 
   def post_vote_path(post, user)

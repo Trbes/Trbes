@@ -45,6 +45,11 @@ $nav-collection-link-color-hover: #333;
         background-color: transparent;
         color: $nav-collection-link-color-hover;
         font-weight: bold;
+        text-decoration: underline;
+
+        .fa.circle {
+          background-color: $icon-circle-background-color-hover;
+        }
 
         @include on_link_actions {
           background-color: transparent;

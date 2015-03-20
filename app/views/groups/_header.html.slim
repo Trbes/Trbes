@@ -19,11 +19,10 @@
     .group-members
       - (group_memberships = current_group.memberships).limit(Group::VISIBLE_MEMBERS_COUNT).each do |membership|
         a.group-member>[
-          href="javascript:void"
+          href="javascript:void(0)"
           data-toggle="popover"
           data-html="true"
           data-placement="bottom"
-          data-trigger="focus"
           data-content=user_popover_content(membership.user)
           data-template=user_popover_template ]
           = present(current_group).role_overlay(membership.user)
@@ -46,7 +45,13 @@
                   em = current_group.name
 
                 - group_memberships.each do |membership|
-                  a href="#" data-toggle="popover" data-html="true" data-placement="bottom" data-trigger="focus" data-content=(user_popover_content(membership.user)) data-template=(user_popover_template)
+                  a[
+                    href="#"
+                    data-toggle="popover"
+                    data-html="true"
+                    data-placement="bottom"
+                    data-content=(user_popover_content(membership.user))
+                    data-template=(user_popover_template) ]
                     = image_tag membership.user.avatar, class: "img-circle", width: 16, height: 16
                     = membership.user.full_name
                   ' ,
