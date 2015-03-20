@@ -1,10 +1,11 @@
 .post
-  = image_tag post.user_avatar,
-      class: "img-circle avatar",
-      data: { toggle: "tooltip", placement: "top" },
-      title: post.user_full_name
+  .item-name
+    = image_tag post.user_avatar,
+        class: "img-circle avatar",
+        data: { toggle: "tooltip", placement: "top" },
+        title: post.user_full_name
 
-  = link_to truncate(post.title, length: 60), post_path(post), class: "title"
+    = link_to truncate(post.title, length: 50), post_path(post)
   '&nbsp;
   span class="created-at" #{post.created_time_ago} ago
   = link_to "#" do
