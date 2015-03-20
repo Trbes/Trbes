@@ -118,10 +118,6 @@
     }
 
     a.share {
-
-      // @include size(37px 51px);
-      // background: image-url("icons/icon_share.png") 0 0 no-repeat;
-      // display: inline-block;
       .icon-share {
         font-size: 42px;
         width: auto;
@@ -130,12 +126,6 @@
           font-size: 24px;
         }
       }
-
-      // @include breakpoint(0 ($screen-sm - 1)) {
-      //   background-size: 100% 100%;
-      //   width: 20px;
-      //   height: 25px;
-      // }
     }
 
     .post-header {
