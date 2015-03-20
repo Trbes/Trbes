@@ -1,6 +1,6 @@
 = simple_form_for(post,
   html: { id: "form_new_link_post",
-          class: "form-horizontal form-new-post active" }) do |f|
+          class: "form-horizontal form-new-post #{'active' if group.default_post_type == 'link_post'}" }) do |f|
   = f.hidden_field(:post_type, value: "link_post")
   .form-group.fnp-link
     label.col-sm-2.control-label for="fnp_link_post_link"  Link *

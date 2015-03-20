@@ -54,4 +54,14 @@ class Group < ActiveRecord::Base
 
     memberships.where(user: user, role: role_name).first_or_create
   end
+
+  def allowed_post_types
+    Post.post_types.keys.select do |post_type|
+      self["allow_#{post_type}s"]
+    end
+  end
+
+  def default_post_type
+    allowed_post_types.first
+  end
 end

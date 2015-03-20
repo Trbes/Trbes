@@ -7,28 +7,33 @@
         .modal-title
           .titles
             .new-link-post
-              i.fa.fa-link>
+            div class="new-link-post #{'hidden' unless group.default_post_type == 'link_post'}"
               ' Share a link
-            .new-text-post.hidden
+            div class="new-text-post #{'hidden' unless group.default_post_type == 'text_post'}"
               i.fa.fa-pencil>
               ' Write something
-            .new-image-post.hidden
+            div class="new-image-post #{'hidden' unless group.default_post_type == 'image_post'}"
               i.fa.fa-photo>
               ' Post an image
-          .post-type-switcher
-            .dropdown
-              a#select_post_type[
-                aria-expanded="false"
-                aria-haspopup="true"
-                data-toggle="dropdown"
-                href="javascript:void(0)" ]
-                ' Post type:
-                span.post-type-text> Link
-                i.fa.fa-angle-down
-              ul.dropdown-menu.dropdown-right aria-labelledby="select_post_type" role="menu"
-                li: a.toggle-post-type.active[href="#form_new_link_post" data-post-type="link"] Link
-                li: a.toggle-post-type[href="#form_new_text_post" data-post-type="text"] Text
-                li: a.toggle-post-type[href="#form_new_image_post" data-post-type="image"] Image
+
+          - if group.allowed_post_types.count > 1
+            .post-type-switcher
+              .dropdown
+                a#select_post_type[
+                  aria-expanded="false"
+                  aria-haspopup="true"
+                  data-toggle="dropdown"
+                  href="javascript:void(0)" ]
+                  ' Post type:
+                  span.post-type-text>= group.default_post_type
+                  i.fa.fa-angle-down
+                ul.dropdown-menu.dropdown-right aria-labelledby="select_post_type" role="menu"
+                  - if group.allow_link_posts?
+                    li: a.toggle-post-type.active[href="#form_new_link_post" data-post-type="link"] Link
+                  - if group.allow_text_posts?
+                    li: a.toggle-post-type[href="#form_new_text_post" data-post-type="text"] Text
+                  - if group.allow_image_posts?
+                    li: a.toggle-post-type[href="#form_new_image_post" data-post-type="image"] Image
       .modal-body
         = render "posts/text_post/form", post: Post.new
         = render "posts/link_post/form", post: Post.new

@@ -9,7 +9,10 @@ module Admin
     def update
       group.update_attributes(group_attributes)
 
-      redirect_to edit_admin_group_path
+      respond_to do |format|
+        format.html { redirect_to edit_admin_group_path }
+        format.json { respond_with_bip(group) }
+      end
     end
 
     def destroy
