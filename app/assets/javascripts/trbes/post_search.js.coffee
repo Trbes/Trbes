@@ -9,10 +9,15 @@ class window.PostSearch
     @_initPostSearch()
 
   _initPostSearch: ->
-    @$container.typeahead({ hint: false }
+    @$container.typeahead({
+        hint: true
+        highlight: true
+      }
+      displayKey: 'title'
       source: @client.initIndex(gon.post_index).ttAdapter()
       templates:
         empty: "<div class='tt-empty-message'>No post matching your query</div>"
         suggestion: (hit) ->
-          return "<div><a href='/groups/#{hit.slug}'>#{hit.title}</a></div>"
-    )
+          return "<div><a href='/posts/#{hit.slug}'>#{hit.title}</a></div>"
+    ).on 'typeahead:selected', (event, selection) ->
+      window.location.href = "/posts/" + selection.slug
