@@ -1,28 +1,28 @@
 = div_for(membership) do
   => image_tag membership.avatar_url, class: "avatar img-circle"
   => membership.full_name
-  = link_to "#" do
-    - if membership.owner?
-      = link_to "owner", "#", data: { toggle: "modal", target: "#transfer_ownership" }
+  - if membership.owner?
+    = link_to "owner", "#", data: { toggle: "modal", target: "#transfer_ownership" }
 
-      .modal.fade#transfer_ownership tabindex="-1" role="dialog" aria-labelledby="transfer_ownership" aria-hidden="true"
-        .modal-dialog
-          .modal-content
-            .modal-header
-              button.close type="button" data-dismiss="modal" aria-label="Close"
-                span aria-hidden="true" &times;
-              h4.modal-title#transfer_ownership Transfer ownership
+    .modal.fade#transfer_ownership tabindex="-1" role="dialog" aria-labelledby="transfer_ownership" aria-hidden="true"
+      .modal-dialog
+        .modal-content
+          .modal-header
+            button.close type="button" data-dismiss="modal" aria-label="Close"
+              span aria-hidden="true" &times;
+            h4.modal-title#transfer_ownership Transfer ownership
 
-            = simple_form_for([:admin, current_group.owner]) do |f|
-              .modal-body
-                = f.input :role, as: :hidden, input_html: { value: :moderator }
-                = f.select :new_group_owner_id,
-                    options_from_collection_for_select(memberships.includes(:user).not_owner, :id, :full_name)
-                .modal-footer
-                button.btn.btn-default type="button" data-dismiss="modal" Close
-                = f.submit "Save", class: "btn btn-primary"
+          = simple_form_for([:admin, current_group.owner]) do |f|
+            .modal-body
+              = f.input :role, as: :hidden, input_html: { value: :moderator }
+              = f.select :new_group_owner_id,
+                  options_from_collection_for_select(memberships.includes(:user).not_owner, :id, :full_name)
+              .modal-footer
+              button.btn.btn-default type="button" data-dismiss="modal" Close
+              = f.submit "Save", class: "btn btn-primary"
 
-    - else
+  - else
+    = link_to "#" do
       = best_in_place_if !membership.owner?, membership,
           :role,
           as: :select,
