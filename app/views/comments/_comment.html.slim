@@ -36,7 +36,7 @@
           data-content=user_popover_content(comment.user)
           data-template=user_popover_template ]
           = present(current_group).role_overlay(comment.user)
-          = image_tag(comment.user.avatar, width: 16, height: 16)
+          = image_tag(comment.user.avatar_url, width: 16, height: 16)
         a.user-name>[
           href="javascript:void(0)"
           data-toggle="popover"
