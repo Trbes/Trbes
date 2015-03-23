@@ -9,7 +9,7 @@ $ ->
   $('[data-toggle="tooltip"]').tooltip()
 
   # Show favicon before external urls
-  iconify_links(16)
+  iconify_links()
 
   # Trigger main slide menu
   $(".js-menu-trigger,.js-menu-screen").on "click touchstart", (e) ->
