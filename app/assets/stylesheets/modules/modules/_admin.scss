@@ -19,6 +19,10 @@
   .section-name {
     text-transform: uppercase;
     margin: 20px 0 5px;
+
+    form {
+      display: inline-block;
+    }
   }
 
   .section-separator {
