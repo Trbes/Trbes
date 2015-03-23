@@ -27,14 +27,4 @@ class RegistrationsController < Devise::RegistrationsController
       resource.update_with_password(params)
     end
   end
-
-  def user_attributes
-    params.require(:user).permit(
-      :title,
-      :body,
-      :link,
-      :post_type,
-      attachments_attributes: [:image]
-    ) unless %w(upvote unvote).include?(action_name)
-  end
 end

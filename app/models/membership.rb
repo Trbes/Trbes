@@ -8,7 +8,7 @@ class Membership < ActiveRecord::Base
   scope :pending, -> { where(nil) } # TODO
   scope :new_this_week, -> { where("created_at > ?", Date.today.beginning_of_week) }
 
-  delegate :full_name, :avatar, to: :user
+  delegate :full_name, :avatar_url, to: :user
 
   enum role: %i(member moderator owner pending)
 
