@@ -8,16 +8,22 @@
         .dropdown
           button#group_menu.btn.btn-default.dropdown-toggle aria-expanded="true" data-toggle="dropdown" type="button"
             .fa.fa-cog
+            - if (pending_memberships_count = current_group.memberships.pending.count) > 0
+              span.badge.on-top.notifications-count[title=(pending_member_title = "#{pluralize(pending_memberships_count, 'pending member')}")] = pending_memberships_count
+
           ul.dropdown-menu aria-labelledby="group_menu" role="menu"
             - if policy(:access).admin_access?
               li role="presentation"
-                = link_to "Manage", admin_dashboard_index_path
+                = link_to admin_dashboard_index_path do
+                  | Manage
+                  - if pending_memberships_count > 0
+                    span.badge.notifications-count<[title=pending_member_title] = pending_memberships_count
             - if policy(:invitation).new?
               li role="presentation"
                 a href=(new_invitation_path) role="menuitem" tabindex="-1"  Invite
     .group-desc= current_group.tagline
     .group-members
-      - (group_memberships = current_group.memberships).limit(Group::VISIBLE_MEMBERS_COUNT).each do |membership|
+      - (group_memberships = current_group.memberships.not_pending).limit(Group::VISIBLE_MEMBERS_COUNT).each do |membership|
         a.group-member>[
           href="javascript:void(0)"
           data-toggle="popover"
