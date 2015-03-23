@@ -37,6 +37,13 @@ $ ->
     true
 
   $(".best_in_place").best_in_place()
+  $(".best_in_place.update-class-on-success").bind 'ajax:success', ->
+    target = $(this)
+    for klass in target.attr("class").split(" ")
+      if klass.indexOf("updateable-") > -1
+        target.removeClass(klass)
+    target.addClass("updateable-" + target.data("bip-value"))
+
 
   $(".upload").on "click", (e) ->
     e.preventDefault()

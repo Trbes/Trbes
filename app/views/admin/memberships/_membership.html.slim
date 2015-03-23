@@ -22,13 +22,14 @@
               = f.submit "Save", class: "btn btn-primary"
 
   - else
-    = link_to "#" do
+    = link_to "#", class: "role-link" do
       = best_in_place_if !membership.owner?, membership,
           :role,
           as: :select,
           collection: Hash[Membership.roles.keys.zip(Membership.roles.keys)].delete_if { |key| key == "owner" },
           place_holder: membership.role,
-          url: admin_membership_path(membership)
+          url: admin_membership_path(membership),
+          classes: "update-class-on-success updateable-#{membership.role}"
   '&nbsp;
   = link_to "#" do
   .controls

@@ -61,6 +61,12 @@
     .item-name {
       width: 30%;
     }
+
+    .role-link {
+      span.updateable-pending {
+        color: $danger-color;
+      }
+    }
   }
 
   .post, .comment {
