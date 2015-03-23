@@ -24,6 +24,11 @@ module Admin
       redirect_to admin_memberships_path
     end
 
+    before_action do
+      Rails.logger.debug("="*100)
+      Rails.logger.debug("\n" + controller_path)
+    end
+
     private
 
     def membership_attributes

@@ -10,7 +10,8 @@
     class: "admin-navigation btn btn-block btn-info #{current_path?(admin_memberships_path)}" do
   i.fa.fa-group.admin-navigation-icon
   span.title Members
-  - if (pending_memberships_count = current_group.memberships.pending.count) > 0
+  - if will_show_admin_members_button_count_badge?
+    - pending_memberships_count = current_group.memberships.pending.count
     span.badge.on-top.notifications-count[title="#{pluralize(pending_memberships_count, 'pending member')}"] = pending_memberships_count
 = link_to admin_posts_path,
     class: "admin-navigation btn btn-block btn-info #{current_path?(admin_posts_path)}" do

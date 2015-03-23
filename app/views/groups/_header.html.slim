@@ -8,7 +8,8 @@
         .dropdown
           button#group_menu.btn.btn-default.dropdown-toggle aria-expanded="true" data-toggle="dropdown" type="button"
             .fa.fa-cog
-            - if (pending_memberships_count = current_group.memberships.pending.count) > 0
+            - if will_show_cog_count_badge?
+              - pending_memberships_count = current_group.memberships.pending.count
               span.badge.on-top.notifications-count[title=(pending_member_title = "#{pluralize(pending_memberships_count, 'pending member')}")] = pending_memberships_count
 
           ul.dropdown-menu aria-labelledby="group_menu" role="menu"
@@ -16,7 +17,7 @@
               li role="presentation"
                 = link_to admin_dashboard_index_path do
                   | Manage
-                  - if pending_memberships_count > 0
+                  - if will_show_cog_count_badge?
                     span.badge.notifications-count<[title=pending_member_title] = pending_memberships_count
             - if policy(:invitation).new?
               li role="presentation"
