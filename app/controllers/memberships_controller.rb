@@ -2,15 +2,19 @@ class MembershipsController < ApplicationController
   expose(:membership, attributes: :membership_attributes)
 
   # rubocop:disable Metrics/AbcSize
+  # TODO: Move this logic to #create action
   def new
     redirect_to new_user_registration_url(subdomain: group.subdomain) and return unless user_signed_in?
-    redirect_to "/" and return if current_user.membership_for(current_group).present?
 
     membership = Membership.new(group_id: current_group.id, user_id: current_user.id)
-    membership.save
 
-    flash.keep
-    redirect_to "/", flash: { success: t("app.membership.message.join.success") }
+    if membership.save
+      flash[:success] = t("app.membership.message.join.success")
+    else
+      flash[:error] = t("app.membership.message.join.error")
+    end
+
+    redirect_to params[:return_path] || "/"
   end
   # rubocop:enable Metrics/AbcSize
 

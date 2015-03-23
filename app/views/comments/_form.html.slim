@@ -44,7 +44,7 @@
     .actions
       .link-create-account You need to join before you can comment.
       br
-      a.btn.btn-fill.btn-primary href=join_url(subdomain: current_group.subdomain) Join now
+      a.btn.btn-fill.btn-primary href=join_url(subdomain: current_group.subdomain, return_path: request.fullpath) Join now
 
   - else
     .actions
