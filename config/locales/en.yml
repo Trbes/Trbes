@@ -43,6 +43,8 @@ en:
       private:
         false: "Public"
         true: "Private"
+      message:
+        pending_members: "There are %{count} members awaiting your approval"
     user:
       sign_in:
         title: "Sign in"
