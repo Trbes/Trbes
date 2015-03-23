@@ -48,7 +48,7 @@
         - if current_user && current_user.title
           | •
           div.user-title< = comment.user_title
-        - if comment.user.membership_for(current_group).moderator?
+        - if comment.user.membership_for(current_group) && comment.user.membership_for(current_group).moderator?
           / ^^^ This causes tons of extra DB queries.
           / Should consider linking comment with membership instead of user. Or both.
           span.label.label-info.user-label MOD

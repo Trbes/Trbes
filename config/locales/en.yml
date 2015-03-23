@@ -90,6 +90,7 @@ en:
       message:
         join:
           success: "Your membership request has been sent"
+          error: "You have already joined this group"
 
     home: 'Dashboard'
 
