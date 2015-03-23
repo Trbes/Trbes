@@ -120,8 +120,10 @@
     color: #B8B8B8;
 
     .group-owner {
+      position: relative;
+
       img {
-        border-radius: 64px;
+        border-radius: 50%;
       }
     }
   }
