@@ -58,6 +58,9 @@ GEM
       tzinfo (~> 1.1)
     acts_as_votable (0.10.0)
     addressable (2.3.6)
+    airbrake (4.1.0)
+      builder
+      multi_json
     algoliasearch (1.3.1)
       httpclient (~> 2.4)
       json (>= 1.5.1)
@@ -457,6 +460,7 @@ PLATFORMS
 DEPENDENCIES
   active_link_to
   acts_as_votable
+  airbrake
   algoliasearch-rails
   attribute_normalizer
   autoprefixer-rails

@@ -52,9 +52,10 @@ gem "omniauth-google-oauth2"
 gem "omniauth-linkedin-oauth2"
 # Switch back to original version when patch gets merged
 gem "paranoia", git: "https://github.com/sergey-alekseev/paranoia", branch: "switch-to-rails-4-2"
-gem "newrelic_rpm"
 
 group :staging, :production do
+  gem "airbrake"
+  gem "newrelic_rpm"
   gem "rails_12factor"
 end
 
