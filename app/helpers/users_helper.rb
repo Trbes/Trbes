@@ -1,11 +1,11 @@
 module UsersHelper
   # rubocop:disable Metrics/AbcSize
-  def user_popover_content(user)
-    role = current_group && (membership = user.membership_for(current_group)) ? membership.role : nil
+  def user_popover_content(user, group)
+    role = group && (membership = user.membership_for(group)) ? membership.role : nil
 
     html = "<div class=\'user-popover-content\'>"
     html += "<div class=\'user-role user-role-#{role}\'>group #{role}</div>" if role
-    html += "<img src=\'#{user.avatar}\' class=\'img-circle\' width=\'64\' height=\'64\'>"
+    html += "<img src=\'#{user.avatar_url}\' class=\'img-circle\' width=\'64\' height=\'64\'>"
     html += "<div class=\'user-name\'>#{user.full_name}</div>"
     html += "<div class=\'user-title\'>#{user.title}</div>" if user.title.present?
     html += "</div>"

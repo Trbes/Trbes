@@ -24,7 +24,7 @@
             data-toggle="popover"
             data-html="true"
             data-placement="bottom"
-            data-content=user_popover_content(post.user)
+            data-content=user_popover_content(post.user, current_group)
             data-template=user_popover_template ]
             = present(current_group).role_overlay(post.user)
             = image_tag(post.user.avatar_url, width: 64, height: 64)
@@ -33,7 +33,7 @@
             data-toggle="popover"
             data-html="true"
             data-placement="bottom"
-            data-content=user_popover_content(post.user)
+            data-content=user_popover_content(post.user, current_group)
             data-template=user_popover_template ] = post.user_full_name
           .user-title = post.user_title
 
