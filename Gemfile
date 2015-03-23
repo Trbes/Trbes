@@ -54,6 +54,8 @@ gem "omniauth-linkedin-oauth2"
 gem "paranoia", git: "https://github.com/sergey-alekseev/paranoia", branch: "switch-to-rails-4-2"
 
 group :staging, :production do
+  gem "airbrake"
+  gem "newrelic_rpm"
   gem "rails_12factor"
 end
 
