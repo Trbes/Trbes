@@ -24,10 +24,10 @@ class CommentPolicy < Struct.new(:membership, :comment)
   end
 
   def update?
-    comment.user == membership.user || (membership.owner? || membership.moderator? )
+    comment.user == membership.user || (membership.owner? || membership.moderator?)
   end
 
   def destroy?
-    comment.user == membership.user || (membership.owner? || membership.moderator? )
+    comment.user == membership.user || (membership.owner? || membership.moderator?)
   end
 end
