@@ -27,11 +27,12 @@ describe CommentsController do
     let!(:comment) { create(:comment, post: some_post) }
 
     before do
+      request.env["HTTP_REFERER"] = admin_comments_path
       delete :destroy, id: comment.id, post_id: some_post.id
     end
 
-    it "redirects to post" do
-      expect(controller).to redirect_to(some_post)
+    it "redirects back" do
+      expect(controller).to redirect_to(admin_comments_path)
     end
   end
 

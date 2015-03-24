@@ -6,7 +6,7 @@ class Comment < ActiveRecord::Base
 
   validates :body, presence: true
 
-  delegate :full_name, :title, :avatar, to: :user, prefix: true
+  delegate :full_name, :title, :avatar, :avatar_url, to: :user, prefix: true
 
   acts_as_votable
 
