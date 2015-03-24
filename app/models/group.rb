@@ -56,7 +56,7 @@ class Group < ActiveRecord::Base
   end
 
   def allowed_post_types
-    Post.post_types.keys.select do |post_type|
+    %w(link_post text_post image_post).select do |post_type|
       self["allow_#{post_type}s"]
     end
   end
