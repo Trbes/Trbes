@@ -5,7 +5,10 @@
       .sub-intro
         | This is an early version of Trbes. Start your own group, it's FREE for a limited time.
         br
-        a[href=new_group_path] Create a group
+        - if user_signed_in?
+          a[href=new_group_path] Create a group
+        - else
+          a[href=new_user_registration_path] Sign up NOW to create a group
         '  or
         a[href=(ENV["TRBES_GROUP_URL"] || "#")] tell us what you expect
         '  from Trbes.
