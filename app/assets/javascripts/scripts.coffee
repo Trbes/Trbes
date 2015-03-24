@@ -53,7 +53,7 @@ $ ->
     e.preventDefault()
 
     target = $(this)
-    return if target.attr("href") == "#"
+    return false if target.attr("href") == "#"
 
     $.ajax
       method: "PUT"
