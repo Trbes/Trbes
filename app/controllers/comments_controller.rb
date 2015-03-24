@@ -13,10 +13,16 @@ class CommentsController < ApplicationController
     redirect_to comment.post
   end
 
+  def update
+    comment.save
+
+    redirect_to :back
+  end
+
   def destroy
     comment.destroy
 
-    redirect_to comment.post
+    redirect_to :back
   end
 
   def upvote

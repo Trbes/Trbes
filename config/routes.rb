@@ -19,7 +19,7 @@ Rails.application.routes.draw do
       put "upvote"
       put "unvote"
 
-      resources :comments, only: %i( create destroy )
+      resources :comments, only: %i( create destroy update ), shallow: true
     end
 
     resources :comments, only: [] do
