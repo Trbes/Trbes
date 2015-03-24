@@ -14,12 +14,16 @@ class CommentsController < ApplicationController
   end
 
   def update
+    authorize(comment)
+
     comment.save
 
     redirect_to :back
   end
 
   def destroy
+    authorize(comment)
+
     comment.destroy
 
     redirect_to :back
