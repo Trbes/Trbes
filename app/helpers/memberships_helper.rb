@@ -6,4 +6,12 @@ module MembershipsHelper
       end
     end
   end
+
+  def will_show_cog_count_badge?
+    !controller_path.include?("admin") && current_group.memberships.pending.count > 0
+  end
+
+  def will_show_admin_members_button_count_badge?
+    !controller_path.include?("admin/memberships") && current_group.memberships.pending.count > 0
+  end
 end
