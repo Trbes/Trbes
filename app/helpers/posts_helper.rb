@@ -35,7 +35,8 @@ module PostsHelper
   end
 
   def post_vote_path(post, user)
-    return "#" unless policy(post).vote?(user)
+    return new_user_registration_path unless user_signed_in?
+    return "javascript:void(0)" unless policy(post).vote?(user)
 
     user.voted_up_on?(post) ? post_unvote_path(post) : post_upvote_path(post)
   end
