@@ -15,8 +15,7 @@ feature "Create post", js: true do
   def create_link_post
     page.find("#btn_add_post").click
 
-    page.find("#select_post_type").click
-    click_link "Link"
+    expect(page).to have_content("POST TYPE: LINK")
 
     fill_in "Link", with: "http://sample-link.com"
     fill_in "Title", with: "Long enough title"

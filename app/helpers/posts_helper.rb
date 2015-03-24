@@ -57,7 +57,7 @@ module PostsHelper
   end
 
   def humanized_post_type(post_type)
-    post_type.gsub("_post", "")
+    post_type.to_s.gsub("_post", "")
   end
 
   # rubocop:disable Metrics/AbcSize, Metrics/CyclomaticComplexity, Metrics/MethodLength
