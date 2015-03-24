@@ -210,7 +210,7 @@ feature "Posts list" do
 
     scenario "I can't vote" do
       within("#post_#{post.id}") do
-        expect(page.find(".vote")["href"]).to eq("#")
+        expect(page.find(".vote")["href"]).to eq(new_user_registration_path)
       end
     end
   end
