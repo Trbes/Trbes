@@ -1,0 +1,23 @@
+doctype html
+html
+  head
+    meta content=("text/html; charset=UTF-8") http-equiv="Content-Type" /
+  body
+    - aurl = accept_invitation_url(@invited_user,
+        invitation_token: @invited_user.raw_invitation_token,
+        subdomain: @group.subdomain)
+
+    p Hey,
+
+    p I really appreciate when you send me links to interesting resources and I thought we might want to collect, share and organize it outside of email. I created a place for us to do so with everything related to our team.
+
+    p Click the link below to join the team.
+
+    p
+      a[href=aurl] Join <strong>#{@group.name}</strong> on <strong>Trbes</strong>!
+
+    p
+      | PS : I gave you
+      strong<> super user
+      | rights !
+
