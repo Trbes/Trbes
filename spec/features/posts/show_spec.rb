@@ -76,7 +76,7 @@ feature "Single post page" do
     end
 
     scenario "I can't upvote for a post" do
-      expect(page.find(".vote")["href"]).to eq("#")
+      expect(page.find(".vote")["href"]).to eq(new_user_registration_path)
     end
   end
 end

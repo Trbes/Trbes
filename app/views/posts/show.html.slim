@@ -4,11 +4,11 @@
       .post-left
         .post-upvote
           - if current_user.try(:voted_up_on?, post)
-            = link_to(post_unvote_path(post, current_user), class: "vote done") do
+            = link_to(post_unvote_path(post, current_user), class: "vote done #{'not-logged-in' unless user_signed_in?}") do
               .fa.fa-check
               .fa.fa-close
           - else
-            = link_to(post_vote_path(post, current_user), class: "vote") do
+            = link_to(post_vote_path(post, current_user), class: "vote #{'not-logged-in' unless user_signed_in?}") do
               i.fa.fa-thumbs-up
           .vote-count = post.cached_votes_total
         .post-share

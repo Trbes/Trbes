@@ -2,11 +2,11 @@
   .comment-left
     .comment-upvote
       - if current_user.try(:voted_up_on?, post)
-        = link_to(comment_unvote_path(comment, current_user), class: "vote done") do
+        = link_to(comment_unvote_path(comment, current_user), class: "vote done #{'not-logged-in' unless user_signed_in?}") do
           .fa.fa-check
           .fa.fa-close
       - else
-        = link_to(comment_vote_path(comment, current_user), class: "vote") do
+        = link_to(comment_vote_path(comment, current_user), class: "vote #{'not-logged-in' unless user_signed_in?}") do
           i.fa.fa-thumbs-up
 
       .vote-count = comment.cached_votes_total
