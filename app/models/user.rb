@@ -28,4 +28,8 @@ class User < ActiveRecord::Base
   def full_name
     super || email
   end
+
+  def after_confirmation
+    SendWelcomeEmailJob.perform_later(id)
+  end
 end

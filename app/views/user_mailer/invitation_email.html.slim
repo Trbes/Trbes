@@ -17,6 +17,11 @@ html
       a[href=aurl] Join <strong>#{@group.name}</strong> on <strong>Trbes</strong>!
 
     p
+      | Cheers,
+      br
+      = @user.full_name
+
+    p: em
       | PS : I gave you
       strong<> super user
       | rights !
