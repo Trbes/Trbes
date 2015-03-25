@@ -136,6 +136,12 @@
       font-size: 14px;
       color: #696969;
     }
+
+    #more_group_members {
+      .modal-body a.member {
+        display: inline-block;
+      }
+    }
   }
 
   @include breakpoint(0 ($screen-sm - 1)) { // smaller than iPad
