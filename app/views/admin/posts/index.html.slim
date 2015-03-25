@@ -9,13 +9,14 @@
         'Posts
 
       section.posts
-        h4.section-name Posts
+        h4.section-name
+          => pluralize(posts.count, "Post")
 
-        = form_tag(admin_posts_path, id: "filter_posts", method: :get) do
-          = select(nil, "filter",
-              options_for_select({"Active" => "all", "All" => "with_deleted", "Deleted" => "deleted"}, params[:filter]),
-              {},
-              class: 'rails-submitable')
+          = form_tag(admin_posts_path, id: "filter_posts", method: :get) do
+            = select(nil, "filter",
+                options_for_select({"Active" => "all", "All" => "with_deleted", "Deleted" => "deleted"}, params[:filter]),
+                {},
+                class: 'rails-submitable')
         hr.section-separator
 
         = render posts.map { |post| present(post) }
