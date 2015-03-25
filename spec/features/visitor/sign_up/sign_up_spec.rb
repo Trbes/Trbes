@@ -24,7 +24,7 @@ feature "Sign up" do
       expect(current_email).to have_body_text(user.full_name)
     end
 
-    scenario "User confirms account" do
+    scenario "User confirms account", job: true do
       open_email(user.email)
       visit_in_email "Confirm my account"
 

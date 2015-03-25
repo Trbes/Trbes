@@ -12,7 +12,7 @@ module Trbes
     config.active_record.raise_in_transactional_callbacks = true
 
     config.to_prepare do
-      Devise::Mailer.layout "devise_mailer"
+      Devise::Mailer.layout "mailer"
     end
   end
 end

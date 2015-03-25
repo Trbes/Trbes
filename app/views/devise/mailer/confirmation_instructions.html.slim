@@ -1,6 +1,7 @@
-p
-  | Welcome #{@resource.full_name.html_safe}!
-p
-  | You can confirm your account email through the link below:
-p
-  = link_to "Confirm my account", confirmation_url(@resource, confirmation_token: @token)
+p Hi #{@resource.full_name.html_safe}, welcome to Trbes!
+
+p Thanks for signing up. To activate your Trbes account and publish links, images and posts, please verify your email address by clicking the button below.
+
+p = link_to "Confirm my account", confirmation_url(@resource, confirmation_token: @token)
+
+p Thank you !
