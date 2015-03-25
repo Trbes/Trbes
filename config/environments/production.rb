@@ -77,4 +77,6 @@ Rails.application.configure do
   # Application specific options
   #
   config.host = "trbes-production.herokuapp.com"
+
+  config.action_dispatch.tld_length = 2
 end
