@@ -19,13 +19,11 @@
   }
 
   .group-image {
-    display: inline-block;
-    width: 20%;
+    margin-right: 10px;
     float: left;
   }
 
   .group-information {
-    display: inline-block;
     float: left;
   }
 
@@ -64,13 +62,21 @@
   }
 
   .groups-list {
+    display: table;
+    width: 100%;
+
+    .group {
+      display: table-row;
+    }
+
     .group-title {
-      float: left;
-      width: 20%;
+      display: table-cell;
+      padding: 5px 0;
     }
 
     .group-host {
-      float: left;
+      display: table-cell;
+      padding: 5px 0;
     }
 
     .group.active {

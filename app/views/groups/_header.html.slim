@@ -48,17 +48,17 @@
                 h4.modal-title Members
               .modal-body
                 p>
-                  ' There is #{group_memberships.count} members in
-                  em = current_group.name
+                  ' There are #{group_memberships.count} members in
+                  strong = current_group.name
 
                 - group_memberships.each do |membership|
-                  a[
+                  a.member[
                     href="#"
                     data-toggle="popover"
                     data-html="true"
                     data-placement="bottom"
                     data-content=user_popover_content(membership.user, current_group)
                     data-template=user_popover_template ]
-                    = image_tag membership.avatar_url, class: "img-circle", width: 16, height: 16
+                    => image_tag membership.avatar_url, class: "img-circle", width: 16, height: 16
                     = membership.full_name
                   ' ,

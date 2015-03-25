@@ -9,7 +9,7 @@ section.collections#collections
           = link_to "#" do
             i.fa.circle[class=(collection.icon_class.present? ? "fa-#{collection.icon_class}" : "fa-list")]
           .collection-name= collection.name
-          .collection-posts-count= link_to collection.collection_posts_count, "#"
+          .collection-posts-count= link_to pluralize(collection.collection_posts_count, "post"), "#"
           .collection-visibility
             = link_to "#" do
               = best_in_place collection,

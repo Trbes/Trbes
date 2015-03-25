@@ -4,12 +4,11 @@ section.your-groups
 
   .groups-list
     - groups.each do |group|
-      = link_to admin_dashboard_index_url(subdomain: group.subdomain) do
-        div(class="group clearfix #{current_path?(group.subdomain)}")
-          .group-title
-            = group.name
-          .group-host
-            = group.host
+      = link_to admin_dashboard_index_url(subdomain: group.subdomain), class: "group #{current_path?(group.subdomain)}" do
+        .group-title
+          = group.name
+        .group-host
+          = group.host
 
     .add-link
       = link_to "add", new_group_path, class: "control"
