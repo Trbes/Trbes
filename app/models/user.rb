@@ -22,7 +22,7 @@ class User < ActiveRecord::Base
   end
 
   def avatar_url
-    avatar_image.try(:thumbnail) || "http://gravatar.com/avatar/#{Digest::MD5.hexdigest(email.downcase)}.png?d=mm"
+    avatar_image.try(:thumbnail).try(:url) || "http://gravatar.com/avatar/#{Digest::MD5.hexdigest(email.downcase)}.png?d=mm"
   end
 
   def full_name
