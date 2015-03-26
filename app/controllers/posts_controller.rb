@@ -68,7 +68,7 @@ class PostsController < ApplicationController
       :body,
       :link,
       :post_type,
-      attachments_attributes: [:image]
+      attachments_attributes: [:image, :id]
     ) unless %w(upvote unvote).include?(action_name)
   end
 end
