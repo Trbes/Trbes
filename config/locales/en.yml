@@ -89,6 +89,10 @@ en:
     post:
       message:
         success: "'%{title}' has been added"
+        success_pending: "'%{title}' has been added and is in review process"
+    comment:
+      message:
+        success_pending: "Your comment has been added and is in review process"
 
     membership:
       message:

@@ -3,14 +3,14 @@ class CommentsController < ApplicationController
   expose(:post)
 
   def create
-    comment = CreateComment.call(
+    result = CreateComment.call(
       user: current_user,
       post: post,
       attributes: comment_attributes,
       allow_publish: policy(Comment).publish?
-    ).comment
+    )
 
-    redirect_to comment.post
+    redirect_to result.comment.post, flash: { success: result.message }
   end
 
   def update
