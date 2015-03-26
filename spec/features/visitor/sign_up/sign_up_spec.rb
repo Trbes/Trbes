@@ -20,7 +20,7 @@ feature "Sign up" do
       expect(page).to have_text("You are now subscribed to Trbes")
       open_email(user.email)
 
-      expect(current_email).to have_subject "Confirmation instructions"
+      expect(current_email).to have_subject "Trbes: Confirmation instructions"
       expect(current_email).to have_body_text(user.full_name)
     end
 
@@ -39,7 +39,7 @@ feature "Sign up" do
 
       open_email(user.email)
 
-      expect(current_email).to have_subject "Confirmation instructions"
+      expect(current_email).to have_subject "Trbes: Confirmation instructions"
       expect(current_email).to have_body_text(user.full_name)
     end
   end
