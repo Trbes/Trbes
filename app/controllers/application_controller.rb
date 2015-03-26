@@ -13,7 +13,8 @@ class ApplicationController < ActionController::Base
 
   helper_method :current_group
   def current_group
-    @current_group ||= Group.includes(:logo, memberships: { user: :avatar }).find_by(subdomain: request.subdomain)
+    @current_group ||= view_context
+      .present(Group.includes(:logo, memberships: { user: :avatar }).find_by(subdomain: request.subdomain))
   end
 
   helper_method :current_membership

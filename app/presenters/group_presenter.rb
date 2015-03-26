@@ -75,4 +75,8 @@ class GroupPresenter < BasePresenter
   def pending_posts_title
     h.pluralize(@model.posts.moderation.count, "pending post")
   end
+
+  def pending_comments_title
+    h.pluralize(@model.comments.moderation.count, "pending comment")
+  end
 end
