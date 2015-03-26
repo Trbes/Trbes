@@ -12,7 +12,7 @@
         a< href=(group_url(current_group)) = current_group.name
         br
         | Start sharing <strong>publicly</strong> with
-        strong<> = current_group.memberships.size
+        strong<> = current_group.memberships.not_pending.size
         | other
         span<> = current_group.name
         | members.
