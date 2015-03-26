@@ -9,10 +9,12 @@ feature "Create post", js: true do
       visit admin_dashboard_index_path
     end
 
-    scenario "I post to group" do
-      create_link_post
+    context "with valid data" do
+      scenario "I post to group" do
+        create_link_post
 
-      expect(user.posts.last.state).to eq("published")
+        expect(user.posts.last.state).to eq("published")
+      end
     end
   end
 end

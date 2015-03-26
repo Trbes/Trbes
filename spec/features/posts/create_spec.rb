@@ -9,10 +9,21 @@ feature "Create post", js: true do
       visit root_path
     end
 
-    scenario "I post to group" do
-      create_link_post
+    context "with valid data" do
+      scenario "I post to group" do
+        create_link_post
 
-      expect(user.posts.last.state).to eq("published")
+        expect(user.posts.last.state).to eq("published")
+      end
+    end
+
+    context "with invalid data" do
+      scenario "I can't post to group" do
+        page.find("#btn_add_post").click
+        click_button "Publish Post"
+
+        expect(page).to have_content("This field is required.")
+      end
     end
   end
 
