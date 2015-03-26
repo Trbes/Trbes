@@ -18,6 +18,20 @@ module FeatureHelpers
   def switch_to_main
     Capybara.app_host = "http://#{DEFAULT_HOST}:#{DEFAULT_PORT}"
   end
+
+  def create_link_post
+    page.find("#btn_add_post").click
+
+    expect(page).to have_content("POST TYPE: LINK")
+
+    fill_in "Link", with: "http://sample-link.com"
+    fill_in "Title", with: "Long enough title"
+    fill_in "Tagline", with: "Tagline"
+
+    click_button "Publish Post"
+
+    expect(page).to have_content("Long enough title")
+  end
 end
 
 RSpec.configure do |config|
@@ -45,4 +59,6 @@ shared_context "group membership and authentication" do
     switch_to_subdomain(group.subdomain)
     sign_in(user.email, "123456")
   end
+
+  after { switch_to_main }
 end
