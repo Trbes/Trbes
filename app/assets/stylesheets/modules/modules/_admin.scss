@@ -57,13 +57,13 @@
     }
   }
 
-  .membership {
+  .membership, .comment, .post {
     .item-name {
       width: 30%;
     }
 
-    .role-link {
-      span.updateable-pending {
+    .role-link, .state-link {
+      span.updateable-pending, span.updateable-moderation {
         color: $danger-color;
       }
     }
