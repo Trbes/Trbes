@@ -1,6 +1,6 @@
 .navbar-group
   = link_to root_url(subdomain: current_group.subdomain), class: "group-logo" do
-    = present(current_group).logo_image_tag
+    = current_group.logo_image_tag
   .group-info
     .group-name
       = link_to current_group.name, root_url(subdomain: current_group.subdomain)
@@ -9,8 +9,8 @@
           button#group_menu.btn.btn-default.dropdown-toggle aria-expanded="true" data-toggle="dropdown" type="button"
             .fa.fa-cog
             - if will_show_cog_count_badge?
-              - pending_memberships_count = current_group.memberships.pending.count
-              span.badge.on-top.notifications-count[title=(pending_member_title = "#{pluralize(pending_memberships_count, 'pending member')}")] = pending_memberships_count
+              span.badge.on-top.notifications-count[title=(current_group.notifications_title)]
+                = current_group.notifications_count
 
           ul.dropdown-menu aria-labelledby="group_menu" role="menu"
             - if policy(:access).admin_access?
@@ -18,7 +18,8 @@
                 = link_to admin_dashboard_index_path do
                   | Manage
                   - if will_show_cog_count_badge?
-                    span.badge.notifications-count<[title=pending_member_title] = pending_memberships_count
+                    span.badge.notifications-count<[title=current_group.notifications_title]
+                      = current_group.notifications_count
             - if policy(:invitation).new?
               li role="presentation"
                 a href=(new_invitation_path) role="menuitem" tabindex="-1"  Invite
@@ -32,7 +33,7 @@
           data-placement="bottom"
           data-content=user_popover_content(membership.user, current_group)
           data-template=user_popover_template ]
-          = present(current_group).role_overlay(membership.user)
+          = current_group.role_overlay(membership.user)
           = image_tag membership.avatar_url, class: "img-circle", width: 16, height: 16
 
       - if group_memberships.count > Group::VISIBLE_MEMBERS_COUNT
