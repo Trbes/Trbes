@@ -1,4 +1,6 @@
 class CommentsController < ApplicationController
+  include Voting
+
   expose(:comment, attributes: :comment_attributes)
   expose(:post)
 
@@ -29,29 +31,12 @@ class CommentsController < ApplicationController
     redirect_to :back
   end
 
-  def upvote
-    comment.upvote_by(current_user)
-
-    render json: {
-      new_total_votes: comment.cached_votes_total,
-      voted_up: true,
-      new_vote_path: comment_unvote_path(comment)
-    }
-  end
-
-  def unvote
-    comment.unvote_by(current_user)
-
-    render json: {
-      new_total_votes: comment.cached_votes_total,
-      voted_up: false,
-      new_vote_path: comment_upvote_path(comment)
-    }
-  end
-
   private
 
   def comment_attributes
-    params.require(:comment).permit(:body, :parent_comment_id) unless %w(upvote unvote).include?(action_name)
+    # TODO: Encapsulate this into voting.rb somehow
+    return if %w(upvote unvote).include?(action_name)
+
+    params.require(:comment).permit(:body, :parent_comment_id)
   end
 end
