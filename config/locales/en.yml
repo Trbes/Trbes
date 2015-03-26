@@ -47,6 +47,12 @@ en:
         pending_members:
           one: There is 1 new member awaiting your approval
           other: "There are %{count} new members awaiting your approval"
+        pending_posts:
+          one: There is 1 new post awaiting moderation
+          other: "There are %{count} new posts awaiting moderation"
+        pending_comments:
+          one: There is 1 new comment awaiting moderation
+          other: "There are %{count} new comments awaiting moderation"
     user:
       sign_in:
         title: "Sign in"

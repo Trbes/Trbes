@@ -7,6 +7,9 @@
       h2.current-section
         i.fa.fa-tachometer.current-section-icon
         'Posts
+      - if posts.moderation.exists?
+        p.text-danger = t("app.group.message.pending_posts", count: posts.moderation.count)
+
 
       section.posts
         h4.section-name
