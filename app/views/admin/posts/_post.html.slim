@@ -18,10 +18,12 @@
         class: "state"
 
   .controls
-    = link_to "edit", edit_post_path(post), class: "control"
+    = link_to "edit", "#", class: "control", data: { toggle: "modal", target: "#edit_post_#{post.id}" }
     .controls-separator
     = link_to "delete",
         post_path(post),
         class: "control",
         method: :delete,
         data: { confirm: %Q{Are you sure you want to delete "#{post.title}"?}}
+
+    = render "posts/edit_modal", post: post

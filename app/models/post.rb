@@ -20,7 +20,7 @@ class Post < ActiveRecord::Base
   belongs_to :group, counter_cache: true, required: true
   belongs_to :user, required: true
 
-  accepts_nested_attributes_for :attachments
+  accepts_nested_attributes_for :attachments, reject_if: proc { |a| a[:image].blank? }
 
   validates :title, presence: true
   validates :title, length: { minimum: 10, maximum: 100 }

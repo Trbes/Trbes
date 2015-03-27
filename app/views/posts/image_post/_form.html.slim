@@ -14,7 +14,8 @@
   .form-group.fnp-file
     label.col-sm-2.control-label for="fnp_image_post_image"  Image *
     .col-sm-10
-      = f.fields_for(:attachments, Attachment.new) do |attachment_fields|
+      - post.attachments.build if post.new_record?
+      = f.fields_for :attachments, post.attachments.first do |attachment_fields|
         = attachment_fields.input :image,
           as: :file,
           label: false,

@@ -30,7 +30,7 @@ feature "Sign in" do
 
     open_email(user.email)
 
-    expect(current_email).to have_subject "Reset password instructions"
+    expect(current_email).to have_subject "Trbes: Reset password instructions"
     expect(current_email).to have_body_text(user.full_name)
   end
 end

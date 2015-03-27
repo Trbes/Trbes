@@ -3,6 +3,9 @@ class CreateComment
 
   def call
     context.comment = create_comment
+
+    context.message = I18n.t("app.comment.message.success_pending") if
+      context.user.membership_for(context.post.group).try(:pending?)
   end
 
   private
