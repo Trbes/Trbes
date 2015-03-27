@@ -6,7 +6,7 @@
           span aria-hidden="true" &times;
         h4.modal-title Edit group
 
-        = simple_nested_form_for([:admin, group], url: admin_group_path) do |f|
+        = simple_nested_form_for([:admin, group], url: admin_group_path, html: { class: "cg-form" }) do |f|
           .modal-body
             = f.simple_fields_for :logo, group.logo || group.build_logo do |logo_fields|
               #preview
@@ -21,12 +21,14 @@
             = f.input :tagline
             = f.input :description
 
-            = f.input :private,
-              as: :boolean,
-              wrapper: false,
-              wrapper_tag: nil,
-              input_html: { data: { toggle: "checkbox" } }
+            .form-group.fg-cg-privacy
+              label for="cg_privacy"
+                | Privacy
+                button.btn.btn-simple.btn-privacy-hint type="button" data-toggle="popover" data-placement="right" data-html="true" data-content=("<i class='fa fa-unlock'></i><b>Public:</b> Everyone can view and join your group. Ideal for user communities.<br><br><i class='fa fa-lock'></i><b>Private:</b> People need an invitation from you to view or join your group.") title=("Privacy")
+                  span.fa.fa-info-circle
+              #cg_privacy.switch.cg-privacy-switch data-off-label=("<i class='fa fa-unlock'></i>") data-on-label=("<i class='fa fa-lock'></i>")
+                input id="cg_privacy" name="group[private]" type="checkbox"
 
-          .modal-footer
-            button.btn.btn-default type="button" data-dismiss="modal" Close
-            = f.submit "Save", class: "btn btn-primary"
+            .modal-footer
+              button.btn.btn-default type="button" data-dismiss="modal" Close
+              = f.submit "Save", class: "btn btn-primary"

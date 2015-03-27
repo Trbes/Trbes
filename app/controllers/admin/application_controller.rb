@@ -1,6 +1,10 @@
 module Admin
   class ApplicationController < ::ApplicationController
+    layout "admin"
+
     before_action :authorize_admin!, :set_group_name_for_title
+
+    expose(:presented_current_group) { view_context.present(current_group) }
 
     protected
 

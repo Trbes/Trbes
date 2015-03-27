@@ -1,33 +1,28 @@
-.container.admin.admin-dashboard
-  .row
-    .col-md-2
-      = render "navigation_group_admin"
+.col-md-8.admin-column.admin-dashboard
+  h2.current-section
+    i.fa.fa-tachometer.current-section-icon
+    'Dashboard
 
-    .col-md-8.admin-column
-      h2.current-section
-        i.fa.fa-tachometer.current-section-icon
-        'Dashboard
+  section.overview
+    h4.section-name Overview
+    hr.section-separator
 
-      section.overview
-        h4.section-name Overview
-        hr.section-separator
+    p.overview-text #{group.name} was created <strong>#{group.created_time_ago} ago</strong> and has #{group.memberships_count_link}.
+    p.overview-text This group is <a href="#">#{group.privacy_type}</a>.
 
-        p.overview-text #{group.name} was created <strong>#{group.created_time_ago} ago</strong> and has #{group.memberships_count_link}.
-        p.overview-text This group is <a href="#">#{group.privacy_type}</a>.
+  section.posts
+    h4.section-name Latest posts
+    hr.section-separator
 
-      section.posts
-        h4.section-name Latest posts
-        hr.section-separator
+    = render latest_posts
 
-        = render latest_posts
+    .add-link
+      = link_to "#", data: { toggle: "modal", target: "#add_a_post" } do
+          i.fa.fa-plus
+          span Add
 
-        .add-link
-          = link_to "#", data: { toggle: "modal", target: "#add_a_post" } do
-              i.fa.fa-plus
-              span Add
-
-    .col-md-2
-      i.fa.fa-info-circle
-      'Learn more about
-      = link_to "How to Manage your Trbes group", "#"
-      '&nbsp; in our knowledge base.
+.col-md-2
+  i.fa.fa-info-circle
+  'Learn more about
+  = link_to "How to Manage your Trbes group", "#"
+  '&nbsp; in our knowledge base.

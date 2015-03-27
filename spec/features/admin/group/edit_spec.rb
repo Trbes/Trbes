@@ -20,7 +20,7 @@ feature "Edit group" do
     fill_in "Name", with: "New Name"
     fill_in "Tagline", with: "New Tagline"
     fill_in "Description", with: "New Description"
-    page.find("label[for='group_private']").click
+    page.find("#cg_privacy").click
 
     click_button "Save"
 
