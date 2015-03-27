@@ -28,6 +28,13 @@ en:
       index: Dashboard
     registrations:
       edit: Update profile settings
+      new: Join Trbes - Instant Content Hub for your Team or Customers
+
+    sessions:
+      new: Sign in to Trbes
+
+    welcome:
+      index: Create your own free Trbes group
 
     landing:
       small_teams: A simpler way to discover and share great resources with your teammates | Trbes for Teams
@@ -36,6 +43,10 @@ en:
     groups:
       index: Trbes - Instant Content Hub for your Team or Customers
       show: '%{group_name} - %{group_tagline}'
+      new: Create your own free Trbes group
+
+    invitations:
+      new: 'Invite your friends to %{group_name}'
 
     posts:
       show: '%{post_title} | %{group_name}'
