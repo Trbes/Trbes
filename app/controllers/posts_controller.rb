@@ -6,6 +6,8 @@ class PostsController < ApplicationController
 
   def show
     self.post = Post.includes(user: :avatar).find_by(slug: params[:id])
+    @post_title = post.title
+    @group_name = current_group.name
   end
 
   def edit
