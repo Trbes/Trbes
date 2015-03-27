@@ -41,6 +41,10 @@ class Group < ActiveRecord::Base
     posts.pluck(:comments_count).inject(:+) || 0
   end
 
+  def notifications_count
+    memberships.pending.count + posts.moderation.count + comments.moderation.count
+  end
+
   def owner
     memberships.owner.first
   end

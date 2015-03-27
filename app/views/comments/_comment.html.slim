@@ -1,7 +1,7 @@
 = div_for(comment, data: { id: comment.id } )
   .comment-left
     .comment-upvote
-      - if current_user.try(:voted_up_on?, post)
+      - if current_user.try(:voted_up_on?, comment)
         = link_to(comment_unvote_path(comment, current_user), class: "vote done #{'not-logged-in' unless user_signed_in?}") do
           .fa.fa-check
           .fa.fa-close

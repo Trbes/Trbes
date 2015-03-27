@@ -8,13 +8,14 @@
     = link_to truncate(comment.body, length: 50), post_path(comment.post)
 
   span class="created-at" #{comment.created_time_ago} ago
-  = link_to "#" do
+  = link_to "#", class: "state-link" do
     = best_in_place comment,
         :state,
         as: :select,
         collection: Hash[Comment.states.keys.zip(Comment.states.keys)],
         place_holder: comment.state,
-        url: admin_comment_path(comment)
+        url: admin_comment_path(comment),
+        class: "update-class-on-success updateable-#{comment.state}"
 
   .controls
     = link_to "edit", "#", class: "control", data: { toggle: "modal", target: "#edit_comment_#{comment.id}"}

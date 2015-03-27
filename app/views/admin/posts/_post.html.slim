@@ -1,4 +1,4 @@
-.post
+= div_for(post)
   .item-name
     = image_tag post.user.avatar_url,
         class: "img-circle avatar",
@@ -8,14 +8,14 @@
     = link_to truncate(post.title, length: 50), post_path(post)
   '&nbsp;
   span class="created-at" #{post.created_time_ago} ago
-  = link_to "#" do
+  = link_to "#", class: "state-link" do
     = best_in_place post,
         :state,
         as: :select,
         collection: Hash[Post.states.keys.zip(Post.states.keys)],
         place_holder: post.state,
         url: admin_post_path(post),
-        class: "state"
+        class: "state update-class-on-success updateable-#{post.state}"
 
   .controls
     = link_to "edit", "#", class: "control", data: { toggle: "modal", target: "#edit_post_#{post.id}" }

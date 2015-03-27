@@ -11,13 +11,20 @@
   i.fa.fa-group.admin-navigation-icon
   span.title Members
   - if will_show_admin_members_button_count_badge?
-    - pending_memberships_count = current_group.memberships.pending.count
-    span.badge.on-top.notifications-count[title="#{pluralize(pending_memberships_count, 'pending member')}"] = pending_memberships_count
+    span.badge.on-top.notifications-count[title=current_group.pending_members_title]
+      = current_group.memberships.pending.count
 = link_to admin_posts_path,
     class: "admin-navigation btn btn-block btn-info #{current_path?(admin_posts_path)}" do
   i.fa.fa-file.admin-navigation-icon
   span.title Posts
+  - if current_group.posts.moderation.exists?
+    span.badge.on-top.notifications-count[title=current_group.pending_posts_title]
+      = current_group.posts.moderation.count
 = link_to admin_comments_path,
     class: "admin-navigation btn btn-block btn-info #{current_path?(admin_comments_path)}" do
   i.fa.fa-comments.admin-navigation-icon
   span.title Comments
+  - if current_group.comments.moderation.exists?
+    span.badge.on-top.notifications-count[title=current_group.pending_comments_title]
+      = current_group.comments.moderation.count
+

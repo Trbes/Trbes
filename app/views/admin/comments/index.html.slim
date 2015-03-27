@@ -7,6 +7,8 @@
       h2.current-section
         i.fa.fa-tachometer.current-section-icon
         'Comments
+      - if comments.moderation.any?
+        p.text-danger = t("app.group.message.pending_comments", count: comments.moderation.count)
 
       section.comments
         h4.section-name Comments

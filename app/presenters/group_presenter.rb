@@ -63,4 +63,20 @@ class GroupPresenter < BasePresenter
 
     h.content_tag(:span, membership.role.first, class: "role-overlay role-overlay-#{membership.role}")
   end
+
+  def notifications_title
+    h.pluralize(@model.notifications_count, "notification")
+  end
+
+  def pending_members_title
+    h.pluralize(@model.memberships.pending.count, "pending member")
+  end
+
+  def pending_posts_title
+    h.pluralize(@model.posts.moderation.count, "pending post")
+  end
+
+  def pending_comments_title
+    h.pluralize(@model.comments.moderation.count, "pending comment")
+  end
 end
