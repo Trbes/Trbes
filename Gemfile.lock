@@ -8,16 +8,6 @@ GIT
       railties (>= 3.2)
 
 GIT
-  remote: https://github.com/rest-client/rest-client
-  revision: d310f567b6bf0acbc533cf222a0bbe738b024fb6
-  ref: d310f567b6bf0acbc533cf222a0bbe738b024fb6
-  specs:
-    rest-client (2.0.0.alpha)
-      http-cookie (>= 1.0.2, < 2.0)
-      mime-types (>= 1.16, < 3.0)
-      netrc (~> 0.8)
-
-GIT
   remote: https://github.com/sergey-alekseev/paranoia
   revision: e3a8f93d453026cc56cc6ed4e9dbf2c0d750be2d
   branch: switch-to-rails-4-2
