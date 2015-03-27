@@ -1,5 +1,7 @@
 module Admin
   class ApplicationController < ::ApplicationController
+    layout "admin"
+
     before_action :authorize_admin!, :set_group_name_for_title
 
     protected
