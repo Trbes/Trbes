@@ -1,33 +1,28 @@
-.container.admin.memberships
-  .row
-    .col-md-2
-      = render "navigation_group_admin"
+.col-md-8.admin-column.memberships
+  h2.current-section
+    i.fa.fa-tachometer.current-section-icon
+    'Members
+  - if (pending_memberships_count = current_group.memberships.pending.count) > 0
+    p.text-danger = t("app.group.message.pending_members", count: pending_memberships_count)
 
-    .col-md-8.admin-column
-      h2.current-section
-        i.fa.fa-tachometer.current-section-icon
-        'Members
-      - if (pending_memberships_count = current_group.memberships.pending.count) > 0
-        p.text-danger = t("app.group.message.pending_members", count: pending_memberships_count)
+  section.memberships
+    h4.section-name
+      ' Members
+      =< form_tag(admin_memberships_path, id: "filter_memberships", method: :get) do
+        = select(nil, "filter",
+            options_for_select(membership_roles_options, params[:filter]),
+            {},
+            class: 'rails-submitable')
 
-      section.memberships
-        h4.section-name
-          ' Members
-          =< form_tag(admin_memberships_path, id: "filter_memberships", method: :get) do
-            = select(nil, "filter",
-                options_for_select(membership_roles_options, params[:filter]),
-                {},
-                class: 'rails-submitable')
+    hr.section-separator
 
-        hr.section-separator
+    = render memberships, memberships: memberships
 
-        = render memberships, memberships: memberships
+    br
+    = link_to new_invitation_path do
+        i.fa.fa-plus
+        span Add
 
-        br
-        = link_to new_invitation_path do
-            i.fa.fa-plus
-            span Add
-
-      = paginate memberships,
-          theme: "twitter-bootstrap-3",
-          pagination_class: "pagination pagination-azure pagination-no-border"
+  = paginate memberships,
+      theme: "twitter-bootstrap-3",
+      pagination_class: "pagination pagination-azure pagination-no-border"

@@ -1,32 +1,27 @@
-.container.admin
-  .row
-    .col-md-2
-      = render "navigation_group_admin"
-
-    .col-md-8.admin-column
-      h2.current-section
-        i.fa.fa-tachometer.current-section-icon
-        'Posts
-      - if posts.moderation.exists?
-        p.text-danger = t("app.group.message.pending_posts", count: posts.moderation.count)
+.col-md-8.admin-column
+  h2.current-section
+    i.fa.fa-tachometer.current-section-icon
+    'Posts
+  - if posts.moderation.exists?
+    p.text-danger = t("app.group.message.pending_posts", count: posts.moderation.count)
 
 
-      section.posts
-        h4.section-name
-          => pluralize(posts.count, "Post")
+  section.posts
+    h4.section-name
+      => pluralize(posts.count, "Post")
 
-          = form_tag(admin_posts_path, id: "filter_posts", method: :get) do
-            = select(nil, "filter",
-                options_for_select({"Active" => "all", "All" => "with_deleted", "Deleted" => "deleted"}, params[:filter]),
-                {},
-                class: 'rails-submitable')
-        hr.section-separator
+      = form_tag(admin_posts_path, id: "filter_posts", method: :get) do
+        = select(nil, "filter",
+            options_for_select({"Active" => "all", "All" => "with_deleted", "Deleted" => "deleted"}, params[:filter]),
+            {},
+            class: 'rails-submitable')
+    hr.section-separator
 
-        = render posts.map { |post| present(post) }
+    = render posts.map { |post| present(post) }
 
-        .add-link
-          = link_to "#", data: { toggle: "modal", target: "#add_a_post" } do
-              i.fa.fa-plus
-              span Add
+    .add-link
+      = link_to "#", data: { toggle: "modal", target: "#add_a_post" } do
+          i.fa.fa-plus
+          span Add
 
-      = paginate posts, theme: "twitter-bootstrap-3", pagination_class: "pagination pagination-azure pagination-no-border"
+  = paginate posts, theme: "twitter-bootstrap-3", pagination_class: "pagination pagination-azure pagination-no-border"

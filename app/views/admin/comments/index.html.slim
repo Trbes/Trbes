@@ -1,22 +1,17 @@
-.container.admin
-  .row
-    .col-md-2
-      = render "navigation_group_admin"
+.col-md-8.admin-column
+  h2.current-section
+    i.fa.fa-tachometer.current-section-icon
+    'Comments
+  - if comments.moderation.any?
+    p.text-danger = t("app.group.message.pending_comments", count: comments.moderation.count)
 
-    .col-md-8.admin-column
-      h2.current-section
-        i.fa.fa-tachometer.current-section-icon
-        'Comments
-      - if comments.moderation.any?
-        p.text-danger = t("app.group.message.pending_comments", count: comments.moderation.count)
+  section.comments
+    h4.section-name Comments
+    hr.section-separator
 
-      section.comments
-        h4.section-name Comments
-        hr.section-separator
+    = render comments.map { |comment| present(comment) }
 
-        = render comments.map { |comment| present(comment) }
+    - if comments.empty?
+      'No comments yet.
 
-        - if comments.empty?
-          'No comments yet.
-
-      = paginate comments, theme: "twitter-bootstrap-3", pagination_class: "pagination pagination-azure pagination-no-border"
+  = paginate comments, theme: "twitter-bootstrap-3", pagination_class: "pagination pagination-azure pagination-no-border"
