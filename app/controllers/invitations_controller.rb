@@ -5,6 +5,7 @@ class InvitationsController < Devise::InvitationsController
 
   def new
     authorize :invitation, :new?
+    @group_name = current_group.name
     # Invite should only happen under the scope of a group
     redirect_to root_path unless current_group
   end

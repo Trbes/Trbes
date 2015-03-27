@@ -10,6 +10,7 @@ class WelcomeController < ApplicationController
     @authorize_current_user = false
 
     params[:welcome] = true
+    @trbes_group_url = ENV["TRBES_GROUP_ID"] ? group_url(Group.find(ENV["TRBES_GROUP_ID"])) : nil
     render view_for_welcome
   end
 

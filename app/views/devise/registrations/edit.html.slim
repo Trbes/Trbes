@@ -10,36 +10,34 @@
           url: registration_path(resource_name),
           html: { method: :put } do |f|
 
-        .form-group
-          = f.input :email, required: true
+        = f.input :email, required: true
 
-        .form-group
-          = f.input :full_name, required: true, autofocus: true
+        = f.input :full_name, required: true, autofocus: true
 
-        .form-group
-          = f.input :title, autofocus: true
+        = f.input :title, autofocus: true
 
-        .form-group
-          - f.object.build_avatar unless f.object.avatar
+
+        - f.object.build_avatar unless f.object.avatar
+
+        .form-group.file.optional.user_avatar_image
+          label.file.optional.control-label for="user_avatar_attributes_image" Avatar
+
           = f.simple_fields_for :avatar do |avatar_fields|
-            = avatar_fields.input :image, as: :file, label: "Avatar"
+            p = image_tag(f.object.avatar_url, width: 48, height: 48)
+            = avatar_fields.input :image, as: :file, label: false, wrapper: false
 
-        .form-group
-          = f.input :password,
-              autocomplete: "off",
-              hint: t("app.user.edit.new_password.hint"),
-              required: false
+        = f.input :password,
+            autocomplete: "off",
+            hint: t("app.user.edit.new_password.hint"),
+            required: false
 
-        .form-group
-          = f.input :password_confirmation,
-              required: false
+        = f.input :password_confirmation,
+            required: false
 
-        .form-group
-          = f.input :current_password,
-              hint: t("app.user.edit.confirm_password.hint")
+        = f.input :current_password,
+            hint: t("app.user.edit.confirm_password.hint")
 
-        .form-group
-          = f.button :submit, t("app.form.update")
+        = f.button :submit, t("app.form.update")
 
     .col-md-5.col-md-offset-1
       h6

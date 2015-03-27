@@ -6,7 +6,7 @@
       - if params[:welcome]
         .cg-announcement
           | You are now subscribed to
-          a< href="/" Trbes
+          =< link_to "Trbes", @trbes_group_url || "/"
         hr
       h2.cg-title Let's create your own <em>free</em> Trbes Group.
       = simple_form_for(group, url: groups_path, html: { class: "cg-form" }) do |f|
