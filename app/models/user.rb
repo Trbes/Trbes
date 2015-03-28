@@ -33,4 +33,11 @@ class User < ActiveRecord::Base
   def after_confirmation
     SendWelcomeEmailJob.perform_later(id)
   end
+
+  after_create do
+    if ENV["TRBES_GROUP_ID"].present?
+      trbes_group = Group.find ENV["TRBES_GROUP_ID"]
+      trbes_group.add_member(self, as: :member)
+    end
+  end
 end
