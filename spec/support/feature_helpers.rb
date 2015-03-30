@@ -56,6 +56,7 @@ shared_context "group membership and authentication" do
   let(:group) { membership.group }
 
   background do
+    membership.member!
     switch_to_subdomain(group.subdomain)
     sign_in(user.email, "123456")
   end

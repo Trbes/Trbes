@@ -2,8 +2,7 @@ require "rails_helper"
 
 shared_examples_for "accessible favouriting" do
   background do
-    sign_in(user.email, "123456")
-    group.add_member(user, as: role)
+    membership.update_attributes(role: role)
     visit post_path(post)
   end
 
@@ -26,8 +25,7 @@ end
 
 shared_examples_for "inaccessible favouriting" do
   background do
-    sign_in(user.email, "123456")
-    group.add_member(user, as: role)
+    membership.update_attributes(role: role)
     visit post_path(post)
   end
 
@@ -45,17 +43,11 @@ shared_examples_for "inaccessible favouriting" do
 end
 
 feature "Favourite comment" do
-  let(:user) { create(:user, :confirmed) }
-  let(:group) { create(:group) }
+  include_context "group membership and authentication"
+
   let(:post) { create(:post, :text, :published, group: group) }
   let!(:favourited_comment) { create(:comment, :published, post: post, user: user, favourite: true) }
   let!(:unfavourited_comment) { create(:comment, :published, post: post, user: user, favourite: false) }
-
-  background do
-    switch_to_subdomain(group.subdomain)
-  end
-
-  after { switch_to_main }
 
   context "When I'm owner" do
     it_behaves_like "accessible favouriting" do
