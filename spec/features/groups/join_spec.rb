@@ -1,13 +1,17 @@
 require "rails_helper"
 
 feature "Join group" do
-  let!(:group) { create(:group) }
-  let(:user) { create(:user) }
+  include_context "group membership and authentication"
+
+  background do
+    sign_out
+    switch_to_main
+    sign_in(user.email, "123456")
+  end
 
   context "when I'm unconfirmed group member" do
     background do
-      group.add_member(user, as: :pending)
-      sign_in(user.email, "123456")
+      membership.pending!
       visit "/"
     end
 
@@ -20,6 +24,7 @@ feature "Join group" do
 
   context "when I'm not-signed-in visitor" do
     background do
+      sign_out
       visit "/"
     end
 
@@ -34,8 +39,7 @@ feature "Join group" do
 
   context "When I'm confirmed group member" do
     background do
-      group.add_member(user, as: :member)
-      sign_in(user.email, "123456")
+      membership.member!
       visit "/"
     end
 
@@ -51,7 +55,12 @@ feature "Join group" do
 
   context "When I'm signed in but not a group member" do
     background do
+      # TODO: Cleanup this if possible.
+      # Something related to sharing session between subdomains in test env.
+      membership.destroy
+      switch_to_subdomain(group.subdomain)
       sign_in(user.email, "123456")
+      switch_to_main
       visit "/"
     end
 

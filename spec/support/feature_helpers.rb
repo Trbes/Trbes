@@ -11,6 +11,10 @@ module FeatureHelpers
     click_button "Sign in"
   end
 
+  def sign_out
+    click_link "Sign out"
+  end
+
   def switch_to_subdomain(subdomain)
     Capybara.app_host = "http://#{subdomain}.#{DEFAULT_HOST}:#{DEFAULT_PORT}"
   end
@@ -51,9 +55,9 @@ RSpec.configure do |config|
 end
 
 shared_context "group membership and authentication" do
-  let(:membership) { create(:membership) }
-  let(:user) { membership.user }
-  let(:group) { membership.group }
+  let!(:membership) { create(:membership) }
+  let!(:user) { membership.user }
+  let!(:group) { membership.group }
 
   background do
     membership.member!
