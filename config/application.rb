@@ -7,8 +7,9 @@ Bundler.require(:default, Rails.env)
 module Trbes
   class Application < Rails::Application
     config.slim_options = {}
-    config.noreply = "noreply@fs-rails-base.heroku.com"
-    config.host = "localhost:5000"
+    config.noreply = ENV["NOREPLY_EMAIL"] || "noreply@trbes.com"
+    config.host = ENV["APP_HOST"] || "trbes.com"
+    config.action_dispatch.tld_length = ENV["TLD_LENGTH"] || 1
     config.active_record.raise_in_transactional_callbacks = true
 
     config.to_prepare do
