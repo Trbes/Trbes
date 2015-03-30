@@ -4,7 +4,7 @@ class MembershipsController < ApplicationController
   # rubocop:disable Metrics/AbcSize
   # TODO: Move this logic to #create action
   def new
-    redirect_to new_user_registration_url(subdomain: group.subdomain) and return unless user_signed_in?
+    redirect_to new_user_registration_url(subdomain: current_group.subdomain) and return unless user_signed_in?
 
     membership = Membership.new(group_id: current_group.id, user_id: current_user.id)
 
