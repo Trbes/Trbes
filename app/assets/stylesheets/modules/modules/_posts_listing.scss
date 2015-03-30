@@ -156,6 +156,7 @@ $post-right-min-width: $post-actions-min-width + $post-component-spacing + $post
       display: inline-block;
       padding-bottom: 2px;
       border-bottom: 1px dashed #a0a0a0;
+      max-width: 100%;
 
       .image-wrapper {
         height: 42px;
