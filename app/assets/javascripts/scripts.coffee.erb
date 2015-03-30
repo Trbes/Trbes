@@ -78,6 +78,8 @@ $ ->
     $(this).addClass("active").siblings().removeClass("active").
       closest("form").find("#collection_icon_class").val($(this).data("icon-class"))
 
+  ZeroClipboard.config
+    swfPath: "<%= asset_path('zeroclipboard/ZeroClipboard.swf') %>"
   zeroclip = new ZeroClipboard(document.getElementById('copy_invite_link'))
   zeroclip.on 'ready', (readyEvent) ->
     zeroclip.on 'aftercopy', (event) ->
