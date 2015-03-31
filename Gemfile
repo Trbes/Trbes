@@ -16,7 +16,7 @@ gem "jquery-ui-rails"
 gem "autoprefixer-rails"
 gem "therubyracer", platforms: :ruby
 gem "uglifier", ">= 1.3.0"
-gem "best_in_place", git: "https://github.com/airatshigapov/best_in_place", ref: "4a515a6"
+gem "best_in_place", git: "https://github.com/codynguyen/best_in_place", branch: "cross-browser-behaviour"
 
 gem "simple_form", "~> 3.1"
 gem "nested_form"
@@ -53,6 +53,7 @@ gem "omniauth-linkedin-oauth2"
 # Switch back to original version when patch gets merged
 gem "paranoia", git: "https://github.com/sergey-alekseev/paranoia", branch: "switch-to-rails-4-2"
 gem "rest-client", "~> 1.8.0"
+gem "mobile-fu"
 
 group :staging, :production do
   gem "airbrake"
@@ -63,6 +64,7 @@ end
 group :test do
   gem "capybara"
   gem "capybara-webkit"
+  gem "capybara-select2"
   gem "database_cleaner"
   gem "email_spec"
   gem "formulaic"
@@ -111,4 +113,5 @@ source "https://rails-assets.org" do
   gem "rails-assets-jquery-form"
   gem "rails-assets-humane"
   gem "rails-assets-zeroclipboard"
+  gem "rails-assets-select2"
 end

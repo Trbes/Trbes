@@ -23,4 +23,5 @@
 //= require best_in_place.jquery-ui
 //= require jquery_nested_form
 //= require zeroclipboard
+//= require select2
 //= require scripts

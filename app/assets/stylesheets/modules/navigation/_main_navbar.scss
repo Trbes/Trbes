@@ -140,6 +140,11 @@
     #more_group_members {
       .modal-body a.member {
         display: inline-block;
+        color: #777;
+
+        @include on_link_actions {
+          color: #333;
+        }
       }
     }
   }

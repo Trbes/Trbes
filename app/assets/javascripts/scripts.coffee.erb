@@ -4,9 +4,16 @@ $.validator.addMethod "subdomain", (value, element) ->
 , "* Invalid subdomain"
 
 
+
+
 # Document ready
 $ ->
   $('[data-toggle="tooltip"]').tooltip()
+
+  # Bind select2 to best_in_place select for consistent behaviour across browsers
+  $('body').on 'best_in_place:activate', '.best_in_place', ->
+    @update = ->
+    $(@).find('select').unbind('blur').select2(minimumResultsForSearch: -1, noFocus: true).select2("open")
 
   # Show favicon before external urls
   iconify_links()
@@ -78,6 +85,8 @@ $ ->
     $(this).addClass("active").siblings().removeClass("active").
       closest("form").find("#collection_icon_class").val($(this).data("icon-class"))
 
+  ZeroClipboard.config
+    swfPath: "<%= asset_path('zeroclipboard/ZeroClipboard.swf') %>"
   zeroclip = new ZeroClipboard(document.getElementById('copy_invite_link'))
   zeroclip.on 'ready', (readyEvent) ->
     zeroclip.on 'aftercopy', (event) ->

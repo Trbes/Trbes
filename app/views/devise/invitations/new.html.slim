@@ -68,13 +68,16 @@
         h4 More ways to invite your teammates
 
         .form-group.fg-invite-link
-          .input-group
-            span#copy_invite_link.input-group-addon[
-              data-clipboard-text=(join_url)
-              title="Click to copy invitation link." ]
-              i.fa.fa-link
-              | Copy Link
+          - if is_mobile_device? || is_tablet_device?
             input.form-control type="text" value=(join_url)
+          - else
+            .input-group
+              span#copy_invite_link.input-group-addon[
+                data-clipboard-text=(join_url)
+                title="Click to copy invitation link." ]
+                i.fa.fa-link
+                | Copy Link
+              input.form-control type="text" value=(join_url)
         a.btn.btn-social.btn-fill.btn-facebook.share-on-facebook[
           href="#"
           data-link=join_url

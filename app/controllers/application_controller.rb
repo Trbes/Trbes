@@ -1,6 +1,8 @@
 class ApplicationController < ActionController::Base
   include Pundit
 
+  has_mobile_fu false
+
   respond_to :html
 
   protect_from_forgery

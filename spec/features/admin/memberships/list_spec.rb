@@ -61,9 +61,15 @@ feature "List group members" do
   end
 
   scenario "I can change member role within members list", js: true do
-    within("#membership_#{membership.id}") do
-      bip_select(membership, "role", "moderator")
+    find("#membership_#{membership.id} .role-link").click
 
+    within("ul.select2-results") do
+      find("li div", text: /\Amoderator\z/).click
+    end
+
+    wait_for_ajax
+
+    within("#membership_#{membership.id}") do
       expect(page).to have_content("moderator")
       expect(membership.reload.role).to eq("moderator")
     end
