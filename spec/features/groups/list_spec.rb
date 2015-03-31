@@ -2,10 +2,12 @@ require "rails_helper"
 
 feature "Groups list" do
   let!(:group) { create(:group) }
-  let!(:post) { create(:post, :text, group: group) }
+  let!(:post) { create(:post, group: group) }
+  let(:posts_count) { 5 }
+  let(:extra_groups_count) { 20 }
 
   background do
-    create_list(:post, 20, :text, group: group)
+    create_list(:post, posts_count, :text, group: group)
     visit "/"
   end
 
@@ -20,12 +22,12 @@ feature "Groups list" do
 
   context "when there are too many groups" do
     background do
-      create_list(:group, 20)
+      create_list(:group, extra_groups_count)
       visit "/"
     end
 
     scenario "pagination happens" do
-      expect(page).to have_css(".group", count: 20)
+      expect(page).to have_css(".group", count: extra_groups_count)
 
       within(".pagination") do
         click_link "Next"
