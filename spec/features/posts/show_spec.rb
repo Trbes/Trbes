@@ -1,17 +1,13 @@
 require "rails_helper"
 
 feature "Single post page" do
-  let(:user) { create(:user, :confirmed) }
-  let(:group) { create(:group) }
-  let!(:post) { create(:post, :text, :published, group: group) }
+  include_context "group membership and authentication"
+
+  let!(:post) { create(:post, :text, group: group) }
 
   before(:each) do
-    switch_to_subdomain(group.subdomain)
-    sign_in(user.email, "123456")
     visit root_path
   end
-
-  after { switch_to_main }
 
   scenario "I visit single post page", js: true do
     within("#post_#{post.id}") do

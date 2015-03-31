@@ -1,23 +1,18 @@
 require "rails_helper"
 
 feature "Posts list" do
-  let(:user) { create(:user, :confirmed) }
-  let(:group) { create(:group) }
-  let!(:post) { create(:post, :text, :published, group: group) }
+  include_context "group membership and authentication"
+
+  let!(:post) { create(:post, group: group) }
 
   background do
-    switch_to_subdomain(group.subdomain)
-    group.users << user
-    sign_in(user.email, "123456")
     visit root_path
   end
-
-  after { switch_to_main }
 
   context "text post" do
     include ActionView::Helpers
 
-    let!(:post) { create(:post, :text, :published, group: group) }
+    let!(:post) { create(:post, :text, group: group) }
 
     scenario "I visit posts page" do
       within("#post_#{post.id}") do
@@ -28,7 +23,7 @@ feature "Posts list" do
   end
 
   context "link post" do
-    let!(:post) { create(:post, :link, :published, group: group) }
+    let!(:post) { create(:post, :link, group: group) }
 
     scenario "I visit posts page" do
       within("#post_#{post.id}") do
@@ -40,7 +35,7 @@ feature "Posts list" do
   end
 
   context "image post" do
-    let!(:post) { create(:post, :image, :published, group: group) }
+    let!(:post) { create(:post, :image, group: group) }
 
     scenario "I visit posts page" do
       within("#post_#{post.id}") do
@@ -77,7 +72,7 @@ feature "Posts list" do
 
   context "when there are too much posts" do
     background do
-      create_list(:post, 20, :text, :published, group: group)
+      create_list(:post, 20, group: group)
       visit root_path
     end
 
@@ -95,7 +90,7 @@ feature "Posts list" do
   describe "filtering" do
     let!(:collection) { create(:collection, :visible, group: group) }
     let!(:another_collection) { create(:collection, :visible, group: group) }
-    let!(:another_post) { create(:post, :text, :published, group: group) }
+    let!(:another_post) { create(:post, group: group) }
 
     background do
       post.collections << collection
@@ -146,7 +141,7 @@ feature "Posts list" do
     let!(:collection) { create(:collection, :visible, group: group) }
 
     background do
-      user.membership_for(group).member!
+      membership.member!
       visit root_path
     end
 
@@ -166,7 +161,7 @@ feature "Posts list" do
     let!(:collection) { create(:collection, :visible, group: group) }
 
     background do
-      user.membership_for(group).owner!
+      membership.owner!
       visit root_path
     end
 

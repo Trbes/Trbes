@@ -5,13 +5,12 @@ feature "Create post", js: true do
 
   context "when I'm approved member" do
     background do
-      user.membership_for(group).member!
       visit root_path
     end
 
     context "with valid data" do
       scenario "I post to group" do
-        create_link_post
+        create_post(:link)
 
         expect(user.posts.last.state).to eq("published")
       end
@@ -29,12 +28,12 @@ feature "Create post", js: true do
 
   context "when I'm pending member" do
     background do
-      user.membership_for(group).pending!
+      membership.pending!
       visit root_path
     end
 
     scenario "I post to group" do
-      create_link_post
+      create_post(:link)
 
       expect(user.posts.last.state).to eq("moderation")
     end
