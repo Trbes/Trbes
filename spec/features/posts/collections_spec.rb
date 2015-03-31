@@ -1,0 +1,71 @@
+require "rails_helper"
+
+feature "Posts list" do
+  include_context "group membership and authentication"
+
+  let!(:post) { create(:post, group: group) }
+
+  background do
+    visit root_path
+  end
+
+  context "when I'm usual member" do
+    let!(:collection) { create(:collection, :visible, group: group) }
+
+    background do
+      membership.member!
+      visit root_path
+    end
+
+    scenario "I can't see any collection-management-related controls on page" do
+      within("#post_#{post.id}") do
+        expect(page).not_to have_css(".add-to-collection")
+        expect(page).not_to have_css(".remove-from-collection")
+      end
+
+      page.find(".dropdown-toggle").click
+
+      expect(page).not_to have_content("Add Collection")
+    end
+  end
+
+  context "when I'm group owner" do
+    let!(:collection) { create(:collection, :visible, group: group) }
+
+    background do
+      membership.owner!
+      visit root_path
+    end
+
+    scenario "I can add post to collection", js: true do
+      within("#post_#{post.id}") do
+        page.find(".add-to-collection", visible: false).click
+      end
+
+      select(collection.name, from: "Select a collection")
+      click_button "Add"
+
+      within("#post_#{post.id}") do
+        expect(page).to have_css("#collection_#{collection.id}")
+      end
+
+      expect(post.reload.collections).to eq([collection])
+    end
+
+    scenario "I can remove post from collection" do
+      post.collections << collection
+
+      visit root_path
+
+      within("#post_#{post.id} #collection_#{collection.id}") do
+        page.find(".remove-from-collection").click
+      end
+
+      within("#post_#{post.id}") do
+        expect(page).not_to have_css("#collection_#{collection.id}")
+      end
+
+      expect(post.reload.collections).to be_empty
+    end
+  end
+end
