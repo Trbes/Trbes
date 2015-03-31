@@ -23,14 +23,25 @@ module FeatureHelpers
     Capybara.app_host = "http://#{DEFAULT_HOST}:#{DEFAULT_PORT}"
   end
 
-  def create_link_post
+  def create_post(type, options = {})
     page.find("#btn_add_post").click
 
-    expect(page).to have_content("POST TYPE: LINK")
+    expect(page).to have_content("POST TYPE: #{type.to_s.upcase}")
 
-    fill_in "Link", with: "http://sample-link.com"
-    fill_in "Title", with: "Long enough title"
-    fill_in "Tagline", with: "Tagline"
+    fill_in "Title", with: options[:title] || "Long enough title"
+
+    if type == :link
+      fill_in "Link", with: options[:link] || "http://sample-link.com"
+      fill_in "Tagline", with: options[:tagline] || "Tagline"
+    end
+
+    if type == :text
+      fill_in "Your Text", with: options[:text]
+    end
+
+    if type == :image
+      attach_file "Image", options[:file]
+    end
 
     click_button "Publish Post"
 
