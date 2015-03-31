@@ -15,7 +15,7 @@ class Comment < ActiveRecord::Base
   scope :root, -> { where(parent_comment_id: nil) }
   scope :favourite, -> { where(favourite: true) }
 
-  enum state: %i(moderation published)
+  enum state: %i(moderation published rejected)
 
   def root?
     parent_comment_id.nil?
