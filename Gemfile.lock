@@ -1,5 +1,5 @@
 GIT
-  remote: git://github.com/codynguyen/best_in_place.git
+  remote: https://github.com/codynguyen/best_in_place
   revision: 20411a75d83bdbbbb06f3a2ed9b405397e70f6c3
   branch: cross-browser-behaviour
   specs:
@@ -107,6 +107,9 @@ GEM
       rack (>= 1.0.0)
       rack-test (>= 0.5.4)
       xpath (~> 2.0)
+    capybara-select2 (0.0.8)
+      capybara
+      rspec
     capybara-webkit (1.4.1)
       capybara (>= 2.3.0, < 2.5.0)
       json
@@ -487,6 +490,7 @@ DEPENDENCIES
   bundler-audit
   byebug
   capybara
+  capybara-select2
   capybara-webkit
   carrierwave
   cloudinary

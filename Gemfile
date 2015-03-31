@@ -16,7 +16,7 @@ gem "jquery-ui-rails"
 gem "autoprefixer-rails"
 gem "therubyracer", platforms: :ruby
 gem "uglifier", ">= 1.3.0"
-gem "best_in_place", github: "codynguyen/best_in_place", branch: "cross-browser-behaviour"
+gem "best_in_place", git: "https://github.com/codynguyen/best_in_place", branch: "cross-browser-behaviour"
 
 gem "simple_form", "~> 3.1"
 gem "nested_form"
@@ -64,6 +64,7 @@ end
 group :test do
   gem "capybara"
   gem "capybara-webkit"
+  gem "capybara-select2"
   gem "database_cleaner"
   gem "email_spec"
   gem "formulaic"
