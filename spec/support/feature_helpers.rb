@@ -23,29 +23,33 @@ module FeatureHelpers
     Capybara.app_host = "http://#{DEFAULT_HOST}:#{DEFAULT_PORT}"
   end
 
-  def create_post(type, options = {})
+  def create_post(post_type, options = {})
     page.find("#btn_add_post").click
+    expect(page).to have_content("POST TYPE: #{post_type.to_s.upcase}")
 
-    expect(page).to have_content("POST TYPE: #{type.to_s.upcase}")
-
-    fill_in "Title", with: options[:title] || "Long enough title"
-
-    if type == :link
-      fill_in "Link", with: options[:link] || "http://sample-link.com"
-      fill_in "Tagline", with: options[:tagline] || "Tagline"
-    end
-
-    if type == :text
-      fill_in "Your Text", with: options[:text]
-    end
-
-    if type == :image
-      attach_file "Image", options[:file]
-    end
-
+    fill_in_post_fields(post_type, options)
     click_button "Publish Post"
 
     expect(page).to have_content("Long enough title")
+  end
+
+  def fill_in_post_fields(post_type, options)
+    fill_in "Title", with: options[:title] || "Long enough title"
+
+    public_send("fill_#{post_type}_post_fields", options)
+  end
+
+  def fill_link_post_fields(options)
+    fill_in "Link", with: options[:link] || "http://sample-link.com"
+    fill_in "Tagline", with: options[:tagline] || "Tagline"
+  end
+
+  def fill_text_post_fields(options)
+    fill_in "Your Text", with: options[:text]
+  end
+
+  def fill_image_post_fields(options)
+    attach_file "Image", options[:file]
   end
 end
 
