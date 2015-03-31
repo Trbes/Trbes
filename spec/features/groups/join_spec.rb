@@ -1,11 +1,11 @@
 require "rails_helper"
 
 feature "Join group" do
-  include_context "group membership and authentication"
+  let!(:membership) { create(:membership) }
+  let!(:user) { membership.user }
+  let!(:group) { membership.group }
 
   background do
-    sign_out
-    switch_to_main
     sign_in(user.email, "123456")
   end
 
@@ -55,12 +55,7 @@ feature "Join group" do
 
   context "When I'm signed in but not a group member" do
     background do
-      # TODO: Cleanup this if possible.
-      # Something related to sharing session between subdomains in test env.
       membership.destroy
-      switch_to_subdomain(group.subdomain)
-      sign_in(user.email, "123456")
-      switch_to_main
       visit "/"
     end
 
@@ -74,7 +69,7 @@ feature "Join group" do
       expect(page).to have_content(group.name)
 
       expect(group.memberships).to include(user.membership_for(group))
-      expect(user.membership_for(group).role).to eq("pending")
+      expect(membership.role).to eq("pending")
     end
   end
 end
