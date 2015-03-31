@@ -1,10 +1,9 @@
 require "rails_helper"
 
 feature "Update account with valid data" do
-  let(:user) { create :user, :confirmed }
+  include_context "group membership and authentication"
 
-  before(:each) do
-    sign_in(user.email, "123456")
+  background do
     visit edit_user_registration_path(user)
   end
 
