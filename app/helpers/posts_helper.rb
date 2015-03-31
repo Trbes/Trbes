@@ -61,6 +61,17 @@ module PostsHelper
     post_type.to_s.gsub("_post", "")
   end
 
+  def post_states_options
+    {
+      "Active" => "all",
+      "All" => "with_deleted",
+      "Pending" => "pending",
+      "Rejected" => "rejected",
+      "Moderation" => "moderation",
+      "Deleted" => "deleted"
+    }
+  end
+
   # rubocop:disable Metrics/AbcSize, Metrics/CyclomaticComplexity, Metrics/MethodLength
   def short_time_distance_string(time)
     a = (Time.now - time).to_i
