@@ -4,9 +4,16 @@ $.validator.addMethod "subdomain", (value, element) ->
 , "* Invalid subdomain"
 
 
+
+
 # Document ready
 $ ->
   $('[data-toggle="tooltip"]').tooltip()
+
+  # Bind select2 to best_in_place select for consistent behaviour across browsers
+  $('body').on 'best_in_place:activate', '.best_in_place', ->
+    @update = ->
+    $(@).find('select').unbind('blur').select2().select2("open")
 
   # Show favicon before external urls
   iconify_links()

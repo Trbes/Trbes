@@ -1,7 +1,7 @@
 GIT
-  remote: https://github.com/airatshigapov/best_in_place
-  revision: 4a515a6c5b1c332481ad90e703786f09068193a4
-  ref: 4a515a6
+  remote: git://github.com/codynguyen/best_in_place.git
+  revision: 20411a75d83bdbbbb06f3a2ed9b405397e70f6c3
+  branch: cross-browser-behaviour
   specs:
     best_in_place (3.0.3)
       actionpack (>= 3.2)
@@ -323,6 +323,8 @@ GEM
     rails-assets-modernizr (2.8.3)
     rails-assets-respond (1.4.2)
     rails-assets-sassy-maps (0.4.0)
+    rails-assets-select2 (3.5.2)
+      rails-assets-jquery (>= 1.7.1)
     rails-assets-webhostinghub-glyphs (0.1.3)
     rails-assets-zeroclipboard (2.2.0)
     rails-deprecated_sanitizer (1.0.3)
@@ -536,6 +538,7 @@ DEPENDENCIES
   rails-assets-jquery-validation!
   rails-assets-modernizr!
   rails-assets-respond!
+  rails-assets-select2!
   rails-assets-webhostinghub-glyphs!
   rails-assets-zeroclipboard!
   rails_12factor

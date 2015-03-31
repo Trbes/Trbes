@@ -16,7 +16,7 @@ gem "jquery-ui-rails"
 gem "autoprefixer-rails"
 gem "therubyracer", platforms: :ruby
 gem "uglifier", ">= 1.3.0"
-gem "best_in_place", git: "https://github.com/airatshigapov/best_in_place", ref: "4a515a6"
+gem "best_in_place", github: "codynguyen/best_in_place", branch: "cross-browser-behaviour"
 
 gem "simple_form", "~> 3.1"
 gem "nested_form"
@@ -112,4 +112,5 @@ source "https://rails-assets.org" do
   gem "rails-assets-jquery-form"
   gem "rails-assets-humane"
   gem "rails-assets-zeroclipboard"
+  gem "rails-assets-select2"
 end
