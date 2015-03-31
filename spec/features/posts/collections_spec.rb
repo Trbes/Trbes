@@ -1,6 +1,6 @@
 require "rails_helper"
 
-feature "Posts list" do
+feature "Manage posts and collections" do
   include_context "group membership and authentication"
 
   let!(:post) { create(:post, group: group) }
