@@ -1,11 +1,13 @@
 require "rails_helper"
 
 feature "Sidebar" do
-  let!(:group) { create(:group) }
+  include_context "group membership and authentication"
+
+  background do
+    visit root_path
+  end
 
   scenario "Search for groups", js: true do
-    visit "/"
-
     page.find(".navbar-brand").click
 
     within(".tt-dropdown-menu", visible: false) do
@@ -20,8 +22,13 @@ feature "Sidebar" do
   end
 
   context "Non-logged-in User" do
+    background do
+      click_link user.full_name
+      click_link "Sign out"
+    end
+
     scenario "Open the sidebar", js: true do
-      visit "/"
+      visit root_path
 
       page.find(".navbar-brand").click
 
@@ -34,15 +41,10 @@ feature "Sidebar" do
   end
 
   context "Logged-in User" do
-    let(:user) { create(:user, :confirmed) }
     let!(:other_group) { create(:group) }
-    background do
-      group.add_member(user, as: "member")
-      sign_in(user.email, "123456")
-    end
 
     scenario "Open the sidebar", js: true do
-      visit "/"
+      visit root_path
 
       page.find(".navbar-brand").click
 
