@@ -1,14 +1,14 @@
 FactoryGirl.define do
   factory :post do
+    post_type :link_post
+    link { Faker::Internet.url }
     title { Faker::Hacker.say_something_smart[0..99] }
     body { Faker::Lorem.paragraph(10) }
 
     group
     user
 
-    trait :published do
-      state :published
-    end
+    state :published
 
     trait :text do
       post_type :text_post

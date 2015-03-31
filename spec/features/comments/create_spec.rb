@@ -1,18 +1,13 @@
 require "rails_helper"
 
 feature "Post a comment" do
-  let(:user) { create(:user, :confirmed) }
-  let(:group) { create(:group) }
-  let!(:post) { create(:post, :text, group: group) }
+  include_context "group membership and authentication"
+
+  let!(:post) { create(:post, group: group) }
 
   background do
-    switch_to_subdomain(group.subdomain)
-    group.add_member(user, as: :member)
-    sign_in(user.email, "123456")
     visit post_path(post)
   end
-
-  after { switch_to_main }
 
   def create_comment
     within "#new_comment" do
@@ -35,7 +30,7 @@ feature "Post a comment" do
   end
 
   context "when there are existing comments" do
-    let!(:comment) { create(:comment, :published, post: post, user: user) }
+    let!(:comment) { create(:comment, post: post, user: user) }
 
     background do
       visit post_path(post)
@@ -58,7 +53,7 @@ feature "Post a comment" do
 
   context "when I'm approved member" do
     background do
-      user.membership_for(group).member!
+      membership.member!
       visit post_path(post)
     end
 
@@ -71,7 +66,7 @@ feature "Post a comment" do
 
   context "when I'm pending member" do
     background do
-      user.membership_for(group).pending!
+      membership.pending!
       visit post_path(post)
     end
 

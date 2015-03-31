@@ -1,11 +1,7 @@
 require "rails_helper"
 
 feature "Cancel account" do
-  let(:user) { create :user, :confirmed }
-
-  before(:each) do
-    sign_in(user.email, "123456")
-  end
+  include_context "group membership and authentication"
 
   scenario "I cancel my account", js: true do
     visit edit_user_registration_path(user)

@@ -41,21 +41,13 @@ shared_examples_for "not deletable post" do
 end
 
 feature "Delete post" do
-  let(:user) { create(:user, :confirmed) }
-  let(:group) { create(:group) }
-  let!(:post) { create(:post, :published, :text, group: group) }
+  include_context "group membership and authentication"
 
-  background do
-    switch_to_subdomain(group.subdomain)
-    sign_in(user.email, "123456")
-    group.users << user
-  end
-
-  after { switch_to_main }
+  let!(:post) { create(:post, group: group) }
 
   context "when I'm owner" do
     background do
-      user.membership_for(group).owner!
+      membership.owner!
     end
 
     it_behaves_like "deletable post"
@@ -63,7 +55,7 @@ feature "Delete post" do
 
   context "when I'm moderator" do
     background do
-      user.membership_for(group).moderator!
+      membership.moderator!
     end
 
     it_behaves_like "deletable post"
@@ -71,7 +63,7 @@ feature "Delete post" do
 
   context "when I'm member" do
     background do
-      user.membership_for(group).member!
+      membership.member!
     end
 
     context "when I'm not post author" do
@@ -93,7 +85,7 @@ feature "Delete post" do
 
   context "when I'm pending member" do
     background do
-      user.membership_for(group).pending!
+      membership.pending!
     end
 
     it_behaves_like "not deletable post"

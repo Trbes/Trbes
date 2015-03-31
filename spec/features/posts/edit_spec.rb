@@ -29,15 +29,9 @@ shared_examples_for "editable posts" do
 end
 
 feature "Edit post" do
-  let(:user) { create(:user, :confirmed) }
-  let(:group) { create(:group) }
-  let(:post) { create(:post, :published, :text, group: group) }
+  include_context "group membership and authentication"
 
-  background do
-    switch_to_subdomain(group.subdomain)
-    sign_in(user.email, "123456")
-    group.add_member(user, as: :member)
-  end
+  let(:post) { create(:post, group: group) }
 
   context "when post is available for edit" do
     before do
@@ -76,7 +70,7 @@ feature "Edit post" do
 
     context "when I'm group moderator" do
       background do
-        user.membership_for(group).moderator!
+        membership.moderator!
       end
 
       it_behaves_like "editable posts"
@@ -84,7 +78,7 @@ feature "Edit post" do
 
     context "when I'm group owner" do
       background do
-        user.membership_for(group).owner!
+        membership.owner!
       end
 
       it_behaves_like "editable posts"

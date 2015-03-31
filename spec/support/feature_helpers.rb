@@ -11,6 +11,10 @@ module FeatureHelpers
     click_button "Sign in"
   end
 
+  def sign_out
+    click_link "Sign out"
+  end
+
   def switch_to_subdomain(subdomain)
     Capybara.app_host = "http://#{subdomain}.#{DEFAULT_HOST}:#{DEFAULT_PORT}"
   end
@@ -19,18 +23,33 @@ module FeatureHelpers
     Capybara.app_host = "http://#{DEFAULT_HOST}:#{DEFAULT_PORT}"
   end
 
-  def create_link_post
+  def create_post(post_type, options = {})
     page.find("#btn_add_post").click
+    expect(page).to have_content("POST TYPE: #{post_type.to_s.upcase}")
 
-    expect(page).to have_content("POST TYPE: LINK")
-
-    fill_in "Link", with: "http://sample-link.com"
-    fill_in "Title", with: "Long enough title"
-    fill_in "Tagline", with: "Tagline"
-
+    fill_in_post_fields(post_type, options)
     click_button "Publish Post"
 
     expect(page).to have_content("Long enough title")
+  end
+
+  def fill_in_post_fields(post_type, options)
+    fill_in "Title", with: options[:title] || "Long enough title"
+
+    public_send("fill_#{post_type}_post_fields", options)
+  end
+
+  def fill_link_post_fields(options)
+    fill_in "Link", with: options[:link] || "http://sample-link.com"
+    fill_in "Tagline", with: options[:tagline] || "Tagline"
+  end
+
+  def fill_text_post_fields(options)
+    fill_in "Your Text", with: options[:text]
+  end
+
+  def fill_image_post_fields(options)
+    attach_file "Image", options[:file]
   end
 end
 
@@ -51,11 +70,12 @@ RSpec.configure do |config|
 end
 
 shared_context "group membership and authentication" do
-  let(:membership) { create(:membership) }
-  let(:user) { membership.user }
-  let(:group) { membership.group }
+  let!(:membership) { create(:membership) }
+  let!(:user) { membership.user }
+  let!(:group) { membership.group }
 
   background do
+    membership.member!
     switch_to_subdomain(group.subdomain)
     sign_in(user.email, "123456")
   end

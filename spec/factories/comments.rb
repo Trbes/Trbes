@@ -6,8 +6,6 @@ FactoryGirl.define do
     post
     user
 
-    trait :published do
-      state :published
-    end
+    state :published
   end
 end

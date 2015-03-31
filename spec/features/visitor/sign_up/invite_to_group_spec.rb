@@ -1,17 +1,10 @@
 require "rails_helper"
 
 feature "Invite to group" do
-  let(:user) { create(:user) }
-  let(:group) { create(:group) }
+  include_context "group membership and authentication"
 
   context "Non-owner" do
-    after do
-      switch_to_main
-    end
-
     scenario "User goes to invite page" do
-      switch_to_subdomain(group.subdomain)
-      sign_in(user.email, "123456")
       visit new_invitation_path
 
       expect(page.current_path).to eql root_path
@@ -20,14 +13,9 @@ feature "Invite to group" do
 
   context "Owner", job: true do
     before(:each) do
-      group.add_member(user, as: :owner)
-      switch_to_subdomain(group.subdomain)
-      sign_in(user.email, "123456")
-      visit new_invitation_path
-    end
+      membership.owner!
 
-    after(:each) do
-      switch_to_main
+      visit new_invitation_path
     end
 
     scenario "User goes to invite page" do
@@ -81,19 +69,13 @@ feature "Invite to group" do
     let(:invited_user_attributes) { attributes_for(:user, email: "invited@example.com") }
 
     before(:each) do
-      group.add_member(user, as: :owner)
-      switch_to_subdomain(group.subdomain)
-      sign_in(user.email, "123456")
+      membership.owner!
       visit new_invitation_path
       find("#fiv_emails").set(invited_user_attributes[:email])
       click_button "Send Invitation"
 
       # Clear cookies to sign-out current user (to do invited user tests)
       clear_cookies
-    end
-
-    after do
-      switch_to_main
     end
 
     scenario "User confirms invitation" do
