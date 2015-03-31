@@ -45,9 +45,9 @@ end
 feature "Favourite comment" do
   include_context "group membership and authentication"
 
-  let(:post) { create(:post, :text, :published, group: group) }
-  let!(:favourited_comment) { create(:comment, :published, post: post, user: user, favourite: true) }
-  let!(:unfavourited_comment) { create(:comment, :published, post: post, user: user, favourite: false) }
+  let(:post) { create(:post, group: group) }
+  let!(:favourited_comment) { create(:comment, post: post, user: user, favourite: true) }
+  let!(:unfavourited_comment) { create(:comment, post: post, user: user, favourite: false) }
 
   context "When I'm owner" do
     it_behaves_like "accessible favouriting" do

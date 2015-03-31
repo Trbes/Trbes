@@ -3,7 +3,7 @@ require "rails_helper"
 feature "Post a comment" do
   include_context "group membership and authentication"
 
-  let!(:post) { create(:post, :text, group: group) }
+  let!(:post) { create(:post, group: group) }
 
   background do
     visit post_path(post)
@@ -30,7 +30,7 @@ feature "Post a comment" do
   end
 
   context "when there are existing comments" do
-    let!(:comment) { create(:comment, :published, post: post, user: user) }
+    let!(:comment) { create(:comment, post: post, user: user) }
 
     background do
       visit post_path(post)

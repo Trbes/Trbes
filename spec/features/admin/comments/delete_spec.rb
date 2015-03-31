@@ -3,8 +3,8 @@ require "rails_helper"
 feature "Delete comment from admin section" do
   include_context "group membership and authentication"
 
-  let(:post) { create(:post, :published, group: group) }
-  let!(:comment) { create(:comment, :published, post: post) }
+  let(:post) { create(:post, group: group) }
+  let!(:comment) { create(:comment, post: post) }
 
   before do
     membership.owner!

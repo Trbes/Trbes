@@ -3,7 +3,7 @@ require "rails_helper"
 feature "Delete post from admin section" do
   include_context "group membership and authentication"
 
-  let!(:post) { create(:post, :published, group: group) }
+  let!(:post) { create(:post, group: group) }
 
   before do
     membership.owner!

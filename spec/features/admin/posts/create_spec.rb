@@ -11,7 +11,7 @@ feature "Create post", js: true do
 
     context "with valid data" do
       scenario "I post to group" do
-        create_link_post
+        create_post(:link)
 
         expect(user.posts.last.state).to eq("published")
       end
