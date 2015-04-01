@@ -9,7 +9,7 @@ module Trbes
     config.slim_options = {}
     config.noreply = ENV["NOREPLY_EMAIL"] || "noreply@trbes.com"
     config.host = ENV["APP_HOST"] || "trbes.com"
-    config.action_dispatch.tld_length = ENV["TLD_LENGTH"].to_i || 1
+    config.action_dispatch.tld_length = [ENV["TLD_LENGTH"].to_i, 1].max
     config.active_record.raise_in_transactional_callbacks = true
 
     config.to_prepare do

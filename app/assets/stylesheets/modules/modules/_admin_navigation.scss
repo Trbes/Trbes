@@ -5,6 +5,12 @@
   width: 138px;
   position: relative;
 
+  @include breakpoint(0 ($screen-md - 1)) {
+    display: inline-block;
+    vertical-align: bottom;
+    margin-right: 6px;
+  }
+
   &:hover {
     border-color: #ddd;
     color: #3ea8db;

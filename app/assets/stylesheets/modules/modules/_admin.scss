@@ -1,5 +1,57 @@
-.admin-column {
-  padding-left: 0;
+.admin-panel {
+  display: table;
+  width: 100%;
+
+  @include breakpoint(0 ($screen-md - 1)) {
+    display: block;
+  }
+}
+
+.admin-panel-left {
+  display: table-cell;
+  width: 138px;
+
+  @include breakpoint(0 ($screen-md - 1)) {
+    display: block;
+    width: auto;
+  }
+}
+
+.admin-panel-main {
+  display: table-cell;
+  padding-left: 40px;
+  vertical-align: top;
+
+  @include breakpoint(0 ($screen-md - 1)) {
+    display: block;
+    padding-left: 0;
+  }
+}
+
+.admin-panel-right {
+  display: table-cell;
+  width: 220px;
+  padding-left: 40px;
+  vertical-align: top;
+
+  @include breakpoint(0 ($screen-lg - 1)) {
+    width: 160px;
+    padding-left: 20px;
+  }
+
+  @include breakpoint(0 ($screen-md - 1)) {
+    width: auto;
+    padding-left: 0;
+    margin-top: 20px;
+    display: block;
+  }
+
+  &.blank {
+    @include breakpoint(0 ($screen-lg - 1)) {
+      width: 180px;
+      padding-left: 20px;
+    }
+  }
 }
 
 .admin {
