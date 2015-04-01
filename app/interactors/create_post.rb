@@ -2,17 +2,21 @@ class CreatePost
   include Interactor
 
   def call
-    context.post = create_post
+    create_post
 
-    return unless context.success?
+    if context.post.valid?
+      set_success_message
+    else
+      set_failure_message
 
-    set_message
+      context.fail!
+    end
   end
 
   private
 
   def create_post
-    Post.create(
+    context.post = Post.create(
       attributes.merge(
         user: context.current_user,
         group: context.current_group,
@@ -26,7 +30,11 @@ class CreatePost
     context.current_user.membership_for(context.current_group).pending?
   end
 
-  def set_message
+  def set_failure_message
+    context.message = context.post.errors.full_messages.join(". ")
+  end
+
+  def set_success_message
     context.message = if pending_membership
       I18n.t("app.post.message.success_pending", title: context.post.title)
     else
