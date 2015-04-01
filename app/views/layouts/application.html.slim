@@ -24,6 +24,7 @@ html class="no-js" lang="en"
 
     = include_gon
 
+  - content_for(:extra_body_classes, 'no-group') unless current_group
   body[class=body_class]
     #root
       = render "navigation"
