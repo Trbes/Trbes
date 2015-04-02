@@ -22,23 +22,28 @@ class window.SignUp
     check_and_point_to_class = @_check_and_point_to_class
     @$container.validate
       rules:
-        email:
+        "user[email]":
           required: true
           email: true
-        name:
+          remote:
+            url: "/validate_email"
+            type: "post"
+        "user[name]":
           minlength: 5
           required: true
         # title:
         #   minlength: 2
-        password:
+        "user[password]":
           minlength: 8
           required: true
+      messages:
+        "user[email]":
+          required: "Please enter your email address"
 
       highlight: (element) ->
         $(element).
           closest(".form-group").removeClass("has-feedback has-success").addClass("has-feedback has-error").
           find(".form-control-feedback").removeClass("fa-check-circle").addClass("fa-times-circle")
-
         $("#su_cody").addClass("has-error")
 
       success: (element) ->

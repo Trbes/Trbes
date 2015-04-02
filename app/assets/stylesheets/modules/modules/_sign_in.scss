@@ -127,14 +127,6 @@
         margin-right: auto;
       }
     }
-
-    // @include breakpoint(0 320px) {
-    //   &.fg-si-password {
-    //     .form-control-feedback {
-    //       margin-top: 28px;
-    //     }
-    //   }
-    // }
   }
 
   @include breakpoint(0 $screen-sm - 1) {

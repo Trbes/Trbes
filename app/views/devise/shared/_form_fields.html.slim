@@ -23,7 +23,9 @@
                     readonly: true,
                     disabled: true,
                     data: { point_to_class: "point-to-email" } }
+
   span.fa.fa-check-circle.form-control-feedback aria-hidden="true"
+
   p.help-block
     | If you prefer, you can sign up with:
     br
@@ -85,3 +87,10 @@
     input type="checkbox" data-toggle="checkbox"
     | Show my password
 = f.button :submit, t("app.user.sign_up.link"), class: "btn btn-success btn-lg btn-fill btn-sign-up"
+
+- if f.object.errors.any?
+  - content_for(:javascripts) do
+    coffee:
+      $ ->
+        $("form.su-form").valid()
+
