@@ -27,13 +27,10 @@ class PostsController < ApplicationController
       attributes: post_attributes,
       current_group: current_group,
       current_user: current_user,
-      allow_publish: policy(Post).publish?)
+      allow_publish: policy(Post).publish?
+    )
 
-    if result.success?
-      redirect_to root_url(subdomain: current_group.subdomain), flash: { success: result.message }
-    else
-      render :new
-    end
+    redirect_to root_url(subdomain: current_group.subdomain), flash: { notice: result.message }
   end
 
   def destroy

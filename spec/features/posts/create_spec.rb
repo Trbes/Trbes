@@ -17,11 +17,31 @@ feature "Create post", js: true do
     end
 
     context "with invalid data" do
-      scenario "I can't post to group" do
-        page.find("#btn_add_post").click
-        click_button "Publish Post"
+      context "no fields are filled" do
+        scenario "I can't post to group" do
+          page.find("#btn_add_post").click
+          click_button "Publish Post"
 
-        expect(page).to have_content("This field is required.")
+          expect(page).to have_content("This field is required.")
+        end
+      end
+
+      context "trying to add not allowed post type" do
+        scenario "I can't post to group" do
+          page.find("#btn_add_post").click
+          page.find("#select_post_type").click
+          page.find(".toggle-post-type", text: "Text").click
+
+          fill_in "Title", with: "Long enough title"
+          fill_in "Your Text", with: "Text"
+
+          group.update_attributes(allow_text_posts: false)
+
+          click_button "Publish Post"
+
+          expect(page).to have_content("Post type is not included in the list")
+          expect(user.posts).to be_empty
+        end
       end
     end
   end

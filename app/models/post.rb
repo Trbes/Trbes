@@ -27,6 +27,8 @@ class Post < ActiveRecord::Base
   validates :body, presence: true, if: proc { |p| p.text_post? }
   validates :link, presence: true, if: proc { |p| p.link_post? }
 
+  validates :post_type, inclusion: { in: proc { |post| post.group.allowed_post_types } }
+
   delegate :full_name, :avatar, :title, to: :user, prefix: true
 
   before_save :set_hot_rank
