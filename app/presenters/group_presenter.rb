@@ -8,7 +8,8 @@ class GroupPresenter < BasePresenter
   end
 
   def memberships_count_modal_link
-    h.link_to h.pluralize(@model.memberships_count, "member"), "#", data: { toggle: "modal", target: "#all_group_#{@model.id}members" }
+    h.link_to h.pluralize(@model.memberships_count, "member"), "#",
+      data: { toggle: "modal", target: "#all_group_#{@model.id}_members" }
   end
 
   def posts_count_link

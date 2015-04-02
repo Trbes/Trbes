@@ -55,7 +55,7 @@
                 |  #{group.memberships_count_modal_link} • #{group.posts_count_link}
 
                 = render "groups/memberships_modal",
-                  modal_id: "all_group_#{group.id}members",
+                  modal_id: "all_group_#{group.id}_members",
                   group_memberships: group.memberships,
                   group: group
             .group-actions
