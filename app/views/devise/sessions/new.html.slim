@@ -19,7 +19,7 @@
           | Sign in to Share and Participate on our community.
 
     .si-body
-      #si_cody
+      #si_cody[class=("has-error" if flash[:error].present? || flash[:alert].present?)]
       = simple_form_for resource,
         as: resource_name,
         url: session_path(resource_name),
