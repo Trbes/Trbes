@@ -5,7 +5,6 @@ class MembershipsController < ApplicationController
   def create
     membership.group = current_group
     membership.user = current_user
-    membership.save
 
     if membership.save
       flash[:success] = t("app.membership.message.join.success")
