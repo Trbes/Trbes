@@ -28,6 +28,7 @@
       - group_memberships.limit(Group::VISIBLE_MEMBERS_COUNT).each do |membership|
         a.group-member>[
           href="javascript:void(0)"
+          id=dom_id(membership)
           data-toggle="popover"
           data-html="true"
           data-placement="bottom"
@@ -55,6 +56,7 @@
                 - group_memberships.each do |membership|
                   a.member[
                     href="#"
+                    id=dom_id(membership)
                     data-toggle="popover"
                     data-html="true"
                     data-placement="bottom"

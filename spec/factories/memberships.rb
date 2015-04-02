@@ -1,6 +1,6 @@
 FactoryGirl.define do
   factory :membership do
-    user
+    association :user, factory: [:user, :confirmed]
     group
   end
 end
