@@ -27,7 +27,10 @@
       - if user_signed_in?
         | This group is empty.
         br
-        a.btn.btn-success.btn-fill.btn-lg.btn-add-post href="#" data-toggle="modal" data-target="#add_a_post" Write Something
+        - if current_user.membership_for(current_group)
+          a.btn.btn-success.btn-fill.btn-lg.btn-add-post href="#" data-toggle="modal" data-target="#add_a_post" Write Something
+        - else
+          a.btn.btn-success.btn-fill.btn-lg.btn-add-post href=join_url(subdomain: current_group.subdomain) Join to Write
       - else
         em> Sign up
         | to join the discussions.
