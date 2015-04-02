@@ -25,7 +25,7 @@
                 a href=(new_invitation_path) role="menuitem" tabindex="-1"  Invite
     .group-desc= current_group.tagline
     .group-members
-      - (group_memberships = current_group.memberships.not_pending).limit(Group::VISIBLE_MEMBERS_COUNT).each do |membership|
+      - group_memberships.limit(Group::VISIBLE_MEMBERS_COUNT).each do |membership|
         a.group-member>[
           href="javascript:void(0)"
           data-toggle="popover"
