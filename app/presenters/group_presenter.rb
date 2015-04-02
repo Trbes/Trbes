@@ -12,7 +12,7 @@ class GroupPresenter < BasePresenter
   end
 
   def posts_count_link
-    h.link_to h.pluralize(@model.posts_count, "post"), "#"
+    h.link_to h.pluralize(@model.posts_count, "post"), h.group_url(@model)
   end
 
   def privacy_type
