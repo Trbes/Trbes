@@ -7,6 +7,10 @@ class GroupPresenter < BasePresenter
     h.link_to h.pluralize(@model.memberships_count, "member"), h.admin_memberships_url(subdomain: @model.subdomain)
   end
 
+  def memberships_count_modal_link
+    h.link_to h.pluralize(@model.memberships_count, "member"), "#", data: { toggle: "modal", target: "#all_group_#{@model.id}members" }
+  end
+
   def posts_count_link
     h.link_to h.pluralize(@model.posts_count, "post"), "#"
   end
