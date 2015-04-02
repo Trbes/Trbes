@@ -31,4 +31,8 @@
 
   = render "navigation_main_slide_menu"
 
+- if current_membership && current_membership.pending?
+  .alert.alert-info
+    .container
+      'Request to join group pending approval.
 = render "posts/add_a_post", post: Post.new if current_group
