@@ -17,7 +17,7 @@ feature "List group members" do
     expect(page).to have_css(".membership", count: memberships.count + 1)
 
     memberships.each do |membership|
-      within("#membership_#{membership.id}") do
+      within("section.memberships #membership_#{membership.id}") do
         expect(page).to have_content(membership.full_name)
         expect(page).to have_content(membership.role)
         expect(page).to have_link("remove from group")
@@ -38,14 +38,14 @@ feature "List group members" do
     scenario "I can filter members by their membership type", js: true do
       select "Moderator", from: "[filter]"
 
-      within(".memberships") do
+      within("section.memberships") do
         expect(page).to have_css("#membership_#{moderator.id}")
         expect(page).not_to have_css("#membership_#{pending.id}")
       end
 
       select "Pending", from: "[filter]"
 
-      within(".memberships") do
+      within("section.memberships") do
         expect(page).to have_css("#membership_#{pending.id}")
         expect(page).not_to have_css("#membership_#{moderator.id}")
       end
@@ -53,7 +53,7 @@ feature "List group members" do
   end
 
   scenario "I can remove member from group" do
-    within("#membership_#{memberships.first.id}") do
+    within("section.memberships #membership_#{memberships.first.id}") do
       expect {
         click_link("remove from group")
       }.to change { Membership.count }.by(-1)
@@ -61,7 +61,7 @@ feature "List group members" do
   end
 
   scenario "I can change member role within members list", js: true do
-    find("#membership_#{membership.id} .role-link").click
+    find("section.memberships #membership_#{membership.id} .role-link").click
 
     within("ul.select2-results") do
       find("li div", text: /\Amoderator\z/).click
@@ -69,7 +69,7 @@ feature "List group members" do
 
     wait_for_ajax
 
-    within("#membership_#{membership.id}") do
+    within("section.memberships #membership_#{membership.id}") do
       expect(page).to have_content("moderator")
       expect(membership.reload.role).to eq("moderator")
     end

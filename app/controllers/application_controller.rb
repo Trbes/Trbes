@@ -12,6 +12,7 @@ class ApplicationController < ActionController::Base
   before_action :push_algolia_config, :push_env_config, :push_indexes, :ensure_email_is_exists
 
   expose(:groups)
+  expose(:group_memberships) { current_group.memberships.joins(:user).confirmed.not_pending }
 
   helper_method :current_group
   def current_group
