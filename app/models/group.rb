@@ -13,9 +13,9 @@ class Group < ActiveRecord::Base
 
   validates :name, :subdomain, presence: true, uniqueness: true
   validates :subdomain, subdomain: true
-  validates :custom_domain, domain: true, allow_nil: true
+  validates :custom_domain, domain: true, uniqueness: true, allow_nil: true, allow_blank: true
 
-  normalize_attributes :name, :description, :subdomain, :tagline
+  normalize_attributes :name, :description, :subdomain, :custom_domain, :tagline
 
   has_one :logo, as: :attachable, class_name: "Attachment"
   accepts_nested_attributes_for :logo, update_only: true

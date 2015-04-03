@@ -22,6 +22,13 @@ describe Group do
       expect(build(:group, subdomain: "speci@l")).not_to be_valid
       expect(build(:group, subdomain: "normal")).to be_valid
     end
+
+    it "should have a valid custom domain" do
+      expect(build(:group, custom_domain: "http://with-http.com")).not_to be_valid
+      expect(build(:group, custom_domain: "with-space .com")).not_to be_valid
+      expect(build(:group, custom_domain: "invalid.12")).not_to be_valid
+      expect(build(:group, custom_domain: "valid-domain.com")).to be_valid
+    end
   end
 
   describe "columns" do

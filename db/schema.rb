@@ -108,16 +108,6 @@ ActiveRecord::Schema.define(version: 20150403180353) do
     t.string "link"
   end
 
-  create_table "membership_roles", force: :cascade do |t|
-    t.integer  "membership_id", null: false
-    t.integer  "role_id",       null: false
-    t.datetime "created_at",    null: false
-    t.datetime "updated_at",    null: false
-  end
-
-  add_index "membership_roles", ["membership_id"], name: "index_membership_roles_on_membership_id", using: :btree
-  add_index "membership_roles", ["role_id"], name: "index_membership_roles_on_role_id", using: :btree
-
   create_table "memberships", force: :cascade do |t|
     t.integer  "user_id"
     t.integer  "group_id"
@@ -161,12 +151,6 @@ ActiveRecord::Schema.define(version: 20150403180353) do
   end
 
   add_index "profiles", ["user_id"], name: "index_profiles_on_user_id", using: :btree
-
-  create_table "roles", force: :cascade do |t|
-    t.string   "name"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
 
   create_table "text_postables", force: :cascade do |t|
     t.text "body"
@@ -228,7 +212,6 @@ ActiveRecord::Schema.define(version: 20150403180353) do
   add_foreign_key "collections", "groups"
   add_foreign_key "comments", "posts"
   add_foreign_key "comments", "users"
-  add_foreign_key "membership_roles", "roles"
   add_foreign_key "memberships", "groups"
   add_foreign_key "memberships", "users"
   add_foreign_key "posts", "groups"

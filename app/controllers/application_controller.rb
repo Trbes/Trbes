@@ -1,6 +1,7 @@
 class ApplicationController < ActionController::Base
   include Pundit
   include GroupsHelper
+  include ApplicationHelper
 
   has_mobile_fu false
 

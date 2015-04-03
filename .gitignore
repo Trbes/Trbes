@@ -12,6 +12,7 @@ vendor/ruby
 .sass-cache
 ._*
 .env
+.env.test
 .pryrc
 .powenv
 public/uploads
