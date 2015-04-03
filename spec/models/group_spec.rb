@@ -15,6 +15,7 @@ describe Group do
 
     it { is_expected.to validate_uniqueness_of(:name) }
     it { is_expected.to validate_uniqueness_of(:subdomain) }
+    it { is_expected.to validate_uniqueness_of(:custom_domain) }
 
     it "should have a valid subdomain" do
       expect(build(:group, subdomain: "www")).not_to be_valid
@@ -27,6 +28,7 @@ describe Group do
     it { is_expected.to have_db_column(:name) }
     it { is_expected.to have_db_column(:description) }
     it { is_expected.to have_db_column(:subdomain) }
+    it { is_expected.to have_db_column(:custom_domain) }
     it { is_expected.to have_db_column(:private) }
     it { is_expected.to have_db_column(:allow_image_posts) }
     it { is_expected.to have_db_column(:allow_link_posts) }
@@ -37,6 +39,7 @@ describe Group do
     it { is_expected.to normalize_attribute(:name) }
     it { is_expected.to normalize_attribute(:description) }
     it { is_expected.to normalize_attribute(:subdomain) }
+    it { is_expected.to normalize_attribute(:custom_domain) }
   end
 
   describe "add_member" do

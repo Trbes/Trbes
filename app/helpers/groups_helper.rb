@@ -5,11 +5,7 @@ module GroupsHelper
 
   def group_url(group)
     if group.custom_domain.present?
-      if current_group.id == group.id
-        "#{request.protocol}#{group.custom_domain}#{request.port_string}"
-      else
-        "http://#{group.custom_domain}"
-      end
+      group_custom_domain_url(group)
     else
       root_url(subdomain: group.subdomain, host: trbes_host)[0..-2] # remove trailing slash
     end
@@ -51,5 +47,15 @@ module GroupsHelper
     }
 
     tweet_intent(opts)
+  end
+
+  private
+
+  def group_custom_domain_url(group)
+    if current_group.id == group.id
+      "#{request.protocol}#{group.custom_domain}#{request.port_string}"
+    else
+      "http://#{group.custom_domain}"
+    end
   end
 end
