@@ -25,7 +25,8 @@ class InvitationsController < Devise::InvitationsController
   protected
 
   def current_group
-    @current_group ||= Group.find_by(subdomain: request.subdomain)
+    @current_group ||= (Group.find_by(custom_domain: request.host) ||
+                        Group.find_by(subdomain: request.subdomain))
   end
 
   def pundit_user

@@ -10,7 +10,7 @@
           span.icon-bar
           span.icon-bar
 
-        = link_to image_tag("logo_mini_black.png"), root_url(subdomain: nil), class: "js-menu-trigger navbar-brand"
+        = link_to image_tag("logo_mini_black.png"), trbes_url, class: "js-menu-trigger navbar-brand"
 
         - if current_group
           = render "groups/header", current_group: present(current_group)

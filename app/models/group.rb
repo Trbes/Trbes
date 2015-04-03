@@ -13,6 +13,7 @@ class Group < ActiveRecord::Base
 
   validates :name, :subdomain, presence: true, uniqueness: true
   validates :subdomain, subdomain: true
+  validates :custom_domain, domain: true, allow_nil: true
 
   normalize_attributes :name, :description, :subdomain, :tagline
 

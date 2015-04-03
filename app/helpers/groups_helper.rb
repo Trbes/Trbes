@@ -4,11 +4,19 @@ module GroupsHelper
   end
 
   def group_url(group)
-    root_url(subdomain: group.subdomain)
+    if group.custom_domain.present?
+      if current_group.id == group.id
+        "#{request.protocol}#{group.custom_domain}#{request.port_string}"
+      else
+        "http://#{group.custom_domain}"
+      end
+    else
+      root_url(subdomain: group.subdomain, host: trbes_host)[0..-2] # remove trailing slash
+    end
   end
 
   def group_join_url(group)
-    "#{group_url(group)}join"
+    "#{group_url(group)}#{join_path}"
   end
 
   def will_show_add_collection_hint?

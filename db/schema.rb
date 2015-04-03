@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150316163323) do
+ActiveRecord::Schema.define(version: 20150403180353) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -95,8 +95,10 @@ ActiveRecord::Schema.define(version: 20150316163323) do
     t.boolean  "allow_link_posts",  default: true,  null: false
     t.boolean  "allow_text_posts",  default: true,  null: false
     t.datetime "deleted_at"
+    t.string   "custom_domain"
   end
 
+  add_index "groups", ["custom_domain"], name: "index_groups_on_custom_domain", using: :btree
   add_index "groups", ["deleted_at"], name: "index_groups_on_deleted_at", using: :btree
 
   create_table "image_postables", force: :cascade do |t|
@@ -105,6 +107,16 @@ ActiveRecord::Schema.define(version: 20150316163323) do
   create_table "link_postables", force: :cascade do |t|
     t.string "link"
   end
+
+  create_table "membership_roles", force: :cascade do |t|
+    t.integer  "membership_id", null: false
+    t.integer  "role_id",       null: false
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+  end
+
+  add_index "membership_roles", ["membership_id"], name: "index_membership_roles_on_membership_id", using: :btree
+  add_index "membership_roles", ["role_id"], name: "index_membership_roles_on_role_id", using: :btree
 
   create_table "memberships", force: :cascade do |t|
     t.integer  "user_id"
@@ -149,6 +161,12 @@ ActiveRecord::Schema.define(version: 20150316163323) do
   end
 
   add_index "profiles", ["user_id"], name: "index_profiles_on_user_id", using: :btree
+
+  create_table "roles", force: :cascade do |t|
+    t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "text_postables", force: :cascade do |t|
     t.text "body"
@@ -210,6 +228,7 @@ ActiveRecord::Schema.define(version: 20150316163323) do
   add_foreign_key "collections", "groups"
   add_foreign_key "comments", "posts"
   add_foreign_key "comments", "users"
+  add_foreign_key "membership_roles", "roles"
   add_foreign_key "memberships", "groups"
   add_foreign_key "memberships", "users"
   add_foreign_key "posts", "groups"

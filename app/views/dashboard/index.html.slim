@@ -6,7 +6,7 @@
       h3 Groups
       .list-group
         - groups.each do |group|
-          = link_to root_url(subdomain: group.subdomain), class: "list-group-item" do
+          = link_to group_url(group), class: "list-group-item" do
             h5.list-group-item-heading= group.name
             p.list-group-item-text= group.description
 

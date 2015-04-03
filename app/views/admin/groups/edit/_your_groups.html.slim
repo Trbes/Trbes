@@ -4,7 +4,7 @@ section.your-groups
 
   .groups-list
     - groups.each do |group|
-      = link_to admin_dashboard_index_url(subdomain: group.subdomain), class: "group #{current_path?(group.subdomain)}" do
+      = link_to "#{group_url(group)}#{admin_dashboard_index_path}", class: "group #{current_path?(group.subdomain)}" do
         .group-title
           = group.name
         .group-host

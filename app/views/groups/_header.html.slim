@@ -1,9 +1,9 @@
 .navbar-group
-  = link_to root_url(subdomain: current_group.subdomain), class: "group-logo" do
+  = link_to group_url(current_group), class: "group-logo" do
     = current_group.logo_image_tag
   .group-info
     .group-name
-      = link_to current_group.name, root_url(subdomain: current_group.subdomain)
+      = link_to current_group.name, group_url(current_group)
       - if will_show_group_cog_button?
         .dropdown
           button#group_menu.btn.btn-default.dropdown-toggle aria-expanded="true" data-toggle="dropdown" type="button"

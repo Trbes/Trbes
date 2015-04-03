@@ -1,5 +1,6 @@
 class ApplicationController < ActionController::Base
   include Pundit
+  include GroupsHelper
 
   has_mobile_fu false
 
@@ -16,7 +17,9 @@ class ApplicationController < ActionController::Base
 
   helper_method :current_group
   def current_group
-    @current_group ||= Group.includes(:logo, memberships: { user: :avatar }).find_by(subdomain: request.subdomain)
+    query = Group.includes(:logo, memberships: { user: :avatar })
+    @current_group ||= (query.find_by(custom_domain: request.host) ||
+                        query.find_by(subdomain: request.subdomain))
   end
 
   helper_method :current_membership

@@ -1,4 +1,6 @@
 class GroupPresenter < BasePresenter
+  include ApplicationHelper
+
   PRIVACY_TYPES = {
     true => "private",
     false => "public"
@@ -21,7 +23,7 @@ class GroupPresenter < BasePresenter
   end
 
   def host
-    "#{subdomain}.trbes.com"
+    "#{subdomain}.#{trbes_host}"
   end
 
   def pluralized_noun(noun, count)
