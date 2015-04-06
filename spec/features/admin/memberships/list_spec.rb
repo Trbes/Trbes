@@ -73,6 +73,10 @@ feature "List group members" do
       expect(page).to have_content("moderator")
       expect(membership.reload.role).to eq("moderator")
     end
+
+    open_email(membership.email)
+
+    expect(current_email).to have_subject "Your role in #{group.name} has changed"
   end
 
   scenario "I can transfer ownership", js: true do

@@ -142,6 +142,7 @@ en:
         join:
           success: "Your membership request has been sent"
           error: "You have already joined this group"
+          destroy: "Your membership request has been cancelled"
 
     home: 'Dashboard'
 

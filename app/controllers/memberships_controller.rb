@@ -17,6 +17,7 @@ class MembershipsController < ApplicationController
   # rubocop:enable Metrics/AbcSize
 
   def destroy
+    flash[:success] = t("app.membership.message.join.destroy")
     membership.destroy
 
     redirect_to "/"

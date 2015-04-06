@@ -31,4 +31,12 @@
 
   = render "navigation_main_slide_menu"
 
+- if current_membership && current_membership.pending?
+  .alert.alert-info.header-notification
+    .container
+      'Request to join group pending approval
+      = link_to "Cancel",
+          membership_path(current_membership),
+          method: :delete,
+          data: { confirm: "Are you sure you want to cancel your membership request?" }
 = render "posts/add_a_post", post: Post.new if current_group
