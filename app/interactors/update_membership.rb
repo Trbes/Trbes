@@ -8,24 +8,18 @@ class UpdateMembership
   private
 
   def update_membership
-    change_owner if attributes[:new_group_owner_id]
-
     context.membership.update_attributes(attributes)
 
     SendRoleChangedEmailJob.perform_later(context.membership.id)
+
+    role_specific_updater.call(context) if Object.const_defined?(role_specific_updater.to_s)
+  end
+
+  def role_specific_updater
+    "UpdateRoleTo#{context.membership.role.capitalize}".constantize
   end
 
   def attributes
     context.attributes
-  end
-
-  def change_owner
-    new_owner.owner!
-
-    SendRoleChangedEmailJob.perform_later(new_owner.id)
-  end
-
-  def new_owner
-    Membership.find(attributes[:new_group_owner_id])
   end
 end
