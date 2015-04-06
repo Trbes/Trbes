@@ -8,11 +8,7 @@ class UpdateMembership
   private
 
   def update_membership
-    if attributes[:new_group_owner_id]
-      new_owner.owner!
-
-      SendRoleChangedEmailJob.perform_later(new_owner.id)
-    end
+    change_owner(new_owner.id) if attributes[:new_group_owner_id]
 
     context.membership.update_attributes(attributes)
 
@@ -21,6 +17,12 @@ class UpdateMembership
 
   def attributes
     context.attributes
+  end
+
+  def change_owner
+    new_owner.owner!
+
+    SendRoleChangedEmailJob.perform_later(new_owner.id)
   end
 
   def new_owner
