@@ -11,7 +11,8 @@ class Membership < ActiveRecord::Base
   scope :confirmed, -> { where("users.confirmed_at IS NOT NULL") }
   scope :new_this_week, -> { where("created_at > ?", Date.today.beginning_of_week) }
 
-  delegate :full_name, :avatar_url, to: :user
+  delegate :full_name, :avatar_url, :email, to: :user
+  delegate :name, to: :group, prefix: true
 
   enum role: %i(member moderator owner pending)
 
