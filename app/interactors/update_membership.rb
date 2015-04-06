@@ -8,7 +8,7 @@ class UpdateMembership
   private
 
   def update_membership
-    change_owner(new_owner.id) if attributes[:new_group_owner_id]
+    change_owner if attributes[:new_group_owner_id]
 
     context.membership.update_attributes(attributes)
 
