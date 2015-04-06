@@ -32,7 +32,7 @@
   = render "navigation_main_slide_menu"
 
 - if current_membership && current_membership.pending?
-  .alert.alert-info
+  .alert.alert-info.header-notification
     .container
       'Request to join group pending approval
       = link_to "Cancel",
