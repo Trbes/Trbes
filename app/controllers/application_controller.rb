@@ -31,7 +31,7 @@ class ApplicationController < ActionController::Base
   def ensure_group_access_from_canonical_url!
     return unless current_group
     return if request.host == current_group.custom_domain
-    return if request.host.include?(trbes_host)
+    return if request.host.include?(Trbes::Application.config.host)
 
     redirect_to group_url(current_group)
   end
