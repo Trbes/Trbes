@@ -68,4 +68,23 @@ feature "Sign up" do
       expect(page).to have_text("You are now subscribed to " + group.name)
     end
   end
+
+  context "validations" do
+    let!(:user) { create(:user, email: "user1@email.com") }
+    let(:user_attributes) { attributes_for(:user).slice(:full_name, :title, :password) }
+
+    scenario "User enters existed email", js: true do
+      visit new_user_registration_path
+
+      fill_in "Email Address", with: "user1@email.com"
+      fill_in "Full Name", with: user_attributes[:full_name]
+      fill_in "More About You (optional)", with: user_attributes[:title]
+      fill_in "Password", with: user_attributes[:password]
+      click_button "Create my account"
+
+      within ".fg-su-email" do
+        expect(page).to have_text("has already been taken")
+      end
+    end
+  end
 end
