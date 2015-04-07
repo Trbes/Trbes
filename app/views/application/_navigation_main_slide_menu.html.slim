@@ -2,10 +2,10 @@ nav#main_sliding_menu.js-menu.sliding-menu-content
   .container-fluid.clearfix.header
     a.btn.btn-block.btn-close-sliding-menu.js-menu-trigger.visible-xs href="#"
       | ← Back
-    = link_to root_url(subdomain: nil), class: "pull-left brand" do
+    = link_to trbes_url, class: "pull-left brand" do
       = image_tag("logo_full_white.png")
     - if user_signed_in?
-      = link_to new_group_path, class: "pull-right btn-create-group" do
+      = link_to new_group_url(host: trbes_host), class: "pull-right btn-create-group" do
         | +&nbsp;
         span= t("app.main_sliding_menu.create_group")
 
@@ -16,7 +16,7 @@ nav#main_sliding_menu.js-menu.sliding-menu-content
         - if current_user.groups.count > 0
           - current_user.groups.each do |group|
             li
-              = link_to "#{group.name} (#{current_user.membership_for(group).role})", root_url(subdomain: group.subdomain)
+              = link_to "#{group.name} (#{current_user.membership_for(group).role})", group_url(group)
         - else
           li You are not a member of any trbes.
 

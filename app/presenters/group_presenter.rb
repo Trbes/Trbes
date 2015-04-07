@@ -21,7 +21,7 @@ class GroupPresenter < BasePresenter
   end
 
   def host
-    "#{subdomain}.trbes.com"
+    "#{subdomain}.#{h.trbes_host}"
   end
 
   def pluralized_noun(noun, count)

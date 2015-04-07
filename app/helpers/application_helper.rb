@@ -50,4 +50,12 @@ module ApplicationHelper
     opts.each { |key, value| params << "#{key}=#{ URI.encode(value) }" }
     "https://twitter.com/intent/tweet?" + params.join("&")
   end
+
+  def trbes_url
+    "#{request.protocol}#{trbes_host}"
+  end
+
+  def trbes_host
+    ENV["APP_HOST"] || "trbes.com"
+  end
 end

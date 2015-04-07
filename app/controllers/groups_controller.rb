@@ -50,7 +50,7 @@ class GroupsController < ApplicationController
   end
 
   def after_create_url(group)
-    params[:welcome] ? new_invitation_url(subdomain: group.subdomain) : group_url(group.subdomain)
+    params[:welcome] ? "#{group_url(group)}#{new_invitation_path}" : group_url(group)
   end
 
   def group_attributes
