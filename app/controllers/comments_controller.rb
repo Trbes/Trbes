@@ -12,7 +12,7 @@ class CommentsController < ApplicationController
       allow_publish: policy(Comment).publish?
     )
 
-    redirect_to result.comment.post, flash: { success: result.message }
+    redirect_to post_path(result.comment.post), flash: { success: result.message }
   end
 
   def update

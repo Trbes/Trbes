@@ -1,14 +1,16 @@
-class UpdateRoleToMember
-  include Interactor
+class UpdateMembership
+  class UpdateRoleToMember
+    include Interactor
 
-  def call
-    publish_everything
-  end
+    def call
+      publish_everything
+    end
 
-  private
+    private
 
-  def publish_everything
-    context.membership.posts.each(&:published!)
-    context.membership.comments.each(&:published!)
+    def publish_everything
+      context.membership.posts.each(&:published!)
+      context.membership.comments.each(&:published!)
+    end
   end
 end
