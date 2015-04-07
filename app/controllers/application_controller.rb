@@ -1,5 +1,6 @@
 class ApplicationController < ActionController::Base
   include Pundit
+  include GroupsHelper
 
   has_mobile_fu false
 
@@ -44,7 +45,8 @@ class ApplicationController < ActionController::Base
     return if current_group.present? && !params[:subdomain]
 
     if params[:subdomain]
-      redirect_to root_url(subdomain: params[:subdomain])
+      group = Group.find_by(subdomain: params[:subdomain])
+      redirect_to group_url(group)
     else
       render text: "Not found group for this subdomain", status: 404
     end

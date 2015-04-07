@@ -15,7 +15,8 @@ Rails.application.routes.draw do
   post "/validate_email" => "validation#email"
 
   constraints CustomDomainConstraint do
-    resources :groups, only: %i( show new )
+    resources :groups, only: %i( new )
+    get "/groups/:subdomain", to: "groups#show"
 
     get "join" => "memberships#create"
 
