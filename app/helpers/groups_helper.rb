@@ -52,7 +52,7 @@ module GroupsHelper
   private
 
   def group_custom_domain_url(group)
-    if current_group.id == group.id
+    if current_group && current_group.id == group.id
       "#{request.protocol}#{group.custom_domain}#{request.port_string}"
     else
       "http://#{group.custom_domain}"
