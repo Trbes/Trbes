@@ -7,8 +7,8 @@ module GroupsHelper
     if group.custom_domain.present?
       group_custom_domain_url(group)
     else
-      root_url(subdomain: group.subdomain)[0..-2] # remove trailing slash
-    end
+      root_url(subdomain: group.subdomain)
+    end[0..-2] # remove trailing slash
   end
 
   def group_join_url(group)

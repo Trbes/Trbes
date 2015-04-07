@@ -16,7 +16,6 @@ Rails.application.routes.draw do
 
   constraints CustomDomainConstraint do
     resources :groups, only: %i( new )
-    get "/groups/:subdomain", to: "groups#show"
 
     get "join" => "memberships#create"
 
@@ -56,6 +55,8 @@ Rails.application.routes.draw do
     get "/*id", to: "posts#show", as: :post
     patch "/*id", to: "posts#update"
     delete "/*id", to: "posts#destroy"
+
+    get "/groups/:subdomain", to: "groups#show"
   end
 
   get "/groups/:subdomain", to: "groups#show"

@@ -25,7 +25,7 @@ class GroupPresenter < BasePresenter
   end
 
   def host
-    "#{subdomain}.#{Trbes::Application.config.host}"
+    @model.custom_domain || "#{subdomain}.#{Trbes::Application.config.host}"
   end
 
   def pluralized_noun(noun, count)
