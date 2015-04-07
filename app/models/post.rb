@@ -12,6 +12,7 @@ class Post < ActiveRecord::Base
   scope :order_by_created_at, -> { order(created_at: :desc) }
   scope :order_by_trending, -> { order(hot_rank: :desc) }
   scope :for_collection, -> (collection_id) { where(collection_posts: { collection_id: collection_id }) }
+  scope :for_user, -> (user) { where(user_id: user.id) }
 
   has_many :comments, dependent: :destroy
   has_many :attachments, as: :attachable, dependent: :destroy

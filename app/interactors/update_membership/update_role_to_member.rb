@@ -9,8 +9,12 @@ class UpdateMembership
     private
 
     def publish_everything
-      context.membership.posts.each(&:published!)
-      context.membership.comments.each(&:published!)
+      membership.posts.moderation.each(&:published!)
+      membership.comments.moderation.each(&:published!)
+    end
+
+    def membership
+      context.membership
     end
   end
 end

@@ -17,4 +17,12 @@ class Membership < ActiveRecord::Base
   enum role: %i(member moderator owner pending)
 
   attr_accessor :new_group_owner_id
+
+  def comments
+    group.comments.for_user(user)
+  end
+
+  def posts
+    group.posts.for_user(user)
+  end
 end
