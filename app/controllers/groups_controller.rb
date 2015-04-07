@@ -1,5 +1,5 @@
 class GroupsController < ApplicationController
-  before_action :ensure_group_is_loaded!, only: [:show]
+  before_action :ensure_group_is_loaded!, :ensure_group_access_from_canonical_url!, only: [:show]
 
   expose(:group, attributes: :group_attributes)
   expose(:posts, only: [:show]) do

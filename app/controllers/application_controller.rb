@@ -11,8 +11,7 @@ class ApplicationController < ActionController::Base
 
   rescue_from Pundit::NotAuthorizedError, with: :not_authorized
 
-  before_action :push_algolia_config, :push_env_config, :push_indexes,
-    :ensure_email_is_exists, :ensure_group_access_from_canonical_url
+  before_action :push_algolia_config, :push_env_config, :push_indexes, :ensure_email_is_exists
 
   expose(:groups)
   expose(:group_memberships) { current_group.memberships.joins(:user).confirmed.not_pending }
@@ -31,7 +30,7 @@ class ApplicationController < ActionController::Base
     @current_membership ||= current_user.membership_for(current_group)
   end
 
-  def ensure_group_access_from_canonical_url
+  def ensure_group_access_from_canonical_url!
     return unless current_group
     return if request.host == current_group.custom_domain
     return if request.host.include?(trbes_host)
