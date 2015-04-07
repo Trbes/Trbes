@@ -59,35 +59,4 @@ feature "List group members" do
       }.to change { Membership.count }.by(-1)
     end
   end
-
-  scenario "I can change member role within members list", js: true do
-    find("section.memberships #membership_#{membership.id} .role-link").click
-
-    within("ul.select2-results") do
-      find("li div", text: /\Amoderator\z/).click
-    end
-
-    wait_for_ajax
-
-    within("section.memberships #membership_#{membership.id}") do
-      expect(page).to have_content("moderator")
-      expect(membership.reload.role).to eq("moderator")
-    end
-
-    open_email(membership.email)
-
-    expect(current_email).to have_subject "Your role in #{group.name} has changed"
-  end
-
-  scenario "I can transfer ownership", js: true do
-    click_link("owner")
-
-    select(membership.full_name, from: "membership_new_group_owner_id")
-
-    click_button "Save"
-
-    expect(page).to have_content("Group")
-    expect(user.membership_for(group).reload.role).to eq("moderator")
-    expect(group.owner).to eq(membership)
-  end
 end

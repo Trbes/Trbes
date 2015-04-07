@@ -30,7 +30,7 @@ class PostsController < ApplicationController
       allow_publish: policy(Post).publish?
     )
 
-    redirect_to group_url(current_group), flash: { notice: result.message }
+    redirect_to root_path, flash: { notice: result.message }
   end
 
   def destroy

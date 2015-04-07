@@ -3,8 +3,8 @@
     .container
       p.text-right.powered-by
         | This group is powered by
-        a< href=trbes_url
-          = image_tag("logo_full_black.png")
+        = link_to root_url do
+          =< image_tag("logo_full_black.png")
 - else
   footer#footer_landing
     .container

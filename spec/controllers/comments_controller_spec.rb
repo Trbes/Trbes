@@ -19,7 +19,7 @@ describe CommentsController do
     end
 
     it "redirects to comment's post" do
-      expect(controller).to redirect_to(Comment.last.post)
+      expect(controller).to redirect_to(post_path(Comment.last.post))
     end
   end
 
