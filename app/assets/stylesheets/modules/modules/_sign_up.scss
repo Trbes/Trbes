@@ -44,13 +44,13 @@
   min-height: 510px;
   max-width: 720px;
   margin: 0 auto;
+  position: relative;
 }
 
 #su_cody {
   @include size(370px 508px);
 
-  float: left;
-  position: relative;
+  position: absolute;
   bottom: -8px;
   background-image: image-url("sprite_cody.png");
   background-repeat: no-repeat;
@@ -78,13 +78,10 @@
 }
 
 .su-form {
-  float: left;
   width: 340px;
-  margin-top: 30px;
-
-  .error {
-    display: none !important;
-  }
+  padding-top: 30px;
+  padding-bottom: 30px;
+  margin-left: 370px;
 
   .form-group {
     margin-bottom: 12px;
@@ -94,6 +91,19 @@
 
       small {
         color: #737373;
+      }
+
+      &.error {
+        font-size: 14px !important;
+        color: red;
+        margin: 0;
+        font-weight: normal;
+      }
+    }
+
+    &.has-success {
+      label.error {
+        display: none !important;
       }
     }
 
@@ -167,14 +177,6 @@
         label {
           max-width: 100%;
           width: 100%;
-        }
-      }
-    }
-
-    @include breakpoint(0 320px) {
-      &.fg-su-password {
-        .form-control-feedback {
-          margin-top: 31px;
         }
       }
     }

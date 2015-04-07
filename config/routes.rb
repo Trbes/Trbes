@@ -12,6 +12,8 @@ Rails.application.routes.draw do
   resources :groups, only: %i( new create )
   resources :memberships, only: %i( create destroy )
 
+  post "/validate_email" => "validation#email"
+
   constraints(subdomain: SubdomainValidator::REG_EXP) do
     resources :groups, only: %i( show new )
 

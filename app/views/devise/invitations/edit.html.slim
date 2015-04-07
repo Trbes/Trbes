@@ -17,7 +17,6 @@
         url: update_invitation_path,
         html: { class: "su-form", method: :put } do |f|
 
-        = devise_error_messages!
         = f.hidden_field :invitation_token
 
         = render "devise/shared/form_fields",
