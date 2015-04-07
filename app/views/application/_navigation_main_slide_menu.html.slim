@@ -2,10 +2,10 @@ nav#main_sliding_menu.js-menu.sliding-menu-content
   .container-fluid.clearfix.header
     a.btn.btn-block.btn-close-sliding-menu.js-menu-trigger.visible-xs href="#"
       | ← Back
-    = link_to trbes_url, class: "pull-left brand" do
+    = link_to root_url, class: "pull-left brand" do
       = image_tag("logo_full_white.png")
     - if user_signed_in?
-      = link_to new_group_url(host: trbes_host), class: "pull-right btn-create-group" do
+      = link_to new_group_url, class: "pull-right btn-create-group" do
         | +&nbsp;
         span= t("app.main_sliding_menu.create_group")
 

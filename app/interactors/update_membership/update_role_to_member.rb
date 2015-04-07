@@ -8,7 +8,7 @@ class UpdateRoleToMember
   private
 
   def publish_everything
-    # TODO
-    puts "Published" * 100
+    context.membership.posts.each(&:published!)
+    context.membership.comments.each(&:published!)
   end
 end

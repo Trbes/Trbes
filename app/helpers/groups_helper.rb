@@ -7,7 +7,7 @@ module GroupsHelper
     if group.custom_domain.present?
       group_custom_domain_url(group)
     else
-      root_url(subdomain: group.subdomain, host: trbes_host)[0..-2] # remove trailing slash
+      root_url(subdomain: group.subdomain)[0..-2] # remove trailing slash
     end
   end
 
@@ -52,10 +52,6 @@ module GroupsHelper
   private
 
   def group_custom_domain_url(group)
-    if current_group && current_group.id == group.id
-      "#{request.protocol}#{group.custom_domain}#{request.port_string}"
-    else
-      "http://#{group.custom_domain}"
-    end
+    root_url(host: group.custom_domain)
   end
 end
