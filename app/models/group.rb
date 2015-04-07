@@ -36,6 +36,8 @@ class Group < ActiveRecord::Base
     end
   end
 
+  before_save :update_heroku_domains, if: :custom_domain_changed?
+
   acts_as_paranoid
 
   def comments_count
@@ -68,5 +70,9 @@ class Group < ActiveRecord::Base
 
   def default_post_type
     allowed_post_types.first
+  end
+
+  def update_heroku_domains
+    # pending implementation, should run only on Heroku
   end
 end

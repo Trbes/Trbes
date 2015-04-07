@@ -60,6 +60,7 @@ gem "crack"
 gem "sanitize"
 gem "counter_culture"
 
+gem "platform-api"
 group :staging, :production do
   gem "airbrake"
   gem "newrelic_rpm"
