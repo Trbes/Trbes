@@ -1,25 +1,19 @@
 require "rails_helper"
 
-feature "Edit group" do
-  let(:user) { create(:user) }
-  let(:group) { create(:group, users: [user]) }
+feature "Edit group", js: true do
+  include_context "group membership and authentication"
 
   background do
-    switch_to_subdomain(group.subdomain)
-    user.membership_for(group).owner!
-    sign_in(user.email, "123456")
+    membership.owner!
     visit edit_admin_group_path
     click_link "edit"
   end
 
-  after(:each) do
-    switch_to_main
-  end
-
-  scenario "Edit group", js: true do
+  scenario "Edit group" do
     fill_in "Name", with: "New Name"
     fill_in "Tagline", with: "New Tagline"
     fill_in "Description", with: "New Description"
+    fill_in "Custom domain", with: "example.com"
     page.find("#cg_privacy").click
 
     click_button "Save"
@@ -31,15 +25,24 @@ feature "Edit group" do
     expect(group.tagline).to eq("New Tagline")
     expect(group.description).to eq("New Description")
     expect(group.private).to eq(true)
+    expect(group.custom_domain).to eq("example.com")
+  end
 
-    # Turn off private
-    visit edit_admin_group_path
-    click_link "edit"
-    page.find("#cg_privacy").click
-    click_button "Save"
-    expect(current_path).to eq(edit_admin_group_path)
-    group.reload
+  context "when group is private" do
+    background do
+      group.update_attributes(private: true)
+      visit edit_admin_group_path
+      click_link "edit"
+    end
 
-    expect(group.private).to eq(false)
+    scenario "turn off privacy" do
+      page.find("#cg_privacy").click
+      click_button "Save"
+
+      expect(current_path).to eq(edit_admin_group_path)
+      group.reload
+
+      expect(group.private).to eq(false)
+    end
   end
 end
