@@ -3,25 +3,40 @@ require "rails_helper"
 feature "List collections" do
   let(:user) { create(:user, :confirmed) }
   let(:group) { create(:group, users: [user]) }
-  let(:collection) { create(:collection, :visible) }
-  let(:another_collection) { create(:collection, :visible) }
+  let!(:collection) { create(:collection, :visible, group: group) }
+  let!(:another_collection) { create(:collection, :visible, group: group) }
 
   background do
     switch_to_subdomain(group.subdomain)
+    user.membership_for(group).owner!
     sign_in(user.email, "123456")
   end
 
   context "when I'm group owner", js: true do
     background do
-      user.membership_for(group).owner!
-      group.collections << collection
-      group.collections << another_collection
       visit edit_admin_group_path
     end
 
     scenario "I can view a list of collections" do
       expect(page).to have_css(".collection[data-id='#{collection.id}']")
       expect(page).to have_css(".collection[data-id='#{another_collection.id}']")
+    end
+  end
+
+  context "when there posts within this collection" do
+    let!(:post) { create(:post, collections: [collection], group: group) }
+
+    background do
+      visit edit_admin_group_path
+    end
+
+    scenario "I can visit posts list within this collection" do
+      within "#collection_#{collection.id}" do
+        click_link "1 post"
+      end
+
+      expect(current_path).to eq(root_path)
+      expect(page).to have_css("#post_#{post.id}")
     end
   end
 end
