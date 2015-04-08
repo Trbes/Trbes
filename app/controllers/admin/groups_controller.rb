@@ -25,6 +25,7 @@ module Admin
         :description,
         :private,
         :subdomain,
+        :custom_domain,
         :allow_image_posts,
         :allow_link_posts,
         :allow_text_posts,
