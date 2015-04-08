@@ -154,20 +154,4 @@
       }
     }
   }
-
-  .snf {
-    .favorites {
-      color: white;
-
-      @include on_link_actions {
-        .text {
-          text-decoration: underline;
-        }
-      }
-
-      .fa {
-        margin-right: 5px;
-      }
-    }
-  }
 }

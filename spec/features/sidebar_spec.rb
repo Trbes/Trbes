@@ -35,7 +35,6 @@ feature "Sidebar" do
       within("#main_sliding_menu") do
         expect(page).not_to have_css(".btn-create-group")
         expect(page).not_to have_css(".my-trbes")
-        expect(page).not_to have_css(".favorites")
       end
     end
   end
@@ -55,7 +54,6 @@ feature "Sidebar" do
           expect(page).to have_content(group.name.upcase)
           expect(page).not_to have_content(other_group.name.upcase)
         end
-        expect(page).to have_css(".favorites")
       end
     end
   end
