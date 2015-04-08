@@ -31,5 +31,15 @@ feature "Edit group" do
     expect(group.tagline).to eq("New Tagline")
     expect(group.description).to eq("New Description")
     expect(group.private).to eq(true)
+
+    # Turn off private
+    visit edit_admin_group_path
+    click_link "edit"
+    page.find("#cg_privacy").click
+    click_button "Save"
+    expect(current_path).to eq(edit_admin_group_path)
+    group.reload
+
+    expect(group.private).to eq(false)
   end
 end
