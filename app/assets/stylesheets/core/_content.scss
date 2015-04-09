@@ -22,25 +22,21 @@
 .humane-libnotify-error,
 .humane-libnotify-info {
   background-image: none !important;
-  background-color: #fff;
-  box-shadow: none;
-  border: 1px solid;
+  color: white;
   border-radius: 4px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
 }
 
 .humane-libnotify-success {
-  border-color: #4cae4c;
-  color: #4cae4c;
+  background-color: #4cae4c;
 }
 
 .humane-libnotify-error {
-  border-color: #d43f3a;
-  color: #d43f3a;
+  background-color: #d43f3a;
 }
 
 .humane-libnotify-info {
-  border-color: #46b8da;
-  color: #46b8da;
+  background-color: #46b8da;
 }
 
 
