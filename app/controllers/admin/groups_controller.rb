@@ -20,11 +20,14 @@ module Admin
 
     private
 
-    def group_attributes
-      params.require(:group).permit(:name, :tagline,
+    def group_attributes # rubocop:disable Metrics/MethodLength
+      params.require(:group).permit(
+        :name,
+        :tagline,
         :description,
         :private,
         :subdomain,
+        :custom_domain,
         :allow_image_posts,
         :allow_link_posts,
         :allow_text_posts,
