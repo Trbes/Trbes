@@ -31,6 +31,17 @@ $nav-collection-link-color-hover: #333;
       color: $nav-collection-link-color;
       text-transform: uppercase;
 
+      @include breakpoint($screen-lg 9999px) {
+        @include ellipsis;
+        max-width: 145px;
+      }
+
+      @include breakpoint($screen-md $screen-lg - 1) {
+        max-width: 34px;
+        overflow: hidden;
+        white-space: nowrap;
+      }
+
       &:hover {
         color: $nav-collection-link-color-hover;
       }
