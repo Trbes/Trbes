@@ -5,4 +5,7 @@ class LandingController < ApplicationController
 
   def business
   end
+
+  def terms
+  end
 end

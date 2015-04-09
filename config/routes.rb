@@ -57,6 +57,7 @@ Rails.application.routes.draw do
 
   get "/small-teams", to: "landing#small_teams"
   get "/business", to: "landing#business"
+  get "/terms", to: "landing#terms"
 
   root to: "groups#index"
 end
