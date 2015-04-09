@@ -14,7 +14,10 @@ class window.PostSearch
         highlight: true
       }
       displayKey: 'title'
-      source: @client.initIndex(gon.post_index).ttAdapter()
+      source: @client.initIndex(gon.post_index).ttAdapter({
+        facets: '*'
+        facetFilters: ['state:published']
+      })
       templates:
         empty: "<div class='tt-empty-message'>No post matching your query</div>"
         suggestion: (hit) ->

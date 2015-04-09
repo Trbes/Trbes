@@ -44,11 +44,13 @@ class Post < ActiveRecord::Base
   normalize_attributes :body, with: :squish
 
   algoliasearch per_environment: true, disable_indexing: Rails.env.test? do
-    attribute :title, :body, :slug
+    attribute :title, :body, :slug, :state
 
     tags do
       ["group_#{group_id}"]
     end
+
+    attributesForFaceting [:state]
   end
 
   acts_as_paranoid

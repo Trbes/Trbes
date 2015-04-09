@@ -57,6 +57,15 @@ feature "Posts list" do
     end
   end
 
+  scenario "Search for unpublished posts", js: true do
+    unpublished_post = create(:post, group: group, state: :moderation)
+    fill_in("Search for posts", with: unpublished_post.title[0])
+
+    within(".tt-dropdown-menu") do
+      expect(page).not_to have_content(unpublished_post.title)
+    end
+  end
+
   scenario "I can vote and unvote", js: true do
     within("#post_#{post.id}") do
       vote_link = page.find(".vote")
