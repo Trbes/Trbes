@@ -33,6 +33,7 @@ class GroupsController < ApplicationController
   end
 
   def show
+    authorize(current_group)
     @group_name = current_group.name
     @group_tagline = current_group.tagline
     # So that search result click will redirects to group's url

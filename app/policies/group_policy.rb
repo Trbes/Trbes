@@ -14,4 +14,8 @@ class GroupPolicy < Struct.new(:membership_or_user, :group)
   def destroy?
     membership_or_user.owner?
   end
+
+  def show?
+    !group.private? || membership_or_user && !membership_or_user.pending?
+  end
 end
