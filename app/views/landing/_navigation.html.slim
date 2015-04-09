@@ -10,31 +10,8 @@
         = link_to image_tag("logo_full_black_huge.png"), root_url, class: "navbar-brand"
       #landing_collapse_bar.collapse.navbar-collapse
         ul.nav.navbar-nav
-          li.dropdown
-            a.dropdown-toggle data-toggle="dropdown" href="#"
-              | Features
-              b.caret
-            ul.dropdown-menu
-              li
-                a href="#"  Create Collections
-              li
-                a href="#"  Manage links
-              li.divider
-              li
-                a href="#"  More
-          li.active
-            a href="#"  Pricing
-          li.dropdown
-            a.dropdown-toggle data-toggle="dropdown" href="#"
-              | Company
-              b.caret
-            ul.dropdown-menu
-              li
-                a href="#"  About
-              li
-                a href="#"  The Team
-          li
-            a href="http://trbes.com/blog/"  Blog
+          li: a href=root_url  Discover Trbes
+          li: a href=(ENV["TRBES_GROUP_URL"] || "#")  Support & Community
 
         ul.nav.navbar-nav.toggle-target-type
           li.dropdown
@@ -44,10 +21,10 @@
                 b.caret
               ul.dropdown-menu
                 li
-                  a href="/customer-communities"  ...for Customer Communities
+                  a href="/business"  ...for Business
             - else
               a.dropdown-toggle data-toggle="dropdown" href="#"
-                | ...for Customer Communities
+                | ...for Business
                 b.caret
               ul.dropdown-menu
                 li

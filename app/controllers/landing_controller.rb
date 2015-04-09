@@ -3,6 +3,6 @@ class LandingController < ApplicationController
     @teams = true
   end
 
-  def customer_communities
+  def business
   end
 end
