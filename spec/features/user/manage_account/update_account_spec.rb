@@ -15,6 +15,7 @@ feature "Update account with valid data" do
 
     click_button "Update"
 
+    expect(current_path).to eq(edit_user_registration_path)
     expect(page).to have_content("New Name")
   end
 
