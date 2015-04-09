@@ -29,4 +29,17 @@ feature "Group main page" do
       expect(page).to have_css("#btn_join_group", text: "Join")
     end
   end
+
+  context "when I try to reach private group by it's URL" do
+    background do
+      group.update_attributes(private: true)
+      membership.pending!
+    end
+
+    scenario "I'm not allowed to do so" do
+      visit root_path
+
+      expect(page).not_to have_content(group.name)
+    end
+  end
 end
