@@ -23,11 +23,13 @@ feature "Edit collection" do
       end
 
       fill_in "Name", with: "New name"
+      page.find(".collection_visibility").click
       click_button "Save"
 
       expect(page).to have_content("Group")
       expect(current_path).to eq(edit_admin_group_path)
       expect(collection.reload.name).to eq("New name")
+      expect(collection.reload.visibility).to eq(false)
 
       within(".collection[data-id='#{collection.id}']") do
         expect(page).to have_content("NEW NAME")
