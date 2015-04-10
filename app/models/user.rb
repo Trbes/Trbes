@@ -34,6 +34,10 @@ class User < ActiveRecord::Base
     SendWelcomeEmailJob.perform_later(id)
   end
 
+  def groups_with_membership_role
+    groups.select("groups.*, memberships.role as current_membership_role")
+  end
+
   after_create do
     if ENV["TRBES_GROUP_ID"].present?
       trbes_group = Group.find ENV["TRBES_GROUP_ID"]
