@@ -51,6 +51,8 @@ Rails.application.routes.draw do
     end
 
     root to: "groups#show", as: :group_root
+
+    get "/*id", to: "posts#show"
   end
 
   get "/groups/:subdomain", to: "groups#show"
