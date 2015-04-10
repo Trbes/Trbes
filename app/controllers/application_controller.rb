@@ -29,7 +29,7 @@ class ApplicationController < ActionController::Base
   end
 
   def authorize_group_access
-    authorize(current_group) if current_group
+    authorize(current_group, :show?) if current_group
   end
 
   def ensure_group_access_from_canonical_url!

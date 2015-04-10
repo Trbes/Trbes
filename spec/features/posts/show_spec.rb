@@ -65,14 +65,29 @@ feature "Single post page" do
     end
   end
 
-  context "when I'm not logged in" do
+  context "when I'm not logged in", js: true do
     background do
+      click_link user.full_name
       click_link "Sign out"
       visit post_path(post)
     end
 
     scenario "I can't upvote for a post" do
       expect(page.find(".vote")["href"]).to eq(new_user_registration_path)
+    end
+
+    context "when group is private and I'm unconfirmed member" do
+      background do
+        membership.pending!
+        group.update_attributes(private: true)
+      end
+
+      scenario "I can't read it's posts" do
+        visit post_path(post)
+
+        expect(current_path).to eq(root_path)
+        expect(page).not_to have_content(post.title)
+      end
     end
   end
 end
