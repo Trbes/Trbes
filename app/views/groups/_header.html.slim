@@ -32,7 +32,7 @@
           data-toggle="popover"
           data-html="true"
           data-placement="bottom"
-          data-content=user_popover_content(membership.user, current_group)
+          data-content=user_popover_content(membership)
           data-template=user_popover_template ]
           = current_group.role_overlay(membership.user)
           = image_tag membership.avatar_url, class: "img-circle", width: 16, height: 16
