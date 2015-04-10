@@ -4,7 +4,7 @@
     data-toggle="popover"
     data-html="true"
     data-placement="bottom"
-    data-content=user_popover_content(post.user, current_group)
+    data-content=user_popover_content(post.user.membership_for(current_group))
     data-template=user_popover_template ]
     = present(current_group).role_overlay(post.user)
     = image_tag post.user.avatar_url, class: "img-circle", width: 16, height: 16
