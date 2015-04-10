@@ -26,7 +26,7 @@
     h1.explore-title Discover Interesting Teams
 
     .groups-listing
-      - public_groups.each do |group|
+      - public_groups_with_owners.each do |group, owner|
         .media.group id=("group_#{group.id}")
           .media-left
             = link_to group_url(group) do
@@ -40,19 +40,18 @@
                 = group.description
 
               .group-meta
-                - if (owner = group.owner)
-                  | Created by
-                  a.group-owner.user-avatar<>[
-                    href="javascript:void(0)"
-                    data-toggle="popover"
-                    data-html="true"
-                    data-placement="bottom"
-                    data-content=user_popover_content(owner.user, group)
-                    data-template=user_popover_template ]
-                    => image_tag(owner.avatar_url, width: 16, height: 16)
-                    = owner.full_name
-                  | •&nbsp;
-                |  #{group.memberships_count_modal_link} • #{group.published_posts_count_link}
+                | Created by
+                a.group-owner.user-avatar<>[
+                  href="javascript:void(0)"
+                  data-toggle="popover"
+                  data-html="true"
+                  data-placement="bottom"
+                  data-content=user_popover_content(owner)
+                  data-template=user_popover_template ]
+                  => image_tag(owner.avatar_url, width: 16, height: 16)
+                  = owner.full_name
+                | •&nbsp;
+                |  #{group.memberships_count_modal_link} • #{group.posts_count_link}
 
                 = render "groups/memberships_modal",
                   modal_id: "all_group_#{group.id}_members",
@@ -61,4 +60,4 @@
             .group-actions
               = render "groups/#{group.join_partial_path(current_user)}", group: group
 
-      = paginate(public_groups, theme: "twitter-bootstrap-3", pagination_class: "pagination pagination-azure pagination-no-border")
+      = paginate(group_owners, theme: "twitter-bootstrap-3", pagination_class: "pagination pagination-azure pagination-no-border")

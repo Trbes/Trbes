@@ -1,6 +1,12 @@
 class Membership < ActiveRecord::Base
   belongs_to :user, required: true
-  belongs_to :group, counter_cache: true, required: true
+  belongs_to :group, required: true
+
+  counter_culture :group,
+    column_name: Proc.new { |model| model.pending? ? nil : "memberships_count" },
+    column_names: {
+      ["memberships.role IN (0,1,2)"] => "memberships_count"
+    }
 
   validates :user_id, uniqueness: { scope: :group_id }
 
@@ -11,7 +17,7 @@ class Membership < ActiveRecord::Base
   scope :confirmed, -> { where("users.confirmed_at IS NOT NULL") }
   scope :new_this_week, -> { where("created_at > ?", Date.today.beginning_of_week) }
 
-  delegate :full_name, :avatar_url, :email, to: :user
+  delegate :full_name, :avatar_url, :email, :title, to: :user
   delegate :name, to: :group, prefix: true
 
   enum role: %i(member moderator owner pending)

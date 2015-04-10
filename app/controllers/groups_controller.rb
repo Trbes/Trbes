@@ -11,11 +11,12 @@ class GroupsController < ApplicationController
 
     params[:collection_id] ? scope.includes(:collection_posts).for_collection(params[:collection_id]) : scope
   end
-  expose(:public_groups, only: [:index]) do
-    ordered_groups = Group.all_public.includes(:logo, memberships: { user: :avatar }).order_by_created_at
-    presented_groups = view_context.present(ordered_groups)
-    Kaminari.paginate_array(presented_groups).page(params[:page]).per(20)
-  end
+
+  expose(:group_owners) { Membership.owner.includes(user: :avatar, group: [:logo, memberships: { user: :avatar }]).joins(:group).where("groups.private = ?", false).page(params[:page]) }
+  expose(:public_groups) { view_context.present(group_owners.map(&:group)) }
+  expose(:public_groups_with_owners, only: [:index]) { public_groups.zip(group_owners) }
+
+  expose(:current_user_memberships) { current_user.memberships }
 
   def create
     authorize :group, :create?
