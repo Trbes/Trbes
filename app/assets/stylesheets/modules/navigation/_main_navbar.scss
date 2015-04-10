@@ -118,6 +118,7 @@
 
   .group-members {
     margin-top: 5px;
+    width: 250px;
 
     @include breakpoint(0 ($screen-sm - 1)) {
       display: none;

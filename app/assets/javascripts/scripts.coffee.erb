@@ -31,7 +31,14 @@ $ ->
   new Sortable($(".collections-list"))
   new Sortable($(".collection-posts-list"))
 
-  $('.cloudinary-fileupload').bind 'cloudinarydone', (e, data) ->
+  $('.cloudinary-fileupload').bind 'fileuploadstart', (e) ->
+    $(this).closest("form").find("input[type='submit']").prop("disabled", true)
+  .bind 'fileuploadfail', (e) ->
+    $(this).closest("form").find("input[type='submit']").prop("disabled", false)
+    humane.log("File upload failed, please try again", { addnCls: "humane-libnotify-error" })
+  .bind 'cloudinarydone', (e, data) ->
+    $(this).closest("form").find("input[type='submit']").prop("disabled", false)
+
     $('#preview').html $.cloudinary.image(data.result.public_id,
       format: data.result.format
       version: data.result.version
@@ -40,6 +47,7 @@ $ ->
       height: 115)
     $('.image_public_id').val data.result.public_id
     true
+
 
   $(".best_in_place").best_in_place()
   $(".best_in_place.update-class-on-success").bind 'ajax:success', ->

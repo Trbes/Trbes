@@ -65,7 +65,6 @@ module PostsHelper
     {
       "Active" => "all",
       "All" => "with_deleted",
-      "Pending" => "pending",
       "Rejected" => "rejected",
       "Moderation" => "moderation",
       "Deleted" => "deleted"

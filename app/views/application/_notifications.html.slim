@@ -4,5 +4,5 @@ coffee:
 - flash.each do |type, content|
   javascript:
     $(document).ready(function () {
-      humane.log("#{content}", { addnCls: "#{humane_class_for(type)}" })
+      humane.log("#{content}", { addnCls: "#{humane_class_for(type)}", timeout: 5000 })
     })
