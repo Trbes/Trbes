@@ -1,5 +1,9 @@
 = f.input :name
-= f.input :visibility, as: :hidden
+= f.input :visibility,
+  as: :boolean,
+  label: "Shown on group pages?",
+  input_html: { data: { toggle: "checkbox" } }
+
 = f.input :icon_class, as: :hidden
 
 label Select an Icon
