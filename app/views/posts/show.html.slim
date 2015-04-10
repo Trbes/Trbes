@@ -54,7 +54,7 @@
             => link_to "Delete", post_path(post), method: :delete, data: { confirm: "Are you sure?" }
         .post-body
           - if post.post_type == "text_post"
-            = post.body
+            = raw post.body
           - elsif post.post_type == "link_post"
             .url
               = link_to post.link, post.link

@@ -19,7 +19,7 @@ Rails.application.routes.draw do
 
     get "join" => "memberships#create"
 
-    resources :posts, only: %i( show new create edit update destroy ) do
+    resources :posts, only: %i( new create ) do
       put "upvote"
       put "unvote"
 
@@ -52,7 +52,9 @@ Rails.application.routes.draw do
 
     root to: "groups#show", as: :group_root
 
-    get "/*id", to: "posts#show"
+    get "/*id", to: "posts#show", as: :post
+    patch "/*id", to: "posts#update"
+    delete "/*id", to: "posts#destroy"
   end
 
   get "/groups/:subdomain", to: "groups#show"
