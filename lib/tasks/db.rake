@@ -62,7 +62,7 @@ namespace :db do
           end
 
           post_body = post_data["post_content"] || ""
-          post_body.gsub!("http://blog.webdepart.com/wp-content/uploads/", "http://archive.webdepart.com/files/wd/")
+          post_body.gsub!(%r{(https|http)://(blog.)+webdepart.com/wp-content/uploads/}, "http://archive.webdepart.com/files/wd/")
           post_body.gsub!("\n", "<br>")
           author = users.first{ |u| u["ID"] == post_data["post_author"] }
           meta_text = "ORIGINALLY PUBLISHED: #{post_date}"
