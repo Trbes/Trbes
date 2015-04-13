@@ -10,7 +10,7 @@
           span.icon-bar
           span.icon-bar
 
-        = link_to image_tag("logo_mini_black.png"), root_url, class: "js-menu-trigger navbar-brand"
+        = link_to image_tag("logo_mini_black.png", width: 28), root_url, class: "js-menu-trigger navbar-brand"
 
         - if current_group
           = render "groups/header", current_group: present(current_group)
@@ -18,7 +18,7 @@
         - else
           .navbar-group
             = link_to root_path, class: "group-logo" do
-              = image_tag("logo_header.jpg")
+              = image_tag("logo_header.png", width: 138)
             .group-info
               .group-name Welcome to Trbes
               .group-desc Public and Private Groups for Teams

@@ -38,7 +38,7 @@ class GroupPresenter < BasePresenter
     if @model.logo_image && @model.logo_image.model.persisted?
       h.cl_image_tag(@model.logo_image.group_logo, options)
     else
-      h.image_tag("sample/default-group.png", options)
+      h.image_tag("sample/default-group.png", options.merge(width: 138))
     end
   end
 

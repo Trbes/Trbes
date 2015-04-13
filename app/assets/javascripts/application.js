@@ -24,4 +24,5 @@
 //= require jquery_nested_form
 //= require zeroclipboard
 //= require select2
+//= require retina_tag
 //= require scripts
