@@ -44,7 +44,7 @@
               data-iconify-target=(post.link)
               data-iconify-size="24"] = post.title
           - else
-            h2.post-title = post.title
+            h2.post-title = raw_sanitize(post.title)
           .post-meta
               span.date posted #{distance_of_time_in_words_to_now(post.created_at) } ago
           - if policy(post).edit?
@@ -54,7 +54,7 @@
             => link_to "Delete", post_path(post), method: :delete, data: { confirm: "Are you sure?" }
         .post-body
           - if post.post_type == "text_post"
-            = post.body
+            = raw_sanitize(post.body)
           - elsif post.post_type == "link_post"
             .url
               = link_to post.link, post.link

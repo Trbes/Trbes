@@ -50,4 +50,8 @@ module ApplicationHelper
     opts.each { |key, value| params << "#{key}=#{ URI.encode(value) }" }
     "https://twitter.com/intent/tweet?" + params.join("&")
   end
+
+  def raw_sanitize(html)
+    raw Sanitize.fragment(html, Sanitize::Config::RELAXED)
+  end
 end

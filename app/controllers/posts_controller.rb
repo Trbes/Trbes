@@ -1,6 +1,8 @@
 class PostsController < ApplicationController
   include Voting
 
+  before_action :ensure_trailing_slash, only: %i( show update destroy )
+
   expose(:post, attributes: :post_attributes, finder: :find_by_slug)
   expose(:comments, ancestor: :post) { |collection| collection.root.published.includes(:user, :child_comments) }
 
@@ -54,5 +56,9 @@ class PostsController < ApplicationController
       :post_type,
       attachments_attributes: %i( image id )
     )
+  end
+
+  def ensure_trailing_slash
+    params[:id] = CGI.unescape request.original_fullpath[1..-1]
   end
 end

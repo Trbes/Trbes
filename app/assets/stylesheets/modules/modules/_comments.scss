@@ -250,20 +250,6 @@ $comment-right-width: 170px;
     display: inline;
   }
 
-  .user-label {
-    position: absolute;
-    right: 100px;
-    top: 0;
-
-    @include breakpoint(0 ($screen-xs - 1)) {
-      right: auto;
-      top: auto;
-      bottom: -2px;
-      left: 0;
-    }
-
-  }
-
   .comment-meta {
     float: right;
 

@@ -21,6 +21,6 @@ class window.PostSearch
       templates:
         empty: "<div class='tt-empty-message'>No post matching your query</div>"
         suggestion: (hit) ->
-          return "<div><a href='/posts/#{hit.slug}'>#{hit.title}</a></div>"
+          return "<div><a href='/#{hit.slug}'>#{hit.title}</a></div>"
     ).on 'typeahead:selected', (event, selection) ->
-      window.location.href = "/posts/" + selection.slug
+      window.location.href = "/" + selection.slug
