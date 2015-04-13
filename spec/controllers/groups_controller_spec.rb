@@ -1,7 +1,11 @@
 require "rails_helper"
 
 describe GroupsController do
-  let!(:group_with_subdomain) { create(:group, subdomain: "test") }
+  let(:group_with_subdomain) { Group.first }
+
+  before do
+    stub_auth
+  end
 
   describe "#ensure_group_access_from_canonical_url" do
     before do

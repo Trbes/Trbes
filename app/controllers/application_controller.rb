@@ -9,7 +9,7 @@ class ApplicationController < ActionController::Base
 
   rescue_from Pundit::NotAuthorizedError, with: :not_authorized
 
-  before_action :push_algolia_config, :push_env_config, :push_indexes, :ensure_email_is_exists
+  before_action :push_algolia_config, :push_env_config, :push_indexes, :ensure_email_is_exists, :authorize_group_access
 
   expose(:groups)
   expose(:group_memberships) { current_group.memberships.joins(:user).confirmed.not_pending }
@@ -26,6 +26,10 @@ class ApplicationController < ActionController::Base
     return unless current_group && current_user
 
     @current_membership ||= current_user.membership_for(current_group)
+  end
+
+  def authorize_group_access
+    authorize(current_group, :show?) if current_group
   end
 
   def ensure_group_access_from_canonical_url!
@@ -54,7 +58,12 @@ class ApplicationController < ActionController::Base
 
   def not_authorized
     flash[:alert] = "You are not authorized to perform this action."
-    redirect_to(request.referrer || root_path)
+
+    redirect_to(request.referrer || not_authorized_redirect)
+  end
+
+  def not_authorized_redirect
+    current_group.private? ? root_url : root_path
   end
 
   def pundit_user

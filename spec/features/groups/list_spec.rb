@@ -36,4 +36,18 @@ feature "Groups list" do
       expect(page).to have_css(".group", count: 1)
     end
   end
+
+  context "when there are private groups" do
+    let!(:private_group) { create(:group, private: true) }
+
+    scenario "I can't wee them within groups list" do
+      visit root_path
+
+      within("#group_#{group.id}") do
+        expect(page).to have_css(".group-name", text: group.name)
+      end
+
+      expect(page).not_to have_css("#group_#{private_group.id}")
+    end
+  end
 end
