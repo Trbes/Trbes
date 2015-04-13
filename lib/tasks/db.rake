@@ -43,18 +43,29 @@ namespace :db do
             next
           end
 
-          post_body = post_data["post_content"] || ""
-          author = users.first{ |u| u["ID"] == post_data["post_author"] }
           post_date = post_data["post_date"].split(" ")[0]
+          post_slug = "#{post_date.split('-')[0]}/#{post_date.split('-')[1]}/#{CGI.unescape post_data['post_name']}/"
+
+          # skip specific posts as per https://basecamp.com/2854999/projects/8291966/messages/40370888#comment_270167814
+          next if %w(
+            2012/07/tous-les-articles/
+            2012/07/page-daccueil/
+            2012/07/contact-form-1/
+          ).include? post_slug
+
+          post_body = post_data["post_content"] || ""
+          post_body.gsub!("http://blog.webdepart.com/wp-content/", "http://media.webdepart.com/wp-content/")
+          author = users.first{ |u| u["ID"] == post_data["post_author"] }
           meta_text = "ORIGINALLY PUBLISHED: #{post_date}"
           meta_text += " BY #{author['display_name'].upcase}" if author
-          post_body += "<br><br><em>#{meta_text}</em>"
+          post_body = "<em>#{meta_text}</em><br><br>" + post_body
+
           result = CreatePost.call(
             attributes: {
               title: post_data["post_title"].html_safe,
               body: post_body,
               post_type: :text_post,
-              slug: "#{post_date.split('-')[0]}/#{post_date.split('-')[1]}/#{CGI.unescape post_data['post_name']}/"
+              slug: post_slug
             },
             current_group: group,
             current_user: user,
