@@ -17,6 +17,7 @@ gem "autoprefixer-rails"
 gem "therubyracer", platforms: :ruby
 gem "uglifier", ">= 1.3.0"
 gem "best_in_place", git: "https://github.com/codynguyen/best_in_place", branch: "cross-browser-behaviour"
+gem "retina_tag"
 
 gem "simple_form", "~> 3.1"
 gem "nested_form"
