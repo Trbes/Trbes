@@ -14,7 +14,7 @@ feature "Single post page" do
       click_link post.title
     end
 
-    expect(current_path).to eq("/posts/#{post.title.parameterize}")
+    expect(current_path).to eq("/#{post.title.parameterize}")
 
     within("#post_#{post.id}") do
       expect(page).to have_css(".post-title", text: post.title)

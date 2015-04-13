@@ -1,5 +1,6 @@
 namespace :db do
   desc "Import webdepart"
+  # rubocop:disable all
   task import_webdepart: :environment do
     require "crack"
 
@@ -70,4 +71,5 @@ namespace :db do
 
     Post.reindex!
   end
+  # rubocop:enable all
 end

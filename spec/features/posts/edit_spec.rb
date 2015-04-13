@@ -15,16 +15,18 @@ shared_examples_for "editable posts" do
     expect(page).to have_link("Edit post")
   end
 
-  scenario "I can visit 'edit' post page" do
-    visit edit_post_path(post)
+  scenario "I can edit post right in the page", js: true do
+    visit post_path(post)
 
-    expect(page).to have_css("form.edit_post")
+    click_link "Edit post"
+
+    expect(page).to have_css("#edit_post_#{post.id}.modal")
 
     fill_in "Title", with: "Some new title"
 
-    expect {
-      click_button "Save"
-    }.to change { post.reload.title }.to("Some new title")
+    click_button "Save"
+
+    expect(page).to have_content("Some new title")
   end
 end
 
@@ -59,12 +61,6 @@ feature "Edit post" do
         visit post_path(post)
 
         expect(page).not_to have_link("Edit post")
-      end
-
-      scenario "I can't visit 'edit' post page", js: true do
-        visit edit_post_path(post)
-
-        expect(page).to have_content("You are not authorized to perform this action.")
       end
     end
 
