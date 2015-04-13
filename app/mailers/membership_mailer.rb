@@ -1,4 +1,6 @@
 class MembershipMailer < ApplicationMailer
+  helper GroupsHelper
+
   def role_changed_email(membership)
     @membership = membership
 
