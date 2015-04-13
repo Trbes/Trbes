@@ -1,7 +1,7 @@
 = div_for(post, class: "post-type-image")
   = render "posts/voting", post: post
   .post-content
-    = link_to raw(post.title), post, class: "title", title: raw(post.title)
+    = link_to raw_sanitize(post.title), post, class: "title", title: raw_sanitize(post.title)
     a.image href=(post_path(post))
       .image-wrapper
         = cl_image_tag(post.preview_image)
