@@ -3,7 +3,7 @@ nav#main_sliding_menu.js-menu.sliding-menu-content
     a.btn.btn-block.btn-close-sliding-menu.js-menu-trigger.visible-xs href="#"
       | ← Back
     = link_to root_url, class: "pull-left brand" do
-      = image_tag("logo_full_white.png")
+      = image_tag("logo_full_white.png", width: 58)
     - if user_signed_in?
       = link_to new_group_url, class: "pull-right btn-create-group" do
         | +&nbsp;
