@@ -27,7 +27,9 @@ feature "Update membership", js: true do
 
     open_email(some_membership.email)
 
-    expect(current_email).to have_subject "Your role in #{group.name} has changed"
+    expect(current_email).to have_subject("Your role in #{group.name} has changed")
+    expect(current_email.body.encoded).to include("http://#{group.subdomain}.#{DEFAULT_HOST}")
+    expect(current_email.body).to include("Martin, Airat, Cody and the Trbes Team.")
   end
 
   context "when there are posts by this user in 'moderation' state" do
