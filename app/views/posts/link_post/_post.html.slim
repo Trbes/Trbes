@@ -1,7 +1,7 @@
 = div_for(post, class: "post-type-link")
   = render "posts/voting", post: post
   .post-content
-    = link_to post.title, post, class: "title iconify", title: post.title, data: { "iconify-target" => post.link }
+    = link_to raw(post.title), post, class: "title iconify", title: raw(post.title), data: { "iconify-target" => post.link }
     .url
       = link_to post.link, post.link
     .excerpt= truncate(post.body, length: 160)

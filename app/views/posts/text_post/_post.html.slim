@@ -1,7 +1,7 @@
 = div_for(post, class: "post-type-text")
   = render "posts/voting", post: post
   .post-content
-    = link_to post.title, post, class: "title", title: post.title
+    = link_to raw(post.title), post, class: "title", title: raw(post.title)
     .excerpt= truncate(Sanitize.fragment(post.body), length: 160)
     = render "posts/footer", post: post
   .post-right
