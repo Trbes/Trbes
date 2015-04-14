@@ -26,6 +26,7 @@ module Admin
     end
 
     def destroy
+      authorize(collection)
       flash[:notice] = %Q{Collection "#{collection.name}" has been deleted}
 
       collection.destroy
