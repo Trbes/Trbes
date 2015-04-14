@@ -6,6 +6,8 @@ module Admin
     expose(:collection, attributes: :collection_attributes)
 
     def create
+      authorize(collection)
+
       result = CreateCollection.call(
         attributes: collection_attributes,
         current_group: current_group
@@ -17,7 +19,13 @@ module Admin
     end
 
     def update
-      collection.save
+      authorize(collection)
+
+      flash[:notice] = if collection.save
+        %Q{Collection "#{collection.name}" was successfully updated}
+      else
+        collection.errors.full_messages.join(". ")
+      end
 
       respond_to do |format|
         format.html { redirect_to(edit_admin_group_path) }
@@ -27,6 +35,7 @@ module Admin
 
     def destroy
       authorize(collection)
+
       flash[:notice] = %Q{Collection "#{collection.name}" has been deleted}
 
       collection.destroy
