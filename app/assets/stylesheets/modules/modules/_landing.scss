@@ -80,7 +80,7 @@
   &.seamless-sharing {
     .section-header {
       .btn {
-        margin: 0 10px;
+        margin: 0 10px 10px;
       }
     }
 
@@ -96,6 +96,16 @@
       & > div {
         width: 50%;
         display: table-cell;
+      }
+
+      @include breakpoint(0 $screen-sm - 1) {
+        display: block;
+
+        & > div {
+          width: auto;
+          display: block;
+          margin-bottom: 10px;
+        }
       }
 
       .feature-content {
@@ -137,15 +147,34 @@
     }
 
     .hub-feature {
+      @include clearfix;
       text-align: center;
+
+      &:first-child {
+        figure {
+          float: right;
+        }
+
+      }
+
+      &:last-child {
+        figure {
+          float: left;
+        }
+      }
 
       @include breakpoint(0 $screen-sm - 1) {
         margin-bottom: 40px;
+
+        &:first-child, &:last-child {
+          figure {
+            float: none;
+          }
+        }
       }
 
       img {
         max-width: 100%;
-        width: 100%;
       }
 
       figcaption {

@@ -96,7 +96,7 @@ gsdk = {
 
              ul_content = '';
 
-             $navbar.children('ul').each(function(){
+             $navbar.find('ul').each(function(){
                 content_buff = $(this).html();
                 ul_content = ul_content + content_buff;
              });
