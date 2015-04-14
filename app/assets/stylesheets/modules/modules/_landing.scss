@@ -137,15 +137,35 @@
     }
 
     .hub-feature {
+      @include clearfix;
       text-align: center;
+
+      figure {
+        &:first-child {
+          float: right;
+        }
+
+        &:last-child {
+          float: right;
+        }
+      }
 
       @include breakpoint(0 $screen-sm - 1) {
         margin-bottom: 40px;
+
+        figure {
+          &:first-child {
+            float: none;
+          }
+
+          &:last-child {
+            float: none;
+          }
+        }
       }
 
       img {
         max-width: 100%;
-        width: 100%;
       }
 
       figcaption {
