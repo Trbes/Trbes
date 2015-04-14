@@ -68,13 +68,15 @@ namespace :db do
           meta_text = "ORIGINALLY PUBLISHED: #{post_date}"
           meta_text += (author ? " BY #{author['display_name'].upcase}." : ".")
           post_body = "<em>#{meta_text}</em><br><br>" + post_body
+          post_time = Time.parse(post_data["post_date_gmt"] + " UTC")
 
           result = CreatePost.call(
             attributes: {
               title: post_data["post_title"].html_safe.html_safe,
               body: post_body,
               post_type: :text_post,
-              slug: post_slug
+              slug: post_slug,
+              created_at: post_time
             },
             current_group: group,
             current_user: user,
@@ -150,13 +152,15 @@ namespace :db do
           meta_text = "ORIGINALLY PUBLISHED: #{post_date}"
           meta_text += (author ? " BY #{author['display_name'].upcase}." : ".")
           post_body = "<em>#{meta_text}</em><br><br>" + post_body
+          post_time = Time.parse(post_data["post_date_gmt"] + " UTC")
 
           result = CreatePost.call(
             attributes: {
               title: post_data["post_title"].html_safe.html_safe,
               body: post_body,
               post_type: :text_post,
-              slug: post_slug
+              slug: post_slug,
+              created_at: post_time
             },
             current_group: group,
             current_user: user,
