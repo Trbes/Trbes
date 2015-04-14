@@ -32,7 +32,7 @@ class Post < ActiveRecord::Base
 
   delegate :full_name, :avatar, :title, to: :user, prefix: true
 
-  before_save :set_hot_rank
+  after_save :set_hot_rank
 
   acts_as_votable
 
@@ -70,6 +70,7 @@ class Post < ActiveRecord::Base
   def set_hot_rank
     order = Math.log([cached_votes_total, 1].max, 10)
     seconds = created_at.to_i - DATE_RANKING_INTRODUCED
-    self.hot_rank = (order + seconds / ONE_RANKING_POINT_WEIGHT).round(7)
+
+    update_column(:hot_rank, (order + seconds / ONE_RANKING_POINT_WEIGHT).round(7))
   end
 end
