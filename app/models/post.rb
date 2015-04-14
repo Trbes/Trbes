@@ -32,7 +32,7 @@ class Post < ActiveRecord::Base
 
   delegate :full_name, :avatar, :title, to: :user, prefix: true
 
-  before_save :set_hot_rank
+  after_save :set_hot_rank
 
   acts_as_votable
 
