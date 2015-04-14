@@ -20,7 +20,7 @@ class CreateCollection
   end
 
   def set_success_message
-    context.message = %Q{Collection "#{context.collection.name}" has been added}
+    context.message = %(Collection "#{context.collection.name}" has been added)
   end
 
   def create_collection

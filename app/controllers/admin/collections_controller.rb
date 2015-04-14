@@ -1,7 +1,7 @@
 module Admin
   class CollectionsController < Admin::ApplicationController
     before_action :ensure_group_is_loaded!
-    before_action { authorize(collection_post) }
+    before_action { authorize(collection) }
 
     expose(:collections)
     expose(:collection, attributes: :collection_attributes)
@@ -18,20 +18,18 @@ module Admin
     end
 
     def update
-      flash[:notice] = if collection.save
-        %Q{Collection "#{collection.name}" was successfully updated}
-      else
-        collection.errors.full_messages.join(". ")
-      end
+      result = UpdateCollection.call(collection: collection)
+
+      flash[:notice] = result.message
 
       respond_to do |format|
         format.html { redirect_to(edit_admin_group_path) }
-        format.json { respond_with_bip(collection) }
+        format.json { respond_with_bip(result.collection) }
       end
     end
 
     def destroy
-      flash[:notice] = %Q{Collection "#{collection.name}" has been deleted}
+      flash[:notice] = %(Collection "#{collection.name}" has been deleted)
 
       collection.destroy
 

@@ -1,7 +1,7 @@
 class CommentsController < ApplicationController
   include Voting
 
-  before_action except: %i(upvote unvote) { authorize(comment) }
+  before_action(except: %i(upvote unvote)) { authorize(comment) }
 
   expose(:comment, attributes: :comment_attributes)
   expose(:post)

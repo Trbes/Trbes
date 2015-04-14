@@ -5,14 +5,14 @@ module Admin
     expose(:collection_post, attributes: :collection_post_attributes)
 
     def create
-      flash[:notice] = %Q{Post was added to "#{collection_post.collection_name}"}
+      flash[:notice] = %(Post was added to "#{collection_post.collection_name}")
       collection_post.save
 
       redirect_to :back
     end
 
     def destroy
-      flash[:notice] = %Q{Post was removed from "#{collection_post.collection_name}"}
+      flash[:notice] = %(Post was removed from "#{collection_post.collection_name}")
 
       collection_post.destroy
 
