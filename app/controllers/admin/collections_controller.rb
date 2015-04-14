@@ -6,10 +6,12 @@ module Admin
     expose(:collection, attributes: :collection_attributes)
 
     def create
-      CreateCollection.call(
+      result = CreateCollection.call(
         attributes: collection_attributes,
         current_group: current_group
       )
+
+      flash[:notice] = result.message
 
       redirect_to :back
     end
@@ -24,6 +26,8 @@ module Admin
     end
 
     def destroy
+      flash[:notice] = %Q{Collection "#{collection.name}" has been deleted}
+
       collection.destroy
 
       redirect_to edit_admin_group_path
