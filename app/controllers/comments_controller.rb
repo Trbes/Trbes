@@ -1,6 +1,8 @@
 class CommentsController < ApplicationController
   include Voting
 
+  before_action except: %i(upvote unvote) { authorize(comment) }
+
   expose(:comment, attributes: :comment_attributes)
   expose(:post)
 
@@ -12,20 +14,16 @@ class CommentsController < ApplicationController
       allow_publish: policy(Comment).publish?
     )
 
-    redirect_to post_path(result.comment.post), flash: { success: result.message }
+    redirect_to post_path(result.comment.post), flash: { notice: result.message }
   end
 
   def update
-    authorize(comment)
-
     comment.save
 
     redirect_to :back
   end
 
   def destroy
-    authorize(comment)
-
     comment.destroy
 
     redirect_to :back
