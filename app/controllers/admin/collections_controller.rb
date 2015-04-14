@@ -1,13 +1,12 @@
 module Admin
   class CollectionsController < Admin::ApplicationController
     before_action :ensure_group_is_loaded!
+    before_action { authorize(collection_post) }
 
     expose(:collections)
     expose(:collection, attributes: :collection_attributes)
 
     def create
-      authorize(collection)
-
       result = CreateCollection.call(
         attributes: collection_attributes,
         current_group: current_group
@@ -19,8 +18,6 @@ module Admin
     end
 
     def update
-      authorize(collection)
-
       flash[:notice] = if collection.save
         %Q{Collection "#{collection.name}" was successfully updated}
       else
@@ -34,8 +31,6 @@ module Admin
     end
 
     def destroy
-      authorize(collection)
-
       flash[:notice] = %Q{Collection "#{collection.name}" has been deleted}
 
       collection.destroy

@@ -1,5 +1,7 @@
 module Admin
   class CollectionPostsController < Admin::ApplicationController
+    before_action { authorize(collection_post) }
+
     expose(:collection_post, attributes: :collection_post_attributes)
 
     def create

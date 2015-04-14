@@ -3,6 +3,10 @@ class CollectionPostPolicy < Struct.new(:membership, :collection_post)
     membership && (membership.owner? || membership.moderator?) && membership.group.collections.exists?
   end
 
+  def update?
+    create?
+  end
+
   def destroy?
     membership && (membership.owner? || membership.moderator?)
   end
