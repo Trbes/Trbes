@@ -64,7 +64,7 @@ namespace :db do
           post_body = post_data["post_content"] || ""
           post_body.gsub!(%r{(https|http)://(blog.)+webdepart.com/wp-content/uploads/}, "http://archive.webdepart.com/files/wd/")
           post_body.gsub!("\n", "<br>")
-          author = users.first{ |u| u["ID"] == post_data["post_author"] }
+          author = users.select{ |u| u["ID"] == post_data["post_author"] }.first
           meta_text = "ORIGINALLY PUBLISHED: #{post_date}"
           meta_text += (author ? " BY #{author['display_name'].upcase}." : ".")
           post_body = "<em>#{meta_text}</em><br><br>" + post_body
@@ -143,9 +143,10 @@ namespace :db do
           end
 
           post_body = post_data["post_content"] || ""
-          post_body.gsub!(%r{(https|http)://montrealtechwatch.com/wp-content/uploads/}, "http://archive.montrealtechwatch.com/files/mtw/")
+          post_body.gsub!(%r{(https|http)://montrealtechwatch.com/(wp-content/uploads|images)/}, "http://archive.montrealtechwatch.com/files/mtw/")
           post_body.gsub!("\n", "<br>")
-          author = users.first{ |u| u["ID"] == post_data["post_author"] }
+          author = users.select{ |u| u["ID"] == post_data["post_author"] }.first
+
           meta_text = "ORIGINALLY PUBLISHED: #{post_date}"
           meta_text += (author ? " BY #{author['display_name'].upcase}." : ".")
           post_body = "<em>#{meta_text}</em><br><br>" + post_body
