@@ -31,58 +31,16 @@
             }
           }
         }
+      }
 
-        &.landing-authentication {
-          margin-top: 68px;
-
-          // Medium desktop
-          @include breakpoint(0 $screen-lg - 1) {
-            margin-top: 68px;
-          }
-
-          // Ipad
-          @include breakpoint($screen-sm $screen-md - 1) {
-            margin-top: 32px;
-          }
-
-          a {
-            margin-top: 0;
-            margin-bottom: 0;
-            font-size: 20px;
-
-            // Medium desktop
-            @include breakpoint(0 $screen-lg - 1) {
+      .landing-navbar-navigation {
+        .navbar-nav {
+          &>li {
+            &>a {
+              margin-top: 0;
+              margin-bottom: 0;
               font-size: 16px;
             }
-
-            &.btn-sign-in {
-              text-decoration: underline;
-              color: #7f7f7f;
-              margin-right: 15px;
-            }
-
-            &.btn-sign-up {
-              min-width: 170px;
-
-              // Ipad
-              @include breakpoint($screen-sm $screen-md - 1) {
-                min-width: 0;
-              }
-            }
-          }
-        }
-
-        &.landing-profile {
-          margin-top: 64px;
-
-          // Medium desktop
-          @include breakpoint(0 $screen-lg - 1) {
-            margin-top: 64px;
-          }
-
-          // Ipad
-          @include breakpoint($screen-sm $screen-md - 1) {
-            margin-top: 28px;
           }
         }
       }
@@ -113,6 +71,7 @@
 
           img {
             height: 34px;
+            width: auto;
           }
         }
       }

@@ -2,18 +2,16 @@
   nav.navbar.navbar-default role="navigation"
     .container
       .navbar-header
-        button.navbar-toggle data-target="#landing_collapse_bar" data-toggle="collapse" type="button"
+        button.navbar-toggle data-target="#navbar_navigation" data-toggle="collapse" type="button"
           span.sr-only Toggle navigation
           span.icon-bar
           span.icon-bar
           span.icon-bar
         = link_to image_tag("logo_full_black_huge.png", width: 136), root_url, class: "navbar-brand"
-      #landing_collapse_bar.collapse.navbar-collapse
+      #navbar_navigation.collapse.navbar-collapse
         ul.nav.navbar-nav
           li: a href=root_url  Discover Trbes
           li: a href=(ENV["TRBES_GROUP_URL"] || "#")  Support & Community
-
-        ul.nav.navbar-nav.toggle-target-type
           li.dropdown
             - if @teams
               a.dropdown-toggle data-toggle="dropdown" href="#"
@@ -29,6 +27,8 @@
               ul.dropdown-menu
                 li
                   a href="/small-teams"  ...for Small Teams
-        = render "landing/navigation_user"
+        .landing-navbar-navigation
+          = render "application/navigation_user"
+
       hr.border-bottom
 
