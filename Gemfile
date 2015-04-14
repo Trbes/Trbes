@@ -118,4 +118,5 @@ source "https://rails-assets.org" do
   gem "rails-assets-humane"
   gem "rails-assets-zeroclipboard"
   gem "rails-assets-select2"
+  gem "rails-assets-jquery-autosize"
 end
