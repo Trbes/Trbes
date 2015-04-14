@@ -8,6 +8,7 @@ gem "pg"
 
 # frontend stack: preprocessors, libraries, minifiers, assets
 # plus view stack: helpers, builders, etc.
+gem "sass"
 gem "sass-rails", "~> 5.0"
 gem "slim"
 gem "coffee-rails", "~> 4.1.0"
