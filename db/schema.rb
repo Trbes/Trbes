@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150403180353) do
+ActiveRecord::Schema.define(version: 20150415152934) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -81,21 +81,24 @@ ActiveRecord::Schema.define(version: 20150403180353) do
   add_index "friendly_id_slugs", ["sluggable_type"], name: "index_friendly_id_slugs_on_sluggable_type", using: :btree
 
   create_table "groups", force: :cascade do |t|
-    t.string   "name",                              null: false
+    t.string   "name",                                   null: false
     t.text     "description"
-    t.boolean  "private",           default: false
-    t.string   "subdomain",                         null: false
+    t.boolean  "private",                default: false
+    t.string   "subdomain",                              null: false
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "memberships_count", default: 0,     null: false
-    t.integer  "posts_count",       default: 0,     null: false
-    t.integer  "collections_count", default: 0,     null: false
-    t.string   "tagline",                           null: false
-    t.boolean  "allow_image_posts", default: true,  null: false
-    t.boolean  "allow_link_posts",  default: true,  null: false
-    t.boolean  "allow_text_posts",  default: true,  null: false
+    t.integer  "memberships_count",      default: 0,     null: false
+    t.integer  "posts_count",            default: 0,     null: false
+    t.integer  "collections_count",      default: 0,     null: false
+    t.string   "tagline",                                null: false
+    t.boolean  "allow_image_posts",      default: true,  null: false
+    t.boolean  "allow_link_posts",       default: true,  null: false
+    t.boolean  "allow_text_posts",       default: true,  null: false
     t.datetime "deleted_at"
     t.string   "custom_domain"
+    t.integer  "published_posts_count",  default: 0,     null: false
+    t.integer  "moderation_posts_count", default: 0,     null: false
+    t.integer  "rejected_posts_count",   default: 0,     null: false
   end
 
   add_index "groups", ["custom_domain"], name: "index_groups_on_custom_domain", using: :btree
