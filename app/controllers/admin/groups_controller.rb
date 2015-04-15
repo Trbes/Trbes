@@ -7,12 +7,16 @@ module Admin
     end
 
     def update
+      authorize(group)
+
       group.update_attributes(group_attributes)
 
       redirect_to edit_admin_group_path
     end
 
     def destroy
+      authorize(group)
+
       group.destroy
 
       redirect_to new_group_path

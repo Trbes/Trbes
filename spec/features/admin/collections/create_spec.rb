@@ -25,6 +25,7 @@ feature "Create collection" do
       click_button "Save"
 
       expect(page).to have_content("Group")
+      expect(page).to have_content('Collection "Name" has been added')
       expect(Collection.count).to eq(1)
       expect(current_path).to eq(edit_admin_group_path)
     end

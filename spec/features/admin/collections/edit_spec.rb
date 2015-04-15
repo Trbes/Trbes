@@ -27,6 +27,7 @@ feature "Edit collection" do
       click_button "Save"
 
       expect(page).to have_content("Group")
+      expect(page).to have_content('Collection "New name" was successfully updated')
       expect(current_path).to eq(edit_admin_group_path)
       expect(collection.reload.name).to eq("New name")
       expect(collection.reload.visibility).to eq(false)

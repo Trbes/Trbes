@@ -16,17 +16,18 @@ feature "Post a comment" do
     end
   end
 
-  scenario "I post a comment under post" do
-    expect {
-      create_comment
-    }.to change { post.comments.count }.from(0).to(1)
+  scenario "I post a comment under post", js: true do
+    create_comment
 
+    expect(page).to have_content(I18n.t("app.comment.message.success"))
     comment = post.comments.last
 
     within "#comment_#{comment.id}" do
       expect(page).to have_content("Comment body")
       expect(page).to have_content(user.full_name)
     end
+
+    expect(post.comments.count).to eq(1)
   end
 
   context "when there are existing comments" do

@@ -1,20 +1,19 @@
 module Admin
   class CollectionPostsController < Admin::ApplicationController
+    before_action { authorize(collection_post) }
+
     expose(:collection_post, attributes: :collection_post_attributes)
 
     def create
+      flash[:notice] = %(Post was added to "#{collection_post.collection_name}")
       collection_post.save
 
       redirect_to :back
     end
 
-    def update
-      collection_post.save
-
-      redirect_to edit_admin_group_path
-    end
-
     def destroy
+      flash[:notice] = %(Post was removed from "#{collection_post.collection_name}")
+
       collection_post.destroy
 
       redirect_to root_path

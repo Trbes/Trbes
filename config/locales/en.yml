@@ -135,6 +135,7 @@ en:
         success_pending: "'%{title}' has been added and is in review process"
     comment:
       message:
+        success: "Your comment has been added"
         success_pending: "Your comment has been added and is in review process"
 
     membership:
