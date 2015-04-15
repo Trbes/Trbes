@@ -19,6 +19,14 @@ class Post < ActiveRecord::Base
   has_many :collection_posts, dependent: :destroy
   has_many :collections, through: :collection_posts
   belongs_to :group, counter_cache: true, required: true
+  counter_culture :group,
+    column_name: proc { |model| "#{model.state}_posts_count" },
+    column_names: {
+      ["posts.state = ?", 0] => "moderation_posts_count",
+      ["posts.state = ?", 1] => "published_posts_count",
+      ["posts.state = ?", 2] => "rejected_posts_count"
+    }
+
   belongs_to :user, required: true
 
   accepts_nested_attributes_for :attachments, reject_if: proc { |a| a[:image].blank? }

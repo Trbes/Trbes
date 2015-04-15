@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150403180353) do
+ActiveRecord::Schema.define(version: 20150415145303) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -81,21 +81,24 @@ ActiveRecord::Schema.define(version: 20150403180353) do
   add_index "friendly_id_slugs", ["sluggable_type"], name: "index_friendly_id_slugs_on_sluggable_type", using: :btree
 
   create_table "groups", force: :cascade do |t|
-    t.string   "name",                              null: false
+    t.string   "name",                                   null: false
     t.text     "description"
-    t.boolean  "private",           default: false
-    t.string   "subdomain",                         null: false
+    t.boolean  "private",                default: false
+    t.string   "subdomain",                              null: false
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "memberships_count", default: 0,     null: false
-    t.integer  "posts_count",       default: 0,     null: false
-    t.integer  "collections_count", default: 0,     null: false
-    t.string   "tagline",                           null: false
-    t.boolean  "allow_image_posts", default: true,  null: false
-    t.boolean  "allow_link_posts",  default: true,  null: false
-    t.boolean  "allow_text_posts",  default: true,  null: false
+    t.integer  "memberships_count",      default: 0,     null: false
+    t.integer  "posts_count",            default: 0,     null: false
+    t.integer  "collections_count",      default: 0,     null: false
+    t.string   "tagline",                                null: false
+    t.boolean  "allow_image_posts",      default: true,  null: false
+    t.boolean  "allow_link_posts",       default: true,  null: false
+    t.boolean  "allow_text_posts",       default: true,  null: false
     t.datetime "deleted_at"
     t.string   "custom_domain"
+    t.integer  "published_posts_count",  default: 0,     null: false
+    t.integer  "moderation_posts_count", default: 0,     null: false
+    t.integer  "rejected_posts_count",   default: 0,     null: false
   end
 
   add_index "groups", ["custom_domain"], name: "index_groups_on_custom_domain", using: :btree
@@ -107,6 +110,16 @@ ActiveRecord::Schema.define(version: 20150403180353) do
   create_table "link_postables", force: :cascade do |t|
     t.string "link"
   end
+
+  create_table "membership_roles", force: :cascade do |t|
+    t.integer  "membership_id", null: false
+    t.integer  "role_id",       null: false
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+  end
+
+  add_index "membership_roles", ["membership_id"], name: "index_membership_roles_on_membership_id", using: :btree
+  add_index "membership_roles", ["role_id"], name: "index_membership_roles_on_role_id", using: :btree
 
   create_table "memberships", force: :cascade do |t|
     t.integer  "user_id"
@@ -151,6 +164,12 @@ ActiveRecord::Schema.define(version: 20150403180353) do
   end
 
   add_index "profiles", ["user_id"], name: "index_profiles_on_user_id", using: :btree
+
+  create_table "roles", force: :cascade do |t|
+    t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "text_postables", force: :cascade do |t|
     t.text "body"
@@ -212,6 +231,7 @@ ActiveRecord::Schema.define(version: 20150403180353) do
   add_foreign_key "collections", "groups"
   add_foreign_key "comments", "posts"
   add_foreign_key "comments", "users"
+  add_foreign_key "membership_roles", "roles"
   add_foreign_key "memberships", "groups"
   add_foreign_key "memberships", "users"
   add_foreign_key "posts", "groups"

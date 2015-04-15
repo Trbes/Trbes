@@ -58,6 +58,7 @@ gem "rest-client", "~> 1.8.0"
 gem "mobile-fu"
 gem "crack"
 gem "sanitize"
+gem "counter_culture"
 
 group :staging, :production do
   gem "airbrake"
