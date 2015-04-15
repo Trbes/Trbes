@@ -50,12 +50,15 @@ feature "Manage posts and collections" do
       end
 
       expect(post.reload.collections).to eq([collection])
+      expect(page).to have_content %(Post was added to "#{collection.name}")
     end
 
-    scenario "I can remove post from collection" do
+    scenario "I can remove post from collection", js: true do
       post.collections << collection
 
       visit root_path
+
+      page.find("#post_#{post.id} #collection_#{collection.id}").hover
 
       within("#post_#{post.id} #collection_#{collection.id}") do
         page.find(".remove-from-collection").click
@@ -66,6 +69,7 @@ feature "Manage posts and collections" do
       end
 
       expect(post.reload.collections).to be_empty
+      expect(page).to have_content %(Post was removed from "#{collection.name}")
     end
   end
 end
