@@ -511,7 +511,6 @@ DEPENDENCIES
   coffee-rails (~> 4.1.0)
   counter_culture
   crack
-  counter_culture
   database_cleaner
   decent_exposure
   devise
