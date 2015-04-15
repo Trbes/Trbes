@@ -165,13 +165,18 @@
 
     .group-info {
       margin-top: 0px;
+      width: calc(100% - 130px);
     }
 
     .group-name {
+      @include ellipsis;
+      display: block;
       font-size: 1.2em;
     }
 
     .group-desc {
+      @include ellipsis;
+      display: block;
       font-size: 1em;
     }
   }
