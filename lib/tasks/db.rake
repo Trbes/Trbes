@@ -28,12 +28,10 @@ namespace :db do
     group.add_member user, as: :owner
     p "added user to group"
 
-    data = Crack::XML.parse File.read("#{Rails.root}/db/data/webdepart.xml")
-    p "parsed data file"
+    data = Crack::XML.parse File.read("#{Rails.root}/db/data/webdepart.xml"); p "parsed data file"
 
-    posts = data['webdepart']['wd_posts']['row']
-    users = data['webdepart']['wd_users']['row']
-    post_count = posts.count
+    posts = data['webdepart']['wd_posts']['row']; post_count = posts.count; p post_count
+    users = data['webdepart']['wd_users']['row']; p "assigned users"
 
     Post.without_auto_index do
       posts.each_with_index do |post_data, index|
@@ -88,7 +86,7 @@ namespace :db do
           p "FAILED --> #{index} / #{post_count}. #{e.message}"
           next
         end
-      end
+      end; p "done"
     end
 
     Post.reindex!
@@ -121,12 +119,10 @@ namespace :db do
     group.add_member user, as: :owner
     p "added user to group"
 
-    data = Crack::XML.parse File.read("#{Rails.root}/db/data/mtw.xml")
-    p "parsed data file"
+    data = Crack::XML.parse File.read("#{Rails.root}/db/data/mtw.xml"); p "parsed data file"
 
-    posts = data['mtw']['mtw_posts']['row']
-    users = data['mtw']['mtw_users']['row']
-    post_count = posts.count
+    posts = data['mtw']['mtw_posts']['row']; post_count = posts.count; p post_count
+    users = data['mtw']['mtw_users']['row']; p "assigned users"
 
     Post.without_auto_index do
       posts.each_with_index do |post_data, index|
@@ -146,6 +142,7 @@ namespace :db do
 
           post_body = post_data["post_content"] || ""
           post_body.gsub!(%r{(https|http)://montrealtechwatch.com/(wp-content/uploads|images)/}, "http://archive.montrealtechwatch.com/files/mtw/")
+          post_body.gsub!(%r{<img\ssrc="/images/}, '<img src="http://archive.montrealtechwatch.com/files/mtw/')
           post_body.gsub!("\n", "<br>")
           author = users.select{ |u| u["ID"] == post_data["post_author"] }.first
 
@@ -172,7 +169,7 @@ namespace :db do
           p "FAILED --> #{index} / #{post_count}. #{e.message}"
           next
         end
-      end
+      end; p "done"
     end
 
     Post.reindex!
