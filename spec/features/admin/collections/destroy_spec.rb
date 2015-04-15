@@ -23,6 +23,7 @@ feature "Destroy collection" do
       end
 
       expect(page).to have_content("Group")
+      expect(page).to have_content(%(Collection "#{collection.name}" has been deleted))
       expect(current_path).to eq(edit_admin_group_path)
       expect(page).not_to have_css(".collection[data-id='#{collection.id}']")
       expect(Collection.count).to eq(0)
