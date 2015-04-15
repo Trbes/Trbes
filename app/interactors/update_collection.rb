@@ -4,7 +4,7 @@ class UpdateCollection
   def call
     update_collection
 
-    if context.collection.valid?
+    if collection.valid?
       set_success_message
     else
       set_failure_message
@@ -16,7 +16,7 @@ class UpdateCollection
   private
 
   def update_collection
-    context.collection.save
+    collection.save
   end
 
   # TODO: Extract this messages setting logic to separate composite (preferred) or parent class
@@ -26,5 +26,9 @@ class UpdateCollection
 
   def set_failure_message
     context.message = collection.errors.full_messages.join(". ")
+  end
+
+  def collection
+    context.collection
   end
 end
