@@ -16,6 +16,10 @@ class GroupPresenter < BasePresenter
     h.link_to h.pluralize(@model.posts_count, "post"), h.group_url(@model)
   end
 
+  def published_posts_count_link
+    h.link_to h.pluralize(@model.published_posts_count, "post"), h.group_url(@model)
+  end
+
   def privacy_type
     @model.private? ? "private" : "public"
   end
