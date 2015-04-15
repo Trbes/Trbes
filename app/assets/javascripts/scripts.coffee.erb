@@ -21,6 +21,10 @@ $ ->
     $(".js-menu,.js-menu-screen").toggleClass "is-visible"
     e.preventDefault()
 
+  # Auto resize textareas when content grows out of their dimension
+  $("textarea").on "focus", (e) ->
+    $(@).autosize()
+
   new SignUp($("form.su-form"))
   new SignIn($("form.si-form"))
   new CreateGroup($("form.cg-form"))

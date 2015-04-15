@@ -25,4 +25,5 @@
 //= require zeroclipboard
 //= require select2
 //= require retina_tag
+//= require jquery-autosize
 //= require scripts
