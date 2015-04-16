@@ -13,7 +13,7 @@ feature "Edit group", js: true do
     fill_in "Name", with: "New Name"
     fill_in "Tagline", with: "New Tagline"
     fill_in "Description", with: "New Description"
-    fill_in "Custom domain", with: "example.com"
+    # fill_in "Custom domain", with: "example.com"
     page.find("#cg_privacy").click
 
     click_button "Save"
@@ -25,7 +25,7 @@ feature "Edit group", js: true do
     expect(group.tagline).to eq("New Tagline")
     expect(group.description).to eq("New Description")
     expect(group.private).to eq(true)
-    expect(group.custom_domain).to eq("example.com")
+    # expect(group.custom_domain).to eq("example.com")
   end
 
   context "when group is private" do

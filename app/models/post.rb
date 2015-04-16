@@ -8,9 +8,9 @@ class Post < ActiveRecord::Base
   enum post_type: %i(text_post link_post image_post)
   enum state: %i(moderation published rejected)
 
-  scope :order_by_votes, -> { order(cached_votes_total: :desc) }
+  scope :order_by_votes, -> { order(cached_votes_total: :desc, created_at: :desc) }
   scope :order_by_created_at, -> { order(created_at: :desc) }
-  scope :order_by_trending, -> { order(hot_rank: :desc) }
+  scope :order_by_trending, -> { order(hot_rank: :desc, created_at: :desc) }
   scope :for_collection, -> (collection_id) { where(collection_posts: { collection_id: collection_id }) }
   scope :for_user, -> (user) { where(user_id: user.id) }
 
