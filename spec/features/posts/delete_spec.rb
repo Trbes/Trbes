@@ -68,7 +68,7 @@ feature "Delete post" do
 
     context "when I'm not post author" do
       background do
-        post.update_attributes(user: nil)
+        post.update_attributes(membership: nil)
       end
 
       it_behaves_like "not deletable post"
@@ -76,7 +76,7 @@ feature "Delete post" do
 
     context "when I'm post author" do
       background do
-        post.update_attributes(user: user)
+        post.update_attributes(membership: membership)
       end
 
       it_behaves_like "deletable post"

@@ -31,7 +31,7 @@ Rails.application.configure do
   # ActionMailer::Base.deliveries array.
   config.action_mailer.delivery_method = :test
 
-  config.host = "lvh.me"
+  config.host = "vcap.me"
 
   # Print deprecation notices to the stderr.
   config.active_support.deprecation = :stderr

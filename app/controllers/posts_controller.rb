@@ -4,10 +4,10 @@ class PostsController < ApplicationController
   before_action :ensure_trailing_slash, only: %i( show update destroy )
 
   expose(:post, attributes: :post_attributes, finder: :find_by_slug)
-  expose(:comments, ancestor: :post) { |collection| collection.root.published.includes(:user, :child_comments) }
+  expose(:comments, ancestor: :post) { |collection| collection.root.published.includes(:membership, :child_comments) }
 
   def show
-    self.post = Post.includes(user: :avatar).find_by(slug: params[:id])
+    self.post = Post.includes(membership: :user).find_by(slug: params[:id])
     @post_title = post.title
     @group_name = current_group.name
   end
