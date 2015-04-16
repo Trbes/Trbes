@@ -22,7 +22,6 @@ feature "Create first group" do
     background do
       group.destroy
       switch_to_main
-      sign_in(user.email, "123456")
     end
 
     scenario "User create first group successfully" do

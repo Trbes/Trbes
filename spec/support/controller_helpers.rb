@@ -13,7 +13,7 @@ module ControllerHelpers
   end
 
   def stub_current_membership
-    membership = double("membership", owner?: true, user: create(:user))
+    membership = create(:membership, role: :owner, user: create(:user))
     allow(controller).to receive(:current_membership).and_return(membership)
   end
 
