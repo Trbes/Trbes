@@ -27,8 +27,7 @@ class PostsController < ApplicationController
   def create
     result = CreatePost.call(
       attributes: post_attributes,
-      current_group: current_group,
-      current_user: current_user,
+      current_membership: current_membership,
       allow_publish: policy(Post).publish?
     )
 

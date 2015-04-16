@@ -1,4 +1,7 @@
 class Membership < ActiveRecord::Base
+  has_many :posts
+  has_many :comments
+
   belongs_to :user, required: true
   belongs_to :group, required: true
 

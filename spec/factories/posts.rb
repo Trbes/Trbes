@@ -6,7 +6,7 @@ FactoryGirl.define do
     body { Faker::Lorem.paragraph(10) }
 
     group
-    user
+    membership
 
     state :published
 

@@ -17,12 +17,6 @@ FactoryGirl.define do
     allow_link_posts { true }
     allow_text_posts { true }
 
-    after(:build) do |group|
-      group.logo = build(:attachment, attachable: group)
-    end
-
-    after(:create) do |group|
-      group.logo.save!
-    end
+    logo { Rack::Test::UploadedFile.new(File.join(Rails.root, "spec", "support", "trbes.png")) }
   end
 end
