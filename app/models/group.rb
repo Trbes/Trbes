@@ -28,12 +28,6 @@ class Group < ActiveRecord::Base
 
   algoliasearch per_environment: true, disable_indexing: Rails.env.test? do
     attribute :name, :subdomain
-
-    attribute :posts do
-      posts.map do |post|
-        { title: post.title, body: post.body }
-      end
-    end
   end
 
   acts_as_paranoid
