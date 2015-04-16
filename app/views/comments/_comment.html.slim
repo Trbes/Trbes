@@ -35,7 +35,7 @@
           data-placement="bottom"
           data-content=user_popover_content(comment.user, current_group)
           data-template=user_popover_template ]
-          = present(current_group).role_overlay(comment.user)
+          = present(current_group).role_overlay(comment.membership)
           = image_tag(comment.user.avatar_url, width: 16, height: 16)
         a.user-name>[
           href="javascript:void(0)"

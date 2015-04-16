@@ -48,14 +48,13 @@
                   data-placement="bottom"
                   data-content=user_popover_content(owner)
                   data-template=user_popover_template ]
-                  => image_tag(owner.avatar_url, width: 16, height: 16)
-                  = owner.full_name
+                  => image_tag(owner.user_avatar_url, width: 16, height: 16)
+                  = owner.user_full_name
                 | •&nbsp;
                 |  #{group.memberships_count_modal_link} • #{group.posts_count_link}
 
                 = render "groups/memberships_modal",
                   modal_id: "all_group_#{group.id}_members",
-                  group_memberships: group.memberships,
                   group: group
             .group-actions
               = render "groups/#{group.join_partial_path(current_user)}", group: group

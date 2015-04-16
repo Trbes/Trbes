@@ -34,8 +34,8 @@
           data-placement="bottom"
           data-content=user_popover_content(membership)
           data-template=user_popover_template ]
-          = current_group.role_overlay(membership.user)
-          = image_tag membership.avatar_url, class: "img-circle", width: 16, height: 16
+          = current_group.role_overlay(membership)
+          = image_tag membership.user_avatar_url, class: "img-circle", width: 16, height: 16
 
       - if group_memberships.count > Group::VISIBLE_MEMBERS_COUNT
         a.more href="#" data-toggle="modal" data-target="#more_group_members"

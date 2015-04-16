@@ -39,8 +39,8 @@ class GroupPresenter < BasePresenter
   end
 
   def logo_image_tag(options = {})
-    if @model.logo_image && @model.logo_image.model.persisted?
-      h.cl_image_tag(@model.logo_image.group_logo, options)
+    if @model.logo.present?
+      h.cl_image_tag(@model.logo_url(:group_logo), options)
     else
       h.image_tag("sample/default-group.png", options.merge(width: 138))
     end
@@ -55,7 +55,7 @@ class GroupPresenter < BasePresenter
   end
 
   def join_partial_path(user)
-    if membership = h.current_user_memberships.select { |m| m.group_id == @model.id }.first
+    if user && membership = h.current_user_memberships.select { |m| m.group_id == @model.id }.first
       if membership.pending?
         "join_request_was_sent"
       else
@@ -66,9 +66,8 @@ class GroupPresenter < BasePresenter
     end
   end
 
-  def role_overlay(user)
-    return unless (membership = user.membership_for(@model))
-    return unless membership.moderator? || membership.owner?
+  def role_overlay(membership)
+    return unless membership && (membership.moderator? || membership.owner?)
 
     h.content_tag(:span, membership.role.first, class: "role-overlay role-overlay-#{membership.role}")
   end

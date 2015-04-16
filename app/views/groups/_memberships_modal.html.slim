@@ -10,7 +10,7 @@
           ' There are #{group.memberships_count} members in
           strong = group.name
 
-        - group_memberships.each_with_index do |membership, index|
+        - group.memberships.each_with_index do |membership, index|
           a.member[
             href="#"
             id=dom_id(membership)
@@ -19,7 +19,7 @@
             data-placement="bottom"
             data-content=user_popover_content(membership)
             data-template=user_popover_template ]
-            => image_tag membership.avatar_url, class: "img-circle", width: 16, height: 16
-            = membership.full_name
-          - if index < group_memberships.count - 1
+            => image_tag membership.user_avatar_url, class: "img-circle", width: 16, height: 16
+            = membership.user_full_name
+          - if index < group.memberships_count - 1
             ' ,
