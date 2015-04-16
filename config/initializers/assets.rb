@@ -11,5 +11,6 @@ Rails.application.config.assets.paths << Rails.root.join("app", "assets", "flash
 Rails.application.config.assets.precompile += %w(
   modernizr/modernizr.js
   ie_lt9.js
+  error.css
 )
 Rails.application.config.assets.precompile << /.*.(?:eot|svg|ttf|woff|woof2|swf)$/

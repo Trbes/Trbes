@@ -1,0 +1,36 @@
+doctype html
+
+html class="no-js" lang="en"
+
+  head
+    meta charset="utf-8"
+    meta name="viewport" content="width=device-width, initial-scale=1.0"
+    link id="page_favicon" href=(image_path("favicon.ico")) rel="icon" type="image/x-icon"
+
+    title= title
+
+    /! Le styles
+    = stylesheet_link_tag :error
+
+  body[class=body_class]
+    #root
+      .text-center
+        h1.site-logo
+          = link_to image_tag("logo_full_black_huge.png", width: 136), root_url
+
+        div.error-intro
+          ' Oops. Something went wrong.
+          br
+          strong We are calling a Superhero to the rescue.
+          br
+          = image_tag("herror.jpg", class: "herror")
+
+        .error-info
+          .herror-response He has found out what's happening:
+          = yield
+
+        .error-contact
+          ' If you need help, email us at
+          a[href="mailto:hello@trbes.com"] hello@trbes.com
+
+    = render "application/footer_landing"

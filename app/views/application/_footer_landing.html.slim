@@ -1,0 +1,46 @@
+footer#footer_landing
+  .container
+    .row
+      .col-sm-2.footer-block
+        h3.footer-title Trbes
+        .footer-block-content
+          | Give your team a place to discover, share and discuss great content.
+          br
+          br
+          a href="/"
+            strong Discover Popular Groups
+
+      .col-sm-3.footer-block.footer-block-company
+        h3.footer-title Company
+        .footer-block-content
+          ul.footer-links
+            li
+              a href="mailto:hello@trbes.com" Contact
+            li
+              a href=(ENV["TRBES_GROUP_URL"] || "#") Support & Community
+            li
+              a href="http://trbes.com/blog/" Building a Startup
+            li
+              a href="https://www.iubenda.com/privacy-policy/179094" Privacy Policy
+            li
+              a href="/terms" Terms
+
+      .col-sm-3.footer-block
+        h3.footer-title Product
+        .footer-block-content
+          ul.footer-links
+            li
+              a href="/small-teams" For Small Teams
+            li
+              a href="/business" For Business
+
+      .col-sm-4.hello-customer
+        .message
+          | We want to hear from you
+          br
+          a href="mailto:hello@trbes.com" hello@trbes.com
+          br
+          a href="https://twitter.com/trbesapp" @trbesapp
+
+        .copyright
+          | (c) 2015 Trbes

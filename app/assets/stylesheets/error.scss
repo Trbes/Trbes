@@ -1,0 +1,39 @@
+@import "core/all";
+@import "modules/footer";
+
+.error-intro {
+  font-size: 28px;
+  margin-top: 40px;
+  line-height: 1.2;
+
+  strong {
+    font-weight: 500;
+  }
+}
+
+.herror {
+  margin: 20px;
+}
+
+.error-info {
+  margin-left: auto;
+  margin-right: auto;
+  background: #eee;
+  border-radius: 3px;
+  padding: 10px;
+  width: 460px;
+  max-width: 100%;
+  font-size: 16px;
+}
+
+.herror-response {
+  text-transform: uppercase;
+  font-weight: bold;
+  color: #bbb;
+  margin-bottom: 10px;
+}
+
+.error-contact {
+  margin-top: 30px;
+  font-size: 20px;
+}
