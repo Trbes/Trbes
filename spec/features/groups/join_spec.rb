@@ -6,6 +6,7 @@ feature "Join group" do
   let!(:group) { membership.group }
 
   background do
+    create(:membership, group: group, role: :owner)
     sign_in(user.email, "123456")
   end
 
@@ -16,7 +17,6 @@ feature "Join group" do
     end
 
     scenario "I see notice about my request" do
-      binding.pry
       within("#group_#{group.id}") do
         expect(page).to have_content("Join request was sent")
       end

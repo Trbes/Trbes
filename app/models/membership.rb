@@ -1,4 +1,6 @@
 class Membership < ActiveRecord::Base
+  paginates_per 20
+
   has_many :posts
   has_many :comments
 

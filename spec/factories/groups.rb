@@ -11,6 +11,12 @@ FactoryGirl.define do
       "#{Faker::Internet.domain_word}#{n}"
     end
 
+    trait :with_owner do
+      after(:build) do |group|
+        group.memberships << create(:membership, role: :owner)
+      end
+    end
+
     private false
 
     allow_image_posts { true }
