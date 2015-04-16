@@ -8,7 +8,7 @@ class Membership < ActiveRecord::Base
   belongs_to :group, required: true
 
   counter_culture :group,
-    column_name: Proc.new { |model| model.pending? ? nil : "memberships_count" },
+    column_name: proc { |model| model.pending? ? nil : "memberships_count" },
     column_names: {
       ["memberships.role IN (0,1,2)"] => "memberships_count"
     }

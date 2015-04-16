@@ -55,7 +55,9 @@ class GroupPresenter < BasePresenter
   end
 
   def join_partial_path(user)
-    if user && membership = h.current_user_memberships.select { |m| m.group_id == @model.id }.first
+    membership = h.current_user_memberships.select { |m| m.group_id == @model.id }.first
+
+    if user && membership
       if membership.pending?
         "join_request_was_sent"
       else

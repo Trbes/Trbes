@@ -12,7 +12,11 @@ class GroupsController < ApplicationController
     params[:collection_id] ? scope.includes(:collection_posts).for_collection(params[:collection_id]) : scope
   end
 
-  expose(:group_owners) { Membership.owner.includes(:user, group: [memberships: :user]).joins(:group).where("groups.private = ?", false).page(params[:page]) }
+  expose(:group_owners) do
+    Membership.owner.includes(:user, group: [memberships: :user])
+      .joins(:group).where("groups.private = ?", false).page(params[:page])
+  end
+
   expose(:public_groups) { view_context.present(group_owners.map(&:group)) }
   expose(:public_groups_with_owners, only: [:index]) { public_groups.zip(group_owners) }
 
