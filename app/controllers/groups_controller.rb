@@ -5,14 +5,14 @@ class GroupsController < ApplicationController
   expose(:posts, only: [:show]) do
     scope = current_group.posts
       .published
-      .includes(:attachments, user: :avatar)
+      .includes(:attachments, membership: :user)
       .public_send(sort_filter)
       .page(params[:page])
 
     params[:collection_id] ? scope.includes(:collection_posts).for_collection(params[:collection_id]) : scope
   end
 
-  expose(:group_owners) { Membership.owner.includes(user: :avatar, group: [:logo, memberships: { user: :avatar }]).joins(:group).where("groups.private = ?", false).page(params[:page]) }
+  expose(:group_owners) { Membership.owner.includes(:user, group: [memberships: :user]).joins(:group).where("groups.private = ?", false).page(params[:page]) }
   expose(:public_groups) { view_context.present(group_owners.map(&:group)) }
   expose(:public_groups_with_owners, only: [:index]) { public_groups.zip(group_owners) }
 
@@ -62,7 +62,7 @@ class GroupsController < ApplicationController
       :private,
       :subdomain,
       :allow_image_posts,
-      logo_attributes: :image
+      :image
     )
   end
 end

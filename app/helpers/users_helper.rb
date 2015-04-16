@@ -3,9 +3,9 @@ module UsersHelper
   def user_popover_content(membership)
     html = "<div class=\'user-popover-content\'>"
     html += "<div class=\'user-role user-role-#{membership.role}\'>group #{membership.role}</div>"
-    html += "<img src=\'#{membership.avatar_url}\' class=\'img-circle\' width=\'64\' height=\'64\'>"
-    html += "<div class=\'user-name\'>#{membership.full_name}</div>"
-    html += "<div class=\'user-title\'>#{membership.title}</div>" if membership.title.present?
+    html += "<img src=\'#{membership.user_avatar_url}\' class=\'img-circle\' width=\'64\' height=\'64\'>"
+    html += "<div class=\'user-name\'>#{membership.user_full_name}</div>"
+    html += "<div class=\'user-title\'>#{membership.user_title}</div>" if membership.user_title.present?
     html += "</div>"
 
     html

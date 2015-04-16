@@ -17,7 +17,7 @@ class ApplicationController < ActionController::Base
   helper_method :current_group
   def current_group
     @current_group = Group.where("custom_domain = '#{request.host}' OR subdomain = '#{request.subdomain}'")
-      .includes(:logo, memberships: { user: :avatar }).first
+      .includes(memberships: :user).first
   end
 
   helper_method :current_membership

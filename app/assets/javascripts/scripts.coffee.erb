@@ -64,7 +64,7 @@ $ ->
 
   $(".upload").on "click", (e) ->
     e.preventDefault()
-    $(this).siblings().find(".file-uploader").toggleClass("hidden").prop("disabled", (i, v) -> return !v )
+    $(this).siblings(".file-uploader").toggleClass("hidden").prop("disabled", (i, v) -> return !v )
 
   $("a.vote:not(.not-logged-in)").on "click", (e) ->
     e.preventDefault()

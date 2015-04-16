@@ -17,10 +17,6 @@ class Group < ActiveRecord::Base
 
   normalize_attributes :name, :description, :subdomain, :custom_domain, :tagline
 
-  has_one :logo, as: :attachable, class_name: "Attachment"
-  accepts_nested_attributes_for :logo, update_only: true
-
-  delegate :image, to: :logo, prefix: true, allow_nil: true
   delegate :full_name, :avatar, to: :owner, prefix: true
 
   scope :all_public, -> { where(private: false) }
@@ -31,6 +27,8 @@ class Group < ActiveRecord::Base
   end
 
   acts_as_paranoid
+
+  mount_uploader :logo, ImageUploader
 
   def comments_count
     posts.pluck(:comments_count).inject(:+) || 0
