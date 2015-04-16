@@ -7,7 +7,7 @@ class MembershipMailer < ApplicationMailer
     @membership = membership
 
     mail(
-      to: @membership.email,
+      to: @membership.user_email,
       subject: "Your role in #{@membership.group_name} has changed",
       template_path: "membership_mailer/role_changed",
       template_name: membership.role

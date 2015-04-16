@@ -4,7 +4,7 @@ module Admin
     expose(:post, attributes: :post_attributes)
     expose(:posts, ancestor: :current_group) do |collection|
       collection = collection.public_send(params[:filter].to_sym) if params[:filter]
-      collection.order_by_created_at.includes(user: :avatar).page(params[:page])
+      collection.order_by_created_at.includes(membership: :user).page(params[:page])
     end
 
     def update

@@ -1,8 +1,8 @@
 class User < ActiveRecord::Base
   has_many :posts, through: :memberships, dependent: :destroy
+  has_many :comments, through: :memberships, dependent: :destroy
   has_many :memberships, dependent: :destroy
   has_many :groups, through: :memberships
-  has_many :comments, dependent: :destroy
   has_many :profiles, dependent: :destroy
 
   validates :full_name, presence: true

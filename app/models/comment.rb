@@ -14,7 +14,7 @@ class Comment < ActiveRecord::Base
   scope :order_by_created_at, -> { order(created_at: :desc) }
   scope :root, -> { where(parent_comment_id: nil) }
   scope :favourite, -> { where(favourite: true) }
-  scope :for_user, -> (user) { where(user_id: user.id) }
+  scope :for_membership, -> (membership) { where(membership_id: membership.id) }
 
   enum state: %i(moderation published rejected)
 

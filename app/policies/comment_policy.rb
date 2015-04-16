@@ -8,7 +8,7 @@ class CommentPolicy < Struct.new(:membership, :comment)
   end
 
   def destroy?
-    comment.user == membership.user
+    comment.membership == membership
   end
 
   def publish?
@@ -24,10 +24,10 @@ class CommentPolicy < Struct.new(:membership, :comment)
   end
 
   def update?
-    comment.user == membership.user || (membership.owner? || membership.moderator?)
+    comment.membership == membership || (membership.owner? || membership.moderator?)
   end
 
   def destroy?
-    comment.user == membership.user || (membership.owner? || membership.moderator?)
+    comment.membership == membership || (membership.owner? || membership.moderator?)
   end
 end
