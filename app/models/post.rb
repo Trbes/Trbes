@@ -27,7 +27,7 @@ class Post < ActiveRecord::Base
       ["posts.state = ?", 2] => "rejected_posts_count"
     }
 
-  belongs_to :user, required: true
+  belongs_to :membership, required: true
 
   accepts_nested_attributes_for :attachments, reject_if: proc { |a| a[:image].blank? }
 
@@ -38,7 +38,7 @@ class Post < ActiveRecord::Base
 
   validates :post_type, inclusion: { in: proc { |post| post.group.allowed_post_types } }
 
-  delegate :full_name, :avatar, :title, to: :user, prefix: true
+  delegate :user_full_name, :user_avatar_url, :user_title, to: :membership
 
   after_save :set_hot_rank
 
@@ -72,7 +72,7 @@ class Post < ActiveRecord::Base
   end
 
   def written_by?(membership)
-    user.id == membership.user_id
+    membership_id == membership.id
   end
 
   def set_hot_rank
