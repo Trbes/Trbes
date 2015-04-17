@@ -4,7 +4,7 @@ feature "Groups list" do
   let!(:group) { create(:group) }
   let!(:post) { create(:post, group: group) }
   let(:posts_count) { 5 }
-  let(:extra_groups_count) { 20 }
+  let(:extra_groups_count) { 10 }
 
   background do
     create(:membership, group: group, role: :owner)
