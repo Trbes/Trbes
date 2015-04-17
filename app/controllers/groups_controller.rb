@@ -13,14 +13,19 @@ class GroupsController < ApplicationController
   end
 
   expose(:group_owners) do
-    Membership.owner.includes(:user, group: [memberships: :user])
-      .joins(:group).where("groups.private = ?", false)
+    Membership
+      .owner
+      .includes(:user, group: [memberships: :user])
+      .joins(:group)
+      .where("groups.private = ?", false)
+      .order("groups.created_at DESC")
+      .page(params[:page]).per(10)
   end
 
   expose(:public_groups) { view_context.present(group_owners.map(&:group)) }
 
   expose(:public_groups_with_owners, only: [:index]) do
-    Kaminari.paginate_array(public_groups.zip(group_owners)).page(params[:page]).per(10)
+    public_groups.zip(group_owners)
   end
 
   def create

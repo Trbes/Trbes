@@ -42,11 +42,11 @@ feature "Update membership", js: true do
     end
 
     scenario "posts and comments are published after membership is confirmed" do
-      group.posts.for_membership(some_membership).each do |post|
+      some_membership.posts.each do |post|
         expect(post).to be_moderation
       end
 
-      group.comments.for_membership(some_membership).each do |comment|
+      some_membership.comments.each do |comment|
         expect(comment).to be_moderation
       end
 
@@ -58,11 +58,11 @@ feature "Update membership", js: true do
 
       wait_for_ajax
 
-      group.posts.for_membership(some_membership).each do |post|
+      some_membership.posts.reload.each do |post|
         expect(post).to be_published
       end
 
-      group.comments.for_membership(some_membership).each do |comment|
+      some_membership.comments.reload.each do |comment|
         expect(comment).to be_published
       end
     end
