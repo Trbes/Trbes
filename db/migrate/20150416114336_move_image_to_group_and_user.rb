@@ -1,25 +1,17 @@
-class Group
-  has_one :logo, as: :attachable, class_name: "Attachment"
-end
-
-class User
-  has_one :avatar, as: :attachable, class_name: "Attachment"
-end
-
 class MoveImageToGroupAndUser < ActiveRecord::Migration
   def change
     add_column :users, :avatar, :string
     add_column :groups, :logo, :string
 
     Group.all.each do |group|
-      if group.logo
-        group.update_attributes(logo: group.logo.read_attribute(:image))
+      if old_logo = Attachment.find_by(attachable_type: "Group", attachable_id: group.id)
+        group.update_attributes(logo: old_logo.read_attribute(:image))
       end
     end
 
     User.all.each do |user|
-      if user.avatar
-        user.update_attributes(avatar: user.avatar.read_attribute(:image))
+      if old_avatar = Attachment.find_by(attachable_type: "User", attachable_id: user.id)
+        user.update_attributes(avatar: old_avatar.read_attribute(:image))
       end
     end
   end

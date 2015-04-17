@@ -1,11 +1,3 @@
-class Comment
-  belongs_to :user
-end
-
-class Post
-  belongs_to :user
-end
-
 class AssociatePostAndCommentsWithMemberships < ActiveRecord::Migration
   def change
     add_reference(:posts, :membership, index: true)
@@ -17,22 +9,38 @@ class AssociatePostAndCommentsWithMemberships < ActiveRecord::Migration
     posts_count = Post.count
 
     Post.all.each_with_index do |post, index|
-      if post.user.membership_for(post.group)
-        puts "updating #{index} out of #{posts_count}"
-        post.update_attributes(membership_id: post.user.membership_for(post.group).id)
+      user = User.find_by(id: post.user_id)
+
+      if user
+        membership = user.membership_for(post.group)
+
+        if membership
+          puts "updating #{index} out of #{posts_count}"
+          post.update_attributes(
+            membership_id: membership.id
+          )
+        end
       end
     end
 
     comments_count = Comment.count
 
     Comment.all.each_with_index do |comment, index|
-      if comment.user.membership_for(comment.post.group)
+      user = User.find_by(id: comment.user_id)
+
+      if user
+        membership = user.membership_for(comment.post.group)
+
+        if membership
           puts "updating #{index} out of #{comments_count}"
-        comment.update_attributes(membership_id: comment.user.membership_for(comment.post.group).id)
+          comment.update_attributes(
+            membership_id: membership.id
+          )
+        end
       end
     end
 
-    remove_column :posts, :user_id
-    remove_column :comments, :user_id
+    remove_column :posts, :user_id, :integer
+    remove_column :comments, :user_id, :integer
   end
 end
