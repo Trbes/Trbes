@@ -46,7 +46,7 @@ class ApplicationController < ActionController::Base
     if params[:subdomain]
       redirect_to root_url(subdomain: params[:subdomain])
     else
-      render text: "Not found group for this subdomain", status: 404
+      render "errors/group_not_found", layout: "error", status: 404
     end
   end
 

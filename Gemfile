@@ -59,6 +59,7 @@ gem "mobile-fu"
 gem "crack"
 gem "sanitize"
 gem "counter_culture"
+gem "gaffe"
 
 group :staging, :production do
   gem "airbrake"
