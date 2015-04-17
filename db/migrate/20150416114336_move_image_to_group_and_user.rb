@@ -3,9 +3,11 @@ class MoveImageToGroupAndUser < ActiveRecord::Migration
     add_column :users, :avatar, :string
     add_column :groups, :logo, :string
 
-    Group.all.each do |group|
-      if old_logo = Attachment.find_by(attachable_type: "Group", attachable_id: group.id)
-        group.update_attributes(logo: old_logo.read_attribute(:image))
+    Group.without_auto_index do
+      Group.all.each do |group|
+        if old_logo = Attachment.find_by(attachable_type: "Group", attachable_id: group.id)
+          group.update_column(:logo, old_logo.read_attribute(:image))
+        end
       end
     end
 
