@@ -13,8 +13,8 @@ nav#main_sliding_menu.js-menu.sliding-menu-content
     .container-fluid.my-trbes
       h5.my-trbes-title My Trbes
       ul.my-trbes-list
-        - if current_user.memberships.count > 0
-          - current_user.memberships.includes(:group).each do |membership|
+        - if current_user_memberships.exists?
+          - current_user_memberships.each do |membership|
             li
               = link_to "#{membership.group_name} (#{membership.role})", group_url(membership.group)
         - else

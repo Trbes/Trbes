@@ -14,13 +14,16 @@ class GroupsController < ApplicationController
 
   expose(:group_owners) do
     Membership.owner.includes(:user, group: [memberships: :user])
-      .joins(:group).where("groups.private = ?", false).page(params[:page])
+      .joins(:group).where("groups.private = ?", false)
   end
 
   expose(:public_groups) { view_context.present(group_owners.map(&:group)) }
-  expose(:public_groups_with_owners, only: [:index]) { public_groups.zip(group_owners) }
 
-  expose(:current_user_memberships) { current_user.memberships }
+  expose(:public_groups_with_owners, only: [:index]) do
+    Kaminari.paginate_array(public_groups.zip(group_owners)).page(params[:page]).per(10)
+  end
+
+  expose(:current_user_memberships) { current_user.memberships.includes(:group) }
 
   def create
     authorize :group, :create?
