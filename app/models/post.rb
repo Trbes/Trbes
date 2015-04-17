@@ -32,7 +32,7 @@ class Post < ActiveRecord::Base
   accepts_nested_attributes_for :attachments, reject_if: proc { |a| a[:image].blank? }
 
   validates :title, presence: true
-  validates :title, length: { minimum: 10, maximum: 100 }
+  validates :title, length: { minimum: 5, maximum: 100 }
   validates :body, presence: true, if: proc { |p| p.text_post? }
   validates :link, presence: true, if: proc { |p| p.link_post? }
 

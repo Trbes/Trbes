@@ -1,5 +1,5 @@
 .post-actions
-  - if policy(CollectionPost).create?
+  - if policy(CollectionPost).create? && !post.collection_posts.exists?
     = link_to "#", class: "add-to-collection", data: { toggle: "modal", target: "#add_to_collection_#{post.id}" } do
       i.fa.fa-plus-circle data-toggle="tooltip" data-placement="top" title="Add to collection"
   .post-collections

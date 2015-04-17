@@ -2,12 +2,13 @@ class PostsController < ApplicationController
   include Voting
 
   before_action :ensure_trailing_slash, only: %i( show update destroy )
+  before_action :ensure_group_is_loaded!, :ensure_group_access_from_canonical_url!, only: [:show]
 
   expose(:post, attributes: :post_attributes, finder: :find_by_slug)
   expose(:comments, ancestor: :post) { |collection| collection.root.published.includes(:membership, :child_comments) }
 
   def show
-    self.post = Post.includes(membership: :user).find_by(slug: params[:id])
+    self.post = current_group.posts.includes(membership: :user).find_by!(slug: params[:id])
     @post_title = post.title
     @group_name = current_group.name
   end
