@@ -1,4 +1,4 @@
-DEFAULT_HOST = "lvh.me"
+DEFAULT_HOST = Trbes::Application.config.host
 DEFAULT_PORT = 9887
 
 module FeatureHelpers
@@ -62,7 +62,7 @@ RSpec.configure do |config|
   config.before :each, :js, type: :feature do |example|
     if example.metadata[:js]
       page.driver.block_unknown_urls
-      page.driver.allow_url("lvh.me")
+      page.driver.allow_url(Trbes::Application.config.host)
     end
   end
 

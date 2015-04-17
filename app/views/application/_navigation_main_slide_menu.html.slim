@@ -13,10 +13,10 @@ nav#main_sliding_menu.js-menu.sliding-menu-content
     .container-fluid.my-trbes
       h5.my-trbes-title My Trbes
       ul.my-trbes-list
-        - if current_user.groups.count > 0
-          - current_user.groups.each do |group|
+        - if current_user_memberships.exists?
+          - current_user_memberships.each do |membership|
             li
-              = link_to "#{group.name} (#{current_user.membership_for(group).role})", group_url(group)
+              = link_to "#{membership.group_name} (#{membership.role})", group_url(membership.group)
         - else
           li You are not a member of any trbes.
 

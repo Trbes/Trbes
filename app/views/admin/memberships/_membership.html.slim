@@ -1,6 +1,6 @@
 = div_for(membership) do
-  => image_tag membership.avatar_url, class: "avatar img-circle"
-  => membership.full_name
+  => image_tag membership.user_avatar_url, class: "avatar img-circle"
+  => membership.user_full_name
   - if membership.owner?
     = link_to "owner", "#", data: { toggle: "modal", target: "#transfer_ownership" }
 
@@ -16,7 +16,7 @@
             .modal-body
               = f.input :role, as: :hidden, input_html: { value: :moderator }
               = f.select :new_group_owner_id,
-                  options_from_collection_for_select(memberships.includes(:user).not_owner, :id, :full_name)
+                  options_from_collection_for_select(memberships.includes(:user).not_owner, :id, :user_full_name)
               .modal-footer
               button.btn.btn-default type="button" data-dismiss="modal" Close
               = f.submit "Save", class: "btn btn-primary"

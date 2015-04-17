@@ -1,10 +1,11 @@
 require "rails_helper"
 
 describe GroupsController do
-  let(:group_with_subdomain) { Group.first }
+  let(:group_with_subdomain) { create(:group, subdomain: "test") }
+  let!(:group_with_custom_domain) { create(:group, subdomain: "test2", custom_domain: "test2.com") }
 
   before do
-    stub_auth
+    stub_current_user
   end
 
   describe "#ensure_group_access_from_canonical_url" do
@@ -15,8 +16,7 @@ describe GroupsController do
     end
 
     it "should not allow accessing another group through custom domain" do
-      expect(controller.current_group).to eq(group_with_subdomain)
-      expect(response).to redirect_to(root_url(subdomain: group_with_subdomain.subdomain))
+      expect(controller.current_group).to eq(group_with_custom_domain)
     end
   end
 end

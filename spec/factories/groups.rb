@@ -11,18 +11,18 @@ FactoryGirl.define do
       "#{Faker::Internet.domain_word}#{n}"
     end
 
+    trait :with_owner do
+      after(:build) do |group|
+        group.memberships << create(:membership, role: :owner)
+      end
+    end
+
     private false
 
     allow_image_posts { true }
     allow_link_posts { true }
     allow_text_posts { true }
 
-    after(:build) do |group|
-      group.logo = build(:attachment, attachable: group)
-    end
-
-    after(:create) do |group|
-      group.logo.save!
-    end
+    logo { Rack::Test::UploadedFile.new(File.join(Rails.root, "spec", "support", "trbes.png")) }
   end
 end

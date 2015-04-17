@@ -6,6 +6,7 @@ feature "Join group" do
   let!(:group) { membership.group }
 
   background do
+    create(:membership, group: group, role: :owner)
     sign_in(user.email, "123456")
   end
 

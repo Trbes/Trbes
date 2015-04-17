@@ -18,7 +18,7 @@ feature "List group members" do
 
     memberships.each do |membership|
       within("section.memberships #membership_#{membership.id}") do
-        expect(page).to have_content(membership.full_name)
+        expect(page).to have_content(membership.user_full_name)
         expect(page).to have_content(membership.role)
         expect(page).to have_link("remove from group")
       end

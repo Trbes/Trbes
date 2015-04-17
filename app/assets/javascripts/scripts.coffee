@@ -64,7 +64,7 @@ $ ->
 
   $(".upload").on "click", (e) ->
     e.preventDefault()
-    $(this).siblings().find(".file-uploader").toggleClass("hidden").prop("disabled", (i, v) -> return !v )
+    $(this).siblings(".file-uploader").toggleClass("hidden").prop("disabled", (i, v) -> return !v )
 
   $("a.vote:not(.not-logged-in)").on "click", (e) ->
     e.preventDefault()
@@ -96,7 +96,7 @@ $ ->
       closest("form").find("#collection_icon_class").val($(this).data("icon-class"))
 
   ZeroClipboard.config
-    swfPath: "<%= asset_path('zeroclipboard/ZeroClipboard.swf') %>"
+    swfPath: gon.zero_clipboard_path
   zeroclip = new ZeroClipboard(document.getElementById('copy_invite_link'))
   zeroclip.on 'ready', (readyEvent) ->
     zeroclip.on 'aftercopy', (event) ->

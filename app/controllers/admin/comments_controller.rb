@@ -1,7 +1,7 @@
 module Admin
   class CommentsController < Admin::ApplicationController
     expose(:comments, ancestor: :current_group) do |collection|
-      collection.order_by_created_at.includes(:post, user: :avatar).page(params[:page])
+      collection.order_by_created_at.includes(:post, membership: :user).page(params[:page])
     end
     expose(:comment, attributes: :comment_attributes)
 

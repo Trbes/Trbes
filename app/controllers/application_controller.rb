@@ -9,16 +9,19 @@ class ApplicationController < ActionController::Base
 
   rescue_from Pundit::NotAuthorizedError, with: :not_authorized
 
-  before_action :push_algolia_config, :push_env_config, :push_indexes, :ensure_email_is_exists, :authorize_group_access
+  before_action :push_gon_config, :push_indexes, :ensure_email_is_exists, :authorize_group_access
 
   expose(:groups)
-  expose(:group_memberships) { current_group.memberships.joins(:user).confirmed.not_pending }
+  expose(:current_group_memberships) { current_group.memberships.joins(:user).confirmed.not_pending }
+  expose(:current_user_memberships) { current_user.memberships.includes(:group) }
 
   helper_method :current_group
   def current_group
-    query = Group.includes(:logo, memberships: { user: :avatar })
-    @current_group ||= (query.find_by(custom_domain: request.host) ||
-                        query.find_by(subdomain: request.subdomain))
+    @current_group ||= if request.host.include?(Trbes::Application.config.host)
+      Group.includes(memberships: :user).find_by(subdomain: request.subdomain)
+    else
+      Group.includes(memberships: :user).find_by(custom_domain: request.domain)
+    end
   end
 
   helper_method :current_membership
@@ -100,7 +103,9 @@ class ApplicationController < ActionController::Base
     )
   end
 
-  def push_env_config
+  def push_gon_config
+    push_algolia_config
+    gon.push(zero_clipboard_path: view_context.asset_path("zeroclipboard/ZeroClipboard.swf"))
     gon.push(facebook_app_id: ENV["FACEBOOK_APP_ID"])
   end
 

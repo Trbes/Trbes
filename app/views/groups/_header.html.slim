@@ -25,23 +25,23 @@
                 a href=(new_invitation_path) role="menuitem" tabindex="-1"  Invite
     .group-desc= current_group.tagline
     .group-members
-      - group_memberships.limit(Group::VISIBLE_MEMBERS_COUNT).each do |membership|
+      - current_group_memberships.limit(Group::VISIBLE_MEMBERS_COUNT).each do |membership|
         a.group-member>[
           href="javascript:void(0)"
           id=dom_id(membership)
           data-toggle="popover"
           data-html="true"
           data-placement="bottom"
-          data-content=user_popover_content(membership.user, current_group)
+          data-content=user_popover_content(membership)
           data-template=user_popover_template ]
-          = current_group.role_overlay(membership.user)
-          = image_tag membership.avatar_url, class: "img-circle", width: 16, height: 16
+          = current_group.role_overlay(membership)
+          = image_tag membership.user_avatar_url, class: "img-circle", width: 16, height: 16
 
-      - if group_memberships.count > Group::VISIBLE_MEMBERS_COUNT
+      - if current_group_memberships.count > Group::VISIBLE_MEMBERS_COUNT
         a.more href="#" data-toggle="modal" data-target="#more_group_members"
-          | ... and #{group_memberships.count - Group::VISIBLE_MEMBERS_COUNT} more
+          | ... and #{current_group_memberships.count - Group::VISIBLE_MEMBERS_COUNT} more
 
         = render "groups/memberships_modal",
           modal_id: "more_group_members",
-          group_memberships: group_memberships,
+          group_memberships: current_group_memberships,
           group: current_group

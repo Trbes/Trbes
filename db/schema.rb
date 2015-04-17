@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150415145303) do
+ActiveRecord::Schema.define(version: 20150416114336) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -53,7 +53,6 @@ ActiveRecord::Schema.define(version: 20150415145303) do
 
   create_table "comments", force: :cascade do |t|
     t.integer  "post_id",                        null: false
-    t.integer  "user_id",                        null: false
     t.text     "body",                           null: false
     t.datetime "created_at",                     null: false
     t.datetime "updated_at",                     null: false
@@ -61,11 +60,12 @@ ActiveRecord::Schema.define(version: 20150415145303) do
     t.integer  "parent_comment_id"
     t.integer  "state",              default: 0, null: false
     t.boolean  "favourite"
+    t.integer  "membership_id"
   end
 
   add_index "comments", ["cached_votes_total"], name: "index_comments_on_cached_votes_total", using: :btree
+  add_index "comments", ["membership_id"], name: "index_comments_on_membership_id", using: :btree
   add_index "comments", ["post_id"], name: "index_comments_on_post_id", using: :btree
-  add_index "comments", ["user_id"], name: "index_comments_on_user_id", using: :btree
 
   create_table "friendly_id_slugs", force: :cascade do |t|
     t.string   "slug",                      null: false
@@ -99,6 +99,7 @@ ActiveRecord::Schema.define(version: 20150415145303) do
     t.integer  "published_posts_count",  default: 0,     null: false
     t.integer  "moderation_posts_count", default: 0,     null: false
     t.integer  "rejected_posts_count",   default: 0,     null: false
+    t.string   "logo"
   end
 
   add_index "groups", ["custom_domain"], name: "index_groups_on_custom_domain", using: :btree
@@ -124,7 +125,6 @@ ActiveRecord::Schema.define(version: 20150415145303) do
 
   create_table "posts", force: :cascade do |t|
     t.integer  "group_id",                         null: false
-    t.integer  "user_id",                          null: false
     t.datetime "created_at",                       null: false
     t.datetime "updated_at",                       null: false
     t.integer  "cached_votes_total", default: 0
@@ -137,13 +137,14 @@ ActiveRecord::Schema.define(version: 20150415145303) do
     t.integer  "state",              default: 0,   null: false
     t.datetime "deleted_at"
     t.float    "hot_rank",           default: 0.0, null: false
+    t.integer  "membership_id"
   end
 
   add_index "posts", ["cached_votes_total"], name: "index_posts_on_cached_votes_total", using: :btree
   add_index "posts", ["deleted_at"], name: "index_posts_on_deleted_at", using: :btree
   add_index "posts", ["group_id"], name: "index_posts_on_group_id", using: :btree
+  add_index "posts", ["membership_id"], name: "index_posts_on_membership_id", using: :btree
   add_index "posts", ["slug"], name: "index_posts_on_slug", unique: true, using: :btree
-  add_index "posts", ["user_id"], name: "index_posts_on_user_id", using: :btree
 
   create_table "profiles", force: :cascade do |t|
     t.integer  "user_id",    null: false
@@ -187,6 +188,7 @@ ActiveRecord::Schema.define(version: 20150415145303) do
     t.integer  "invited_by_id"
     t.string   "invited_by_type"
     t.integer  "invitations_count",      default: 0
+    t.string   "avatar"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
@@ -213,11 +215,11 @@ ActiveRecord::Schema.define(version: 20150415145303) do
   add_foreign_key "collection_posts", "collections"
   add_foreign_key "collection_posts", "posts"
   add_foreign_key "collections", "groups"
+  add_foreign_key "comments", "memberships"
   add_foreign_key "comments", "posts"
-  add_foreign_key "comments", "users"
   add_foreign_key "memberships", "groups"
   add_foreign_key "memberships", "users"
   add_foreign_key "posts", "groups"
-  add_foreign_key "posts", "users"
+  add_foreign_key "posts", "memberships"
   add_foreign_key "profiles", "users"
 end

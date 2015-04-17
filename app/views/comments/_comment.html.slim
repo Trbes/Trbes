@@ -33,24 +33,22 @@
           data-toggle="popover"
           data-html="true"
           data-placement="bottom"
-          data-content=user_popover_content(comment.user, current_group)
+          data-content=user_popover_content(comment.membership)
           data-template=user_popover_template ]
-          = present(current_group).role_overlay(comment.user)
-          = image_tag(comment.user.avatar_url, width: 16, height: 16)
+          = present(current_group).role_overlay(comment.membership)
+          = image_tag(comment.user_avatar_url, width: 16, height: 16)
         a.user-name>[
           href="javascript:void(0)"
           data-toggle="popover"
           data-html="true"
           data-placement="bottom"
-          data-content=user_popover_content(comment.user, current_group)
+          data-content=user_popover_content(comment.membership)
           data-template=user_popover_template ]
           = comment.user_full_name
         - if current_user && current_user.title
           | •
           div.user-title< = comment.user_title
-        - if comment.user.membership_for(current_group) && comment.user.membership_for(current_group).moderator?
-          / ^^^ This causes tons of extra DB queries.
-          / Should consider linking comment with membership instead of user. Or both.
+        - if comment.membership.moderator?
           span.label.label-info.user-label MOD
 
       .comment-meta

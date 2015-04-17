@@ -8,16 +8,16 @@
           data-toggle="popover"
           data-html="true"
           data-placement="bottom"
-          data-content=user_popover_content(current_user, current_group)
+          data-content=user_popover_content(current_membership)
           data-template=user_popover_template ]
-          = present(current_group).role_overlay(current_user)
+          = present(current_group).role_overlay(current_membership)
           = image_tag(current_user.avatar_url, width: 16, height: 16)
         a.user-name>[
           href="javascript:void(0)"
           data-toggle="popover"
           data-html="true"
           data-placement="bottom"
-          data-content=user_popover_content(current_user, current_group)
+          data-content=user_popover_content(current_membership)
           data-template=user_popover_template ]
           = current_user.full_name
         - if current_user.title

@@ -31,7 +31,7 @@ feature "Post a comment" do
   end
 
   context "when there are existing comments" do
-    let!(:comment) { create(:comment, post: post, user: user) }
+    let!(:comment) { create(:comment, post: post, membership: membership) }
 
     background do
       visit post_path(post)

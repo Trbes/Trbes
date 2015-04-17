@@ -8,7 +8,7 @@ class CommentsController < ApplicationController
 
   def create
     result = CreateComment.call(
-      user: current_user,
+      membership: current_membership,
       post: post,
       attributes: comment_attributes,
       allow_publish: policy(Comment).publish?

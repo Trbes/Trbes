@@ -5,16 +5,27 @@ class GroupsController < ApplicationController
   expose(:posts, only: [:show]) do
     scope = current_group.posts
       .published
-      .includes(:attachments, user: :avatar)
+      .includes(:attachments, membership: :user)
       .public_send(sort_filter)
       .page(params[:page])
 
     params[:collection_id] ? scope.includes(:collection_posts).for_collection(params[:collection_id]) : scope
   end
-  expose(:public_groups, only: [:index]) do
-    ordered_groups = Group.all_public.includes(:logo, memberships: { user: :avatar }).order_by_created_at
-    presented_groups = view_context.present(ordered_groups)
-    Kaminari.paginate_array(presented_groups).page(params[:page]).per(20)
+
+  expose(:group_owners) do
+    Membership
+      .owner
+      .includes(:user, group: [memberships: :user])
+      .joins(:group)
+      .where("groups.private = ?", false)
+      .order("groups.created_at DESC")
+      .page(params[:page]).per(10)
+  end
+
+  expose(:public_groups) { view_context.present(group_owners.map(&:group)) }
+
+  expose(:public_groups_with_owners, only: [:index]) do
+    public_groups.zip(group_owners)
   end
 
   def create
@@ -61,7 +72,7 @@ class GroupsController < ApplicationController
       :private,
       :subdomain,
       :allow_image_posts,
-      logo_attributes: :image
+      :image
     )
   end
 end

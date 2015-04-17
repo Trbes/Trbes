@@ -4,9 +4,10 @@ feature "Groups list" do
   let!(:group) { create(:group) }
   let!(:post) { create(:post, group: group) }
   let(:posts_count) { 5 }
-  let(:extra_groups_count) { 20 }
+  let(:extra_groups_count) { 10 }
 
   background do
+    create(:membership, group: group, role: :owner)
     create_list(:post, posts_count, :text, group: group)
     visit "/"
   end
@@ -22,7 +23,7 @@ feature "Groups list" do
 
   context "when there are too many groups" do
     background do
-      create_list(:group, extra_groups_count)
+      create_list(:group, extra_groups_count, :with_owner)
       visit "/"
     end
 

@@ -12,7 +12,7 @@ class Post < ActiveRecord::Base
   scope :order_by_created_at, -> { order(created_at: :desc) }
   scope :order_by_trending, -> { order(hot_rank: :desc, created_at: :desc) }
   scope :for_collection, -> (collection_id) { where(collection_posts: { collection_id: collection_id }) }
-  scope :for_user, -> (user) { where(user_id: user.id) }
+  scope :for_membership, -> (membership) { where(membership_id: membership.id) }
 
   has_many :comments, dependent: :destroy
   has_many :attachments, as: :attachable, dependent: :destroy
@@ -27,7 +27,7 @@ class Post < ActiveRecord::Base
       ["posts.state = ?", 2] => "rejected_posts_count"
     }
 
-  belongs_to :user, required: true
+  belongs_to :membership, required: true
 
   accepts_nested_attributes_for :attachments, reject_if: proc { |a| a[:image].blank? }
 
@@ -38,7 +38,7 @@ class Post < ActiveRecord::Base
 
   validates :post_type, inclusion: { in: proc { |post| post.group.allowed_post_types } }
 
-  delegate :full_name, :avatar, :title, to: :user, prefix: true
+  delegate :user_full_name, :user_avatar_url, :user_title, to: :membership
 
   after_save :set_hot_rank
 
@@ -72,7 +72,7 @@ class Post < ActiveRecord::Base
   end
 
   def written_by?(membership)
-    user.id == membership.user_id
+    membership_id == membership.id
   end
 
   def set_hot_rank

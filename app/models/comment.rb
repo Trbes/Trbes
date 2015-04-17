@@ -1,12 +1,12 @@
 class Comment < ActiveRecord::Base
   belongs_to :post, counter_cache: :comments_count, required: true
-  belongs_to :user, counter_cache: true, required: true
+  belongs_to :membership, required: true
   belongs_to :parent_comment, class_name: "Comment", foreign_key: :parent_comment_id
   has_many :child_comments, class_name: "Comment", foreign_key: :parent_comment_id, dependent: :destroy
 
   validates :body, presence: true
 
-  delegate :full_name, :title, :avatar, :avatar_url, to: :user, prefix: true
+  delegate :user_full_name, :user_title, :user_avatar, :user_avatar_url, to: :membership
 
   acts_as_votable
 
@@ -14,7 +14,7 @@ class Comment < ActiveRecord::Base
   scope :order_by_created_at, -> { order(created_at: :desc) }
   scope :root, -> { where(parent_comment_id: nil) }
   scope :favourite, -> { where(favourite: true) }
-  scope :for_user, -> (user) { where(user_id: user.id) }
+  scope :for_membership, -> (membership) { where(membership_id: membership.id) }
 
   enum state: %i(moderation published rejected)
 

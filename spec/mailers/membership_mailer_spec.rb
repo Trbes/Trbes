@@ -6,7 +6,7 @@ shared_examples_for "email about role change with correct subject and sender/rec
   end
 
   it "renders the receiver email" do
-    expect(mail.to).to eql([membership.email])
+    expect(mail.to).to eql([membership.user_email])
   end
 
   it "renders the sender email" do

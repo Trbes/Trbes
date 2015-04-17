@@ -25,7 +25,7 @@ feature "Update membership", js: true do
       expect(some_membership.reload.role).to eq("moderator")
     end
 
-    open_email(some_membership.email)
+    open_email(some_membership.user_email)
 
     expect(current_email).to have_subject("Your role in #{group.name} has changed")
     expect(current_email.body.encoded).to include("http://#{group.subdomain}.#{DEFAULT_HOST}")
@@ -35,18 +35,18 @@ feature "Update membership", js: true do
   context "when there are posts by this user in 'moderation' state" do
     background do
       some_membership.pending!
-      create_list(:post, 3, user: some_membership.user, group: group, state: :moderation)
-      create_list(:comment, 3, user: some_membership.user, post: group.posts.first, state: :moderation)
+      create_list(:post, 3, membership: some_membership, group: group, state: :moderation)
+      create_list(:comment, 3, membership: some_membership, post: group.posts.first, state: :moderation)
 
       visit admin_memberships_path
     end
 
     scenario "posts and comments are published after membership is confirmed" do
-      group.posts.for_user(some_membership.user).each do |post|
+      some_membership.posts.each do |post|
         expect(post).to be_moderation
       end
 
-      group.comments.for_user(some_membership.user).each do |comment|
+      some_membership.comments.each do |comment|
         expect(comment).to be_moderation
       end
 
@@ -58,11 +58,11 @@ feature "Update membership", js: true do
 
       wait_for_ajax
 
-      group.posts.for_user(some_membership.user).each do |post|
+      some_membership.posts.reload.each do |post|
         expect(post).to be_published
       end
 
-      group.comments.for_user(some_membership.user).each do |comment|
+      some_membership.comments.reload.each do |comment|
         expect(comment).to be_published
       end
     end
@@ -71,7 +71,7 @@ feature "Update membership", js: true do
   scenario "I can transfer ownership" do
     click_link("owner")
 
-    select(some_membership.full_name, from: "membership_new_group_owner_id")
+    select(some_membership.user_full_name, from: "membership_new_group_owner_id")
 
     click_button "Save"
 

@@ -16,7 +16,7 @@ class CreateComment
   private
 
   def set_success_message
-    if context.user.membership_for(context.post.group).try(:pending?)
+    if context.membership.pending?
       context.message = I18n.t("app.comment.message.success_pending")
     else
       context.message = I18n.t("app.comment.message.success")
@@ -30,7 +30,7 @@ class CreateComment
   def create_comment
     Comment.create!(
       context.attributes.merge(
-        user: context.user,
+        membership: context.membership,
         post: context.post,
         state: context.allow_publish ? :published : :moderation
       )

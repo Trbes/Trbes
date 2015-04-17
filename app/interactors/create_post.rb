@@ -18,16 +18,12 @@ class CreatePost
   def create_post
     context.post = Post.create(
       attributes.merge(
-        user: context.current_user,
-        group: context.current_group,
+        membership: context.current_membership,
+        group: context.current_membership.group,
         attachments_attributes: attributes[:attachments_attributes] || [],
         state: context.allow_publish ? :published : :moderation
       )
     )
-  end
-
-  def pending_membership
-    context.current_user.membership_for(context.current_group).pending?
   end
 
   def set_failure_message
@@ -35,7 +31,7 @@ class CreatePost
   end
 
   def set_success_message
-    context.message = if pending_membership
+    context.message = if context.current_membership.pending?
       I18n.t("app.post.message.success_pending", title: context.post.title)
     else
       I18n.t("app.post.message.success", title: context.post.title)
