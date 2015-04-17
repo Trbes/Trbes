@@ -13,6 +13,7 @@ class ApplicationController < ActionController::Base
 
   expose(:groups)
   expose(:group_memberships) { current_group.memberships.joins(:user).confirmed.not_pending }
+  expose(:current_user_memberships) { current_user.memberships.includes(:group) }
 
   helper_method :current_group
   def current_group
@@ -22,7 +23,7 @@ class ApplicationController < ActionController::Base
       Group.where(custom_domain: request.domain)
     end
 
-    @current_group = matching_groups.includes(memberships: :user).first
+    @current_group ||= matching_groups.includes(memberships: :user).first
   end
 
   helper_method :current_membership

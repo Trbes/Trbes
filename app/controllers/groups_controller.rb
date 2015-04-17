@@ -23,8 +23,6 @@ class GroupsController < ApplicationController
     Kaminari.paginate_array(public_groups.zip(group_owners)).page(params[:page]).per(10)
   end
 
-  expose(:current_user_memberships) { current_user.memberships.includes(:group) }
-
   def create
     authorize :group, :create?
 
