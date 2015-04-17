@@ -79,4 +79,20 @@ feature "Update membership", js: true do
     expect(user.membership_for(group).reload.role).to eq("moderator")
     expect(group.owner).to eq(some_membership)
   end
+
+  context "when I logged in as a moderator" do
+    background do
+      some_membership.owner!
+      membership.moderator!
+
+      visit admin_memberships_path
+    end
+
+    scenario "I cannot transfer ownership" do
+      within(".memberships #membership_#{some_membership.id}.membership") do
+        expect(page).to have_content("owner")
+        expect(page).not_to have_css("a.role-link")
+      end
+    end
+  end
 end
