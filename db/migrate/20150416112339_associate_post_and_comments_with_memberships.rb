@@ -8,17 +8,19 @@ class AssociatePostAndCommentsWithMemberships < ActiveRecord::Migration
 
     posts_count = Post.count
 
-    Post.all.each_with_index do |post, index|
-      user = User.find_by(id: post.user_id)
+    Post.without_auto_index do
+      Post.all.each_with_index do |post, index|
+        user = User.find_by(id: post.user_id)
 
-      if user
-        membership = user.membership_for(post.group)
+        if user
+          membership = user.membership_for(post.group)
 
-        if membership
-          puts "updating #{index} out of #{posts_count}"
-          post.update_attributes(
-            membership_id: membership.id
-          )
+          if membership
+            puts "updating #{index} out of #{posts_count}"
+            post.update_attributes(
+              membership_id: membership.id
+            )
+          end
         end
       end
     end
