@@ -1,4 +1,4 @@
-DEFAULT_HOST = "vcap.me"
+DEFAULT_HOST = "lvh.me"
 DEFAULT_PORT = 9887
 
 module FeatureHelpers
@@ -62,7 +62,7 @@ RSpec.configure do |config|
   config.before :each, :js, type: :feature do |example|
     if example.metadata[:js]
       page.driver.block_unknown_urls
-      page.driver.allow_url("vcap.me")
+      page.driver.allow_url("lvh.me")
     end
   end
 
