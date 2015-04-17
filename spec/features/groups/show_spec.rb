@@ -43,3 +43,16 @@ feature "Group main page" do
     end
   end
 end
+
+feature "Going to www subdomain" do
+  background do
+    switch_to_subdomain("www")
+    visit root_path
+  end
+
+  after { switch_to_main }
+
+  scenario "I will see home page instead of a group page" do
+    expect(page).to have_content("Discover Interesting Teams")
+  end
+end
