@@ -46,6 +46,16 @@ feature "Single post page" do
     end
   end
 
+  context "When the post is from another group" do
+    let!(:post_from_another_group) { create(:post, group: create(:group)) }
+
+    scenario "I see an exception" do
+      expect {
+        visit post_path(post_from_another_group)
+      }.to raise_error
+    end
+  end
+
   context "when I'm logged in" do
     scenario "I upvote for a post", js: true do
       expect(post.cached_votes_total).to eq(0)
