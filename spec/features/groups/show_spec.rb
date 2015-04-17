@@ -39,7 +39,9 @@ feature "Group main page" do
     scenario "I'm not allowed to do so" do
       visit root_path
 
-      expect(page).not_to have_content(group.name)
+      within(".navbar .group-name") do
+        expect(page).not_to have_content(group.name)
+      end
     end
   end
 end

@@ -17,10 +17,5 @@ describe ApplicationController do
       @request.host = "test.example.com"
       expect(controller.current_group).to eql group_with_custom_domain_same_subdomain
     end
-
-    it "should return the right group when accessing from subdomain" do
-      @request.host = "test.anything.com"
-      expect(controller.current_group).to eql group_with_subdomain
-    end
   end
 end

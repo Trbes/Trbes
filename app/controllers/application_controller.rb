@@ -16,8 +16,15 @@ class ApplicationController < ActionController::Base
 
   helper_method :current_group
   def current_group
-    @current_group = Group.where("custom_domain = ? OR subdomain = ?", request.host, request.subdomain)
-      .includes(memberships: :user).first
+    if request.host.include?(Trbes::Application.config.host)
+      @current_group = Group
+        .where(subdomain: request.subdomain)
+        .includes(memberships: :user).first
+    else
+      @current_group = Group
+        .where(custom_domain: request.domain)
+        .includes(memberships: :user).first
+    end
   end
 
   helper_method :current_membership
