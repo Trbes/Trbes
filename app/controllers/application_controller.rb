@@ -105,6 +105,7 @@ class ApplicationController < ActionController::Base
   end
 
   def push_env_config
+    gon.push(zero_clipboard_path: view_context.asset_path("zeroclipboard/ZeroClipboard.swf"))
     gon.push(facebook_app_id: ENV["FACEBOOK_APP_ID"])
   end
 
