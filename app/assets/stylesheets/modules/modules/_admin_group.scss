@@ -86,16 +86,20 @@
   }
 
   .group-statistics {
+    display: table;
+
+    .group-statistics-element {
+      display: table-row;
+    }
+
     .count {
-      display: inline-block;
-      width: 10%;
+      display: table-cell;
       text-align: right;
+      padding-right: 10px;
     }
 
     .entity-wrapper {
-      display: inline-block;
-      width: 80%;
-      margin-left: 5%;
+      display: table-cell;
     }
   }
 }
