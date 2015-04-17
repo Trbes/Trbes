@@ -15,7 +15,7 @@ class User < ActiveRecord::Base
   mount_uploader :avatar, ImageUploader
 
   def membership_for(group)
-    memberships.for_group(group).first
+    memberships.select { |m| m.group_id == group.id }.first
   end
 
   def avatar_url
