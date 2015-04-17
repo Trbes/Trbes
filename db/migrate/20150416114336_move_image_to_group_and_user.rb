@@ -1,3 +1,11 @@
+class Group
+  has_one :logo, as: :attachable, class_name: "Attachment"
+end
+
+class User
+  has_one :avatar, as: :attachable, class_name: "Attachment"
+end
+
 class MoveImageToGroupAndUser < ActiveRecord::Migration
   def change
     add_column :users, :avatar, :string

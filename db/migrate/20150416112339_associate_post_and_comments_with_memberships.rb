@@ -1,3 +1,11 @@
+class Comment
+  belongs_to :user
+end
+
+class Post
+  belongs_to :user
+end
+
 class AssociatePostAndCommentsWithMemberships < ActiveRecord::Migration
   def change
     add_reference(:posts, :membership, index: true)
@@ -5,7 +13,6 @@ class AssociatePostAndCommentsWithMemberships < ActiveRecord::Migration
 
     add_foreign_key :posts, :memberships
     add_foreign_key :comments, :memberships
-
 
     posts_count = Post.count
 
