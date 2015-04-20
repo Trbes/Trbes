@@ -31,7 +31,7 @@ class User < ActiveRecord::Base
   end
 
   def voted_for?(entity)
-    votes.select { |vote| vote.votable_id = entity.id }.any?
+    votes.select { |vote| vote.votable_id == entity.id }.any?
   end
 
   after_create do

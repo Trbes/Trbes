@@ -38,7 +38,7 @@ module PostsHelper
     return new_user_registration_path unless user_signed_in?
     return "#" unless policy(post).vote?(user)
 
-    user.voted_up_on?(post) ? post_unvote_path(post) : post_upvote_path(post)
+    user.voted_for?(post) ? post_unvote_path(post) : post_upvote_path(post)
   end
 
   def post_type_icon(post_type)
