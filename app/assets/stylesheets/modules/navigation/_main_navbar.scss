@@ -1,5 +1,13 @@
 #main_navbar {
   .navbar {
+
+    .navbar-header {
+      float: none;
+
+      &:before, &:after {
+        content: none;
+      }
+    }
     &.navbar-default {
       border: 0;
 
@@ -26,11 +34,6 @@
       height: auto;
       font-size: 2em;
       color: black;
-      // background: #f8f8f8;
-
-      @include on_link_actions {
-        // background: white !important;
-      }
 
       @include breakpoint(0 1024px) {
         padding: 2px;
@@ -50,9 +53,6 @@
   }
 
   // Group
-  .navbar-group {
-    @include clearfix();
-  }
 
   .group-logo {
     float: left;
@@ -60,12 +60,15 @@
   }
 
   .group-info {
+    width: 50%;
     float: left;
     margin: 0;
     margin-top: 15px;
   }
 
   .group-name {
+    @include ellipsis;
+    display: block;
     font-size: 1.4em;
 
     a {
@@ -112,6 +115,8 @@
   }
 
   .group-desc {
+    @include ellipsis;
+    display: block;
     color: #696969;
     font-size: 1.2em;
   }
@@ -169,14 +174,10 @@
     }
 
     .group-name {
-      @include ellipsis;
-      display: block;
       font-size: 1.2em;
     }
 
     .group-desc {
-      @include ellipsis;
-      display: block;
       font-size: 1em;
     }
   }
