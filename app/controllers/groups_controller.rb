@@ -12,7 +12,9 @@ class GroupsController < ApplicationController
     params[:collection_id] ? scope.for_collection(params[:collection_id]) : scope
   end
 
-  expose(:current_group_collections) { current_group.collections }
+  expose(:current_group_collections) { current_group.collections.visible.ordered }
+  expose(:collections_to_show) { current_group_collections[0..Collection::VISIBLE_COLLECTIONS_COUNT] }
+  expose(:hidden_collections) { current_group_collections[Collection::VISIBLE_COLLECTIONS_COUNT..-1] || [] }
 
   expose(:group_owners) do
     Membership

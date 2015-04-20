@@ -9,9 +9,9 @@
             i.fa.fa-search
           input#post_search.form-control aria-describedby="search_main" placeholder="Search for posts" type="search"
     .col-md-6
-      = render "posts/collection_menu"
+      = render "posts/collection_menu", current_group: current_group
 
-  - if current_group.posts_count > 0
+  - if posts.any?
     .posts-group
       .posts-listing
         - posts.each do |post|

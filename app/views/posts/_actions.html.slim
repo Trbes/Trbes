@@ -2,6 +2,7 @@
   - if policy(CollectionPost).create_for?(post, current_group_collections)
     = link_to "#", class: "add-to-collection", data: { toggle: "modal", target: "#add_to_collection_#{post.id}" } do
       i.fa.fa-plus-circle data-toggle="tooltip" data-placement="top" title="Add to collection"
+
   .post-collections
     - post.collection_posts.each do |collection_post|
       = content_tag_for(:span, collection_post.collection, class: "post-collection") do
