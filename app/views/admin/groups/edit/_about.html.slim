@@ -7,38 +7,39 @@ section.about.clearfix
     .group-image
       = group.listing_logo
 
-    .group-information
-      span.group-name= group.name
-      '&nbsp;
-      span(class="fa #{group.privacy_class}" data-toggle="tooltip" title="#{group.privacy_text}")
+    .group-right
+      .group-information
+        span.group-name= group.name
+        '&nbsp;
+        span(class="fa #{group.privacy_class}" data-toggle="tooltip" title="#{group.privacy_text}")
 
-      br
-      span.text-muted= group.tagline
+        br
+        span.text-muted= group.tagline
 
-      .group-statistics
-        .group-statistics-element
-          .count= group.memberships_count
-          .entity-wrapper= link_to group.pluralized_noun("Member", group.memberships_count), admin_memberships_path
-        .group-statistics-element
-          .count= group.posts_count
-          .entity-wrapper= link_to group.pluralized_noun("Post", group.posts_count), admin_posts_path
-        .group-statistics-element
-          .count= group.collections_count
-          .entity-wrapper= link_to group.pluralized_noun("Collection", group.collections_count), "#collections"
-        .group-statistics-element
-          .count= group.comments_count
-          .entity-wrapper= link_to group.pluralized_noun("Comment", group.comments_count), admin_comments_path
+        .group-statistics
+          .group-statistics-element
+            .count= group.memberships_count
+            .entity-wrapper= link_to group.pluralized_noun("Member", group.memberships_count), admin_memberships_path
+          .group-statistics-element
+            .count= group.posts_count
+            .entity-wrapper= link_to group.pluralized_noun("Post", group.posts_count), admin_posts_path
+          .group-statistics-element
+            .count= group.collections_count
+            .entity-wrapper= link_to group.pluralized_noun("Collection", group.collections_count), "#collections"
+          .group-statistics-element
+            .count= group.comments_count
+            .entity-wrapper= link_to group.pluralized_noun("Comment", group.comments_count), admin_comments_path
 
-    .controls
-      - if policy(group).edit?
-        = link_to "edit", "#", class: "control", data: { toggle: "modal", target: "#edit_group" }
-        = render "admin/groups/edit/edit_modal", group: group
+      .controls
+        - if policy(group).edit?
+          = link_to "edit", "#", class: "control", data: { toggle: "modal", target: "#edit_group" }
+          = render "admin/groups/edit/edit_modal", group: group
 
-        - if policy(group).destroy?
-          .controls-separator
-          = link_to "delete",
-              admin_group_path,
-              method: :delete,
-              class: "control",
-              data: { confirm: "Are you sure you want to delete #{group.name}? \
-                                All data will be lost and all posts will be deleted." }
+          - if policy(group).destroy?
+            .controls-separator
+            = link_to "delete",
+                admin_group_path,
+                method: :delete,
+                class: "control",
+                data: { confirm: "Are you sure you want to delete #{group.name}? \
+                                  All data will be lost and all posts will be deleted." }

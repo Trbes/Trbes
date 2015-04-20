@@ -18,13 +18,22 @@
     display: inline-block;
   }
 
+  .group-profile {
+    display: table;
+  }
+
   .group-image {
-    margin-right: 10px;
-    float: left;
+    padding-right: 10px;
+    display: table-cell;
+    vertical-align: top;
+  }
+
+  .group-right {
+    display: table-cell;
+    vertical-align: top;
   }
 
   .group-information {
-    float: left;
   }
 
   .collections-list {
