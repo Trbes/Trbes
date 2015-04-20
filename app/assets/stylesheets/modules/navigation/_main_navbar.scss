@@ -65,13 +65,15 @@
   }
 
   .group-name {
-    @include ellipsis;
     display: block;
     font-size: 1.4em;
 
     a {
+      @include ellipsis;
+      max-width: calc(100% - 30px);
       font-weight: 400;
       color: #333;
+      vertical-align: top;
 
       @include on_link_actions {
         color: #333;
@@ -172,7 +174,7 @@
     }
 
     .group-name {
-      font-size: 1.2em;
+      font-size: 1em;
     }
 
     .group-desc {
