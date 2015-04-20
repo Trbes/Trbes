@@ -50,16 +50,11 @@ feature "Invite to group" do
     end
 
     scenario "User invites multiple users", js: true do
-      user_count = User.count
-      find("#fiv_emails_tag").set("user1@example.com, user2@example.com")
-      click_button "Send Invitation"
-      wait_for_ajax
-      expect{ User.count }.to eql(user_count + 2)
-      # expect {
-      #   find("#fiv_emails_tag").set("user1@example.com, user2@example.com")
-      #   click_button "Send Invitation"
-      #   wait_for_ajax
-      # }.to change { User.count }.by(2)
+      expect {
+        find("#fiv_emails_tag").set("user1@example.com, user2@example.com")
+        click_button "Send Invitation"
+        wait_for_ajax
+      }.to change { User.count }.by(2)
     end
 
     scenario "User enters invalid emails", js: true do

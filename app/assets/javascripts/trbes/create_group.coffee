@@ -15,6 +15,9 @@ class window.CreateGroup
           remote:
             url: "/validate/group_name"
             type: "post"
+            data:
+              current_group_name: ->
+                $("#group_name").data("original-value")
         "group[subdomain]":
           required: true
           minlength: 2

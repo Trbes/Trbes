@@ -68,7 +68,7 @@
     display: block;
     font-size: 1.4em;
 
-    a {
+    & > a {
       @include ellipsis;
       max-width: calc(100% - 30px);
       font-weight: 400;
