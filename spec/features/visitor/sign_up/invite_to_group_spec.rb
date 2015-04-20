@@ -25,6 +25,7 @@ feature "Invite to group" do
     scenario "User invites another user", js: true do
       find("#fiv_emails_tag").set("user1@example.com")
       click_button "Send Invitation"
+      wait_for_ajax
 
       # Should show success popup.
       # This also waits for the ajax request to complete,

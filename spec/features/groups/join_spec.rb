@@ -7,7 +7,7 @@ feature "Join group" do
 
   background do
     create(:membership, group: group, role: :owner)
-    sign_in(user.email, "123456")
+    sign_in(user.email, "12345678")
   end
 
   context "when I'm unconfirmed group member" do

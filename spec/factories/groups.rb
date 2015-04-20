@@ -8,7 +8,7 @@ FactoryGirl.define do
     description { Faker::Company.catch_phrase }
 
     sequence :subdomain do |n|
-      "#{Faker::Internet.domain_word}#{n}"
+      "#{Faker::Internet.domain_word[0..15]}#{n}"
     end
 
     trait :with_owner do

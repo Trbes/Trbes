@@ -5,7 +5,7 @@ feature "Sign in" do
   let(:not_confirmed_user) { create :user, :not_confirmed }
 
   scenario "User signs in successfully" do
-    sign_in(user.email, "123456")
+    sign_in(user.email, "12345678")
 
     expect(page).to have_content("Sign out")
   end
@@ -17,7 +17,7 @@ feature "Sign in" do
   end
 
   scenario "User has not confirmed email address", js: true do
-    sign_in(not_confirmed_user.email, "123456")
+    sign_in(not_confirmed_user.email, "12345678")
 
     expect(page).to have_content("You have to confirm your account before continuing.")
   end

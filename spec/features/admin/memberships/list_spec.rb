@@ -9,7 +9,7 @@ feature "List group members" do
   background do
     user.membership_for(group).owner!
     switch_to_subdomain(group.subdomain)
-    sign_in(user.email, "123456")
+    sign_in(user.email, "12345678")
     visit admin_memberships_path
   end
 

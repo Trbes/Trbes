@@ -6,7 +6,7 @@ feature "Create group" do
   let(:group) { Group.first }
 
   background do
-    sign_in(user.email, "123456")
+    sign_in(user.email, "12345678")
     visit root_path
 
     click_link "Create a Group"

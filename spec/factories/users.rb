@@ -3,8 +3,8 @@ FactoryGirl.define do
     email { Faker::Internet.email }
     full_name { Faker::Name.name }
     title { Faker::Name.title }
-    password "123456"
-    password_confirmation "123456"
+    password "12345678"
+    password_confirmation "12345678"
   end
 
   trait :confirmed do
