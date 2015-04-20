@@ -3,4 +3,4 @@ Rails.application.config.after_initialize do
   Bullet.alert = true
   Bullet.rails_logger = true
   Bullet.console = true
-end if defined?(Bullet)
+end if defined?(Bullet) && !ENV["DISABLE_BULLET"]
