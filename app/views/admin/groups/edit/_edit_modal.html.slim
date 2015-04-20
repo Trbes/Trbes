@@ -17,8 +17,8 @@
 
               = link_to "change image", "#", class: "upload"
               = f.input :name, input_html: { data: { original_value: f.object.name } }
-              = f.input :tagline, input_html: { data: { original_value: f.object.tagline } }
-              = f.input :description, input_html: { data: { original_value: f.object.description } }
+              = f.input :tagline
+              = f.input :description
               / = f.input :custom_domain, hint: "example.com"
 
               .form-group.fg-cg-privacy
