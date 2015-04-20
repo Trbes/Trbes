@@ -5,12 +5,14 @@ class GroupsController < ApplicationController
   expose(:posts, only: [:show]) do
     scope = current_group.posts
       .published
-      .includes(:attachments, membership: :user)
+      .includes(:attachments, collection_posts: :collection, membership: :user)
       .public_send(sort_filter)
       .page(params[:page])
 
-    params[:collection_id] ? scope.includes(:collection_posts).for_collection(params[:collection_id]) : scope
+    params[:collection_id] ? scope.for_collection(params[:collection_id]) : scope
   end
+
+  expose(:current_group_collections) { current_group.collections }
 
   expose(:group_owners) do
     Membership
