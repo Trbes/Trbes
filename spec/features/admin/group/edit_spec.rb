@@ -17,6 +17,7 @@ feature "Edit group", js: true do
     page.find("#cg_privacy").click
 
     click_button "Save"
+    wait_for_ajax
 
     expect(current_path).to eq(edit_admin_group_path)
     group.reload

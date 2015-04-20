@@ -9,10 +9,7 @@ class ValidationController < ApplicationController
   end
 
   def group_name
-    render json: true and return if
-      group.valid? ||
-      group.errors[:name].blank? ||
-      (params[:current_group_name].present? && group.name == params[:current_group_name])
+    render json: true and return if valid_group_params
 
     render json: [group.errors[:name].map { |m| "Group name #{m}" }.join("; ")]
   end
@@ -30,6 +27,12 @@ class ValidationController < ApplicationController
   end
 
   private
+
+  def valid_group_params
+    group.valid? ||
+      group.errors[:name].blank? ||
+      (params[:current_group_name].present? && group.name == params[:current_group_name])
+  end
 
   def user_attributes
     params.require(:user).permit(

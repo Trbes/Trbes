@@ -10,7 +10,7 @@ feature "Update account with valid data" do
   scenario "I submit update account form with valid data" do
     fill_form(:user,
       full_name: "New Name",
-      current_password: "123456"
+      current_password: "12345678"
     )
 
     click_button "Update"

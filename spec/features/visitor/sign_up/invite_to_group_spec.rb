@@ -25,7 +25,6 @@ feature "Invite to group" do
     scenario "User invites another user", js: true do
       find("#fiv_emails_tag").set("user1@example.com")
       click_button "Send Invitation"
-      wait_for_ajax
 
       # Should show success popup.
       # This also waits for the ajax request to complete,
@@ -51,9 +50,10 @@ feature "Invite to group" do
 
     scenario "User invites multiple users", js: true do
       expect {
-        find("#fiv_emails_tag").set("user1@example.com, user2@example.com")
+        page.execute_script("$('#fiv_emails').val('user1@example.com,user2@example.com')")
         click_button "Send Invitation"
-        wait_for_ajax
+
+        expect(page).to have_selector("#modal_invitation_success", visible: true)
       }.to change { User.count }.by(2)
     end
 
