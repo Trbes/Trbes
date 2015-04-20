@@ -13,7 +13,7 @@ class GroupsController < ApplicationController
   end
 
   expose(:current_group_collections) { current_group.collections.visible.ordered }
-  expose(:collections_to_show) { current_group_collections[0..Collection::VISIBLE_COLLECTIONS_COUNT] }
+  expose(:collections_to_show) { current_group_collections[0..Collection::VISIBLE_COLLECTIONS_COUNT - 1] }
   expose(:hidden_collections) { current_group_collections[Collection::VISIBLE_COLLECTIONS_COUNT..-1] || [] }
 
   expose(:group_owners) do
