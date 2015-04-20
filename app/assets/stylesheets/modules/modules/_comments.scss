@@ -97,6 +97,10 @@ $comment-right-width: 170px;
     display: inline;
   }
 
+  .user-label {
+    margin-left: 5px;
+  }
+
   .form-pac {
     @include clearfix;
     margin-right: -10px;
