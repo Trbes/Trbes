@@ -24,7 +24,7 @@
               .group-desc Public and Private Groups for Teams
 
       #navbar_navigation.collapse.navbar-collapse
-        = render "navigation_user"
+        = render "navigation_user", current_group: current_group
 
   = render "navigation_main_slide_menu"
 
@@ -36,4 +36,4 @@
           membership_path(current_membership),
           method: :delete,
           data: { confirm: "Are you sure you want to cancel your membership request?" }
-= render "posts/add_a_post", post: Post.new if current_group
+= render "posts/add_a_post", post: Post.new, current_group: current_group if current_group

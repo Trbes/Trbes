@@ -11,10 +11,8 @@ html class="no-js" lang="en"
 
     = csrf_meta_tags
 
-    /! Le styles
     = stylesheet_link_tag :application
 
-    /! Le modernizr
     = javascript_include_tag "modernizr/modernizr"
 
     /! HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries
@@ -27,12 +25,12 @@ html class="no-js" lang="en"
   - content_for(:extra_body_classes, 'no-group') unless current_group
   body[class=body_class]
     #root
-      = render "navigation"
+      = render "navigation", current_group: current_group
 
       #main.wrapper
         = yield
 
-    = render "application/footer"
+    = render "application/footer", current_group: current_group
 
     = render "facebook_sdk"
 

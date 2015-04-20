@@ -1,19 +1,20 @@
 .post-actions
-  - if policy(CollectionPost).create? && !post.collection_posts.exists?
+  - if policy(CollectionPost).create_for?(post, current_group_collections)
     = link_to "#", class: "add-to-collection", data: { toggle: "modal", target: "#add_to_collection_#{post.id}" } do
       i.fa.fa-plus-circle data-toggle="tooltip" data-placement="top" title="Add to collection"
+
   .post-collections
-    - post.collections.visible.each do |collection|
-      = content_tag_for(:span, collection, class: "post-collection") do
-        = link_to root_path(collection_id: collection.id) do
+    - post.collection_posts.each do |collection_post|
+      = content_tag_for(:span, collection_post.collection, class: "post-collection") do
+        = link_to root_path(collection_id: collection_post.collection.id) do
           i.fa.circle[
-            class=(collection.icon_class.present? ? "fa-#{collection.icon_class}" : "fa-list")
+            class=(collection_post.collection.icon_class.present? ? "fa-#{collection_post.collection.icon_class}" : "fa-list")
             data-toggle="tooltip"
             data-placement="top"
-            title=collection.name]
+            title=collection_post.collection.name]
 
-        - if policy(collection.collection_post_for(post)).destroy?
-          = link_to admin_collection_post_path(collection.collection_post_for(post)),
+        - if policy(collection_post).destroy?
+          = link_to admin_collection_post_path(collection_post),
               class: "remove-from-collection",
               method: :delete,
               data: { confirm: "Are you sure?" } do
@@ -31,7 +32,7 @@
 
       = simple_form_for([:admin, CollectionPost.new]) do |f|
         .modal-body
-          = f.input :collection_id, collection: current_group.collections.not_used_for(post), label: "Select a collection"
+          = f.input :collection_id, collection: current_group_collections, label: "Select a collection"
           = f.input :post_id, as: :hidden, input_html: { value: post.id }
           .modal-footer
             button.btn.btn-default type="button" data-dismiss="modal" Close

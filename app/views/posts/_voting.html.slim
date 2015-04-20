@@ -1,7 +1,7 @@
 .post-upvote
   .vote-count= post.cached_votes_total
-  - if current_user.try(:voted_up_on?, post)
-    = link_to(post_unvote_path(post, current_user), class: "vote done #{'not-logged-in' unless user_signed_in?}") do
+  - if current_user.try(:voted_for?, post) # not using voted_up_on here since it causes N+1 queries
+    = link_to(post_unvote_path(post), class: "vote done #{'not-logged-in' unless user_signed_in?}") do
       .fa.fa-check
       .fa.fa-close
   - else

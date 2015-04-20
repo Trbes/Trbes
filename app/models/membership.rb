@@ -2,8 +2,8 @@ class Membership < ActiveRecord::Base
   has_many :posts
   has_many :comments
 
-  belongs_to :user, required: true
-  belongs_to :group, required: true
+  belongs_to :user, required: true, touch: true
+  belongs_to :group, required: true, touch: true
 
   counter_culture :group,
     column_name: proc { |model| model.pending? ? nil : "memberships_count" },
