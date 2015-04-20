@@ -30,6 +30,10 @@ class User < ActiveRecord::Base
     SendWelcomeEmailJob.perform_later(id)
   end
 
+  def voted_for?(entity)
+    votes.select { |vote| vote.votable_id = entity.id }.any?
+  end
+
   after_create do
     if ENV["TRBES_GROUP_ID"].present?
       trbes_group = Group.find ENV["TRBES_GROUP_ID"]
