@@ -32,15 +32,24 @@
 
             label.control-label.label-invite-message  Message:
             .fic-email-body
+              - aurl = accept_invitation_url(:user,
+                  invitation_token: "...",
+                  subdomain: current_group.subdomain)
+              p Hey,
+
+              p I really appreciate when you send me links to interesting resources and I thought we might want to collect, share and organize it outside of email. I created a place for us to do so with everything related to our team.
+
+              p Click the link below to join the team.
+
               p
-                | I would like you to join our new user community about
-                a< href=(join_url = group_join_url(current_group)) = current_group.tagline
-                | .
-                |  Help me create some content and share some links !
-              p
-                | Click here to join :
+                | Join #{current_group.name}:
                 br
-                a href=(join_url) = join_url
+                a[href=aurl] = URI.unescape(aurl)
+
+              p
+                | Cheers,
+                br
+                = current_user.full_name
 
         .form-group.fnp-actions
           .col-sm-offset-2.col-sm-4

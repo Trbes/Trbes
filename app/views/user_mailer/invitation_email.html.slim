@@ -14,7 +14,9 @@ html
     p Click the link below to join the team.
 
     p
-      a[href=aurl] Join <strong>#{@group.name}</strong> on <strong>Trbes</strong>!
+      | Join #{@group.name}:
+      br
+      a[href=aurl] = aurl
 
     p
       | Cheers,
