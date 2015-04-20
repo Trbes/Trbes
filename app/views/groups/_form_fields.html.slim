@@ -25,13 +25,14 @@
     | Short Name
     small<
       | (Alphabetical. Max 20 chars)
-  = f.input :subdomain,
-    label: false,
-    wrapper: false,
-    error: false,
-    input_html: { id: "cg_short_name",
-                  class: "form-control" }
-  .form-control-static .trbes.com
+  .fg-cg-short-name-wrapper
+    = f.input :subdomain,
+      label: false,
+      wrapper: false,
+      error: false,
+      input_html: { id: "cg_short_name",
+                    class: "form-control" }
+    .form-control-static .trbes.com
   span.fa.fa-check-circle.form-control-feedback aria-hidden="true"
 
 .form-group.fg-cg-tagline

@@ -12,7 +12,9 @@ class Group < ActiveRecord::Base
   has_many :collections, dependent: :destroy
 
   validates :name, :subdomain, presence: true, uniqueness: true
-  validates :tagline, presence: true
+  validates :name, length: { minimum: 2 }
+  validates :subdomain, length: { minimum: 2, maximum: 20 }
+  validates :tagline, presence: true, length: { minimum: 2 }
   validates :subdomain, subdomain: true
   validates :custom_domain, domain: true, uniqueness: true, allow_nil: true, allow_blank: true
 

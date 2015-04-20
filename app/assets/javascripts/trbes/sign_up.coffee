@@ -26,7 +26,7 @@ class window.SignUp
           required: true
           email: true
           remote:
-            url: "/validate_email"
+            url: "/validate/user_email"
             type: "post"
         "user[name]":
           minlength: 5
