@@ -52,15 +52,13 @@
     }
   }
 
-  // Group
-
   .group-logo {
     float: left;
     margin-right: $grid-gutter-width/2;
   }
 
   .group-info {
-    width: 50%;
+    width: calc(50% - 138px);
     float: left;
     margin: 0;
     margin-top: 15px;
