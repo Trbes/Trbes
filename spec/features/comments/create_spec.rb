@@ -24,6 +24,22 @@ feature "Post a comment" do
 
       expect(post.comments).to be_empty
     end
+
+    scenario "I post a comment under post", js: true do
+      create_comment(body: "Abc")
+
+      expect(page).to have_content("Body is too short (minimum is 5 characters)")
+
+      expect(post.comments).to be_empty
+    end
+
+    scenario "I post a comment under post", js: true do
+      create_comment(body: "A" * 500)
+
+      expect(page).to have_content("Body is too long (maximum is 420 characters)")
+
+      expect(post.comments).to be_empty
+    end
   end
 
   context "with valid body" do
