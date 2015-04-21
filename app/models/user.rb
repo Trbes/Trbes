@@ -23,7 +23,7 @@ class User < ActiveRecord::Base
   end
 
   def full_name
-    super || email
+    super
   end
 
   def after_confirmation
