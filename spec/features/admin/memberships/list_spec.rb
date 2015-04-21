@@ -51,9 +51,9 @@ feature "List group members" do
   end
 
   scenario "I can remove member from group" do
-    # within("section.memberships #membership_#{memberships.first.id}") do
-    #   expect(page).not_to have_content("remove from group")
-    # end
+    within("section.memberships #membership_#{membership.id}") do
+      expect(page).not_to have_content("remove from group")
+    end
 
     within("section.memberships #membership_#{memberships.first.id}") do
       expect {
