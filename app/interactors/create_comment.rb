@@ -4,7 +4,7 @@ class CreateComment
   def call
     context.comment = create_comment
 
-    if context.post.valid?
+    if context.comment.valid?
       set_success_message
     else
       set_failure_message
