@@ -17,7 +17,7 @@
         = f.input :title, autofocus: true
 
         .form-group.file.optional.user_avatar_image
-          label.file.optional.control-label for="user_avatar_attributes_image" Avatar
+          label.file.optional.control-label for="user_avatar" Avatar
 
           p = image_tag(f.object.avatar_url, width: 48, height: 48)
           = f.input :avatar, as: :file, label: false, wrapper: false
