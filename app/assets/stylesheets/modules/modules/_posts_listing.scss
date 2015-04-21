@@ -180,6 +180,7 @@ $post-right-min-width: $post-actions-min-width + $post-component-spacing + $post
     }
 
     .url {
+      @include ellipsis;
       line-height: 1.5 * $font-size-base * 1.1;
       i {
         margin-right: 5px;
