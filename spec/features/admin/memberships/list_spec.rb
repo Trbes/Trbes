@@ -1,15 +1,13 @@
 require "rails_helper"
 
 feature "List group members" do
-  let(:user) { create(:user, :confirmed) }
-  let(:group) { create(:group, users: [user]) }
+  include_context "group membership and authentication"
+
   let!(:memberships) { create_list(:membership, 5, role: :member, group: group) }
-  let(:membership) { memberships.first }
 
   background do
-    user.membership_for(group).owner!
-    switch_to_subdomain(group.subdomain)
-    sign_in(user.email, "12345678")
+    membership.owner!
+
     visit admin_memberships_path
   end
 
@@ -53,6 +51,10 @@ feature "List group members" do
   end
 
   scenario "I can remove member from group" do
+    # within("section.memberships #membership_#{memberships.first.id}") do
+    #   expect(page).not_to have_content("remove from group")
+    # end
+
     within("section.memberships #membership_#{memberships.first.id}") do
       expect {
         click_link("remove from group")
