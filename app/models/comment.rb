@@ -5,6 +5,7 @@ class Comment < ActiveRecord::Base
   has_many :child_comments, class_name: "Comment", foreign_key: :parent_comment_id, dependent: :destroy
 
   validates :body, presence: true
+  validates :body, length: { minimum: 5, maximum: 420 }
 
   delegate :user_full_name, :user_title, :user_avatar, :user_avatar_url, to: :membership
 
