@@ -25,13 +25,14 @@
     | Short Name
     small<
       | (Alphabetical. Max 20 chars)
-  = f.input :subdomain,
-    label: false,
-    wrapper: false,
-    error: false,
-    input_html: { id: "cg_short_name",
-                  class: "form-control" }
-  .form-control-static .trbes.com
+  .fg-cg-short-name-wrapper
+    = f.input :subdomain,
+      label: false,
+      wrapper: false,
+      error: false,
+      input_html: { id: "cg_short_name",
+                    class: "form-control" }
+    .form-control-static .trbes.com
   span.fa.fa-check-circle.form-control-feedback aria-hidden="true"
 
 .form-group.fg-cg-tagline
@@ -64,6 +65,9 @@
     button.btn.btn-simple.btn-privacy-hint type="button" data-toggle="popover" data-placement="right" data-html="true" data-content=("<i class='fa fa-unlock'></i><b>Public:</b> Everyone can view and join your group. Ideal for user communities.<br><br><i class='fa fa-lock'></i><b>Private:</b> People need an invitation from you to view or join your group.") title=("Privacy")
       span.fa.fa-info-circle
   #cg_privacy.switch.cg-privacy-switch data-off-label=("<i class='fa fa-unlock'></i>") data-on-label=("<i class='fa fa-lock'></i>")
-    input id="cg_privacy" name="group[private]" type="checkbox"
+    - if f.object.private
+      input id="cg_privacy" name="group[private]" type="checkbox" checked="checked"
+    - else
+      input id="cg_privacy" name="group[private]" type="checkbox"
 
 button.btn.btn-success.btn-lg.btn-fill.btn-create-group type="submit"  Create Trbes Group

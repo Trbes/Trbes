@@ -16,7 +16,7 @@
               = f.cl_image_upload :logo, html: { disabled: true, class: "hidden file-uploader" }
 
               = link_to "change image", "#", class: "upload"
-              = f.input :name
+              = f.input :name, input_html: { data: { original_value: f.object.name } }
               = f.input :tagline
               = f.input :description
               / = f.input :custom_domain, hint: "example.com"
@@ -37,7 +37,10 @@
                 #cg_privacy.switch.cg-privacy-switch[
                   data-off-label="<i class='fa fa-unlock'></i>"
                   data-on-label="<i class='fa fa-lock'></i>" ]
-                  input name="group[private]" type="checkbox" checked=(f.object.private)
+                  - if f.object.private
+                    input name="group[private]" type="checkbox" checked="checked"
+                  - else
+                    input name="group[private]" type="checkbox"
 
               .modal-footer
                 button.btn.btn-default type="button" data-dismiss="modal" Close

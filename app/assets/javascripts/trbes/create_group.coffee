@@ -9,14 +9,27 @@ class window.CreateGroup
   _init_form_validation: ->
     @$container.validate
       rules:
-        name:
+        "group[name]":
           required: true
           minlength: 2
-        short_name:
+          remote:
+            url: "/validate/group_name"
+            type: "post"
+            data:
+              current_group_name: ->
+                $("#group_name").data("original-value")
+        "group[subdomain]":
           required: true
-          subdomain: true
           minlength: 2
           maxlength: 20
+          remote:
+            url: "/validate/group_subdomain"
+            type: "post"
+        "group[tagline]":
+          required: true
+          remote:
+            url: "/validate/group_tagline"
+            type: "post"
 
       highlight: (element) ->
         $(element).

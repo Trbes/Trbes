@@ -23,7 +23,7 @@ feature "Invite to group" do
     end
 
     scenario "User invites another user", js: true do
-      find("#fiv_emails_tag").set("user1@example.com")
+      page.execute_script("$('#fiv_emails').val('user1@example.com')")
       click_button "Send Invitation"
 
       # Should show success popup.
@@ -41,7 +41,7 @@ feature "Invite to group" do
       expect(find("#fiv_emails", visible: false).value).to eql ""
 
       # Test the flow once again
-      find("#fiv_emails_tag").set("user2@example.com")
+      page.execute_script("$('#fiv_emails').val('user2@example.com')")
       click_button "Send Invitation"
       wait_for_ajax
       expect(page.current_path).to eql new_invitation_path
@@ -50,15 +50,16 @@ feature "Invite to group" do
 
     scenario "User invites multiple users", js: true do
       expect {
-        find("#fiv_emails_tag").set("user1@example.com, user2@example.com")
+        page.execute_script("$('#fiv_emails').val('user1@example.com,user2@example.com')")
         click_button "Send Invitation"
-        wait_for_ajax
+
+        expect(page).to have_selector("#modal_invitation_success", visible: true)
       }.to change { User.count }.by(2)
     end
 
     scenario "User enters invalid emails", js: true do
       expect {
-        find("#fiv_emails_tag").set("user1@example., @example.com, some name")
+        page.execute_script("$('#fiv_emails').val('user1@example.,@example.com,some name')")
         click_button "Send Invitation"
         wait_for_ajax
       }.not_to change { User.count }

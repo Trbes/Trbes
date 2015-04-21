@@ -9,10 +9,10 @@ class window.SignIn
   _init_form_validation: ->
     @$container.validate
       rules:
-        email:
+        "user[email]":
           required: true
           email: true
-        password:
+        "user[password]":
           minlength: 8
           required: true
 

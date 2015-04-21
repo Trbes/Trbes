@@ -6,7 +6,7 @@ feature "Create collection" do
 
   background do
     switch_to_subdomain(group.subdomain)
-    sign_in(user.email, "123456")
+    sign_in(user.email, "12345678")
   end
 
   context "when I'm group owner", js: true do

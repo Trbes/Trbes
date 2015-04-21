@@ -12,7 +12,10 @@ Rails.application.routes.draw do
   resources :groups, only: %i( new create )
   resources :memberships, only: %i( create destroy )
 
-  post "/validate_email" => "validation#email"
+  post "/validate/user_email" => "validation#user_email"
+  post "/validate/group_name" => "validation#group_name"
+  post "/validate/group_subdomain" => "validation#group_subdomain"
+  post "/validate/group_tagline" => "validation#group_tagline"
 
   constraints CustomDomainConstraint do
     resources :groups, only: %i( show new )

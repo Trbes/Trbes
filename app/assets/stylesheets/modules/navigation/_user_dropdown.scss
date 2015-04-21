@@ -131,6 +131,7 @@ $profile-photo-size: 48px;
               text-align: left;
               margin-right: 0;
               margin-left: $profile-photo-size + 3px;
+              max-width: 200px;
 
               div {
                 color: #bbb;

@@ -17,6 +17,7 @@ feature "Edit group", js: true do
     page.find("#cg_privacy").click
 
     click_button "Save"
+    wait_for_ajax
 
     expect(current_path).to eq(edit_admin_group_path)
     group.reload
@@ -31,14 +32,15 @@ feature "Edit group", js: true do
   context "when group is private" do
     background do
       group.update_attributes(private: true)
-      visit edit_admin_group_path
-      click_link "edit"
     end
 
-    scenario "turn off privacy" do
+    scenario "turn off privacy", js: true do
+      visit edit_admin_group_path
+      click_link "edit"
+
       page.find("#cg_privacy").click
       click_button "Save"
-
+      wait_for_ajax
       expect(current_path).to eq(edit_admin_group_path)
       group.reload
 

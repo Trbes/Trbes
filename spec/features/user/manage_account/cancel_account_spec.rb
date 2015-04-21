@@ -11,7 +11,7 @@ feature "Cancel account" do
     expect(page).to have_content("Bye! Your account was successfully cancelled. We hope to see you again soon.")
 
     visit new_user_session_path
-    sign_in(user.email, "123456")
+    sign_in(user.email, "12345678")
 
     expect(page).to have_content("Invalid email or password.")
   end

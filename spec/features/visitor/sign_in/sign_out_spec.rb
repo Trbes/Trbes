@@ -4,7 +4,7 @@ feature "Sign out" do
   let(:user) { create :user, :confirmed }
 
   before(:each) do
-    sign_in(user.email, "123456")
+    sign_in(user.email, "12345678")
   end
 
   scenario "Logged in user signs out" do
