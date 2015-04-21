@@ -27,13 +27,13 @@
 
       p You might also be interested in:
       p
-        a.ty-link href="#" Browse groups
-        |  ::&nbsp;
-        a.ty-link href="#" Start your own group <em>free</em>
-        |  ::&nbsp;
-        a.ty-link href="#" Subscribe to Trbes
-        |  ::&nbsp;
-        a.ty-link href="#" Complete your profile
+        a.ty-link href=(root_url) Browse groups
+        '  ::
+        a.ty-link href=(new_group_path) Start your own group <em>free</em>
+        '  ::
+        a.ty-link href=(ENV['SUBSCRIBE_TO_TRBES_URL'] || "#") Subscribe to Trbes
+        '  ::
+        a.ty-link href=(edit_user_registration_path) Complete your profile
 
 
 
