@@ -28,7 +28,7 @@ class CreateComment
   end
 
   def create_comment
-    Comment.create!(
+    Comment.create(
       context.attributes.merge(
         membership: context.membership,
         post: context.post,
