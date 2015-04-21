@@ -7,8 +7,7 @@ feature "Memberships list within group header" do
 
   context "when there are 5 valid memberships 1 pending and 1 not confirmed" do
     let!(:valid_memberships) { create_list(:membership, 4, group: group, role: :member) }
-    let!(:pending_membership) { create(:membership, group: group, role: :pending) }
-    let!(:not_confirmed_membership) { create(:membership, group: group, role: :member, user: not_confirmed_user) }
+    let!(:pending_membership) { create(:membership, group: group, role: :pending, user: create(:user, :confirmed)) }
 
     background do
       visit "/"
@@ -24,11 +23,8 @@ feature "Memberships list within group header" do
       expect(page).not_to have_css("#membership_#{pending_membership.id}")
     end
 
-    scenario "I can't see any not confirmed memberships" do
-      expect(page).not_to have_css("#membership_#{not_confirmed_membership.id}")
-    end
-
     scenario "I can't see 'more' link" do
+      expect(page).not_to have_css(".more")
     end
   end
 

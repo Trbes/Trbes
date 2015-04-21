@@ -12,7 +12,7 @@ class ApplicationController < ActionController::Base
   before_action :push_gon_config, :push_indexes, :ensure_email_is_exists, :authorize_group_access
 
   expose(:groups)
-  expose(:current_group_memberships) { current_group.memberships.joins(:user).confirmed.not_pending }
+  expose(:current_group_memberships) { current_group.memberships.joins(:user).not_pending }
   expose(:current_user_memberships) { current_user.memberships.includes(:group) }
 
   helper_method :current_group
