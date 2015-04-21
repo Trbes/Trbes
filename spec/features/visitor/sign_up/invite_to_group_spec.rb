@@ -34,6 +34,7 @@ feature "Invite to group" do
       # Should stay on the page after sending invitation
       expect(page.current_path).to eql new_invitation_path
       expect(User.count).to eql 2
+      expect(User.last.full_name).to eql "user1"
 
       # Close popup should reset the emails
       click_button "OK, I got it."
