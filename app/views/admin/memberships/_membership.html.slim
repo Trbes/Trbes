@@ -36,8 +36,9 @@
   '&nbsp;
   = link_to "#" do
   .controls
-    = link_to "remove from group",
-        admin_membership_path(membership),
-        method: :delete,
-        class: "control",
-        data: { confirm: "Are you sure?" }
+    - unless membership.user == current_user
+      = link_to "remove from group",
+          admin_membership_path(membership),
+          method: :delete,
+          class: "control",
+          data: { confirm: "Are you sure?" }
