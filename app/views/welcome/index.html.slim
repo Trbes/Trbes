@@ -9,19 +9,14 @@
     .ty-body
       .ty-announcement
         | You are now subscribed to
-        a< href=(group_url(current_group)) = current_group.name
+        a< href=(group_url(current_group)) #{current_group.name}.
         br
-        | Start sharing <strong>publicly</strong> with
-        strong<> = current_group.memberships_count
-        | other
-        span<> = current_group.name
-        | members.
+        | Start sharing <strong>publicly</strong> with <strong>#{current_group.memberships_count}</strong> other #{current_group.name} members.
       - if policy(:invitation).new?
         a.ty-invite href=(new_invitation_path) Invite your friends to join your new tribe.
         br
       a.btn.btn-success.btn-lg.btn-fill.btn-go-to-group href=group_url(current_group)
-        | Go to
-        span<= current_group.name
+        | Go to #{current_group.name}
 
       hr
 
