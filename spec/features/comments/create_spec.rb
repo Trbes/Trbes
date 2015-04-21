@@ -17,28 +17,40 @@ feature "Post a comment" do
   end
 
   context "with invalid body" do
-    scenario "I post a comment under post", js: true do
-      create_comment(body: " ")
+    context "with ' ' body" do
+      let(:body) { " " }
 
-      expect(page).to have_content("Body can't be blank")
+      scenario "I post a comment under post", js: true do
+        create_comment(body: body)
 
-      expect(post.comments).to be_empty
+        expect(page).to have_content("Body can't be blank")
+
+        expect(post.comments).to be_empty
+      end
     end
 
-    scenario "I post a comment under post", js: true do
-      create_comment(body: "Abc")
+    context "with too short body" do
+      let(:body) { "Abc" }
 
-      expect(page).to have_content("Body is too short (minimum is 5 characters)")
+      scenario "I post a comment under post", js: true do
+        create_comment(body: body)
 
-      expect(post.comments).to be_empty
+        expect(page).to have_content("Body is too short (minimum is 5 characters)")
+
+        expect(post.comments).to be_empty
+      end
     end
 
-    scenario "I post a comment under post", js: true do
-      create_comment(body: "A" * 500)
+    context "with too long body" do
+      let(:body) { "A" * 500 }
 
-      expect(page).to have_content("Body is too long (maximum is 420 characters)")
+      scenario "I post a comment under post", js: true do
+        create_comment(body: body)
 
-      expect(post.comments).to be_empty
+        expect(page).to have_content("Body is too long (maximum is 420 characters)")
+
+        expect(post.comments).to be_empty
+      end
     end
   end
 
