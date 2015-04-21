@@ -8,15 +8,20 @@ feature "Update account with valid data" do
   end
 
   scenario "I submit update account form with valid data" do
+    expect(user.avatar.filename).not_to be
+
     fill_form(:user,
       full_name: "New Name",
       current_password: "12345678"
     )
 
+    attach_file "Avatar", "spec/support/trbes.png"
+
     click_button "Update"
 
     expect(current_path).to eq(edit_user_registration_path)
     expect(page).to have_content("New Name")
+    expect(user.reload.avatar.filename).to be
   end
 
   scenario "Wrong current password" do

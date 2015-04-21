@@ -16,15 +16,11 @@
 
         = f.input :title, autofocus: true
 
-
-        - f.object.build_avatar unless f.object.avatar
-
         .form-group.file.optional.user_avatar_image
-          label.file.optional.control-label for="user_avatar_attributes_image" Avatar
+          label.file.optional.control-label for="user_avatar" Avatar
 
-          = f.simple_fields_for :avatar do |avatar_fields|
-            p = image_tag(f.object.avatar_url, width: 48, height: 48)
-            = avatar_fields.input :image, as: :file, label: false, wrapper: false
+          p = image_tag(f.object.avatar_url, width: 48, height: 48)
+          = f.input :avatar, as: :file, label: false, wrapper: false
 
         = f.input :password,
             autocomplete: "off",
