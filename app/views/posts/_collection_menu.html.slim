@@ -6,7 +6,6 @@ ul.nav.nav-pills.nav-collections
           title: collection.name,
           data: { toggle: "tooltip", placement: "top" } do
         i.fa.circle[class=(collection.icon_class.present? ? "fa-#{collection.icon_class}" : "fa-list")]
-        = collection.name
 
   - if will_show_collection_dropdown?
     li.dropdown.more class=('hint-add-collection' if will_show_add_collection_hint?)

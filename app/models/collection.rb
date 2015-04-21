@@ -1,5 +1,5 @@
 class Collection < ActiveRecord::Base
-  VISIBLE_COLLECTIONS_COUNT = 3
+  VISIBLE_COLLECTIONS_COUNT = 5
 
   include RankedModel
 
