@@ -2,7 +2,7 @@
   => image_tag membership.user_avatar_url, class: "avatar img-circle"
   => membership.user_full_name
   - if membership.owner?
-    - if current_membership.owner?
+    - if current_membership.owner? && memberships.count > 1
       = link_to "owner", "#", data: { toggle: "modal", target: "#transfer_ownership" }
 
       .modal.fade#transfer_ownership tabindex="-1" role="dialog" aria-labelledby="transfer_ownership" aria-hidden="true"
