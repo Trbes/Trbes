@@ -9,6 +9,44 @@ feature "Posts list" do
     visit root_path
   end
 
+  context "there is pending post" do
+    let!(:pending_post) { create(:post, state: :moderation, group: group, membership: membership) }
+
+    context "when I'm moderator" do
+      background do
+        membership.moderator!
+        visit root_path
+      end
+
+      scenario "I can see pending post" do
+        expect(page).to have_css("#post_#{pending_post.id}")
+      end
+    end
+
+    context "when I'm just member (post author)" do
+      background do
+        membership.member!
+        visit root_path
+      end
+
+      scenario "I can see pending post" do
+        expect(page).to have_css("#post_#{pending_post.id}")
+      end
+    end
+
+    context "when I'm just member (not a post author)" do
+      background do
+        membership.member!
+        pending_post.update_attributes(membership: nil)
+        visit root_path
+      end
+
+      scenario "I can't see pending post" do
+        expect(page).not_to have_css("#post_#{pending_post.id}")
+      end
+    end
+  end
+
   context "text post" do
     include ActionView::Helpers
 
