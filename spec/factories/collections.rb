@@ -4,6 +4,10 @@ FactoryGirl.define do
       "#{Faker::Internet.domain_suffix} #{n}"
     end
 
+    sequence :icon_class do |n|
+      "icon #{n}"
+    end
+
     description { Faker::Company.catch_phrase }
 
     group
