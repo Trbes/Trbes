@@ -4,11 +4,13 @@ class PostsController < ApplicationController
   before_action :ensure_trailing_slash, only: %i( show update destroy )
   before_action :ensure_group_is_loaded!, :ensure_group_access_from_canonical_url!, only: [:show]
 
+  expose(:posts, ancestor: :current_group)
   expose(:post, attributes: :post_attributes, finder: :find_by_slug)
   expose(:comments, ancestor: :post) { |collection| collection.root.published.includes(:membership, :child_comments) }
 
   def show
-    self.post = current_group.posts.includes(membership: :user).find_by!(slug: params[:id])
+    authorize(post)
+
     @post_title = post.title
     @group_name = current_group.name
   end
