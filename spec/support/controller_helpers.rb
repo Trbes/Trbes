@@ -13,12 +13,12 @@ module ControllerHelpers
   end
 
   def stub_current_membership
-    membership = create(:membership, role: :owner, user: create(:user))
+    membership = create(:membership, role: :owner, user: controller.current_user || create(:user))
     allow(controller).to receive(:current_membership).and_return(membership)
   end
 
   def stub_current_group
-    group = create(:group)
+    group = controller.current_membership.group || create(:group)
     allow(controller).to receive(:current_group).and_return(group)
   end
 end

@@ -4,7 +4,6 @@ class GroupsController < ApplicationController
   expose(:group, attributes: :group_attributes)
   expose(:posts, only: [:show]) do
     scope = current_group.posts
-      .published
       .includes(:attachments, collection_posts: :collection, membership: :user)
       .public_send(sort_filter)
       .page(params[:page])

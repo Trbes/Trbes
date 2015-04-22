@@ -56,6 +56,21 @@ feature "Single post page" do
     end
   end
 
+  context "when post is in 'moderation' state and I'm not it's author or moderator" do
+    let!(:post_on_moderation) do
+      create(:post, state: :moderation, group: group, membership: create(:membership))
+    end
+
+    background do
+      membership.member!
+    end
+
+    scenario "I can't access it" do
+      expect(current_path).to eq(root_path)
+      expect(page).not_to have_content(post_on_moderation.title)
+    end
+  end
+
   context "when I'm logged in" do
     scenario "I upvote for a post", js: true do
       expect(post.cached_votes_total).to eq(0)
