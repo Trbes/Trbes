@@ -42,7 +42,7 @@ class AssociatePostAndCommentsWithMemberships < ActiveRecord::Migration
       end
     end
 
-    remove_column :posts, :user_id, :integer
-    remove_column :comments, :user_id, :integer
+    # remove_column :posts, :user_id, :integer
+    # remove_column :comments, :user_id, :integer
   end
 end
