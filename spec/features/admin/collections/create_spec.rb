@@ -15,12 +15,13 @@ feature "Create collection" do
       visit edit_admin_group_path
     end
 
-    scenario "I can create a collection" do
+    scenario "I can create a collection", js: true do
       within(".collections") do
         click_link "Add"
       end
 
       fill_in "Name", with: "Name"
+      page.find("a.select-icon-class:first-child").click
 
       click_button "Save"
 
