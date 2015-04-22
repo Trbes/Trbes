@@ -12,13 +12,13 @@ shared_examples_for "editable posts" do
   scenario "I can see 'edit' link on single post page" do
     visit post_path(post)
 
-    expect(page).to have_link("Edit post")
+    expect(page).to have_link("Edit")
   end
 
   scenario "I can edit post right in the page", js: true do
     visit post_path(post)
 
-    click_link "Edit post"
+    click_link "Edit"
 
     expect(page).to have_css("#edit_post_#{post.id}.modal")
 
@@ -30,7 +30,7 @@ shared_examples_for "editable posts" do
   end
 end
 
-feature "Edit post" do
+feature "Edit" do
   include_context "group membership and authentication"
 
   let(:post) { create(:post, group: group) }
@@ -60,7 +60,7 @@ feature "Edit post" do
       scenario "I can't see 'edit' link on single post page" do
         visit post_path(post)
 
-        expect(page).not_to have_link("Edit post")
+        expect(page).not_to have_link("Edit")
       end
     end
 

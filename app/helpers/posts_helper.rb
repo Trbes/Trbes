@@ -100,7 +100,6 @@ module PostsHelper
       if policy(post).destroy?
         links << link_to("Delete", post_path(post), method: :delete, data: { confirm: "Are you sure?" })
       end
-
     end.join("<span> • </span>")
   end
 end
