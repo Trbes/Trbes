@@ -46,12 +46,9 @@
           - else
             h2.post-title = raw_sanitize(post.title)
           .post-meta
-              span.date posted #{distance_of_time_in_words_to_now(post.created_at) } ago
-          - if policy(post).edit?
-            => link_to "Edit post", "#", data: { toggle: "modal", target: "#edit_post_#{post.id}" }
-            ' |
-          - if policy(post).destroy?
-            => link_to "Delete", post_path(post), method: :delete, data: { confirm: "Are you sure?" }
+            span.date posted #{distance_of_time_in_words_to_now(post.created_at) } ago
+          .post-controls
+            == post_controls(post)
         .post-body
           - if post.post_type == "text_post"
             = raw_sanitize(post.body)
