@@ -6,6 +6,9 @@ class AssociatePostAndCommentsWithMemberships < ActiveRecord::Migration
     add_foreign_key :posts, :memberships
     add_foreign_key :comments, :memberships
 
+    Post.reset_column_information
+    Comment.reset_column_information
+
     posts_count = Post.count
 
     Post.without_auto_index do
@@ -42,7 +45,7 @@ class AssociatePostAndCommentsWithMemberships < ActiveRecord::Migration
       end
     end
 
-    # remove_column :posts, :user_id, :integer
-    # remove_column :comments, :user_id, :integer
+    remove_column :posts, :user_id, :integer
+    remove_column :comments, :user_id, :integer
   end
 end
