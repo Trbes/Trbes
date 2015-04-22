@@ -37,7 +37,7 @@ feature "Posts list" do
     context "when I'm just member (not a post author)" do
       background do
         membership.member!
-        pending_post.update_attributes(membership: nil)
+        pending_post.update_attributes(membership: create(:membership))
         visit root_path
       end
 
