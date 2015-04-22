@@ -8,7 +8,7 @@ describe Collection do
   describe "validations" do
     describe "uniqueness" do
       subject { build(:collection) }
-      it { is_expected.to validate_uniqueness_of(:name) }
+      it { is_expected.to validate_uniqueness_of(:name).scoped_to(:group_id) }
     end
 
     it { is_expected.to validate_presence_of(:name) }
