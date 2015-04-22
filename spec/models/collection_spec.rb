@@ -9,6 +9,7 @@ describe Collection do
     describe "uniqueness" do
       subject { build(:collection) }
       it { is_expected.to validate_uniqueness_of(:name).scoped_to(:group_id) }
+      it { is_expected.to validate_uniqueness_of(:icon_class).scoped_to(:group_id) }
     end
 
     it { is_expected.to validate_presence_of(:name) }

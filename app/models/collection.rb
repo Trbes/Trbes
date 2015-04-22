@@ -8,7 +8,7 @@ class Collection < ActiveRecord::Base
   has_many :posts, through: :collection_posts
   accepts_nested_attributes_for :collection_posts, allow_destroy: true
 
-  validates :name, presence: true, uniqueness: { scope: :group_id }
+  validates :name, :icon_class, presence: true, uniqueness: { scope: :group_id }
 
   scope :visible, -> { where(visibility: true) }
   scope :not_used_for, -> (post) { where.not(id: post.collections.pluck(:id)) }
