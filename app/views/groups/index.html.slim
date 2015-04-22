@@ -27,39 +27,38 @@
 
     .groups-listing
       - public_groups_with_owners.each do |group, owner|
-        - cache [group, owner] do
-          .media.group id=("group_#{group.id}")
-            .media-left
-              = link_to group_url(group) do
-                = group.listing_logo
-            .media-body
-              .group-info
-                a.media-heading.group-name href=(group_url(group)) = group.name
-                .group-tagline = group.tagline
+        .media.group id=("group_#{group.id}")
+          .media-left
+            = link_to group_url(group) do
+              = group.listing_logo
+          .media-body
+            .group-info
+              a.media-heading.group-name href=(group_url(group)) = group.name
+              .group-tagline = group.tagline
 
-                .group-desc
-                  = group.description
+              .group-desc
+                = group.description
 
-                .group-meta
-                  | Created by
-                  a.group-owner.user-avatar<>[
-                    href="javascript:void(0)"
-                    data-toggle="popover"
-                    data-html="true"
-                    data-placement="bottom"
-                    data-content=user_popover_content(owner)
-                    data-template=user_popover_template ]
-                    => image_tag(owner.user_avatar_url, width: 16, height: 16)
-                    = owner.user_full_name
-                  | •&nbsp;
-                  |  #{group.memberships_count_modal_link} • #{group.published_posts_count_link}
+              .group-meta
+                | Created by
+                a.group-owner.user-avatar<>[
+                  href="javascript:void(0)"
+                  data-toggle="popover"
+                  data-html="true"
+                  data-placement="bottom"
+                  data-content=user_popover_content(owner)
+                  data-template=user_popover_template ]
+                  => image_tag(owner.user_avatar_url, width: 16, height: 16)
+                  = owner.user_full_name
+                | •&nbsp;
+                |  #{group.memberships_count_modal_link} • #{group.published_posts_count_link}
 
-                  = render "groups/memberships_modal",
-                    modal_id: "all_group_#{group.id}_members",
-                    group_memberships: group.memberships,
-                    group: group
+                = render "groups/memberships_modal",
+                  modal_id: "all_group_#{group.id}_members",
+                  group_memberships: group.memberships,
+                  group: group
 
-            .group-actions
-              = render "groups/#{group.join_partial_path(current_user)}", group: group
+          .group-actions
+            = render "groups/#{group.join_partial_path(current_user)}", group: group
 
       = paginate(group_owners, theme: "twitter-bootstrap-3", pagination_class: "pagination pagination-azure pagination-no-border")
