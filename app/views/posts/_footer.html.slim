@@ -1,4 +1,7 @@
 .post-footer
+  div class="post-state#{post.state}"
+    - if policy(post).display_state?
+      = post.state
   - links = []
   - if policy(post).edit?
     - links << link_to("Edit", "#", data: { toggle: "modal", target: "#edit_post_#{post.id}" })
