@@ -26,6 +26,31 @@ feature "Create post", js: true do
         end
       end
 
+      context "Title is too short" do
+        scenario "I can't post to group" do
+          page.find("#btn_add_post").click
+
+          fill_in "Title", with: "word"
+          click_button "Publish Post"
+
+          expect(page).to have_content("Please enter at least 5 characters.")
+        end
+      end
+
+      context "Body is blank for text post" do
+        scenario "I can't post to group" do
+          page.find("#btn_add_post").click
+          page.find("#select_post_type").click
+          page.find(".toggle-post-type", text: "Text").click
+
+          fill_in "Title", with: "Long enough title"
+
+          click_button "Publish Post"
+
+          expect(page).to have_content("This field is required.")
+        end
+      end
+
       context "trying to add not allowed post type" do
         scenario "I can't post to group" do
           page.find("#btn_add_post").click
