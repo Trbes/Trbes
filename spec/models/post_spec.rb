@@ -26,5 +26,10 @@ describe Post do
     it { is_expected.to normalize_attribute(:title) }
     it { is_expected.to normalize_attribute(:body).from("").to("") }
     it { is_expected.to normalize_attribute(:body).from("  Test  Body ").to("Test Body") }
+    it {
+      is_expected.to normalize_attribute(:body)
+        .from("\r\n\r\nFirst.\r\nSecond.   \r\n\r\n\r\n Third. \r\n\r\n")
+        .to("First.<br>Second. <br><br> Third.")
+    }
   end
 end

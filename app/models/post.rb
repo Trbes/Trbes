@@ -51,7 +51,7 @@ class Post < ActiveRecord::Base
   normalize_attributes :title
   normalize_attributes :body, with: %i( htmlize squish )
 
-  algoliasearch per_environment: true, disable_indexing: Rails.env.test? || ENV['ALGOLIASEARCH_DISABLED'].present? do
+  algoliasearch per_environment: true, disable_indexing: Rails.env.test? || ENV["ALGOLIASEARCH_DISABLED"].present? do
     attribute :title, :body, :slug, :state
 
     tags do
