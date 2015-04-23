@@ -25,7 +25,7 @@ class Group < ActiveRecord::Base
   scope :all_public, -> { where(private: false) }
   scope :order_by_created_at, -> { order(created_at: :desc) }
 
-  algoliasearch per_environment: true, disable_indexing: Rails.env.test? do
+  algoliasearch per_environment: true, disable_indexing: Rails.env.test? || ENV['ALGOLIASEARCH_DISABLED'].present? do
     attribute :name, :subdomain
   end
 
