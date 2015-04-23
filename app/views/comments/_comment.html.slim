@@ -56,7 +56,7 @@
           i.fa.fa-clock-o
           | posted #{distance_of_time_in_words_to_now(comment.created_at) } ago
     .comment-body
-      = comment.body
+      = raw_sanitize(comment.body)
 
 - comment.child_comments.each do |child_comment|
   .comment-nested
