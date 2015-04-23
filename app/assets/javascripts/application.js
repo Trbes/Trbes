@@ -26,4 +26,20 @@
 //= require select2
 //= require retina_tag
 //= require jquery-autosize
+//= require moment
+//= require moment/locale/vi
+
+//= require angular
+//= require angular-ui-router
+//= require angular-route
+//= require angular-devise
+//= require angular-rails-templates
+//= require angular-resource
+//= require angular-sanitize
+//= require angular-animate
+//= require angular-moment
+//= require angular-bootstrap
+
+//= require_tree ./angular_app
+
 //= require scripts

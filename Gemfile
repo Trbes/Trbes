@@ -19,6 +19,8 @@ gem "therubyracer", platforms: :ruby
 gem "uglifier", ">= 1.3.0"
 gem "best_in_place", git: "https://github.com/codynguyen/best_in_place", branch: "cross-browser-behaviour"
 gem "retina_tag"
+gem "angular-rails-templates"
+gem "angular_rails_csrf"
 
 gem "simple_form", "~> 3.1"
 gem "nested_form"
@@ -121,4 +123,14 @@ source "https://rails-assets.org" do
   gem "rails-assets-zeroclipboard"
   gem "rails-assets-select2"
   gem "rails-assets-jquery-autosize"
+
+  gem "rails-assets-angular"
+  gem "rails-assets-angular-ui-router"
+  gem "rails-assets-angular-devise"
+  gem "rails-assets-angular-sanitize"
+  gem "rails-assets-angular-resource"
+  gem "rails-assets-angular-route"
+  gem "rails-assets-angular-animate"
+  gem "rails-assets-angular-moment"
+  gem "rails-assets-angular-bootstrap"
 end
