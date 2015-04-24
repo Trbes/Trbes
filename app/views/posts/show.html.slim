@@ -19,22 +19,8 @@
 
       .post-right
         .post-author
-          a.user-avatar[
-            href="javascript:void(0)"
-            data-toggle="popover"
-            data-html="true"
-            data-placement="bottom"
-            data-content=user_popover_content(post.membership)
-            data-template=user_popover_template ]
-            = present(current_group).role_overlay(post.membership)
-            = image_tag(post.user_avatar_url, width: 64, height: 64)
-          a.user-name[
-            href="javascript:void(0)"
-            data-toggle="popover"
-            data-html="true"
-            data-placement="bottom"
-            data-content=user_popover_content(post.membership)
-            data-template=user_popover_template ] = post.user_full_name
+          = render "users/avatar", membership: post.membership, html_class: "user-avatar"
+
           .user-title = post.user_title
 
       .post-content

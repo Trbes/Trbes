@@ -66,12 +66,6 @@ class GroupPresenter < BasePresenter
     end
   end
 
-  def role_overlay(membership)
-    return unless membership && (membership.moderator? || membership.owner?)
-
-    h.content_tag(:span, membership.role.first, class: "role-overlay role-overlay-#{membership.role}")
-  end
-
   def notifications_title
     h.pluralize(@model.notifications_count, "notification")
   end
@@ -86,5 +80,9 @@ class GroupPresenter < BasePresenter
 
   def pending_comments_title
     h.pluralize(@model.comments.moderation.count, "pending comment")
+  end
+
+  def extra_memberships_count
+    memberships_count - Group::VISIBLE_MEMBERS_COUNT
   end
 end
