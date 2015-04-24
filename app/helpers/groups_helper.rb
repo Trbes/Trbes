@@ -23,10 +23,6 @@ module GroupsHelper
     policy(Collection).create? || current_group.collections.visible.count > Collection::VISIBLE_COLLECTIONS_COUNT
   end
 
-  def will_show_group_cog_button?
-
-  end
-
   def group_share_title(group)
     "JOIN #{group.name} on Trbes"
   end
