@@ -91,7 +91,7 @@ class GroupPresenter < BasePresenter
   end
 
   def show_extra_memberships?
-    memberships_count > ::Group::VISIBLE_MEMBERS_COUNT
+    memberships_count > Group::VISIBLE_MEMBERS_COUNT
   end
 
   def notifications_badge(current_path, options = {})
