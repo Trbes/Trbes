@@ -17,7 +17,7 @@ shared_examples_for "not visible notifications" do
     visit root_path
   end
 
-  scenario "I can see notifications badge" do
+  scenario "I can't see notifications badge" do
     within(".group-info") do
       expect(page).not_to have_css(".notifications-count")
     end
