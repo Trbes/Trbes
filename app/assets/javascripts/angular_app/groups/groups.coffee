@@ -1,4 +1,4 @@
-@trbes.controller 'PostsCtrl', [
+@trbes.controller 'GroupsCtrl', [
   '$scope'
   '$routeParams'
   '$resource'
@@ -7,6 +7,6 @@
   '$log'
   'Auth'
   ($scope, $routeParams, $resource, $timeout, $modal, $log, Auth) ->
-    # pending
+    $scope.group_id = gon.group_id
 ]
 

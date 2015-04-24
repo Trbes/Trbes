@@ -62,6 +62,7 @@ gem "crack"
 gem "sanitize"
 gem "counter_culture"
 gem "gaffe"
+gem "active_model_serializers"
 
 group :staging, :production do
   gem "airbrake"
