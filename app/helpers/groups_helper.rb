@@ -24,7 +24,7 @@ module GroupsHelper
   end
 
   def will_show_group_cog_button?
-    policy(:access).admin_access? || policy(:invitation).new?
+
   end
 
   def group_share_title(group)
