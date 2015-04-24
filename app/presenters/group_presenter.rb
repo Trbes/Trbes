@@ -95,10 +95,10 @@ class GroupPresenter < BasePresenter
   end
 
   def notifications_badge(current_path, options = {})
-    if show_notifications_badge?(current_path)
-      h.content_tag(:span, class: "badge notifications-count #{options[:extra_classes]}", title: notifications_title) do
-        notifications_count.to_s
-      end
+    return unless show_notifications_badge?(current_path)
+
+    h.content_tag(:span, class: "badge notifications-count #{options[:extra_classes]}", title: notifications_title) do
+      notifications_count.to_s
     end
   end
 end

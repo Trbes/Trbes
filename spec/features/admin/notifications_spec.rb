@@ -39,7 +39,7 @@ feature "Admin notifications" do
     end
 
     context "when there are pending comments" do
-      let(:post) { create(:post, group: group ) }
+      let(:post) { create(:post, group: group) }
       let!(:objects) { create_list(:comment, 2, state: :moderation, post: post) }
 
       it_behaves_like "visible notifications"
@@ -64,7 +64,7 @@ feature "Admin notifications" do
     end
 
     context "when there are pending comments" do
-      let(:post) { create(:post, group: group ) }
+      let(:post) { create(:post, group: group) }
       let!(:objects) { create_list(:comment, 2, state: :moderation, post: post) }
 
       it_behaves_like "not visible notifications"
