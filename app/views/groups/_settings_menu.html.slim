@@ -2,14 +2,14 @@
   .dropdown
     button#group_menu.btn.btn-default.dropdown-toggle aria-expanded="true" data-toggle="dropdown" type="button"
       .fa.fa-cog
-      = render "groups/settings_menu/notifications_badge", current_group: current_group, extra_classes: "on-top"
+      = current_group.notifications_badge(controller_path, extra_classes: "on-top")
 
     ul.dropdown-menu aria-labelledby="group_menu" role="menu"
       - if policy(:access).admin_access?
         li role="presentation"
           = link_to admin_dashboard_index_path, role: "menuitem" do
             | Manage
-            =< render "groups/settings_menu/notifications_badge", current_group: current_group, extra_classes: ""
+            =< current_group.notifications_badge(controller_path)
 
       - if policy(:invitation).new?
         li role="presentation"

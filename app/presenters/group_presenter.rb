@@ -85,4 +85,20 @@ class GroupPresenter < BasePresenter
   def extra_memberships_count
     memberships_count - Group::VISIBLE_MEMBERS_COUNT
   end
+
+  def show_notifications_badge?(current_path)
+    !current_path.include?("admin") && notifications_count > 0
+  end
+
+  def show_extra_memberships?
+    memberships_count > ::Group::VISIBLE_MEMBERS_COUNT
+  end
+
+  def notifications_badge(current_path, options = {})
+    if show_notifications_badge?(current_path)
+      h.content_tag(:span, class: "badge notifications-count #{options[:extra_classes]}", title: notifications_title) do
+        notifications_count.to_s
+      end
+    end
+  end
 end

@@ -11,7 +11,7 @@
       - visible_current_group_memberships.each do |membership|
         = render "users/avatar", membership: membership, html_class: "group-member"
 
-      - if policy(current_group).show_extra_memberships?
+      - if current_group.show_extra_memberships?
         a.more href="#" data-toggle="modal" data-target="#more_group_members"
           | ... and #{current_group.extra_memberships_count} more
 
