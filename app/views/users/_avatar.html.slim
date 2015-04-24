@@ -13,4 +13,5 @@ a> [
   - if local_assigns.has_key?(:display_name)
     =<> membership.user_full_name
     | •
-    div.user-title< = membership.user_title
+    - unless local_assigns.has_key?(:hide_title)
+      div.user-title< = membership.user_title
