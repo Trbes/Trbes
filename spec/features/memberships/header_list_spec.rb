@@ -33,6 +33,7 @@ feature "Memberships list within group header" do
     let(:total_valid_memberships) { valid_memberships.unshift(membership) }
 
     background do
+      group.reload
       visit "/"
     end
 
