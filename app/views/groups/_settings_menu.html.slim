@@ -1,0 +1,16 @@
+- if policy(:access).admin_access? || policy(:invitation).new?
+  .dropdown
+    button#group_menu.btn.btn-default.dropdown-toggle aria-expanded="true" data-toggle="dropdown" type="button"
+      .fa.fa-cog
+      = current_group.notifications_badge(controller_path, extra_classes: "on-top")
+
+    ul.dropdown-menu aria-labelledby="group_menu" role="menu"
+      - if policy(:access).admin_access?
+        li role="presentation"
+          = link_to admin_dashboard_index_path, role: "menuitem" do
+            | Manage
+            =< current_group.notifications_badge(controller_path)
+
+      - if policy(:invitation).new?
+        li role="presentation"
+          = link_to "Invite", new_invitation_path, role: "menuitem"

@@ -1,0 +1,17 @@
+a> [
+  class=html_class
+  href="javascript:void(0)"
+  id=dom_id(membership)
+  data-toggle="popover"
+  data-html="true"
+  data-placement="bottom"
+  data-content=user_popover_content(membership)
+  data-template=user_popover_template ]
+  - unless local_assigns.has_key?(:hide_overlay)
+    = present(membership).role_overlay
+  = image_tag membership.user_avatar_url, class: "img-circle", width: 16, height: 16
+  - if local_assigns.has_key?(:display_name)
+    =<> membership.user_full_name
+    | •
+    - unless local_assigns.has_key?(:hide_title)
+      div.user-title< = membership.user_title

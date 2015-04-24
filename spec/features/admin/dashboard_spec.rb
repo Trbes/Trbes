@@ -1,17 +1,11 @@
 require "rails_helper"
 
 feature "Admin dashboard" do
-  let(:user) { create(:user, :confirmed) }
-  let(:group) { create(:group, users: [user]) }
-
-  background do
-    switch_to_subdomain(group.subdomain)
-    sign_in(user.email, "12345678")
-  end
+  include_context "group membership and authentication"
 
   context "when I'm group admin" do
     background do
-      user.membership_for(group).owner!
+      membership.owner!
       visit root_path
     end
 

@@ -11,15 +11,8 @@
           strong = group.name
 
         - group.memberships.each_with_index do |membership, index|
-          a.member[
-            href="#"
-            id=dom_id(membership)
-            data-toggle="popover"
-            data-html="true"
-            data-placement="bottom"
-            data-content=user_popover_content(membership)
-            data-template=user_popover_template ]
-            => image_tag membership.user_avatar_url, class: "img-circle", width: 16, height: 16
-            = membership.user_full_name
+          = render "users/avatar", membership: membership, html_class: "member", hide_overlay: true
+
+          = membership.user_full_name
           - if index < group.memberships_count - 1
             ' ,

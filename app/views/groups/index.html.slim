@@ -41,17 +41,14 @@
 
               .group-meta
                 | Created by
-                a.group-owner.user-avatar<>[
-                  href="javascript:void(0)"
-                  data-toggle="popover"
-                  data-html="true"
-                  data-placement="bottom"
-                  data-content=user_popover_content(owner)
-                  data-template=user_popover_template ]
-                  => image_tag(owner.user_avatar_url, width: 16, height: 16)
-                  = owner.user_full_name
-                | •&nbsp;
-                |  #{group.memberships_count_modal_link} • #{group.published_posts_count_link}
+                =< render "users/avatar",
+                    membership: owner,
+                    html_class: "group-owner user-avatar",
+                    display_name: true,
+                    hide_title: true,
+                    hide_overlay: true
+
+                | #{group.memberships_count_modal_link} • #{group.published_posts_count_link}
 
                 = render "groups/memberships_modal",
                   modal_id: "all_group_#{group.id}_members",

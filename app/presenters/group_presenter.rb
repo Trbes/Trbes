@@ -66,12 +66,6 @@ class GroupPresenter < BasePresenter
     end
   end
 
-  def role_overlay(membership)
-    return unless membership && (membership.moderator? || membership.owner?)
-
-    h.content_tag(:span, membership.role.first, class: "role-overlay role-overlay-#{membership.role}")
-  end
-
   def notifications_title
     h.pluralize(@model.notifications_count, "notification")
   end
@@ -86,5 +80,25 @@ class GroupPresenter < BasePresenter
 
   def pending_comments_title
     h.pluralize(@model.comments.moderation.count, "pending comment")
+  end
+
+  def extra_memberships_count
+    memberships_count - Group::VISIBLE_MEMBERS_COUNT
+  end
+
+  def show_notifications_badge?(current_path)
+    !current_path.include?("admin") && notifications_count > 0
+  end
+
+  def show_extra_memberships?
+    memberships_count > Group::VISIBLE_MEMBERS_COUNT
+  end
+
+  def notifications_badge(current_path, options = {})
+    return unless show_notifications_badge?(current_path)
+
+    h.content_tag(:span, class: "badge notifications-count #{options[:extra_classes]}", title: notifications_title) do
+      notifications_count.to_s
+    end
   end
 end

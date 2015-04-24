@@ -33,6 +33,8 @@ feature "Memberships list within group header" do
     let(:total_valid_memberships) { valid_memberships.unshift(membership) }
 
     background do
+      Membership.counter_culture_fix_counts
+      group.reload
       visit "/"
     end
 
