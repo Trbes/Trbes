@@ -8,7 +8,7 @@ a> [
   data-content=user_popover_content(membership)
   data-template=user_popover_template ]
   - unless local_assigns.has_key?(:hide_overlay)
-    = render "users/role_overlay", membership: present(membership)
+    = present(membership).role_overlay
   = image_tag membership.user_avatar_url, class: "img-circle", width: 16, height: 16
   - if local_assigns.has_key?(:display_name)
     =<> membership.user_full_name
