@@ -1,4 +1,4 @@
-.container.group-page[ng-controller="GroupsCtrl"]
+.container.group-page
   .row
     .col-md-3
       = render "posts/filter_menu"
@@ -11,6 +11,9 @@
     .col-md-6
       = render "posts/collection_menu", current_group: current_group
 
+  div[ui-view]
+
+  hr
   - if posts.any?
     .posts-group
       .posts-listing

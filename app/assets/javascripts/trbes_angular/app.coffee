@@ -10,6 +10,20 @@
   'ui.bootstrap'
 ])
 
+@trbes.config([
+  '$stateProvider'
+  '$urlRouterProvider'
+  '$locationProvider'
+  ($stateProvider, $urlRouterProvider, $locationProvider) ->
+    $stateProvider.state('post_listing',
+      url: '/'
+      templateUrl: '/assets/trbes_angular/groups/_show.html'
+      controller: 'GroupsCtrl'
+    )
+    $locationProvider.html5Mode(true)
+    $urlRouterProvider.otherwise '/'
+])
+
 @trbes.directive('ngBindAttrs', ->
   (scope, element, attrs) ->
     scope.$watch attrs.ngBindAttrs, ((value) ->
@@ -33,3 +47,11 @@
         url: '/v1/posts/:id/unvote.json'
         method: 'PUT'
 ])
+
+root = exports ? this
+
+root.initAuthentication = ($scope, Auth) ->
+  $scope.userSignedIn = Auth.isAuthenticated
+  Auth.currentUser().then (user) ->
+    $scope.user = user
+    console.log(user)

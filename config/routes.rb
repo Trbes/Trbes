@@ -53,15 +53,15 @@ Rails.application.routes.draw do
       put "/invitation" => "invitations#update", as: :update_invitation
     end
 
+    namespace :v1 do
+      resources :posts, only: %i( index show update destroy )
+    end
+
     root to: "groups#show", as: :group_root
 
-    get "/*id", to: "posts#show", as: :post
+    get "/*id", to: "posts#show", as: :post, id: /(?!.*?angular_app).*/
     patch "/*id", to: "posts#update"
     delete "/*id", to: "posts#destroy"
-  end
-
-  namespace :v1 do
-    resources :posts, only: %i( index show update )
   end
 
   get "/groups/:subdomain", to: "groups#show"

@@ -40,7 +40,7 @@
 //= require angular-moment
 //= require angular-bootstrap
 
-//= require angular_app/app
-//= require_tree ./angular_app
+//= require trbes_angular/app
+//= require_tree ./trbes_angular
 
 //= require scripts

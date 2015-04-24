@@ -9,14 +9,14 @@ gem "pg"
 # frontend stack: preprocessors, libraries, minifiers, assets
 # plus view stack: helpers, builders, etc.
 gem "sass"
-gem "sass-rails", "~> 5.0"
+gem "sass-rails"
 gem "slim"
-gem "coffee-rails", "~> 4.1.0"
+gem "coffee-rails"
 gem "jquery-rails"
 gem "jquery-ui-rails"
 gem "autoprefixer-rails"
 gem "therubyracer", platforms: :ruby
-gem "uglifier", ">= 1.3.0"
+gem "uglifier"
 gem "best_in_place", git: "https://github.com/codynguyen/best_in_place", branch: "cross-browser-behaviour"
 gem "retina_tag"
 gem "angular-rails-templates"

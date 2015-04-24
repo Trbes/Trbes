@@ -1,0 +1,6 @@
+.posts-group
+  .posts-listing
+    div[
+      class="animate-repeat"
+      ng-repeat="post in posts | limitTo: 5"
+      ng-include="'/assets/trbes_angular/posts/_post.html'" ]

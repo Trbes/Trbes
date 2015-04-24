@@ -14,3 +14,4 @@ Rails.application.config.assets.precompile += %w(
   error.css
 )
 Rails.application.config.assets.precompile << /.*.(?:eot|svg|ttf|woff|woof2|swf)$/
+Rails.application.assets.register_engine('.slim', Slim::Template)
