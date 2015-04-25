@@ -41,10 +41,9 @@ class ApplicationController < ActionController::Base
 
   def ensure_group_access_from_canonical_url!
     return unless current_group
-    return if request.host == current_group.custom_domain
+    return if [request.host, bare_host].include?(current_group.custom_domain)
     return if request.host.include?(Trbes::Application.config.host)
-
-    redirect_to group_url(current_group)
+    redirect_to group_url(current_group.subdomain)
   end
 
   def ensure_group_is_loaded!
@@ -105,6 +104,10 @@ class ApplicationController < ActionController::Base
       post_index: "Post_#{Rails.env}",
       group_index: "Group_#{Rails.env}"
     )
+  end
+
+  def bare_host
+    @bare_host ||= request.subdomain.present? ? request.host.gsub("#{request.subdomain}.", "") : request.host
   end
 
   def push_gon_config
