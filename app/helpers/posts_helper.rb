@@ -92,13 +92,17 @@ module PostsHelper
   # rubocop:enable Metrics/AbcSize, Metrics/CyclomaticComplexity, Metrics/MethodLength
 
   def post_controls(post)
-    [].tap do |links|
+    [].tap do |controls|
       if policy(post).edit?
-        links << link_to("Edit", "#", data: { toggle: "modal", target: "#edit_post_#{post.id}" })
+        controls << link_to("Edit", "#", data: { toggle: "modal", target: "#edit_post_#{post.id}" })
       end
 
       if policy(post).destroy?
-        links << link_to("Delete", post_path(post), method: :delete, data: { confirm: "Are you sure?" })
+        controls << link_to("Delete", post_path(post), method: :delete, data: { confirm: "Are you sure?" })
+      end
+
+      if policy(post).display_state?
+        controls << content_tag(:span, post.state)
       end
     end.join("<span> • </span>")
   end
