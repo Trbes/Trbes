@@ -1,4 +1,4 @@
-.container.group-page
+.container.group-page[ng-controller="GroupsCtrl"]
   .row
     .col-md-3
       = render "posts/filter_menu"
@@ -11,7 +11,9 @@
     .col-md-6
       = render "posts/collection_menu", current_group: current_group
 
-  div[ui-view]
+  / div[ui-view]
+
+  div[ng-include="'/assets/trbes_angular/groups/_show.html'"]
 
   hr
   - if posts.any?

@@ -15,13 +15,13 @@
   '$urlRouterProvider'
   '$locationProvider'
   ($stateProvider, $urlRouterProvider, $locationProvider) ->
-    $stateProvider.state('post_listing',
-      url: '/'
-      templateUrl: '/assets/trbes_angular/groups/_show.html'
-      controller: 'GroupsCtrl'
-    )
+    # $stateProvider.state('post_listing',
+    #   url: '/'
+    #   templateUrl: '/assets/trbes_angular/groups/_show.html'
+    #   controller: 'GroupsCtrl'
+    # )
     $locationProvider.html5Mode(true)
-    $urlRouterProvider.otherwise '/'
+    # $urlRouterProvider.otherwise '/'
 ])
 
 @trbes.directive('ngBindAttrs', ->

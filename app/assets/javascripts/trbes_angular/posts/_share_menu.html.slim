@@ -1,0 +1,16 @@
+ul.dropdown-menu[
+  class=("dropdown-{{ position }}")
+  role="menu" ]
+  li
+    a.share-on-facebook[
+      href="#"
+      data-link="{{ post.share_link }}"
+      data-title="{{ post.title }}"
+      data-body="{{ post.share_body }}"
+      data-image="{{ post.preview_image }}" ]
+      i.fa.fa-facebook-square
+      | Share on Facebook
+  li
+    a.share-on-twitter href="{{ post.tweet_intent }}"
+      i.fa.fa-twitter-square
+      | Share on Twitter

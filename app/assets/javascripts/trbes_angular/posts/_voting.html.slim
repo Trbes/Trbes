@@ -1,0 +1,18 @@
+.post-upvote
+  .vote-count[] {{ post.cached_votes_total }}
+  / Implement this condition: `if current_user.try(:voted_for?, post)`
+  a.vote.done[
+    ng-if="true"
+    ng-class="{ 'not-logged-in': userSignedIn() }"]
+    .fa.fa-check
+    .fa.fa-close
+  a.vote[
+    ng-if="false"
+    ng-class="{ 'not-logged-in': userSignedIn() }"]
+    i.fa.fa-thumbs-up
+
+  .dropdown.share
+    a.dropdown-toggle href="#" aria-expanded="false" data-toggle="dropdown" Share
+    div[
+      ng-include="'/assets/trbes_angular/posts/_share_menu.html'"
+      onload="position = 'left'"]
