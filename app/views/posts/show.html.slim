@@ -19,7 +19,10 @@
 
       .post-right
         .post-author
-          = render "users/avatar", membership: post.membership, html_class: "user-avatar"
+          = render "users/avatar",
+              membership: post.membership,
+              html_class: "user-avatar",
+              custom_size: { width: 64, height: 64 }
 
           .user-title = post.user_title
 

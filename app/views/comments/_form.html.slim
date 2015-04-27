@@ -3,7 +3,7 @@
     header.pac-header
       .pac-author
         | Posting as
-        = render "users/avatar",
+        =< render "users/avatar",
             membership: post.membership,
             html_class: "user-avatar user-name",
             display_name: true
