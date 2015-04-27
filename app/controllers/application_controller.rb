@@ -1,3 +1,4 @@
+# rubocop:disable ClassLength
 class ApplicationController < ActionController::Base
   include Pundit
 
@@ -41,8 +42,7 @@ class ApplicationController < ActionController::Base
 
   def ensure_group_access_from_canonical_url!
     return unless current_group
-    return if [request.host, bare_host].include?(current_group.custom_domain)
-    return if request.host.include?(Trbes::Application.config.host)
+    return if group_accessed_via_custom_domain || group_accessed_via_trbes_domain
     redirect_to group_url(current_group.subdomain)
   end
 
@@ -106,10 +106,6 @@ class ApplicationController < ActionController::Base
     )
   end
 
-  def bare_host
-    @bare_host ||= request.subdomain.present? ? request.host.gsub("#{request.subdomain}.", "") : request.host
-  end
-
   def push_gon_config
     push_algolia_config
     gon.push(zero_clipboard_path: view_context.asset_path("zeroclipboard/ZeroClipboard.swf"))
@@ -124,4 +120,17 @@ class ApplicationController < ActionController::Base
   decent_configuration do
     strategy DecentExposure::StrongParametersStrategy
   end
+
+  def bare_host
+    @bare_host ||= request.subdomain.present? ? request.host.gsub("#{request.subdomain}.", "") : request.host
+  end
+
+  def group_accessed_via_custom_domain
+    [request.host, bare_host].include?(current_group.custom_domain)
+  end
+
+  def group_accessed_via_trbes_domain
+    request.host.include?(Trbes::Application.config.host)
+  end
 end
+# rubocop:enable ClassLength
