@@ -6,10 +6,10 @@
           .fa.fa-check
           .fa.fa-close
       - else
-        = link_to(comment_vote_path(comment, current_user), class: "vote #{'not-logged-in' unless user_signed_in?}") do
+        => link_to(comment_vote_path(comment, current_user), class: "vote #{'not-logged-in' unless user_signed_in?}") do
           i.fa.fa-thumbs-up
 
-      .vote-count = comment.cached_votes_total
+      .vote-count =<> comment.cached_votes_total
 
       - if policy(comment).favourite?
         - if comment.favourite?
