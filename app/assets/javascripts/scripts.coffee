@@ -102,30 +102,33 @@ $ ->
     zeroclip.on 'aftercopy', (event) ->
       humane.log("Copied invite link to clipboard", { addnCls: "humane-libnotify-success" })
 
-  $(".share-on-facebook").click (e) ->
-    e.preventDefault()
-    that = $(this)
-    FB.ui {
-      method: "feed"
-      link: that.data("link")
-      picture: that.data("image")
-      name: that.data("title")
-      description: that.data("body")
-    }, (response) ->
-      if response and !response.error_code
-        console.log 'Success sharing to Facebook.'
-      else
-        console.log 'Error sharing to Facebook.'
+  window.init_share_link_events = () ->
+    $(".share-on-facebook").click (e) ->
+      e.preventDefault()
+      that = $(this)
+      FB.ui {
+        method: "feed"
+        link: that.data("link")
+        picture: that.data("image")
+        name: that.data("title")
+        description: that.data("body")
+      }, (response) ->
+        if response and !response.error_code
+          console.log 'Success sharing to Facebook.'
+        else
+          console.log 'Error sharing to Facebook.'
 
-  $(".share-on-twitter").click (e) ->
-    e.preventDefault()
-    width = 575
-    height = 400
-    left = ($(window).width() - width) / 2
-    top = ($(window).height() - height) / 2
-    url = @href
-    opts = 'status=1' + ',width=' + width + ',height=' + height + ',top=' + top + ',left=' + left
-    window.open url, 'twitter', opts
+    $(".share-on-twitter").click (e) ->
+      e.preventDefault()
+      width = 575
+      height = 400
+      left = ($(window).width() - width) / 2
+      top = ($(window).height() - height) / 2
+      url = @href
+      opts = 'status=1' + ',width=' + width + ',height=' + height + ',top=' + top + ',left=' + left
+      window.open url, 'twitter', opts
+
+  window.init_share_link_events()
 
   $(document).on 'change', '.rails-submitable', ->
     $(@form).trigger 'submit.rails'

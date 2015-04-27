@@ -2,5 +2,20 @@
   .posts-listing
     div[
       class="animate-repeat"
-      ng-repeat="post in posts | limitTo: 5"
-      ng-include="'/assets/trbes_angular/posts/_post.html'" ]
+      ng-repeat="post in posts"
+      on-last-repeat="posts" ]
+
+      div[
+        ng-if="post.post_type == 'image_post'"
+        ng-include="'/assets/trbes_angular/posts/image_post/_post.html'"
+        onload="post_template_path(post)" ]
+
+      div[
+        ng-if="post.post_type == 'link_post'"
+        ng-include="'/assets/trbes_angular/posts/link_post/_post.html'"
+        onload="post_template_path(post)" ]
+
+      div[
+        ng-if="post.post_type == 'text_post'"
+        ng-include="'/assets/trbes_angular/posts/text_post/_post.html'"
+        onload="post_template_path(post)" ]

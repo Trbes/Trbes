@@ -23,7 +23,7 @@ $post-right-min-width: $post-actions-min-width + $post-component-spacing + $post
     padding-bottom: $post-vertical-spacing;
     border-bottom: 1px solid #eaecee;
 
-    &:last-child {
+    &.last {
       padding-bottom: 0;
       margin-bottom: 0;
       border-bottom: 0;

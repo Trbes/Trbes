@@ -7,19 +7,19 @@ class PostSerializer < ActiveModel::Serializer
     :post_type,
     :body,
     :link,
-    :membership_id,
     :preview_image,
     :share_link,
     :share_body,
     :tweet_intent,
+    :path,
+    :image_tag,
+    :short_time_distance_string,
     :cached_votes_total,
     :comments_count
 
-  delegate :current_group, to: :scope
+  has_one :membership
 
-  def preview_image
-    object.preview_image
-  end
+  delegate :current_group, to: :scope
 
   def share_body
     scope.post_share_body(object)
@@ -31,5 +31,17 @@ class PostSerializer < ActiveModel::Serializer
 
   def tweet_intent
     scope.post_tweet_intent(object)
+  end
+
+  def path
+    scope.post_path(object)
+  end
+
+  def image_tag
+    scope.cl_image_tag(object.preview_image)
+  end
+
+  def short_time_distance_string
+    scope.short_time_distance_string(object.created_at)
   end
 end

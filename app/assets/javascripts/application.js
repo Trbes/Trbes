@@ -28,6 +28,7 @@
 //= require jquery-autosize
 //= require moment
 //= require moment/locale/vi
+//= require utils
 
 //= require angular
 //= require angular-ui-router

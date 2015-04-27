@@ -1,0 +1,24 @@
+a>[
+  class="{{ locals['html_class'] }}"
+  href="javascript:void(0)"
+  id="membership_{{ membership.id }}"
+  data-toggle="popover"
+  data-html="true"
+  data-placement="bottom"
+  data-content="{{ membership.user_popover_content }}"
+  data-template="{{ membership.user_popover_template }}" ]
+
+  span[
+    ng-if="!locals['hide_overlay'] && membership.show_role_overlay"
+    class="role-overlay role-overlay-{{ membership.role }}" ] {{ membership.role[0] }}
+
+  img.img-circle[
+    ng-attr-src="{{ membership.user_avatar_url }}"
+    width="16"
+    height="16"]
+
+  span[ng-if="!!locals['display_name']"]
+    '  {{ membership.user_full_name }}
+    ' •
+    div.user-title<[ng-if="!locals['hide_title']"] {{ membership.user_title }}
+

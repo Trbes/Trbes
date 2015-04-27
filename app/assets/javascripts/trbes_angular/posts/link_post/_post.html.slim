@@ -1,0 +1,18 @@
+.post.post-type-link[id="post_{{ post.id }}"]
+  div[ng-include="'/assets/trbes_angular/posts/_voting.html'"]
+  .post-content
+    a.title.iconify[
+      href="{{ post.path }}"
+      data-iconify-target="{{ post.link }}"
+      ng-attr-title="post.title"
+      ng-bind-html="post.title" ]
+    .url: a[
+      href="{{ post.link }}"
+      ng-bind-html="post.link" ]
+
+    .excerpt[] {{ post.body | htmlToPlaintext | limitTo:160 }}
+
+    div[ng-include="'/assets/trbes_angular/posts/_footer.html'"]
+  .post-right
+    div[ng-include="'/assets/trbes_angular/posts/_meta.html'"]
+    div[ng-include="'/assets/trbes_angular/posts/_actions.html'"]

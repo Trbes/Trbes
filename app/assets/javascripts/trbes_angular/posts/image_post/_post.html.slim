@@ -1,0 +1,14 @@
+.post.post-type-image[id="post_{{ post.id }}"]
+  div[ng-include="'/assets/trbes_angular/posts/_voting.html'"]
+  .post-content
+    a.title[
+      href="{{ post.path }}"
+      ng-attr-title="post.title"
+      ng-bind-html="post.title" ]
+    a.image[href="{{ post.path }}"]
+      .image-wrapper[ng-bind-html="{{ post.image_tag }}"]
+
+    div[ng-include="'/assets/trbes_angular/posts/_footer.html'"]
+  .post-right
+    div[ng-include="'/assets/trbes_angular/posts/_meta.html'"]
+    div[ng-include="'/assets/trbes_angular/posts/_actions.html'"]

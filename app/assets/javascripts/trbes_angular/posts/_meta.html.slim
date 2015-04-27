@@ -1,0 +1,10 @@
+.meta
+  span[
+    ng-include="'/assets/trbes_angular/users/_avatar.html'"
+    onload="membership = post.membership; locals = { html_class: 'post-author' }" ]
+
+  span.date[title="posted {{ post.created_at | amTimeAgo }}"] {{ post.short_time_distance_string }}
+
+  a.comments-count[href="{{ post.path }}"]
+    i.fa.fa-comment-o>
+    | {{ post.comments_count }}
