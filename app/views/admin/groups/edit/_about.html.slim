@@ -8,6 +8,20 @@ section.about.clearfix
       = group.listing_logo
 
     .group-right
+      .controls
+        - if policy(group).edit?
+          = link_to "edit", "#", class: "control", data: { toggle: "modal", target: "#edit_group" }
+          = render "admin/groups/edit/edit_modal", group: group
+
+          - if policy(group).destroy?
+            .controls-separator
+            = link_to "delete",
+                admin_group_path,
+                method: :delete,
+                class: "control",
+                data: { confirm: "Are you sure you want to delete #{group.name}? \
+                                  All data will be lost and all posts will be deleted." }
+
       .group-information
         span.group-name= group.name
         '&nbsp;
@@ -30,16 +44,3 @@ section.about.clearfix
             .count= group.comments_count
             .entity-wrapper= link_to group.pluralized_noun("Comment", group.comments_count), admin_comments_path
 
-      .controls
-        - if policy(group).edit?
-          = link_to "edit", "#", class: "control", data: { toggle: "modal", target: "#edit_group" }
-          = render "admin/groups/edit/edit_modal", group: group
-
-          - if policy(group).destroy?
-            .controls-separator
-            = link_to "delete",
-                admin_group_path,
-                method: :delete,
-                class: "control",
-                data: { confirm: "Are you sure you want to delete #{group.name}? \
-                                  All data will be lost and all posts will be deleted." }
