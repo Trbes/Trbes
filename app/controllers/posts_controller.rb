@@ -24,7 +24,7 @@ class PostsController < ApplicationController
   def update
     authorize(post)
 
-    flash[:notice] = if post.save
+    flash[:notice] = if post.update_attributes(post_attributes)
       %(Post "#{post.title}" was successfully updated)
     else
       post.errors.full_messages.join(". ")
