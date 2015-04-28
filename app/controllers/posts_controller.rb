@@ -5,7 +5,9 @@ class PostsController < ApplicationController
   before_action :ensure_group_is_loaded!, :ensure_group_access_from_canonical_url!, only: [:show]
 
   expose(:posts, ancestor: :current_group)
-  expose(:post, attributes: :post_attributes, finder: :find_by_slug)
+  expose(:post, attributes: :post_attributes, finder: :find_by_slug) do
+    posts.with_deleted.find_by(slug: params[:id])
+  end
   expose(:comments, ancestor: :post) { |collection| collection.root.published.includes(:membership, :child_comments) }
 
   def show
