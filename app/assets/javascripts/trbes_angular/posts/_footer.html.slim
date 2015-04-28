@@ -17,7 +17,7 @@
   a[
     ng-if="authorizer.policy(POLICIES.post_destroy, post)"
     href="{{ post.path }}"
-    method="delete"
+    data-method="delete"
     data-confirm="Are you sure?" ] Delete
 
   .modal.fade data-backdrop="static" id="edit_post_{{post.id}}"
@@ -28,14 +28,4 @@
             span aria-hidden="true"  &times;
           h4.modal-title Edit Post
         .modal-body
-          div[
-            ng-if="post.post_type == 'image_post'"
-            ng-include="'/assets/trbes_angular/posts/image_post/_form.html'" ]
-
-          div[
-            ng-if="post.post_type == 'link_post'"
-            ng-include="'/assets/trbes_angular/posts/link_post/_form.html'" ]
-
-          div[
-            ng-if="post.post_type == 'text_post'"
-            ng-include="'/assets/trbes_angular/posts/text_post/_form.html'" ]
+          div[ng-include="'/assets/trbes_angular/posts/' + post.post_type + '/_form.html'"]

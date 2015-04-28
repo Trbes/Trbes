@@ -5,14 +5,5 @@
       ng-repeat="post in posts"
       on-last-repeat="posts" ]
 
-      div[
-        ng-if="post.post_type == 'image_post'"
-        ng-include="'/assets/trbes_angular/posts/image_post/_post.html'" ]
+      div[ng-include="'/assets/trbes_angular/posts/' + post.post_type + '/_post.html'"]
 
-      div[
-        ng-if="post.post_type == 'link_post'"
-        ng-include="'/assets/trbes_angular/posts/link_post/_post.html'" ]
-
-      div[
-        ng-if="post.post_type == 'text_post'"
-        ng-include="'/assets/trbes_angular/posts/text_post/_post.html'" ]

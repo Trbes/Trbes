@@ -50,8 +50,8 @@ class GroupsController < ApplicationController
     @group_name = current_group.name
     @group_tagline = current_group.tagline
     gon.group_id = current_group.id
-    gon.membership_id = current_membership.try(:id)
     gon.membership = current_membership
+    gon.current_group_collections = current_group_collections
     # So that search result click will redirects to group's url
     redirect_to root_url(subdomain: params[:id]) and return if params[:id]
   end

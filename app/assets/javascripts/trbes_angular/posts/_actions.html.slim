@@ -1,1 +1,28 @@
-.post-actions
+a.add-to-collection[
+  ng-if="authorizer.policy(POLICIES.collection_post_create_for, [post, current_group_collections])"
+  href="#"
+  data-toggle="modal"
+  data-target="#add_to_collection_{{ post.id }}" ]
+
+  i.fa.fa-plus-circle data-toggle="tooltip" data-placement="top" title="Add to collection"
+
+.post-collections
+  span.post-collection[ng-repeat="collection_post in post.collection_posts"]
+    a[href="/?collection_id={{ collection_post.collection.id }}"]
+      i.fa.circle[
+        class="{{ isBlank(collection_post.collection.icon_class) ? 'fa-list' : 'fa-' + collection_post.collection.icon_class }}"
+        data-toggle="tooltip"
+        data-placement="top"
+        title="{{ collection_post.collection.name }}"]
+
+    a.remove-from-collection[
+      ng-if="authorizer.policy(POLICIES.collection_post_destroy, collection_post)"
+      href="{{ collection_post.admin_collection_post_path }}"
+      data-method="delete"
+      data-confirm="Are you sure?" ]
+
+      span.fa-stack data-toggle="tooltip" data-placement="top" title="Remove from this collection"
+        i.fa.fa-circle.fa-stack-1x
+        i.fa.fa-times.fa-inverse.fa-stack-1x
+
+

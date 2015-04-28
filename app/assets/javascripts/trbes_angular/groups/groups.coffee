@@ -15,6 +15,7 @@
     $scope.isBlank = isBlank
     $scope.group_id = gon.group_id
     $scope.membership = gon.membership
+    $scope.current_group_collections = gon.current_group_collections
     $scope.POLICIES = POLICIES
     $scope.authorizer = new Authorizer($scope.membership)
     $scope.csrf_token = angular.element('meta[name="csrf-token"]').attr('content')

@@ -1,0 +1,23 @@
+.modal.fade id="add_to_collection_{{ post.id }}" tabindex="-1" role="dialog" aria-labelledby="add_to_collection" aria-hidden="true"
+  .modal-dialog
+    .modal-content
+      .modal-header
+        button.close type="button" data-dismiss="modal" aria-label="Close"
+          span aria-hidden="true" &times;
+        h4.modal-title#add_to_collection Add post to collection
+
+      form#new_collection_post.simple_form.new_collection_post.ng-pristine.ng-valid accept-charset="UTF-8" action="/admin/collection_posts" method="post"
+        input name="utf8" type="hidden" value="✓"
+        input name="authenticity_token" type="hidden" value="{{ csrf_token }}"
+        .modal-body
+          .form-group.select.optional.collection_post_collection_id
+            label.select.optional.control-label for="collection_post_collection_id"  Select a collection
+            select#collection_post_collection_id.select.optional.form-control name="collection_post[collection_id]"
+              option value=""
+              option[ng-repeat="collection in current_group_collections" value="{{ collection.id }}"] {{ collection.name }}
+
+          .form-group.hidden.collection_post_post_id
+            input#collection_post_post_id.hidden.form-control name="collection_post[post_id]" type="hidden" value="{{ post.id }}"
+          .modal-footer
+            button.btn.btn-default data-dismiss="modal" type="button"  Close
+            input.btn.btn-primary name="commit" type="submit" value="Add"

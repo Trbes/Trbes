@@ -20,6 +20,7 @@ class PostSerializer < ActiveModel::Serializer
 
   has_one :membership
   has_many :attachments
+  has_many :collection_posts
 
   delegate :current_group, to: :scope
 
