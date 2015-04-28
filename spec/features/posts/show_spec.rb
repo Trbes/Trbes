@@ -71,6 +71,60 @@ feature "Single post page" do
     end
   end
 
+  context "when post is deleted" do
+    let!(:deleted_post) { create(:post, group: group, deleted_at: Date.today) }
+
+    context "when I'm post author" do
+      background do
+        deleted_post.update(membership: membership)
+
+        visit post_path(deleted_post)
+      end
+
+      scenario "I can visit post page" do
+        expect(current_path).to eq(post_path(deleted_post.title.parameterize))
+
+        within("#post_#{deleted_post.id}") do
+          expect(page).to have_css(".post-title", text: deleted_post.title)
+          expect(page).to have_css(".post-body", text: deleted_post.body)
+        end
+      end
+    end
+
+    context "when I'm not a post author" do
+      context "when I'm group member" do
+        background do
+          deleted_post.update(membership: create(:membership, group: group))
+          membership.member!
+
+          visit post_path(deleted_post)
+        end
+
+        scenario "I can't visit post page" do
+          expect(current_path).to eq(root_path)
+          expect(page).not_to have_content(deleted_post.title)
+        end
+      end
+
+      context "when I'm group moderator" do
+        background do
+          membership.moderator!
+
+          visit post_path(deleted_post)
+        end
+
+        scenario "I can visit post page" do
+          expect(current_path).to eq(post_path(deleted_post.title.parameterize))
+
+          within("#post_#{deleted_post.id}") do
+            expect(page).to have_css(".post-title", text: deleted_post.title)
+            expect(page).to have_css(".post-body", text: deleted_post.body)
+          end
+        end
+      end
+    end
+  end
+
   context "when I'm logged in" do
     scenario "I upvote for a post", js: true do
       expect(post.cached_votes_total).to eq(0)
