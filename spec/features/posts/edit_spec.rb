@@ -27,6 +27,7 @@ shared_examples_for "editable posts" do
     click_button "Save"
 
     expect(page).to have_content("Some new title")
+    expect(page).to have_content("was successfully updated")
   end
 end
 

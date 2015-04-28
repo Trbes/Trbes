@@ -1,6 +1,6 @@
 class PostPolicy < Struct.new(:membership, :post)
   def show?
-    post.published? || destroy?
+    post.published? && !post.deleted? || destroy?
   end
 
   def display_state?
