@@ -9,6 +9,7 @@ class PostSerializer < ActiveModel::Serializer
     :link,
     :preview_image_url,
     :state,
+    :editable,
     :share_link,
     :share_body,
     :tweet_intent,
@@ -18,8 +19,13 @@ class PostSerializer < ActiveModel::Serializer
     :comments_count
 
   has_one :membership
+  has_many :attachments
 
   delegate :current_group, to: :scope
+
+  def editable
+    object.editable?
+  end
 
   def share_body
     scope.post_share_body(object)

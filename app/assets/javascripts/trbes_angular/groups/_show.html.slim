@@ -7,15 +7,12 @@
 
       div[
         ng-if="post.post_type == 'image_post'"
-        ng-include="'/assets/trbes_angular/posts/image_post/_post.html'"
-        onload="post_template_path(post)" ]
+        ng-include="'/assets/trbes_angular/posts/image_post/_post.html'" ]
 
       div[
         ng-if="post.post_type == 'link_post'"
-        ng-include="'/assets/trbes_angular/posts/link_post/_post.html'"
-        onload="post_template_path(post)" ]
+        ng-include="'/assets/trbes_angular/posts/link_post/_post.html'" ]
 
       div[
         ng-if="post.post_type == 'text_post'"
-        ng-include="'/assets/trbes_angular/posts/text_post/_post.html'"
-        onload="post_template_path(post)" ]
+        ng-include="'/assets/trbes_angular/posts/text_post/_post.html'" ]
