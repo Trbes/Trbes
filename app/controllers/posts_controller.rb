@@ -22,7 +22,11 @@ class PostsController < ApplicationController
   def update
     authorize(post)
 
-    post.save
+    if post.save
+      flash[:notice] = %(Post "#{title.name}" was successfully updated)
+    else
+      flash[:notice] = post.errors.full_messages.join(". ")
+    end
 
     redirect_to :back
   end
