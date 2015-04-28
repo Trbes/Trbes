@@ -6,7 +6,7 @@ class PostsController < ApplicationController
 
   expose(:posts, ancestor: :current_group)
   expose(:post, attributes: :post_attributes, finder: :find_by_slug) do
-    posts.with_deleted.find_by(slug: params[:id])
+    posts.with_deleted.find_by(slug: params[:id] || params[:post_id])
   end
   expose(:comments, ancestor: :post) { |collection| collection.root.published.includes(:membership, :child_comments) }
 
