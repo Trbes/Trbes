@@ -1,5 +1,9 @@
 .post-footer
-  div[class="post-state post-state-{{ post.state }}"]
+  div[
+    class="post-state post-state-{{ post.state }}"
+    ng-if="authorizer.policy(POLICIES.post_display_state, post)"
+    ng-bind="post.state"]
+
     / Implement `if policy(post).display_state?`
   /     = post.state
   / == post_controls(post)

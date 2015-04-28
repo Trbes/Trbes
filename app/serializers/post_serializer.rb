@@ -7,12 +7,12 @@ class PostSerializer < ActiveModel::Serializer
     :post_type,
     :body,
     :link,
-    :preview_image,
+    :preview_image_url,
+    :state,
     :share_link,
     :share_body,
     :tweet_intent,
     :path,
-    :image_tag,
     :short_time_distance_string,
     :cached_votes_total,
     :comments_count
@@ -37,8 +37,8 @@ class PostSerializer < ActiveModel::Serializer
     scope.post_path(object)
   end
 
-  def image_tag
-    scope.cl_image_tag(object.preview_image)
+  def preview_image_url
+    object.preview_image.try(:url)
   end
 
   def short_time_distance_string

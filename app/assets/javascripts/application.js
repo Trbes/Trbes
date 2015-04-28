@@ -42,6 +42,10 @@
 //= require angular-bootstrap
 
 //= require trbes_angular/app
+//= require trbes_angular/directives
+//= require trbes_angular/factories
+//= require trbes_angular/helpers
+//= require trbes_angular/policies
 //= require_tree ./trbes_angular
 
 //= require scripts

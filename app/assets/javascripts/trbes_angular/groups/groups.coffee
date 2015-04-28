@@ -7,11 +7,16 @@
   '$log'
   'Auth'
   'UsersHelper'
+  'Authorizer'
+  'POLICIES'
   'Post'
-  ($scope, $routeParams, $resource, $timeout, $modal, $log, Auth, UsersHelper, Post) ->
+  ($scope, $routeParams, $resource, $timeout, $modal, $log, Auth, UsersHelper, Authorizer, POLICIES, Post) ->
     initAuthentication($scope, Auth)
     $scope.isBlank = isBlank
     $scope.group_id = gon.group_id
+    $scope.membership = gon.membership
+    $scope.POLICIES = POLICIES
+    $scope.authorizer = new Authorizer($scope.membership)
 
     Post.all().$promise.then (posts) ->
       $scope.posts = posts
