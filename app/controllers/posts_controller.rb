@@ -23,7 +23,7 @@ class PostsController < ApplicationController
     authorize(post)
 
     if post.save
-      flash[:notice] = %(Post "#{title.name}" was successfully updated)
+      flash[:notice] = %(Post "#{post.title}" was successfully updated)
     else
       flash[:notice] = post.errors.full_messages.join(". ")
     end
