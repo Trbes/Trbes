@@ -3,6 +3,22 @@
     = link_to "#", class: "add-to-collection", data: { toggle: "modal", target: "#add_to_collection_#{post.id}" } do
       i.fa.fa-plus-circle data-toggle="tooltip" data-placement="top" title="Add to collection"
 
+    .modal.fade id="add_to_collection_#{post.id}" tabindex="-1" role="dialog" aria-labelledby="add_to_collection" aria-hidden="true"
+      .modal-dialog
+        .modal-content
+          .modal-header
+            button.close type="button" data-dismiss="modal" aria-label="Close"
+              span aria-hidden="true" &times;
+            h4.modal-title#add_to_collection Add post to collection
+
+          = simple_form_for([:admin, CollectionPost.new]) do |f|
+            .modal-body
+              = f.input :collection_id, collection: current_group_collections, label: "Select a collection"
+              = f.input :post_id, as: :hidden, input_html: { value: post.id }
+              .modal-footer
+                button.btn.btn-default type="button" data-dismiss="modal" Close
+                = f.submit "Add", class: "btn btn-primary"
+
   .post-collections
     - post.collection_posts.each do |collection_post|
       = content_tag_for(:span, collection_post.collection, class: "post-collection") do
@@ -21,19 +37,3 @@
             span.fa-stack data-toggle="tooltip" data-placement="top" title="Remove from this collection"
               i.fa.fa-circle.fa-stack-1x
               i.fa.fa-times.fa-inverse.fa-stack-1x
-
-.modal.fade id="add_to_collection_#{post.id}" tabindex="-1" role="dialog" aria-labelledby="add_to_collection" aria-hidden="true"
-  .modal-dialog
-    .modal-content
-      .modal-header
-        button.close type="button" data-dismiss="modal" aria-label="Close"
-          span aria-hidden="true" &times;
-        h4.modal-title#add_to_collection Add post to collection
-
-      = simple_form_for([:admin, CollectionPost.new]) do |f|
-        .modal-body
-          = f.input :collection_id, collection: current_group_collections, label: "Select a collection"
-          = f.input :post_id, as: :hidden, input_html: { value: post.id }
-          .modal-footer
-            button.btn.btn-default type="button" data-dismiss="modal" Close
-            = f.submit "Add", class: "btn btn-primary"
