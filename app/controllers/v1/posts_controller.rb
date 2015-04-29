@@ -14,7 +14,10 @@ module V1
     serialization_scope :view_context
 
     def index
-      render json: posts
+      render json: {
+        posts: posts.map { |post| PostSerializer.new(post, root: false, scope: view_context) },
+        total_posts_count: posts.total_count
+      }
     end
 
     def edit

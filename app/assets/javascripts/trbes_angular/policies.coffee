@@ -28,7 +28,6 @@
             when POLICIES.collection_post_create
               return membership && (membership.role == "moderator" || membership.role == "owner")
             when POLICIES.collection_post_create_for
-              console.log object
               post = object[0]
               available_collections = object[1] || []
               return membership && (membership.role == "moderator" || membership.role == "owner") &&

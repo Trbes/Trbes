@@ -1,4 +1,4 @@
-.container.group-page[ng-controller="GroupsCtrl"]
+.container.group-page
   .row
     .col-md-3
       = render "posts/filter_menu"
@@ -11,19 +11,11 @@
     .col-md-6
       = render "posts/collection_menu", current_group: current_group
 
-  / div[ui-view]
-
-  div[ng-include="'/assets/trbes_angular/groups/_show.html'"]
+  div[ui-view]
 
   hr
   - if posts.any?
-    .posts-group
-      .posts-listing
-        - posts.each do |post|
-          - if policy(post).show?
-            = render "posts/#{post.post_type}/post", post: post
-
-      = paginate(posts, theme: "twitter-bootstrap-3", pagination_class: "pagination pagination-azure pagination-no-border")
+    / = paginate(posts, theme: "twitter-bootstrap-3", pagination_class: "pagination pagination-azure pagination-no-border")
   - else
     .group-welcome
       = image_tag("icons/icon_write_big.png")

@@ -7,3 +7,9 @@
 
       div[ng-include="'/assets/trbes_angular/posts/' + post.post_type + '/_post.html'"]
 
+pagination.pagination.pagination-azure.pagination-no-border[
+  ng-model="current_page"
+  total-items="total_posts_count"
+  items-per-page="posts_per_page"
+  max-size="max_size"
+  boundary-links="true" ]

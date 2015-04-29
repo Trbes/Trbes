@@ -5,7 +5,6 @@
       all:
         url: '/v1/posts.json'
         method: 'GET'
-        isArray: true
       upvote:
         url: '/v1/posts/:id/upvote.json'
         method: 'PUT'
