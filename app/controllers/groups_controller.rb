@@ -52,6 +52,9 @@ class GroupsController < ApplicationController
     gon.group = GroupSerializer.new(current_group, root: false, scope: view_context)
     gon.membership = MembershipSerializer.new(current_membership, root: false, scope: view_context)
     gon.current_group_collections = current_group_collections
+    gon.collections_to_show = collections_to_show
+    gon.hidden_collections = hidden_collections
+    gon.collection_icon_classes = Collection::FONT_AWESOME_ICONS[:web_application]
     # So that search result click will redirects to group's url
     redirect_to root_url(subdomain: params[:id]) and return if params[:id]
   end

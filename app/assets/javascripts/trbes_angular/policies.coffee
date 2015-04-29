@@ -5,6 +5,7 @@
   collection_post_create: "collection_post_create"
   collection_post_create_for: "collection_post_create_for"
   collection_post_destroy: "collection_post_destroy"
+  collection_create: "collection_create"
 
 @trbes.service("Authorizer", (POLICIES) ->
   return (membership) ->
@@ -34,6 +35,11 @@
                        available_collections.length && !post.collection_posts.length
             when POLICIES.collection_post_destroy
               return membership && (membership.role == "moderator" || membership.role == "owner")
+
+            # Collection policies
+            when POLICIES.collection_create
+              return membership && (membership.role == "moderator" || membership.role == "owner")
+
             else
               return false
         false

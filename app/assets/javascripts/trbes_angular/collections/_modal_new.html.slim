@@ -1,0 +1,38 @@
+.modal.collection-modal.fade id="add_collection" tabindex="-1" role="dialog" aria-labelledby="add_collection" aria-hidden="true"
+  .modal-dialog
+    .modal-content
+      .modal-header
+        button.close type="button" data-dismiss="modal" aria-label="Close"
+          span aria-hidden="true" &times;
+        h4.modal-title Add collection
+
+        form#new_collection.simple_form.new_collection.ng-pristine.ng-valid accept-charset="UTF-8" action="/admin/collections" method="post"
+          input name="utf8" type="hidden" value="✓"
+          input name="authenticity_token" type="hidden" value="{{ csrf_token }}"
+          .modal-body
+            .form-group.string.required.collection_name
+              label.string.required.control-label for="collection_name"
+                abbr title="required"
+                | Name
+              input#collection_name.string.required.form-control aria-required="true" name="collection[name]" required="required" type="text"
+            .form-group.boolean.optional.collection_visibility
+              .checkbox.checked
+                input name="collection[visibility]" type="hidden" value="0"
+
+                label
+                  input name="collection[visibility]" type="checkbox" data-toggle="checkbox" checked="checked"
+                  | Shown on group pages?
+
+            .form-group.hidden.collection_icon_class
+              input#collection_icon_class.hidden.form-control name="collection[icon_class]" type="hidden" value="{{ sample_icon_class }}"
+            label Select an Icon
+            .icon-classes
+              a.select-icon-class[
+                ng-repeat="icon_class in collection_icon_classes"
+                ng-class="{ active: icon_class == sample_icon_class }"
+                data-icon-class="{{ icon_class }}"
+                href="javascript:void(0)" ]
+                i.fa[class="{{ 'fa-' + icon_class }}"]
+          .modal-footer
+            button.btn.btn-default data-dismiss="modal" type="button"  Close
+            input.btn.btn-primary name="commit" type="submit" value="Add"

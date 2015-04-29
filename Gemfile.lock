@@ -135,7 +135,7 @@ GEM
     coffee-script (2.3.0)
       coffee-script-source
       execjs
-    coffee-script-source (1.8.0)
+    coffee-script-source (1.9.1.1)
     colored (1.2)
     columnize (0.8.9)
     counter_culture (0.1.33)

@@ -1,3 +1,14 @@
+.row
+  .col-md-3
+    div[ng-include="'/assets/trbes_angular/groups/_sort_menu.html'"]
+  .col-md-3.text-center
+    .input-group.search[ng-if="group.posts_count > 0"]
+      span#search_main.input-group-addon
+        i.fa.fa-search
+      input#post_search.form-control aria-describedby="search_main" placeholder="Search for posts" type="search"
+  .col-md-6
+    div[ng-include="'/assets/trbes_angular/groups/_collection_menu.html'"]
+
 div[ng-if="posts.length > 0"]
   .posts-group
     .posts-listing
