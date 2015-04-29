@@ -4,11 +4,15 @@ class PostsController < ApplicationController
   before_action :ensure_trailing_slash, only: %i( show update destroy )
   before_action :ensure_group_is_loaded!, :ensure_group_access_from_canonical_url!, only: [:show]
 
-  expose(:post, attributes: :post_attributes, finder: :find_by_slug)
+  expose(:posts, ancestor: :current_group)
+  expose(:post, attributes: :post_attributes, finder: :find_by_slug) do
+    posts.with_deleted.find_by(slug: params[:id] || params[:post_id])
+  end
   expose(:comments, ancestor: :post) { |collection| collection.root.published.includes(:membership, :child_comments) }
 
   def show
-    self.post = current_group.posts.includes(membership: :user).find_by!(slug: params[:id])
+    authorize(post)
+
     @post_title = post.title
     @group_name = current_group.name
   end
@@ -20,7 +24,11 @@ class PostsController < ApplicationController
   def update
     authorize(post)
 
-    post.save
+    flash[:notice] = if post.update_attributes(post_attributes)
+      %(Post "#{post.title}" was successfully updated)
+    else
+      post.errors.full_messages.join(". ")
+    end
 
     redirect_to :back
   end

@@ -23,7 +23,10 @@ html class="no-js" lang="en"
     = include_gon
 
   - content_for(:extra_body_classes, 'no-group') unless current_group
-  body[class=body_class]
+  body[
+    class=body_class
+    ng-app="Trbes"]
+
     #root
       = render "navigation", current_group: current_group
 

@@ -27,4 +27,14 @@ describe Comment do
     it { is_expected.to have_db_index(:membership_id) }
     it { is_expected.to have_db_index(:post_id) }
   end
+
+  describe "normalizations" do
+    it { is_expected.to normalize_attribute(:body).from("").to("") }
+    it { is_expected.to normalize_attribute(:body).from("  Test  Body ").to("Test Body") }
+    it {
+      is_expected.to normalize_attribute(:body)
+        .from("\r\n\r\nFirst.\r\nSecond.   \r\n\r\n\r\n Third. \r\n\r\n")
+        .to("First.<br>Second. <br><br> Third.")
+    }
+  end
 end

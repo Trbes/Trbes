@@ -6,10 +6,10 @@
           .fa.fa-check
           .fa.fa-close
       - else
-        = link_to(comment_vote_path(comment, current_user), class: "vote #{'not-logged-in' unless user_signed_in?}") do
+        => link_to(comment_vote_path(comment, current_user), class: "vote #{'not-logged-in' unless user_signed_in?}") do
           i.fa.fa-thumbs-up
 
-      .vote-count = comment.cached_votes_total
+      .vote-count =<> comment.cached_votes_total
 
       - if policy(comment).favourite?
         - if comment.favourite?
@@ -28,35 +28,17 @@
   .comment-content
     header.comment-header
       .comment-author
-        a.user-avatar[
-          href="javascript:void(0)"
-          data-toggle="popover"
-          data-html="true"
-          data-placement="bottom"
-          data-content=user_popover_content(comment.membership)
-          data-template=user_popover_template ]
-          = present(current_group).role_overlay(comment.membership)
-          = image_tag(comment.user_avatar_url, width: 16, height: 16)
-        a.user-name>[
-          href="javascript:void(0)"
-          data-toggle="popover"
-          data-html="true"
-          data-placement="bottom"
-          data-content=user_popover_content(comment.membership)
-          data-template=user_popover_template ]
-          = comment.user_full_name
-        - if current_user && current_user.title
-          | •
-          div.user-title< = comment.user_title
-        - if comment.membership.moderator?
-          span.label.label-info.user-label MOD
+        = render "users/avatar",
+            membership: comment.membership,
+            html_class: "user-name user-avatar",
+            display_name: true
 
       .comment-meta
         span.date
           i.fa.fa-clock-o
           | posted #{distance_of_time_in_words_to_now(comment.created_at) } ago
     .comment-body
-      = comment.body
+      = raw_sanitize(comment.body)
 
 - comment.child_comments.each do |child_comment|
   .comment-nested

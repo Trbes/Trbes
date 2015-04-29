@@ -1,10 +1,5 @@
 .post-footer
-  - links = []
-  - if policy(post).edit?
-    - links << link_to("Edit", "#", data: { toggle: "modal", target: "#edit_post_#{post.id}" })
-  - if policy(post).destroy?
-    - links << link_to("Delete", post_path(post), method: :delete, data: { confirm: "Are you sure?" })
-  = raw links.join("<span> • </span>")
+  == post_controls(post)
 
   .modal.fade data-backdrop="static" id=("edit_post_#{post.id}")
     .modal-dialog

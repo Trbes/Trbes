@@ -68,16 +68,33 @@ feature "Update membership", js: true do
     end
   end
 
-  scenario "I can transfer ownership" do
-    click_link("owner")
+  context "when there are other users in group except me" do
+    scenario "I can transfer ownership" do
+      click_link("owner")
 
-    select(some_membership.user_full_name, from: "membership_new_group_owner_id")
+      select(some_membership.user_full_name, from: "membership_new_group_owner_id")
 
-    click_button "Save"
+      click_button "Save"
 
-    expect(page).to have_content("Group")
-    expect(user.membership_for(group).reload.role).to eq("moderator")
-    expect(group.owner).to eq(some_membership)
+      expect(page).to have_content("Group")
+      expect(user.membership_for(group).reload.role).to eq("moderator")
+      expect(group.owner).to eq(some_membership)
+    end
+  end
+
+  context "when I'm the only one user in group" do
+    background do
+      memberships.each(&:destroy)
+    end
+
+    scenario "I can't access 'transfer ownership' modal" do
+      visit admin_memberships_path
+
+      within("section.memberships #membership_#{membership.id}") do
+        expect(page).to have_content("owner")
+        expect(page).not_to have_link("owner")
+      end
+    end
   end
 
   context "when I logged in as a moderator" do

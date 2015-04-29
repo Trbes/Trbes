@@ -31,7 +31,7 @@ class window.AddPost
         rules:
           "post[title]":
             required: true
-            minlength: 10
+            minlength: 5
             maxlength: 100
           "post[body]":
             required: that.attr("id") == "form_new_text_post"

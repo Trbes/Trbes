@@ -32,7 +32,7 @@ Rails.application.configure do
 
   # Application specific options
   #
-  config.slim_options =  { pretty: true }
+  config.slim_options =  { pretty: false }
 
   # Adds additional error checking when serving assets at runtime.
   # Checks for improperly declared sprockets dependencies.

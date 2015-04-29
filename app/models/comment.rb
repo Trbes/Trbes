@@ -7,6 +7,8 @@ class Comment < ActiveRecord::Base
   validates :body, presence: true
   validates :body, length: { minimum: 5, maximum: 420 }
 
+  normalize_attributes :body, with: %i( htmlize squish )
+
   delegate :user_full_name, :user_title, :user_avatar, :user_avatar_url, to: :membership
 
   acts_as_votable

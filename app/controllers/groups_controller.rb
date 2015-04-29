@@ -4,7 +4,6 @@ class GroupsController < ApplicationController
   expose(:group, attributes: :group_attributes)
   expose(:posts, only: [:show]) do
     scope = current_group.posts
-      .published
       .includes(:attachments, collection_posts: :collection, membership: :user)
       .public_send(sort_filter)
       .page(params[:page])
@@ -50,6 +49,7 @@ class GroupsController < ApplicationController
   def show
     @group_name = current_group.name
     @group_tagline = current_group.tagline
+    gon.group_id = current_group.id
     # So that search result click will redirects to group's url
     redirect_to root_url(subdomain: params[:id]) and return if params[:id]
   end

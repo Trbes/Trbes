@@ -1,3 +1,4 @@
+# rubocop:disable ClassLength
 class ApplicationController < ActionController::Base
   include Pundit
 
@@ -13,6 +14,10 @@ class ApplicationController < ActionController::Base
 
   expose(:groups)
   expose(:current_group_memberships) { current_group.memberships.joins(:user).not_pending }
+  expose(:visible_current_group_memberships) do
+    view_context.present(current_group_memberships[0..Group::VISIBLE_MEMBERS_COUNT - 1])
+  end
+
   expose(:current_user_memberships) { current_user.memberships.includes(:group) }
 
   helper_method :current_group
@@ -128,3 +133,4 @@ class ApplicationController < ActionController::Base
     request.host.include?(Trbes::Application.config.host)
   end
 end
+# rubocop:enable ClassLength

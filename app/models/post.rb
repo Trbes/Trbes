@@ -49,9 +49,9 @@ class Post < ActiveRecord::Base
   friendly_id :title, use: %i( slugged finders )
 
   normalize_attributes :title
-  normalize_attributes :body, with: :squish
+  normalize_attributes :body, with: %i( htmlize squish )
 
-  algoliasearch per_environment: true, disable_indexing: Rails.env.test? do
+  algoliasearch per_environment: true, disable_indexing: Rails.env.test? || ENV["ALGOLIASEARCH_DISABLED"].present? do
     attribute :title, :body, :slug, :state
 
     tags do

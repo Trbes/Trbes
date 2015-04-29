@@ -90,4 +90,28 @@ module PostsHelper
     end
   end
   # rubocop:enable Metrics/AbcSize, Metrics/CyclomaticComplexity, Metrics/MethodLength
+
+  def post_controls(post)
+    [
+      edit_post_link(post),
+      delete_post_link(post),
+      post_state_info(post)
+    ].compact.join("<span> • </span>")
+  end
+
+  def edit_post_link(post)
+    return unless policy(post).edit?
+
+    link_to("Edit", "#", data: { toggle: "modal", target: "#edit_post_#{post.id}" })
+  end
+
+  def delete_post_link(post)
+    return unless policy(post).destroy?
+
+    link_to("Delete", post_path(post), method: :delete, data: { confirm: "Are you sure?" })
+  end
+
+  def post_state_info(post)
+    content_tag(:span, post.state) if policy(post).display_state?
+  end
 end

@@ -3,19 +3,11 @@
     header.pac-header
       .pac-author
         | Posting as
-        a.user-avatar.user-name<[
-          href="javascript:void(0)"
-          data-toggle="popover"
-          data-html="true"
-          data-placement="bottom"
-          data-content=(user_popover_content(current_membership) if current_membership)
-          data-template=user_popover_template ]
-          = present(current_group).role_overlay(current_membership)
-          => image_tag(current_user.avatar_url, width: 16, height: 16)
-          = current_user.full_name
-        - if current_user.title
-          | •
-          div.user-title< = current_user.title
+        =< render "users/avatar",
+            membership: post.membership,
+            html_class: "user-avatar user-name",
+            display_name: true
+
   - else
     header.pac-header
       .pac-author

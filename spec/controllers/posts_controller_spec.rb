@@ -1,10 +1,12 @@
 require "rails_helper"
 
 describe PostsController do
-  let!(:post) { create(:post, :text) }
+  let(:post) { Post.first }
 
   before do
     stub_auth
+
+    create(:post, :text, group: Group.first)
   end
 
   describe "PUT #upvote" do
