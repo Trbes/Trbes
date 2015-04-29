@@ -8,5 +8,5 @@
     = link_to(post_vote_path(post, current_user), class: "vote #{'not-logged-in' unless user_signed_in?}") do
       i.fa.fa-thumbs-up
   .dropdown.share
-    a.dropdown-toggle href="#" aria-expanded="false" data-toggle="dropdown" Share
+    a.dropdown-toggle href="javascript:void(0)" aria-expanded="false" data-toggle="dropdown" Share
     = render "posts/share_menu", post: post, position: "left"

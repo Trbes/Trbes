@@ -1,6 +1,5 @@
 .post-upvote
   .vote-count[] {{ post.cached_votes_total }}
-  / Implement this condition: `if current_user.try(:voted_for?, post)`
   a.vote.done[
     ng-if="post.voted_for"
     ng-click="unvote_post(post)"
