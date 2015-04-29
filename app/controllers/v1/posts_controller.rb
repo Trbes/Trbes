@@ -49,7 +49,7 @@ module V1
     end
 
     def unvote
-      resource.unvote_by(current_user)
+      post.unvote_by(current_user)
 
       render json: post
     end

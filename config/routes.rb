@@ -17,21 +17,24 @@ Rails.application.routes.draw do
   post "/validate/group_subdomain" => "validation#group_subdomain"
   post "/validate/group_tagline" => "validation#group_tagline"
 
+  concern :voteable do
+    put "upvote"
+    put "unvote"
+  end
+
   constraints CustomDomainConstraint do
     resources :groups, only: %i( show new )
 
     get "join" => "memberships#create"
 
     resources :posts, only: %i( new create ) do
-      put "upvote"
-      put "unvote"
+      concerns :voteable
 
       resources :comments, only: %i( create destroy update ), shallow: true
     end
 
     resources :comments, only: [] do
-      put "upvote"
-      put "unvote"
+      concerns :voteable
     end
 
     namespace :admin do
@@ -54,7 +57,9 @@ Rails.application.routes.draw do
     end
 
     namespace :v1 do
-      resources :posts, only: %i( index show update destroy )
+      resources :posts, only: %i( index show update destroy ) do
+        concerns :voteable
+      end
     end
 
     root to: "groups#show", as: :group_root

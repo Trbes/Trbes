@@ -1,4 +1,6 @@
-.post.post-type-image[id="post_{{ post.id }}"]
+.post.post-type-image[
+  id="post_{{ post.id }}"
+  highlighter="post.cached_votes_total"]
   div[ng-include="'/assets/trbes_angular/posts/_voting.html'"]
   .post-content
     a.title[

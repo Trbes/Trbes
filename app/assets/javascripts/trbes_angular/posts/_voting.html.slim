@@ -2,13 +2,15 @@
   .vote-count[] {{ post.cached_votes_total }}
   / Implement this condition: `if current_user.try(:voted_for?, post)`
   a.vote.done[
-    ng-if="true"
-    ng-class="{ 'not-logged-in': userSignedIn() }"]
+    ng-if="post.voted_for"
+    ng-click="unvote_post(post)"
+    title="Undo like"]
     .fa.fa-check
     .fa.fa-close
   a.vote[
-    ng-if="false"
-    ng-class="{ 'not-logged-in': userSignedIn() }"]
+    ng-if="!post.voted_for"
+    ng-click="upvote_post(post)"
+    title="Like this"]
     i.fa.fa-thumbs-up
 
   .dropdown.share

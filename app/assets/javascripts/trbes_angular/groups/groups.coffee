@@ -41,5 +41,13 @@
         window.init_share_link_events()
         gsdk.initPopovers()
       , 1
+
+    $scope.upvote_post = (post)->
+      Post.upvote({id: post.id}, post).$promise.then (p) ->
+        angular.copy(p, post)
+
+    $scope.unvote_post = (post)->
+      Post.unvote({id: post.id}, post).$promise.then (p) ->
+        angular.copy(p, post)
 ]
 

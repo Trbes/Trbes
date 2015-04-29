@@ -10,6 +10,7 @@ class PostSerializer < ActiveModel::Serializer
     :preview_image_url,
     :state,
     :editable,
+    :voted_for,
     :share_link,
     :share_body,
     :tweet_intent,
@@ -23,6 +24,7 @@ class PostSerializer < ActiveModel::Serializer
   has_many :collection_posts
 
   delegate :current_group, to: :scope
+  delegate :current_user, to: :scope
 
   def editable
     object.editable?
@@ -50,5 +52,9 @@ class PostSerializer < ActiveModel::Serializer
 
   def short_time_distance_string
     scope.short_time_distance_string(object.created_at)
+  end
+
+  def voted_for
+    current_user.try(:voted_for?, object)
   end
 end

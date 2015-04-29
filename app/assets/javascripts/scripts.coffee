@@ -66,7 +66,7 @@ $ ->
     e.preventDefault()
     $(this).siblings(".file-uploader").toggleClass("hidden").prop("disabled", (i, v) -> return !v )
 
-  $("a.vote:not(.not-logged-in)").on "click", (e) ->
+  $(".comment-upvote a.vote:not(.not-logged-in)").on "click", (e) ->
     e.preventDefault()
 
     target = $(this)
