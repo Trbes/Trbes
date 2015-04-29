@@ -1,12 +1,13 @@
-.post-footer
-  == post_controls(post)
+- if policy(post).edit?
+  .post-footer
+    == post_controls(post)
 
-  .modal.fade data-backdrop="static" id=("edit_post_#{post.id}")
-    .modal-dialog
-      .modal-content
-        .modal-header
-          button.close aria-label="Close" data-dismiss="modal" type="button"
-            span aria-hidden="true"  &times;
-          h4.modal-title Edit Post
-        .modal-body
-          = render "posts/#{post.post_type}/form", post: post
+    .modal.fade data-backdrop="static" id=("edit_post_#{post.id}")
+      .modal-dialog
+        .modal-content
+          .modal-header
+            button.close aria-label="Close" data-dismiss="modal" type="button"
+              span aria-hidden="true"  &times;
+            h4.modal-title Edit Post
+          .modal-body
+            = render "posts/#{post.post_type}/form", post: post
