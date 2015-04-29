@@ -18,7 +18,7 @@ class GroupsController < ApplicationController
   expose(:group_owners) do
     Membership
       .owner
-      .includes(:user, group: [memberships: :user])
+      .includes(:user, :group)
       .joins(:group)
       .where("groups.private = ?", false)
       .order("groups.created_at DESC")
