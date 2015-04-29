@@ -50,10 +50,11 @@
 
                 | #{group.memberships_count_modal_link} • #{group.published_posts_count_link}
 
-                = render "groups/memberships_modal",
-                  modal_id: "all_group_#{group.id}_members",
-                  group_memberships: group.memberships,
-                  group: group
+                / TODO: Don't uncomment this until it's moved to client side. It causes very slow loading time
+                / = render "groups/memberships_modal",
+                /   modal_id: "all_group_#{group.id}_members",
+                /   group_memberships: group.memberships,
+                /   group: group
 
           .group-actions
             = render "groups/#{group.join_partial_path(current_user)}", group: group
