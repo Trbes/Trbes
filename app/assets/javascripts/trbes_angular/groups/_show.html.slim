@@ -1,15 +1,42 @@
-.posts-group
-  .posts-listing
-    div[
-      class="animate-repeat"
-      ng-repeat="post in posts"
-      on-last-repeat="posts" ]
+div[ng-if="posts.length > 0"]
+  .posts-group
+    .posts-listing
+      div[
+        class="animate-repeat"
+        ng-repeat="post in posts"
+        on-last-repeat="posts" ]
 
-      div[ng-include="'/assets/trbes_angular/posts/' + post.post_type + '/_post.html'"]
+        div[ng-include="'/assets/trbes_angular/posts/' + post.post_type + '/_post.html'"]
 
-pagination.pagination.pagination-azure.pagination-no-border[
-  ng-model="current_page"
-  total-items="total_posts_count"
-  items-per-page="posts_per_page"
-  max-size="max_size"
-  boundary-links="true" ]
+  pagination.pagination.pagination-azure.pagination-no-border[
+    ng-if="num_pages > 1"
+    num-pages="num_pages"
+    ng-model="current_page"
+    total-items="total_posts_count"
+    items-per-page="posts_per_page"
+    max-size="max_size"
+    boundary-links="true" ]
+
+.group-welcome[ng-if="posts.length == 0 && loginTriggered"]
+  = image_tag("icons/icon_write_big.png")
+  br
+  | Welcome to {{ group.name }}.
+  br
+  span[ng-if="userSignedIn()"]
+    | This group is empty.
+    br
+    a.btn.btn-success.btn-fill.btn-lg.btn-add-post[
+      ng-if="membership.group_id == group.id"
+      href="javascript:void(0)"
+      data-toggle="modal"
+      data-target="#add_a_post" ] Write Something
+
+    a.btn.btn-success.btn-fill.btn-lg.btn-add-post[
+      ng-if="membership.group_id != group.id"
+      href="{{ group.join_url }}" ] Join to Write
+
+  span[ng-if="!userSignedIn()"]
+    em> Sign up
+    | to join the discussions.
+    br
+    a.btn.btn-success.btn-fill.btn-lg href="/users/sign_up" Create a new account

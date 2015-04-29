@@ -13,7 +13,7 @@
   ($scope, $routeParams, $resource, $timeout, $modal, $log, Auth, UsersHelper, Authorizer, POLICIES, Post) ->
     initAuthentication($scope, Auth)
     $scope.isBlank = isBlank
-    $scope.group_id = gon.group_id
+    $scope.group = gon.group
     $scope.membership = gon.membership
     $scope.current_group_collections = gon.current_group_collections
     $scope.POLICIES = POLICIES
@@ -24,15 +24,12 @@
     $scope.total_posts_count = 1
     $scope.posts_per_page = 20
     $scope.max_size = 5 # number of pagination buttons
+    $scope.UsersHelper = UsersHelper
 
     $scope.get_posts = (page) ->
       Post.all(page: page).$promise.then (response) ->
         $scope.posts = response.posts
         $scope.total_posts_count = response.total_posts_count
-        $scope.posts.forEach (post) ->
-          post.membership.user_popover_content = UsersHelper.user_popover_content(post.membership)
-          post.membership.user_popover_template = UsersHelper.user_popover_template()
-          post.membership.show_role_overlay = UsersHelper.show_role_overlay(post.membership)
 
     $scope.$watch 'current_page', ->
       $scope.get_posts($scope.current_page)
@@ -42,6 +39,7 @@
       $timeout ->
         iconify_links()
         window.init_share_link_events()
+        gsdk.initPopovers()
       , 1
 ]
 

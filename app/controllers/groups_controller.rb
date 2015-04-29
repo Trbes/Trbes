@@ -49,8 +49,8 @@ class GroupsController < ApplicationController
   def show
     @group_name = current_group.name
     @group_tagline = current_group.tagline
-    gon.group_id = current_group.id
-    gon.membership = current_membership
+    gon.group = GroupSerializer.new(current_group, root: false, scope: view_context)
+    gon.membership = MembershipSerializer.new(current_membership, root: false, scope: view_context)
     gon.current_group_collections = current_group_collections
     # So that search result click will redirects to group's url
     redirect_to root_url(subdomain: params[:id]) and return if params[:id]

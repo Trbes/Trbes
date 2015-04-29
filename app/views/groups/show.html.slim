@@ -13,25 +13,3 @@
 
   div[ui-view]
 
-  hr
-  - if posts.any?
-    / = paginate(posts, theme: "twitter-bootstrap-3", pagination_class: "pagination pagination-azure pagination-no-border")
-  - else
-    .group-welcome
-      = image_tag("icons/icon_write_big.png")
-      br
-      | Welcome to #{current_group.name}.
-      br
-      - if user_signed_in?
-        | This group is empty.
-        br
-        - if current_user.membership_for(current_group)
-          a.btn.btn-success.btn-fill.btn-lg.btn-add-post href="#" data-toggle="modal" data-target="#add_a_post" Write Something
-        - else
-          a.btn.btn-success.btn-fill.btn-lg.btn-add-post href=join_url(subdomain: current_group.subdomain) Join to Write
-      - else
-        em> Sign up
-        | to join the discussions.
-        br
-        a.btn.btn-success.btn-fill.btn-lg href=(new_user_registration_path) Create a new account
-
