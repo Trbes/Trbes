@@ -8,10 +8,14 @@ class CommentPolicy < Struct.new(:membership, :comment)
     end
 
     def resolve
-      if membership && (membership.owner? || membership.moderator?)
-        scope.all
+      if membership
+        if membership.owner? || membership.moderator?
+          scope.all
+        else
+          scope.published_or_authored_by(membership)
+        end
       else
-        scope.published_or_authored_by(membership)
+        scope.published
       end
     end
   end
