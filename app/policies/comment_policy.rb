@@ -1,20 +1,20 @@
 class CommentPolicy < Struct.new(:membership, :comment)
   class Scope
-     attr_reader :membership, :scope
+    attr_reader :membership, :scope
 
-     def initialize(membership, scope)
-       @membership = membership
-       @scope = scope
-     end
+    def initialize(membership, scope)
+      @membership = membership
+      @scope = scope
+    end
 
-     def resolve
-       if membership && (membership.owner? || membership.moderator?)
-         scope.all
-       else
+    def resolve
+      if membership && (membership.owner? || membership.moderator?)
+        scope.all
+      else
         scope.published_or_authored_by(membership)
-       end
-     end
-   end
+      end
+    end
+  end
 
   def create?
     membership.present?
