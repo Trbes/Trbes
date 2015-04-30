@@ -6,7 +6,7 @@ Bundler.require(*Rails.groups)
 
 module Trbes
   class Application < Rails::Application
-    # config.slim_options = {}
+    config.slim_options = {}
     config.noreply = ENV["NOREPLY_EMAIL"] || "noreply@trbes.com"
     config.host = ENV["APP_HOST"] || "trbes.com"
     config.action_controller.default_url_options = { host: ENV["APP_HOST"] || "trbes.com" }
