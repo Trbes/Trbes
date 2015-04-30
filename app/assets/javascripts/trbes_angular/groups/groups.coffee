@@ -51,6 +51,9 @@ init_group_dom = ($scope, $timeout) ->
       $('[data-toggle="checkbox"]').each () ->
         $(@).checkbox()
 
+  $timeout ->
+    new PostSearch($("input#post_search"))
+
   $scope.$on 'onRepeatLast', (scope, element, attrs) ->
     return if attrs.onLastRepeat != "posts"
     $timeout ->
