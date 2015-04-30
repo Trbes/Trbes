@@ -13,7 +13,7 @@
           .vote-count = post.cached_votes_total
         .post-share
           .dropdown.share
-            a.share.dropdown-toggle aria-expanded="false" data-toggle="dropdown" href="javascript:void(0)"
+            a.share.dropdown-toggle aria-expanded="false" data-toggle="dropdown" href="#" onclick="return false;"
               span.icon-share
             = render "posts/share_menu", post: post, position: "left"
 

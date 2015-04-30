@@ -1,6 +1,6 @@
 a.add-to-collection[
   ng-if="authorizer.policy(POLICIES.collection_post_create_for, [post, current_group_collections])"
-  href="javascript:void(0)"
+  href="#" onclick="return false;"
   data-toggle="modal"
   data-target="#add_to_collection_{{ post.id }}" ]
 

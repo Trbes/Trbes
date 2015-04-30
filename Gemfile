@@ -125,6 +125,7 @@ source "https://rails-assets.org" do
   gem "rails-assets-select2"
   gem "rails-assets-jquery-autosize"
   gem "rails-assets-underscore"
+  gem "rails-assets-is-loading"
 
   gem "rails-assets-angular"
   gem "rails-assets-angular-ui-router"

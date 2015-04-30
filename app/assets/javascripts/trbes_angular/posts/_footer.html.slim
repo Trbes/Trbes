@@ -6,7 +6,7 @@
 
   a[
     ng-if="authorizer.policy(POLICIES.post_edit, post)"
-    href="javascript:void(0)"
+    href="#" onclick="return false;"
     data-toggle="modal"
     data-target="#edit_post_{{ post.id }}" ] Edit
 
@@ -20,9 +20,10 @@
     data-method="delete"
     data-confirm="Are you sure?" ] Delete
 
-  .modal.fade data-backdrop="static"[
-    id="edit_post_{{post.id}}"
-    ng-if="authorizer.policy(POLICIES.post_edit, post)" ]
+  .modal.fade[
+    ng-if="authorizer.policy(POLICIES.post_edit, post)"
+    id="edit_post_{{ post.id }}"
+    data-backdrop="static" ]
     .modal-dialog
       .modal-content
         .modal-header
