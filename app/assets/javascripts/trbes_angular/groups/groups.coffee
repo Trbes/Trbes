@@ -18,6 +18,7 @@
     $scope.current_group_collections = gon.current_group_collections
     $scope.collections_to_show = gon.collections_to_show
     $scope.hidden_collections = gon.hidden_collections
+    console.log $scope.hidden_collections
     $scope.collection_icon_classes = gon.collection_icon_classes
     $scope.sample_icon_class = $scope.collection_icon_classes[Math.floor(Math.random()*$scope.collection_icon_classes.length)]
     $scope.POLICIES = POLICIES
@@ -39,6 +40,11 @@
 
     $scope.$watch 'current_page + sort_params + collection_id', ->
       $scope.get_posts()
+
+    $scope.init_checkboxes = () ->
+      $timeout ->
+        $('[data-toggle="checkbox"]').each () ->
+          $(@).checkbox()
 
     $scope.$on 'onRepeatLast', (scope, element, attrs) ->
       return if attrs.onLastRepeat != "posts"

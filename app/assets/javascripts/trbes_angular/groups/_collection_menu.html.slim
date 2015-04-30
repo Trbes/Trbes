@@ -1,6 +1,7 @@
 div[
   ng-if="authorizer.policy(POLICIES.collection_create)"
-  ng-include="'/assets/trbes_angular/collections/_modal_new.html'" ]
+  ng-include="'/assets/trbes_angular/collections/_modal_new.html'"
+  onload="init_checkboxes()" ]
 
 ul.nav.nav-pills.nav-collections
   li[
@@ -14,7 +15,7 @@ ul.nav.nav-pills.nav-collections
       data-toggle="tooltip"
       data-placement="top" ]
 
-      i.fa.circle[class="{{ isBlank(collection.icon_class) ? 'fa-list' : ('fa-' + collection.icon_class)"]
+      i.fa.circle[class="{{ isBlank(collection.icon_class) ? 'fa-list' : 'fa-' + collection.icon_class }}"]
 
   li.dropdown.more[
     ng-if="group.will_show_collection_dropdown"
@@ -39,7 +40,7 @@ ul.nav.nav-pills.nav-collections
           ng-click="update_collection_id(collection.id)"
           id="collection_{{ collection.id }}" ]
 
-          i.fa.circle[class="{{ isBlank(collection.icon_class) ? 'fa-list' : 'fa-' + collection.icon_class"]
+          i.fa.circle[class="{{ isBlank(collection.icon_class) ? 'fa-list' : 'fa-' + collection.icon_class }}"]
           | {{ collection.name }}
 
       li.divider[
@@ -51,7 +52,7 @@ ul.nav.nav-pills.nav-collections
         role="presentation" ]
 
         a[
-          href="javascript:void(0)"
+          href="#" onclick="return false;"
           data-toggle="modal"
           data-target="#add_collection" ]
 
