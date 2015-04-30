@@ -30,6 +30,8 @@ class CommentsController < ApplicationController
   end
 
   def destroy
+    flash[:notice] = "Comment has been deleted"
+
     comment.destroy
 
     redirect_to :back
