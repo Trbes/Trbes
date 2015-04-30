@@ -1,13 +1,13 @@
 .row
   .col-md-3
-    div[ng-include="'/assets/trbes_angular/groups/_sort_menu.html'"]
+    div[ng-include="'groups/_sort_menu.html'"]
   .col-md-3.text-center
     .input-group.search[ng-if="group.posts_count > 0"]
       span#search_main.input-group-addon
         i.fa.fa-search
       input#post_search.form-control aria-describedby="search_main" placeholder="Search for posts" type="search"
   .col-md-6
-    div[ng-include="'/assets/trbes_angular/groups/_collection_menu.html'"]
+    div[ng-include="'groups/_collection_menu.html'"]
 
 h1.posts-listing-title[ng-if="!!current_collection"] Showing posts under "{{ current_collection.name }}"
 
@@ -21,7 +21,7 @@ h1.posts-listing-title[ng-if="!!current_collection"] Showing posts under "{{ cur
       ng-repeat="post in posts"
       on-last-repeat="posts" ]
 
-      div[ng-include="'/assets/trbes_angular/posts/' + post.post_type + '/_post.html'"]
+      div[ng-include="'posts/' + post.post_type + '/_post.html'"]
 
 pagination.pagination.pagination-azure.pagination-no-border[
   ng-if="total_posts_count > posts_per_page"

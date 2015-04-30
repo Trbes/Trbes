@@ -1,7 +1,7 @@
 .meta
-  div[ng-include="'/assets/trbes_angular/posts/_meta.html'"]
+  div[ng-include="'posts/_meta.html'"]
 .post-actions
-  div[ng-include="'/assets/trbes_angular/posts/_actions.html'"]
+  div[ng-include="'posts/_actions.html'"]
 div[
-  ng-include="'/assets/trbes_angular/posts/_add_collection_post_modal.html'"
+  ng-include="'posts/_add_collection_post_modal.html'"
   ng-if="authorizer.policy(POLICIES.collection_post_create_for, [post, current_group_collections])" ]

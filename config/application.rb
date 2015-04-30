@@ -18,20 +18,6 @@ module Trbes
       DeviseController.respond_to :html, :json
     end
 
-    config.before_initialize do |app|
-      require 'sprockets'
-      require 'tilt'
-      require 'angular-rails-templates'
-
-      mimeless_slim = Class.new(Tilt[:slim]) do
-        def self.default_mime_type
-          nil
-        end
-      end
-
-      Sprockets::Engines #force autoloading
-      Sprockets.register_engine '.slim', mimeless_slim
-      Sprockets.register_engine '.html', AngularRailsTemplates::Template
-    end
+    config.angular_templates.ignore_prefix << "trbes_angular/"
   end
 end

@@ -64,12 +64,12 @@ Rails.application.routes.draw do
 
     root to: "groups#show", as: :group_root
 
-    get "/*id", to: "posts#show", as: :post, id: /(?!.*?angular_app).*/
+    get "/*id", to: "posts#show", as: :post, id: /(?!.*?assets).*/
     patch "/*id", to: "posts#update"
     delete "/*id", to: "posts#destroy"
   end
 
-  get "/groups/:subdomain", to: "groups#show"
+  get "/groups/:subdomain", to: "groups#show", constraints: { format: // }
 
   get "/small-teams", to: "landing#small_teams"
   get "/business", to: "landing#business"

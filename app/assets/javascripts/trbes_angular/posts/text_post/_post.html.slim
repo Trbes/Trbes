@@ -1,7 +1,7 @@
 .post.post-type-text[
   id="post_{{ post.id }}"
   highlighter="post.cached_votes_total"]
-  div[ng-include="'/assets/trbes_angular/posts/_voting.html'"]
+  div[ng-include="'posts/_voting.html'"]
   .post-content
     a.title[
       href="{{ post.path }}"
@@ -10,6 +10,6 @@
 
     .excerpt[] {{ post.body | htmlToPlaintext | limitTo:160 }}
 
-    div[ng-include="'/assets/trbes_angular/posts/_footer.html'"]
+    div[ng-include="'posts/_footer.html'"]
   .post-right
-    div[ng-include="'/assets/trbes_angular/posts/_post_right.html'"]
+    div[ng-include="'posts/_post_right.html'"]

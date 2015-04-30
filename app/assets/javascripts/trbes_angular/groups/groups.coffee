@@ -108,6 +108,3 @@ init_posts_sort_filter = ($scope, Post) ->
     $scope.collection_id = id
     $scope.current_collection = _.find $scope.collections_to_show, (collection) ->
       collection.id == $scope.collection_id
-
-    console.log "collection_id: " + id, $scope.current_collection
-

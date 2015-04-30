@@ -8,6 +8,7 @@ gem "pg"
 
 # frontend stack: preprocessors, libraries, minifiers, assets
 # plus view stack: helpers, builders, etc.
+gem "sprockets", "2.12.3"
 gem "sass"
 gem "sass-rails"
 gem "slim"
@@ -84,7 +85,7 @@ end
 
 group :development, :test do
   gem "awesome_print"
-  gem "brakeman", require: false
+  gem "brakeman", "~> 3.0.3", require: false
   gem "bundler-audit"
   gem "byebug"
   gem "dotenv-rails"
@@ -101,7 +102,7 @@ group :development do
   gem "foreman"
   gem "quiet_assets"
   gem "letter_opener"
-  gem "slim-rails"
+  gem "slim-rails", "~> 3.0.1"
 end
 
 # Assets gems from rails-assets.org
