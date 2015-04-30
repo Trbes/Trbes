@@ -7,7 +7,7 @@
   collection_post_destroy: "collection_post_destroy"
   collection_create: "collection_create"
 
-@trbes.service("Authorizer", (POLICIES) ->
+@trbes.service("Authorizer", ['POLICIES', (POLICIES) ->
   return (membership) ->
     {
       policy: (policies, object) ->
@@ -44,4 +44,4 @@
               return false
         false
     }
-)
+])
