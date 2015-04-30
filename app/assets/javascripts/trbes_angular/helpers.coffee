@@ -1,13 +1,13 @@
 root = exports ? this
 
-root.initAuthentication = ($scope, Auth) ->
+root.init_authentication = ($scope, Auth) ->
   $scope.userSignedIn = Auth.isAuthenticated
-  $scope.loginTriggered = false
+  $scope.login_triggered = false
   Auth.currentUser().then (user) ->
-    $scope.loginTriggered = true
+    $scope.login_triggered = true
     $scope.user = user
   , (error) ->
-    $scope.loginTriggered = true
+    $scope.login_triggered = true
 
 @trbes.factory('UsersHelper', ->
   sharedService = {}

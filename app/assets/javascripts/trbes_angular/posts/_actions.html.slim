@@ -8,7 +8,7 @@ a.add-to-collection[
 
 .post-collections
   span.post-collection[ng-repeat="collection_post in post.collection_posts"]
-    a[href="/?collection_id={{ collection_post.collection.id }}"]
+    a[ng-click="update_collection_id(collection_post.collection.id)"]
       i.fa.circle[
         class="{{ isBlank(collection_post.collection.icon_class) ? 'fa-list' : 'fa-' + collection_post.collection.icon_class }}"
         data-toggle="tooltip"

@@ -9,26 +9,30 @@
   .col-md-6
     div[ng-include="'/assets/trbes_angular/groups/_collection_menu.html'"]
 
-div[ng-if="posts.length > 0"]
-  .posts-group
-    .posts-listing
-      div[
-        class="animate-repeat"
-        ng-repeat="post in posts"
-        on-last-repeat="posts" ]
+h1.posts-listing-title[ng-if="!!current_collection"] Showing posts under "{{ current_collection.name }}"
 
-        div[ng-include="'/assets/trbes_angular/posts/' + post.post_type + '/_post.html'"]
+.posts-group
+  .posts-listing
+    div.no-collection-posts[ng-if="!!current_collection && !posts.length"]
+      | There is no posts under this collection.
+    div[
+      ng-if="posts.length > 0"
+      class="animate-repeat"
+      ng-repeat="post in posts"
+      on-last-repeat="posts" ]
 
-  pagination.pagination.pagination-azure.pagination-no-border[
-    ng-if="num_pages > 1"
-    num-pages="num_pages"
-    ng-model="current_page"
-    total-items="total_posts_count"
-    items-per-page="posts_per_page"
-    max-size="max_size"
-    boundary-links="true" ]
+      div[ng-include="'/assets/trbes_angular/posts/' + post.post_type + '/_post.html'"]
 
-.group-welcome[ng-if="posts.length == 0 && loginTriggered"]
+pagination.pagination.pagination-azure.pagination-no-border[
+  ng-if="total_posts_count > posts_per_page"
+  ng-model="model.current_page"
+  ng-change="page_changed()"
+  total-items="total_posts_count"
+  items-per-page="posts_per_page"
+  max-size="max_size"
+  boundary-links="true" ]
+
+.group-welcome[ng-if="posts.length == 0 && login_triggered && posts_queried && !collection_id"]
   = image_tag("icons/icon_write_big.png")
   br
   | Welcome to {{ group.name }}.

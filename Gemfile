@@ -124,6 +124,7 @@ source "https://rails-assets.org" do
   gem "rails-assets-zeroclipboard"
   gem "rails-assets-select2"
   gem "rails-assets-jquery-autosize"
+  gem "rails-assets-underscore"
 
   gem "rails-assets-angular"
   gem "rails-assets-angular-ui-router"
