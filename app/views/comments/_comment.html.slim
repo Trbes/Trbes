@@ -27,6 +27,7 @@
 
     .comment-controls
       == comment_controls(comment)
+      = render "comments/edit_modal", comment: comment
 
   .comment-content
     header.comment-header
