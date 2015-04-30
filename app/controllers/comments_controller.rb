@@ -18,6 +18,12 @@ class CommentsController < ApplicationController
   end
 
   def update
+    flash[:notice] = if comment.update_attributes(comment_attributes)
+      "Comment was successfully updated"
+    else
+      comment.errors.full_messages.join(". ")
+    end
+
     comment.save
 
     redirect_to :back
