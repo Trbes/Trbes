@@ -24,6 +24,10 @@ class Comment < ActiveRecord::Base
 
   enum state: %i(moderation published rejected)
 
+  def editable?
+    created_at >= 15.minutes.ago
+  end
+
   def root?
     parent_comment_id.nil?
   end
