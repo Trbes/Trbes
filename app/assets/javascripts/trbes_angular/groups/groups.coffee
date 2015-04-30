@@ -82,10 +82,12 @@ init_posts_sort_filter = ($scope, Post) ->
   $scope.posts_queried = false
 
   $scope.get_posts = () ->
+    showLoader("Loading posts...")
     Post.all(page: $scope.current_page, sort: $scope.sort_params, collection_id: $scope.collection_id).$promise.then (response) ->
       $scope.posts_queried = true
       $scope.posts = response.posts
       $scope.total_posts_count = response.total_posts_count
+      hideLoader()
 
   $scope.$watch 'current_page + sort_params + collection_id', ->
     $scope.get_posts()

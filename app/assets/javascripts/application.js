@@ -29,6 +29,7 @@
 //= require moment
 //= require moment/locale/vi
 //= require underscore
+//= require is-loading
 //= require utils
 
 //= require angular
