@@ -8,7 +8,7 @@ class PostsController < ApplicationController
   expose(:post, attributes: :post_attributes, finder: :find_by_slug) do
     posts.with_deleted.find_by(slug: params[:id] || params[:post_id])
   end
-  expose(:comments, ancestor: :post) { |collection| collection.root.includes(:membership, :child_comments) }
+  expose(:comments, ancestor: :post) { |collection| policy_scope(collection.root).includes(:membership, :child_comments) }
 
   def show
     authorize(post)
