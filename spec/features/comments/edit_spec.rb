@@ -20,7 +20,7 @@ feature "Edit comment" do
 
     click_button "Save"
 
-    expect(page).to have_content("updated")
+    expect(page).to have_content("Comment was successfully updated")
     expect(comment.reload.body).to eq("New Body")
   end
 end
