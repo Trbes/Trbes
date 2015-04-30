@@ -7,6 +7,7 @@ class CommentsController < ApplicationController
   expose(:post)
 
   def create
+    authorize(comment)
     result = CreateComment.call(
       membership: current_membership,
       post: post,
@@ -18,6 +19,7 @@ class CommentsController < ApplicationController
   end
 
   def update
+    authorize(comment)
     flash[:notice] = if comment.update_attributes(comment_attributes)
       "Comment was successfully updated"
     else
@@ -30,6 +32,7 @@ class CommentsController < ApplicationController
   end
 
   def destroy
+    authorize(comment)
     flash[:notice] = "Comment has been deleted"
 
     comment.destroy
