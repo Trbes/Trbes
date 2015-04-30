@@ -18,6 +18,9 @@ class Comment < ActiveRecord::Base
   scope :root, -> { where(parent_comment_id: nil) }
   scope :favourite, -> { where(favourite: true) }
   scope :for_membership, -> (membership) { where(membership_id: membership.id) }
+  scope :published_or_authored_by, lambda { |membership|
+    where("state = ? OR membership_id = ?", states[:published], membership.id)
+  }
 
   enum state: %i(moderation published rejected)
 
