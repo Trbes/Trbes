@@ -28,6 +28,14 @@ class CommentPolicy < Struct.new(:membership, :comment)
     create? && comment.root?
   end
 
+  def edit?
+    membership && (membership.moderator? || membership.owner? || comment.editable?)
+  end
+
+  def display_state?
+    !comment.published? && comment.written_by?(membership) || membership && (membership.moderator? || membership.owner?)
+  end
+
   def destroy?
     comment.membership == membership
   end

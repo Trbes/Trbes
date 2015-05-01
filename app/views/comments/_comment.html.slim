@@ -25,6 +25,10 @@
           i.fa.fa-mail-reply
           | reply
 
+    .comment-controls
+      == postable_controls(comment)
+      = render "comments/edit_modal", comment: comment
+
   .comment-content
     header.comment-header
       .comment-author

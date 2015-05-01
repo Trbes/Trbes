@@ -1,6 +1,6 @@
 - if policy(post).edit?
   .post-footer
-    == post_controls(post)
+    == postable_controls(post)
 
     .modal.fade data-backdrop="static" id=("edit_post_#{post.id}")
       .modal-dialog

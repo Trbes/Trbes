@@ -2,6 +2,7 @@ class Post < ActiveRecord::Base
   DATE_RANKING_INTRODUCED = DateTime.new(2015, 1, 1).to_i
   ONE_RANKING_POINT_WEIGHT = 12.5.hours
 
+  include Postable
   include AlgoliaSearch
   extend FriendlyId
 
@@ -65,14 +66,6 @@ class Post < ActiveRecord::Base
 
   def preview_image
     attachments.first.image if attachments.any?
-  end
-
-  def editable?
-    created_at >= 15.minutes.ago
-  end
-
-  def written_by?(membership)
-    membership_id == membership.id
   end
 
   def set_hot_rank

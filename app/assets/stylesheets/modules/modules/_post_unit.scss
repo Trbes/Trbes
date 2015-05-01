@@ -2,6 +2,10 @@
 .post-unit {
   padding: 0;
 
+  .post-controls, .comment-controls {
+    color: #bbb;
+  }
+
   .post {
     @include clearfix;
 
@@ -65,10 +69,6 @@
         height: 80px;
         float: left;
       }
-    }
-
-    .post-controls {
-      color: #bbb;
     }
 
     a.vote {
