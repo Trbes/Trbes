@@ -37,7 +37,7 @@
           .post-meta
             span.date posted #{distance_of_time_in_words_to_now(post.created_at) } ago
           .post-controls
-            == post_controls(post)
+            == postable_controls(post)
         .post-body
           - if post.post_type == "text_post"
             = raw_sanitize(post.body)
