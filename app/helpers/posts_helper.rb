@@ -91,28 +91,22 @@ module PostsHelper
   end
   # rubocop:enable Metrics/AbcSize, Metrics/CyclomaticComplexity, Metrics/MethodLength
 
+  def postable_controls(postable)
+    postable_type = postable.class.name.downcase
+
+    [
+      public_send("edit_#{postable_type}_link", postable),
+      public_send("delete_#{postable_type}_link", postable),
+      public_send("#{postable_type}_state_info", postable),
+    ].compact.join("<span> • </span>")
+  end
+
   def comment_controls(comment)
     [
       edit_comment_link(comment),
       delete_comment_link(comment),
       comment_state_info(comment)
     ].compact.join("<span> • </span>")
-  end
-
-  def edit_comment_link(comment)
-    return unless policy(comment).edit?
-
-    link_to("Edit", "#", data: { toggle: "modal", target: "#edit_comment_#{comment.id}" })
-  end
-
-  def delete_comment_link(comment)
-    return unless policy(comment).destroy?
-
-    link_to("Delete", comment_path(comment), method: :delete, data: { confirm: "Are you sure?" })
-  end
-
-  def comment_state_info(comment)
-    content_tag(:span, comment.state) if policy(comment).display_state?
   end
 
   def post_controls(post)

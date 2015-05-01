@@ -26,7 +26,7 @@
           | reply
 
     .comment-controls
-      == comment_controls(comment)
+      == postable_controls(comment)
       = render "comments/edit_modal", comment: comment
 
   .comment-content
