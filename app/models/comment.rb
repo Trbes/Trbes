@@ -31,4 +31,8 @@ class Comment < ActiveRecord::Base
   def root?
     parent_comment_id.nil?
   end
+
+  def written_by?(membership)
+    membership_id == membership.id
+  end
 end
