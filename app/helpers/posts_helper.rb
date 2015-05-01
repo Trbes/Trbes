@@ -95,18 +95,30 @@ module PostsHelper
     postable_type = postable.class.name.downcase
 
     [
-      public_send("edit_#{postable_type}_link", postable),
-      public_send("delete_#{postable_type}_link", postable),
-      public_send("#{postable_type}_state_info", postable),
+      public_send("edit_postable_link", postable),
+      public_send("delete_postable_link", postable),
+      public_send("postable_state_info", postable),
     ].compact.join("<span> • </span>")
   end
 
-  def comment_controls(comment)
-    [
-      edit_comment_link(comment),
-      delete_comment_link(comment),
-      comment_state_info(comment)
-    ].compact.join("<span> • </span>")
+  def edit_postable_link(postable)
+    return unless policy(postable).edit?
+
+    postable_type = postable.class.name.downcase
+
+    link_to "Edit",
+      "#",
+      data: { toggle: "modal", target: "#edit_#{postable_type}_#{postable.id}" }
+  end
+
+  def delete_postable_link(postable)
+    return unless policy(postable).destroy?
+
+    link_to("Delete", postable, method: :delete, data: { confirm: "Are you sure?" })
+  end
+
+  def postable_state_info(postable)
+    content_tag(:span, postable.state) if policy(postable).display_state?
   end
 
   def post_controls(post)
