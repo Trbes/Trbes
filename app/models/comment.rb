@@ -1,4 +1,6 @@
 class Comment < ActiveRecord::Base
+  include Postable
+
   belongs_to :post, counter_cache: :comments_count, required: true, touch: true
   belongs_to :membership, required: true
   belongs_to :parent_comment, class_name: "Comment", foreign_key: :parent_comment_id
@@ -24,15 +26,7 @@ class Comment < ActiveRecord::Base
 
   enum state: %i(moderation published rejected)
 
-  def editable?
-    created_at >= 15.minutes.ago
-  end
-
   def root?
     parent_comment_id.nil?
-  end
-
-  def written_by?(membership)
-    membership_id == membership.id
   end
 end
