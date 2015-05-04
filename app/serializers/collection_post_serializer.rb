@@ -10,4 +10,3 @@ class CollectionPostSerializer < ActiveModel::Serializer
     scope.admin_collection_post_path(object)
   end
 end
-
