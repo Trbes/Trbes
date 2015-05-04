@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150423072737) do
+ActiveRecord::Schema.define(version: 20150504151503) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -47,8 +47,10 @@ ActiveRecord::Schema.define(version: 20150423072737) do
     t.integer  "row_order"
     t.integer  "collection_posts_count", default: 0,     null: false
     t.string   "icon_class"
+    t.datetime "deleted_at"
   end
 
+  add_index "collections", ["deleted_at"], name: "index_collections_on_deleted_at", using: :btree
   add_index "collections", ["group_id"], name: "index_collections_on_group_id", using: :btree
 
   create_table "comments", force: :cascade do |t|
@@ -61,9 +63,11 @@ ActiveRecord::Schema.define(version: 20150423072737) do
     t.integer  "state",              default: 0, null: false
     t.boolean  "favourite"
     t.integer  "membership_id"
+    t.datetime "deleted_at"
   end
 
   add_index "comments", ["cached_votes_total"], name: "index_comments_on_cached_votes_total", using: :btree
+  add_index "comments", ["deleted_at"], name: "index_comments_on_deleted_at", using: :btree
   add_index "comments", ["membership_id"], name: "index_comments_on_membership_id", using: :btree
   add_index "comments", ["post_id"], name: "index_comments_on_post_id", using: :btree
 
@@ -118,8 +122,10 @@ ActiveRecord::Schema.define(version: 20150423072737) do
     t.datetime "created_at",             null: false
     t.datetime "updated_at",             null: false
     t.integer  "role",       default: 3, null: false
+    t.datetime "deleted_at"
   end
 
+  add_index "memberships", ["deleted_at"], name: "index_memberships_on_deleted_at", using: :btree
   add_index "memberships", ["group_id"], name: "index_memberships_on_group_id", using: :btree
   add_index "memberships", ["user_id"], name: "index_memberships_on_user_id", using: :btree
 
