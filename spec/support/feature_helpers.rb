@@ -12,7 +12,11 @@ module FeatureHelpers
   end
 
   def sign_out
-    click_link "Sign out"
+    if Capybara.current_driver == :poltergeist
+      page.find("a", text: "Sign out").trigger("click")
+    else
+      click_link "Sign out"
+    end
   end
 
   def switch_to_subdomain(subdomain)
@@ -83,16 +87,4 @@ shared_context "group membership and authentication" do
   end
 
   after { switch_to_main }
-end
-
-class ActionDispatch::IntegrationTest
-  include Capybara::DSL
-
-  teardown do
-    sleep 0.1
-    Capybara.reset_sessions!
-    sleep 0.1
-    page.driver.reset!
-    sleep 0.1
-  end
 end

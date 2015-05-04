@@ -3,13 +3,13 @@ require "rails_helper"
 shared_examples_for "deletable post" do
   scenario "I can delete post from posts list page", js: true do
     visit root_path
-    page.find("#post_#{post.id}").hover
 
-    within("#post_#{post.id}") do
-      expect(page).to have_link("Delete")
+    within("#post_#{post.id}", visible: false) do
+      expect(page).to have_css(".post-delete", text: "Delete", visible: false)
 
       expect {
-        page.find(".post-delete").trigger("click")
+        page.find(".post-delete", visible: false).trigger("click")
+        sleep 1
       }.to change { Post.count }.from(1).to(0)
     end
   end
@@ -29,7 +29,7 @@ shared_examples_for "not deletable post" do
   scenario "I can delete post from posts list page", js: true do
     visit root_path
 
-    within("#post_#{post.id}") do
+    within("#post_#{post.id}", visible: false) do
       expect(page).not_to have_link("Delete")
     end
   end
@@ -41,7 +41,7 @@ shared_examples_for "not deletable post" do
   end
 end
 
-feature "Delete post" do
+feature "Delete post", js: true do
   include_context "group membership and authentication"
 
   let!(:post) { create(:post, group: group) }
@@ -92,9 +92,9 @@ feature "Delete post" do
     it_behaves_like "not deletable post"
   end
 
-  context "when I'm guest" do
+  context "when I'm guest", js: true do
     background do
-      click_link "Sign out"
+      page.find("a", text: "Sign out", visible: false).trigger("click")
     end
 
     it_behaves_like "not deletable post"
