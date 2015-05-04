@@ -33,6 +33,14 @@ class Group < ActiveRecord::Base
 
   mount_uploader :logo, ImageUploader
 
+  def total_posts_count
+    [
+      moderation_posts_count,
+      published_posts_count,
+      rejected_posts_count
+    ].sum
+  end
+
   def comments_count
     posts.pluck(:comments_count).inject(:+) || 0
   end

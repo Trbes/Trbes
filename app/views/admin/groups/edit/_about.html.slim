@@ -35,8 +35,8 @@ section.about.clearfix
             .count= group.memberships_count
             .entity-wrapper= link_to group.pluralized_noun("Member", group.memberships_count), admin_memberships_path
           .group-statistics-element
-            .count= group.posts_count
-            .entity-wrapper= link_to group.pluralized_noun("Post", group.posts_count), admin_posts_path
+            .count= group.total_posts_count
+            .entity-wrapper= link_to group.pluralized_noun("Post", group.total_posts_count), admin_posts_path
           .group-statistics-element
             .count= group.collections_count
             .entity-wrapper= link_to group.pluralized_noun("Collection", group.collections_count), "#collections"
