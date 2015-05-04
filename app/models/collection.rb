@@ -15,6 +15,7 @@ class Collection < ActiveRecord::Base
   scope :ordered, -> { rank(:row_order) }
 
   ranks :row_order, with_same: :group_id
+  acts_as_paranoid
 
   def collection_post_for(post)
     collection_posts.where(post: post).first

@@ -25,5 +25,7 @@ class Membership < ActiveRecord::Base
 
   enum role: %i(member moderator owner pending)
 
+  acts_as_paranoid
+
   attr_accessor :new_group_owner_id
 end

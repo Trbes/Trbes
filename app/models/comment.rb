@@ -14,6 +14,7 @@ class Comment < ActiveRecord::Base
   delegate :user_full_name, :user_title, :user_avatar, :user_avatar_url, to: :membership
 
   acts_as_votable
+  acts_as_paranoid
 
   scope :order_by_votes, -> { order(cached_votes_total: :desc) }
   scope :order_by_created_at, -> { order(created_at: :desc) }
