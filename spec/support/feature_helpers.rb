@@ -61,8 +61,10 @@ RSpec.configure do |config|
 
   config.before :each, :js, type: :feature do |example|
     if example.metadata[:js]
-      page.driver.block_unknown_urls
-      page.driver.allow_url(Trbes::Application.config.host)
+      if Capybara.current_driver == :webkit
+        page.driver.block_unknown_urls
+        page.driver.allow_url(Trbes::Application.config.host)
+      end
     end
   end
 
@@ -81,4 +83,16 @@ shared_context "group membership and authentication" do
   end
 
   after { switch_to_main }
+end
+
+class ActionDispatch::IntegrationTest
+  include Capybara::DSL
+
+  teardown do
+    sleep 0.1
+    Capybara.reset_sessions!
+    sleep 0.1
+    page.driver.reset!
+    sleep 0.1
+  end
 end

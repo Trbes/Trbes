@@ -1,6 +1,15 @@
+require "capybara/poltergeist"
+
+Capybara.register_driver :poltergeist do |app|
+  Capybara::Poltergeist::Driver.new(app, {
+    debug: false, # change this to true to troubleshoot
+    window_size: [1300, 1000] # this can affect dynamic layout
+  })
+end
+
 Capybara.configure do |config|
   config.match = :prefer_exact
-  config.javascript_driver = :webkit
+  config.javascript_driver = :poltergeist
 end
 
 def clear_cookies

@@ -2,9 +2,10 @@
   div[
     class="post-state post-state-{{ post.state }}"
     ng-if="authorizer.policy(POLICIES.post_display_state, post)"
-    ng-bind="post.state"]
+    ng-bind="post.state" ]
 
   a[
+    class="post-edit"
     ng-if="authorizer.policy(POLICIES.post_edit, post)"
     href="#" onclick="return false;"
     data-toggle="modal"
@@ -15,6 +16,7 @@
            authorizer.policy(POLICIES.post_destroy, post)" ] •
 
   a[
+    class="post-delete"
     ng-if="authorizer.policy(POLICIES.post_destroy, post)"
     href="{{ post.path }}"
     data-method="delete"

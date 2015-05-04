@@ -7,7 +7,7 @@ feature "Sidebar" do
     visit root_path
   end
 
-  scenario "Search for groups", js: true do
+  scenario "Search for groups", js: true, driver: :webkit do
     page.find(".navbar-brand").click
 
     within(".tt-dropdown-menu", visible: false) do

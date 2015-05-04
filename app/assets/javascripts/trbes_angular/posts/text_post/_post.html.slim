@@ -8,7 +8,7 @@
       ng-attr-title="post.title"
       ng-bind-html="post.title" ]
 
-    .excerpt[] {{ post.body | htmlToPlaintext | limitTo:160 }}
+    .excerpt[] {{ post.body | htmlToPlaintext | characters:160 }}
 
     div[ng-include="'posts/_footer.html'"]
   .post-right

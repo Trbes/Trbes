@@ -75,7 +75,10 @@ group :test do
   gem "capybara"
   gem "capybara-webkit"
   gem "capybara-select2"
+  gem "capybara-angular"
   gem "database_cleaner"
+  gem "selenium-webdriver"
+  gem "poltergeist"
   gem "email_spec"
   gem "formulaic"
   gem "launchy"
@@ -137,4 +140,5 @@ source "https://rails-assets.org" do
   gem "rails-assets-angular-animate"
   gem "rails-assets-angular-moment"
   gem "rails-assets-angular-bootstrap"
+  gem "rails-assets-angular-truncate-asset"
 end

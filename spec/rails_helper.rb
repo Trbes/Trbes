@@ -21,6 +21,7 @@ RSpec.configure do |config|
   config.include ControllerHelpers, type: :controller
   config.include AttributeNormalizer::RSpecMatcher, type: :model
   config.include BestInPlace::TestHelpers, type: :feature
+  config.include Capybara::Angular::DSL
 
   config.before do
     WebMock.enable!

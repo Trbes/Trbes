@@ -8,6 +8,7 @@
   'Devise'
   'angularMoment'
   'ui.bootstrap'
+  'truncate'
 ])
 
 @trbes.config([
@@ -25,6 +26,6 @@
 ])
 
 @trbes.filter('htmlToPlaintext', ->
-  (text) ->
-    String(text).replace /<[^>]+>/gm, ''
+  (input) ->
+    if angular.isString(input) then input.replace(/<\S[^><]*>/g, '') else input
 )

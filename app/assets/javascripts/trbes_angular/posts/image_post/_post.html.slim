@@ -9,7 +9,7 @@
       ng-bind-html="post.title" ]
     a.image[href="{{ post.path }}"]
       .image-wrapper
-        img src="{{ post.preview_image_url }}"
+        img ng-attr-src="{{ post.preview_image_url }}"
 
     div[ng-include="'posts/_footer.html'"]
   .post-right

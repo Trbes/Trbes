@@ -21,7 +21,9 @@ h1.posts-listing-title[ng-if="!!current_collection"] Showing posts under "{{ cur
       ng-repeat="post in posts"
       on-last-repeat="posts" ]
 
-      div[ng-include="'posts/' + post.post_type + '/_post.html'"]
+      div[
+        ng-if="authorizer.policy(POLICIES.post_show, post)"
+        ng-include="'posts/' + post.post_type + '/_post.html'" ]
 
 pagination.pagination.pagination-azure.pagination-no-border[
   ng-if="total_posts_count > posts_per_page"

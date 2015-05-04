@@ -2,6 +2,7 @@
   post_display_state: "post_display_state"
   post_edit: "post_edit"
   post_destroy: "post_destroy"
+  post_show: "post_show"
   collection_post_create: "collection_post_create"
   collection_post_create_for: "collection_post_create_for"
   collection_post_destroy: "collection_post_destroy"
@@ -18,12 +19,15 @@
           switch policy
             # Post policies
             when POLICIES.post_display_state
-              return (object.state != "published" && membership && object.membership_id == membership.id) ||
-                       (membership && (membership.role == "moderator" || membership.role == "owner"))
+              return (object.state != "published" && membership && object.membership.id == membership.id) ||
+                (membership && (membership.role == "moderator" || membership.role == "owner"))
             when POLICIES.post_edit
-              return membership && (membership.role == "moderator" || membership.role == "owner" || post.editable)
+              return membership && (membership.role == "moderator" || membership.role == "owner" || object.editable)
             when POLICIES.post_destroy
-              return membership && (membership.role == "moderator" || membership.role == "owner" || post.membership_id == membership.id)
+              return membership && (membership.role == "moderator" || membership.role == "owner" || object.membership.id == membership.id)
+            when POLICIES.post_show
+              return object.published && !object.deleted ||
+                (membership && (membership.role == "moderator" || membership.role == "owner" || object.membership.id == membership.id))
 
             # Collection post policies
             when POLICIES.collection_post_create

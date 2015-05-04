@@ -1,14 +1,18 @@
 .post-upvote
   .vote-count[] {{ post.cached_votes_total }}
   a.vote.done[
+    ng-bind-attrs="{ href: (userSignedIn() ? '#' : '/users/sign_up'),
+                     onclick: (userSignedIn() ? 'return false;' : '') }"
     ng-if="post.voted_for"
-    ng-click="unvote_post(post)"
+    ng-click="userSignedIn() ? unvote_post(post) : return"
     title="Undo like"]
     .fa.fa-check
     .fa.fa-close
   a.vote[
+    ng-bind-attrs="{ href: (userSignedIn() ? '#' : '/users/sign_up'),
+                     onclick: (userSignedIn() ? 'return false;' : '') }"
     ng-if="!post.voted_for"
-    ng-click="upvote_post(post)"
+    ng-click="userSignedIn() ? upvote_post(post) : return"
     title="Like this"]
     i.fa.fa-thumbs-up
 

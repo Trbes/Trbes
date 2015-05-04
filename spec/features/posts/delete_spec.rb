@@ -1,14 +1,15 @@
 require "rails_helper"
 
 shared_examples_for "deletable post" do
-  scenario "I can delete post from posts list page" do
+  scenario "I can delete post from posts list page", js: true do
     visit root_path
+    page.find("#post_#{post.id}").hover
 
     within("#post_#{post.id}") do
       expect(page).to have_link("Delete")
 
       expect {
-        click_link("Delete")
+        page.find(".post-delete").trigger("click")
       }.to change { Post.count }.from(1).to(0)
     end
   end
@@ -25,7 +26,7 @@ shared_examples_for "deletable post" do
 end
 
 shared_examples_for "not deletable post" do
-  scenario "I can delete post from posts list page" do
+  scenario "I can delete post from posts list page", js: true do
     visit root_path
 
     within("#post_#{post.id}") do

@@ -21,7 +21,7 @@ feature "Create group" do
     switch_to_main
   end
 
-  scenario "User creates group successfully" do
+  scenario "User creates group successfully", js: true do
     click_button "Create Trbes Group"
 
     expect(page).to have_content("Welcome to #{group.name}")

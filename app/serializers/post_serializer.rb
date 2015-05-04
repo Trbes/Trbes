@@ -10,6 +10,8 @@ class PostSerializer < ActiveModel::Serializer
     :preview_image_url,
     :state,
     :editable,
+    :published,
+    :deleted,
     :voted_for,
     :share_link,
     :share_body,
@@ -28,6 +30,14 @@ class PostSerializer < ActiveModel::Serializer
 
   def editable
     object.editable?
+  end
+
+  def published
+    object.published?
+  end
+
+  def deleted
+    object.deleted?
   end
 
   def share_body

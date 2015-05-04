@@ -42,6 +42,7 @@
 //= require angular-animate
 //= require angular-moment
 //= require angular-bootstrap
+//= require angular-truncate-asset
 
 //= require trbes_angular/app
 //= require trbes_angular/directives

@@ -12,7 +12,7 @@
         = render "users/avatar", membership: membership, html_class: "group-member"
 
       - if current_group.show_extra_memberships?
-        a.more href="#" data-toggle="modal" data-target="#more_group_members"
+        a.more href="#" onclick="return false;" data-toggle="modal" data-target="#more_group_members"
           | ... and #{current_group.extra_memberships_count} more
 
         = render "groups/memberships_modal",

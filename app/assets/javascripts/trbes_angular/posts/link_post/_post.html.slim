@@ -12,7 +12,7 @@
       href="{{ post.link }}"
       ng-bind-html="post.link" ]
 
-    .excerpt[] {{ post.body | htmlToPlaintext | limitTo:160 }}
+    .excerpt[] {{ post.body | htmlToPlaintext | characters:160 }}
 
     div[ng-include="'posts/_footer.html'"]
   .post-right
