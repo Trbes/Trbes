@@ -9,5 +9,7 @@ class CollectionPost < ActiveRecord::Base
 
   delegate :image, :name, to: :collection, prefix: true
 
+  acts_as_paranoid
+
   ranks :row_order, with_same: :collection_id
 end
