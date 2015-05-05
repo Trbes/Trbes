@@ -1,0 +1,36 @@
+.post-footer
+  div[
+    class="post-state post-state-{{ post.state }}"
+    ng-if="authorizer.policy(POLICIES.post_display_state, post)"
+    ng-bind="post.state" ]
+
+  a[
+    class="post-edit"
+    ng-if="authorizer.policy(POLICIES.post_edit, post)"
+    href="#" onclick="return false;"
+    data-toggle="modal"
+    data-target="#edit_post_{{ post.id }}" ] Edit
+
+  span<>[
+    ng-if="authorizer.policy(POLICIES.post_edit, post) &&
+           authorizer.policy(POLICIES.post_destroy, post)" ] •
+
+  a[
+    class="post-delete"
+    ng-if="authorizer.policy(POLICIES.post_destroy, post)"
+    href="{{ post.path }}"
+    data-method="delete"
+    data-confirm="Are you sure?" ] Delete
+
+  .modal.fade[
+    ng-if="authorizer.policy(POLICIES.post_edit, post)"
+    id="edit_post_{{ post.id }}"
+    data-backdrop="static" ]
+    .modal-dialog
+      .modal-content
+        .modal-header
+          button.close aria-label="Close" data-dismiss="modal" type="button"
+            span aria-hidden="true"  &times;
+          h4.modal-title Edit Post
+        .modal-body
+          div[ng-include="'posts/' + post.post_type + '/_form.html'"]

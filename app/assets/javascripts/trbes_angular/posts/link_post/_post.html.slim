@@ -1,0 +1,19 @@
+.post.post-type-link[
+  id="post_{{ post.id }}"
+  highlighter="post.cached_votes_total"]
+  div[ng-include="'posts/_voting.html'"]
+  .post-content
+    a.title.iconify[
+      href="{{ post.path }}"
+      data-iconify-target="{{ post.link }}"
+      ng-attr-title="post.title"
+      ng-bind-html="post.title" ]
+    .url: a[
+      href="{{ post.link }}"
+      ng-bind-html="post.link" ]
+
+    .excerpt[] {{ post.body | htmlToPlaintext | characters:160 }}
+
+    div[ng-include="'posts/_footer.html'"]
+  .post-right
+    div[ng-include="'posts/_post_right.html'"]

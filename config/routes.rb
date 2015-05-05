@@ -17,21 +17,24 @@ Rails.application.routes.draw do
   post "/validate/group_subdomain" => "validation#group_subdomain"
   post "/validate/group_tagline" => "validation#group_tagline"
 
+  concern :voteable do
+    put "upvote"
+    put "unvote"
+  end
+
   constraints CustomDomainConstraint do
     resources :groups, only: %i( show new )
 
     get "join" => "memberships#create"
 
     resources :posts, only: %i( new create ) do
-      put "upvote"
-      put "unvote"
+      concerns :voteable
 
       resources :comments, only: %i( create destroy update ), shallow: true
     end
 
     resources :comments, only: [] do
-      put "upvote"
-      put "unvote"
+      concerns :voteable
     end
 
     namespace :admin do
@@ -53,18 +56,20 @@ Rails.application.routes.draw do
       put "/invitation" => "invitations#update", as: :update_invitation
     end
 
+    namespace :v1 do
+      resources :posts, only: %i( index show update destroy ) do
+        concerns :voteable
+      end
+    end
+
     root to: "groups#show", as: :group_root
 
-    get "/*id", to: "posts#show", as: :post
+    get "/*id", to: "posts#show", as: :post, id: /(?!.*?assets).*/
     patch "/*id", to: "posts#update"
     delete "/*id", to: "posts#destroy"
   end
 
-  namespace :v1 do
-    resources :posts, only: %i( index show update )
-  end
-
-  get "/groups/:subdomain", to: "groups#show"
+  get "/groups/:subdomain", to: "groups#show", constraints: { format: // }
 
   get "/small-teams", to: "landing#small_teams"
   get "/business", to: "landing#business"

@@ -7,7 +7,7 @@ $nav-collection-link-color-hover: #333;
   float: right;
   font-size: 1.2em;
 
-  @include breakpoint(0 $screen-md) {
+  @include breakpoint(0 $screen-md - 1) {
     float: none;
     text-align: center;
   }
@@ -19,7 +19,7 @@ $nav-collection-link-color-hover: #333;
       margin-right: 0;
     }
 
-    @include breakpoint(0 $screen-md) {
+    @include breakpoint(0 $screen-md - 1) {
       float: none;
       display: inline-block;
     }

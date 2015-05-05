@@ -21,10 +21,10 @@ feature "Create group" do
     switch_to_main
   end
 
-  scenario "User creates group successfully" do
+  scenario "User creates group successfully", js: true, driver: :webkit do
     click_button "Create Trbes Group"
 
-    expect(page).to have_content("Welcome to #{group.name}")
+    expect(page).to have_css(".group-page")
 
     expect(current_path).to eq(root_path)
     expect(current_url).to include(group.subdomain)

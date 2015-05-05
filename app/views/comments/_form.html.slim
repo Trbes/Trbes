@@ -13,7 +13,7 @@
       .pac-author
         span.user-avatar<
           = image_tag("default_avatar.jpg", width: 16, height: 16)
-        span.user-name> href="#" Join the conversation
+        span.user-name> href="#" onclick="return false;" Join the conversation
 
   - if policy(Comment).create?
     = simple_form_for([post, Comment.new], html: { class: "form-pac" }) do |f|

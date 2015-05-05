@@ -47,11 +47,12 @@ class GroupsController < ApplicationController
   end
 
   def show
+    # So that search result click will redirects to group's url
+    redirect_to root_url(subdomain: params[:subdomain]) and return if params[:id]
+
     @group_name = current_group.name
     @group_tagline = current_group.tagline
-    gon.group_id = current_group.id
-    # So that search result click will redirects to group's url
-    redirect_to root_url(subdomain: params[:id]) and return if params[:id]
+    setup_data_for_angular
   end
 
   private
@@ -77,6 +78,17 @@ class GroupsController < ApplicationController
       :subdomain,
       :allow_image_posts,
       :image
+    )
+  end
+
+  def setup_data_for_angular
+    gon.push(
+      group: GroupSerializer.new(current_group, root: false, scope: view_context),
+      membership: MembershipSerializer.new(current_membership, root: false, scope: view_context),
+      current_group_collections: current_group_collections,
+      collections_to_show: collections_to_show,
+      hidden_collections: hidden_collections,
+      collection_icon_classes: Collection::FONT_AWESOME_ICONS[:web_application]
     )
   end
 end

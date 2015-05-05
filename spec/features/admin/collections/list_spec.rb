@@ -23,7 +23,7 @@ feature "List collections" do
       visit edit_admin_group_path
     end
 
-    scenario "I can visit posts list within this collection" do
+    scenario "I can visit posts list within this collection", js: true do
       within "#collection_#{collection.id}" do
         click_link "1 post"
       end

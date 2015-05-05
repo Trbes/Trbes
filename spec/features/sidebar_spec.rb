@@ -7,8 +7,8 @@ feature "Sidebar" do
     visit root_path
   end
 
-  scenario "Search for groups", js: true do
-    page.find(".navbar-brand").click
+  scenario "Search for groups", js: true, driver: :webkit do
+    page.find(".navbar-brand").trigger("click")
 
     within(".tt-dropdown-menu", visible: false) do
       expect(page).not_to have_content(group.name.upcase)
@@ -30,7 +30,7 @@ feature "Sidebar" do
     scenario "Open the sidebar", js: true do
       visit root_path
 
-      page.find(".navbar-brand").click
+      page.find(".navbar-brand").trigger("click")
 
       within("#main_sliding_menu") do
         expect(page).not_to have_css(".btn-create-group")
@@ -45,7 +45,7 @@ feature "Sidebar" do
     scenario "Open the sidebar", js: true do
       visit root_path
 
-      page.find(".navbar-brand").click
+      page.find(".navbar-brand").trigger("click")
 
       within("#main_sliding_menu") do
         expect(page).to have_css(".btn-create-group")

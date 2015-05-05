@@ -14,3 +14,16 @@
 .active-item-shadow {
   opacity: 0.5;
 }
+
+.highlight {
+  @include keyframes(highlight-cooldown) {
+    0% {
+      background-color: rgb(231, 252, 228);
+    }
+    100% {
+      background-color: white;
+    }
+  }
+
+  animation: highlight-cooldown 4s ease-out;
+}

@@ -17,7 +17,7 @@ feature "Manage posts and collections" do
       visit root_path
     end
 
-    scenario "I can't see any collection-management-related controls on page" do
+    scenario "I can't see any collection-management-related controls on page", js: true do
       within("#post_#{post.id}") do
         expect(page).not_to have_css(".add-to-collection")
         expect(page).not_to have_css(".remove-from-collection")
@@ -39,7 +39,7 @@ feature "Manage posts and collections" do
 
     scenario "I can add post to collection", js: true do
       within("#post_#{post.id}") do
-        page.find(".add-to-collection", visible: false).click
+        page.find(".add-to-collection", visible: false).trigger("click")
       end
 
       select(collection.name, from: "Select a collection")
