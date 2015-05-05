@@ -3,7 +3,16 @@ require "capybara/poltergeist"
 Capybara.register_driver :poltergeist do |app|
   Capybara::Poltergeist::Driver.new(app,
     debug: false, # change this to true to troubleshoot
-    window_size: [1300, 1000] # this can affect dynamic layout
+    window_size: [1300, 1000], # this can affect dynamic layout
+    js_errors: false,
+    timeout: 180,
+    phantomjs_logger: Puma::NullIO.new,
+    logger: nil,
+    phantomjs_options:
+    [
+      '--load-images=no',
+      '--ignore-ssl-errors=yes'
+    ]
   )
 end
 
