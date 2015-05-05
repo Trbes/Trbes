@@ -56,7 +56,7 @@ feature "Join group" do
 
   context "When I'm signed in but not a group member" do
     background do
-      membership.destroy
+      membership.really_destroy!
       visit "/"
     end
 
