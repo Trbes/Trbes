@@ -1,3 +1,5 @@
-class ActsAsVotable::Vote
-  acts_as_paranoid
+module ActsAsVotable
+  class Vote
+    acts_as_paranoid
+  end
 end
