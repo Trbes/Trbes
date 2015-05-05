@@ -55,7 +55,7 @@ gem "omniauth-facebook"
 gem "omniauth-google-oauth2"
 gem "omniauth-linkedin-oauth2"
 # Switch back to original version when patch gets merged
-gem "paranoia", git: "https://github.com/sergey-alekseev/paranoia", branch: "switch-to-rails-4-2"
+gem "paranoia"
 gem "rest-client", "~> 1.8.0"
 gem "mobile-fu"
 gem "crack"
