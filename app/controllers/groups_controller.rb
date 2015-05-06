@@ -77,7 +77,8 @@ class GroupsController < ApplicationController
       :private,
       :subdomain,
       :allow_image_posts,
-      :image
+      :image,
+      :ga_tracking_id
     )
   end
 
