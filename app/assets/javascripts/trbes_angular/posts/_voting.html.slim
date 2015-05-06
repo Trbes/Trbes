@@ -26,5 +26,7 @@
     ng-bind-attrs="{ href: (userSignedIn() ? '#' : '/users/sign_up'),
                      onclick: (userSignedIn() ? 'return false;' : '') }"
     ng-click="feature_post(post)"
+    ng-if="authorizer.policy(POLICIES.post_feature, post)"
     title="Feature"]
-    i.fa.fa-star
+    i.fa.fa-star ng-if="post.featured"
+    i.fa.fa-star-o ng-if="!post.featured"
