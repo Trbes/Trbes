@@ -21,7 +21,7 @@ feature "Filter posts" do
     end
 
     context "by clicking on collection within post" do
-      scenario "I can filter posts by selected collection" do
+      scenario "I can filter posts by selected collection", js: true do
         within("#post_#{post.id}") do
           page.find("#collection_#{collection.id} a").click
         end
@@ -41,7 +41,7 @@ feature "Filter posts" do
     end
 
     context "by clicking on collection within collections list" do
-      scenario "I can filter posts by selected collection" do
+      scenario "I can filter posts by selected collection", js: true do
         within(".nav-collections") do
           page.find("#collection_#{collection.id}").click
         end

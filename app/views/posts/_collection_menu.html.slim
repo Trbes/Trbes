@@ -9,7 +9,7 @@ ul.nav.nav-pills.nav-collections
 
   - if will_show_collection_dropdown?
     li.dropdown.more class=('hint-add-collection' if will_show_add_collection_hint?)
-      a.dropdown-toggle data-close-others="false" data-delay="1000" data-hover="dropdown" data-toggle="dropdown" href="#"
+      a.dropdown-toggle data-close-others="false" data-delay="1000" data-hover="dropdown" data-toggle="dropdown" href="#" onclick="return false;"
         i.fa.fa-ellipsis-h.circle
       ul.dropdown-menu.dropdown-right
         - hidden_collections.each do |collection|
@@ -21,7 +21,7 @@ ul.nav.nav-pills.nav-collections
           - if hidden_collections.count > 0
             li.divider role="presentation"
           li role="presentation"
-            = link_to "#", data: { toggle: "modal", target: "#add_collection" } do
+            = link_to "javascript:void(0)", data: { toggle: "modal", target: "#add_collection" } do
               i.fa.fa-plus
               | Add Collection
 

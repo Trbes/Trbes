@@ -1,0 +1,27 @@
+.modal.fade data-backdrop="static" id=("edit_comment_#{comment.id}")
+  .modal-dialog
+    .modal-content
+      .modal-header
+        button.close aria-label="Close" data-dismiss="modal" type="button"
+          span aria-hidden="true"  &times;
+        h4.modal-title Edit Comment
+      .modal-body
+        = simple_form_for(comment,
+          html: { id: "form_new_text_post",
+                  class: "form-horizontal form-new-post" }) do |f|
+          .form-group.fnp-text
+            label.col-sm-2.control-label for="fnp_text_post_text"  Comment *
+            .col-sm-10
+              = f.input :body,
+                as: :text,
+                label: false,
+                wrapper: false,
+                error: false,
+                input_html: { id: "fnp_text_post_text",
+                              class: "form-control",
+                              row: 5 }
+          .form-group.fnp-actions
+            .col-sm-offset-2.col-sm-10
+              button.btn.btn-success.btn-bright-success.btn-lg.btn-fill.btn-submit-post type="submit"
+                | Save
+              a.btn.btn-simple.cancel-post[href="#" data-dismiss="modal"] Cancel

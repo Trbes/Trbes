@@ -28,6 +28,9 @@
 //= require jquery-autosize
 //= require moment
 //= require moment/locale/vi
+//= require underscore
+//= require is-loading
+//= require utils
 
 //= require angular
 //= require angular-ui-router
@@ -39,8 +42,13 @@
 //= require angular-animate
 //= require angular-moment
 //= require angular-bootstrap
+//= require angular-truncate-asset
 
-//= require angular_app/app
-//= require_tree ./angular_app
+//= require trbes_angular/app
+//= require trbes_angular/directives
+//= require trbes_angular/factories
+//= require trbes_angular/helpers
+//= require trbes_angular/policies
+//= require_tree ./trbes_angular
 
 //= require scripts

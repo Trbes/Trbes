@@ -13,7 +13,7 @@
           .vote-count = post.cached_votes_total
         .post-share
           .dropdown.share
-            a.share.dropdown-toggle aria-expanded="false" data-toggle="dropdown" href="javascript:void(0)"
+            a.share.dropdown-toggle aria-expanded="false" data-toggle="dropdown" href="#" onclick="return false;"
               span.icon-share
             = render "posts/share_menu", post: post, position: "left"
 
@@ -37,7 +37,7 @@
           .post-meta
             span.date posted #{distance_of_time_in_words_to_now(post.created_at) } ago
           .post-controls
-            == post_controls(post)
+            == postable_controls(post)
         .post-body
           - if post.post_type == "text_post"
             = raw_sanitize(post.body)

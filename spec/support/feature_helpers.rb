@@ -12,7 +12,11 @@ module FeatureHelpers
   end
 
   def sign_out
-    click_link "Sign out"
+    if Capybara.current_driver == :poltergeist
+      page.find("a", text: "Sign out").trigger("click")
+    else
+      click_link "Sign out"
+    end
   end
 
   def switch_to_subdomain(subdomain)
@@ -61,8 +65,10 @@ RSpec.configure do |config|
 
   config.before :each, :js, type: :feature do |example|
     if example.metadata[:js]
-      page.driver.block_unknown_urls
-      page.driver.allow_url(Trbes::Application.config.host)
+      if Capybara.current_driver == :webkit
+        page.driver.block_unknown_urls
+        page.driver.allow_url(Trbes::Application.config.host)
+      end
     end
   end
 

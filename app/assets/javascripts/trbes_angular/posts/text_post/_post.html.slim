@@ -1,0 +1,15 @@
+.post.post-type-text[
+  id="post_{{ post.id }}"
+  highlighter="post.cached_votes_total"]
+  div[ng-include="'posts/_voting.html'"]
+  .post-content
+    a.title[
+      href="{{ post.path }}"
+      ng-attr-title="post.title"
+      ng-bind-html="post.title" ]
+
+    .excerpt[] {{ post.body | htmlToPlaintext | characters:160 }}
+
+    div[ng-include="'posts/_footer.html'"]
+  .post-right
+    div[ng-include="'posts/_post_right.html'"]

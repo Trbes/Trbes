@@ -1,0 +1,26 @@
+form#form_new_link_post.simple_form.form-horizontal.form-new-post.active.ng-pristine.ng-valid[
+  accept-charset="UTF-8"
+  action="{{ post.path }}"
+  method="post" ]
+
+  input name="utf8" type="hidden" value="✓"
+  input name="_method" type="hidden" value="patch"
+  input name="authenticity_token" type="hidden" value="{{ csrf_token }}"
+  input#post_post_type name="post[post_type]" type="hidden" value="link_post"
+
+  .form-group.fnp-link
+    label.col-sm-2.control-label for="fnp_link_post_link"  Link *
+    .col-sm-10
+      input#fnp_link_post_link.string.optional.form-control.form-control name="post[link]" placeholder="http://" type="text" value="{{ post.link }}"
+  .form-group.fnp-title
+    label.col-sm-2.control-label for="fnp_link_post_title"  Title *
+    .col-sm-10
+      input#fnp_link_post_title.string.required.form-control.form-control aria-required="true" name="post[title]" required="required" type="text" value="{{ post.title }}"
+  .form-group.fnp-text
+    label.col-sm-2.control-label for="fnp_link_post_desc"  Tagline
+    .col-sm-10
+      textarea#fnp_link_post_desc.text.optional.form-control.form-control name="post[body]" row="5" style=("overflow: hidden; word-wrap: break-word; resize: horizontal; height: 52px;") ng-bind="post.body"
+  .form-group.fnp-actions
+    .col-sm-offset-2.col-sm-10
+      button.btn.btn-success.btn-bright-success.btn-lg.btn-fill.btn-submit-post type="submit"  Save
+      a.btn.btn-simple.cancel-post data-dismiss="modal" href="#" onclick="return false;"  Cancel

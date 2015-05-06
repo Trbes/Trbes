@@ -1,11 +1,11 @@
 require "rails_helper"
 
 shared_examples_for "editable posts" do
-  scenario "I can see 'edit' link on posts list page" do
+  scenario "I can see 'edit' link on posts list page", js: true do
     visit root_path
 
-    within("#post_#{post.id}") do
-      expect(page).to have_link("Edit")
+    within("#post_#{post.id}", visible: false) do
+      expect(page).to have_css(".post-edit", text: "Edit", visible: false)
     end
   end
 
@@ -50,10 +50,10 @@ feature "Edit" do
     end
 
     context "when I'm group member" do
-      scenario "I can't see 'edit' link on posts list page" do
+      scenario "I can't see 'edit' link on posts list page", js: true do
         visit root_path
 
-        within("#post_#{post.id}") do
+        within("#post_#{post.id}", visible: false) do
           expect(page).not_to have_link("Edit")
         end
       end

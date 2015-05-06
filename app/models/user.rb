@@ -11,6 +11,7 @@ class User < ActiveRecord::Base
     :recoverable, :rememberable, :trackable, :validatable, :omniauthable
 
   acts_as_voter
+  acts_as_paranoid
 
   mount_uploader :avatar, ImageUploader
 

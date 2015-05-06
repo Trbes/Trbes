@@ -1,8 +1,24 @@
 module V1
   class PostsController < V1::ApiController
-    expose(:posts)
+    expose(:posts) do
+      scope = current_group.posts
+        .includes(:attachments, collection_posts: :collection, membership: :user)
+        .public_send(sort_filter)
+        .page(params[:page])
+
+      params[:collection_id] ? scope.for_collection(params[:collection_id]) : scope
+    end
     expose(:post, attributes: :post_attributes)
     expose(:comments, ancestor: :post) { |collection| collection.root.published.includes(:membership, :child_comments) }
+
+    serialization_scope :view_context
+
+    def index
+      render json: {
+        posts: posts.map { |post| PostSerializer.new(post, root: false, scope: view_context) },
+        total_posts_count: posts.total_count
+      }
+    end
 
     def edit
       authorize(post)
@@ -33,7 +49,7 @@ module V1
     end
 
     def unvote
-      resource.unvote_by(current_user)
+      post.unvote_by(current_user)
 
       render json: post
     end
@@ -51,6 +67,10 @@ module V1
         :post_type,
         attachments_attributes: %i( image id )
       )
+    end
+
+    def sort_filter
+      params[:sort] || "order_by_votes"
     end
   end
 end

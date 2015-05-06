@@ -11,6 +11,7 @@ label Select an Icon
   - Collection::FONT_AWESOME_ICONS[:web_application].each do |icon_class|
     a.select-icon-class>[
       href="#"
+      onclick="return false;"
       data-icon-class=icon_class
       class=("active" if icon_class == f.object.icon_class) ]
       i.fa[class="fa-#{icon_class}"]

@@ -16,8 +16,10 @@ feature "Sort posts list" do
     visit root_path
   end
 
-  scenario "Sort by 'Popular'" do
-    click_link "Popular"
+  scenario "Sort by 'Popular'", js: true do
+    within(".nav-filter") do
+      page.find("a", text: "Popular").click
+    end
 
     expect(page.all(".post .title")[0].text).to eq(very_popular_but_not_so_fresh_post.title)
     expect(page.all(".post .title")[1].text).to eq(same_popular_as_old_but_newer_post.title)
@@ -25,8 +27,10 @@ feature "Sort posts list" do
     expect(page.all(".post .title")[3].text).to eq(fresh_post.title)
   end
 
-  scenario "Sort by 'New'" do
-    click_link "New"
+  scenario "Sort by 'New'", js: true do
+    within(".nav-filter") do
+      page.find("a", text: "New").click
+    end
 
     expect(page.all(".post .title")[0].text).to eq(fresh_post.title)
     expect(page.all(".post .title")[1].text).to eq(very_popular_but_not_so_fresh_post.title)
@@ -34,8 +38,10 @@ feature "Sort posts list" do
     expect(page.all(".post .title")[3].text).to eq(old_popular_post.title)
   end
 
-  scenario "Sort by 'Trending'" do
-    click_link "Trending"
+  scenario "Sort by 'Trending'", js: true do
+    within(".nav-filter") do
+      page.find("a", text: "Trending").click
+    end
 
     expect(page.all(".post .title")[0].text).to eq(very_popular_but_not_so_fresh_post.title)
     expect(page.all(".post .title")[1].text).to eq(fresh_post.title)

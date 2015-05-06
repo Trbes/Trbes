@@ -1,0 +1,24 @@
+form#form_new_image_post.simple_form.form-horizontal.form-new-post.ng-pristine.ng-valid[
+  accept-charset="UTF-8"
+  enctype="multipart/form-data"
+  action="{{ post.path }}"
+  method="post" ]
+
+  input name="utf8" type="hidden" value="✓"
+  input name="_method" type="hidden" value="patch"
+  input name="authenticity_token" type="hidden" value="{{ csrf_token }}"
+  input#post_post_type name="post[post_type]" type="hidden" value="image_post"
+
+  .form-group.fnp-title
+    label.col-sm-2.control-label for="fnp_image_post_title"  Title *
+    .col-sm-10
+      input#fnp_image_post_title.string.required.form-control.form-control aria-required="true" name="post[title]" required="required" type="text" value="{{ post.title }}" /
+  .form-group.fnp-file
+    label.col-sm-2.control-label for="fnp_image_post_image"  Image *
+    .col-sm-10[ng-if="post.attachments.length"]
+      input#fnp_image_post_image.file.optional name="post[attachments_attributes][0][image]" type="file"
+      input#post_attachments_attributes_0_id name="post[attachments_attributes][0][id]" type="hidden" value="{{ post.attachments[0].id }}"
+  .form-group.fnp-actions
+    .col-sm-offset-2.col-sm-10
+      button.btn.btn-success.btn-bright-success.btn-lg.btn-fill.btn-submit-post type="submit"  Save
+      a.btn.btn-simple.cancel-post data-dismiss="modal" href="#" onclick="return false;"  Cancel

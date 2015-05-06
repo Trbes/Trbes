@@ -15,7 +15,7 @@
 
 $icon-circle-size: 34px;
 $icon-circle-background-color: #f7c94c;
-$icon-circle-background-color-hover: #efaf00;
+$icon-circle-background-color-hover: saturate($icon-circle-background-color, 20%);
 $icon-circle-color: rgba(0, 0, 0, 0.8);
 
 .fa.circle {

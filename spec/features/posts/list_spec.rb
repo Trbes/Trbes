@@ -9,7 +9,7 @@ feature "Posts list" do
     visit root_path
   end
 
-  context "there is pending post" do
+  context "there is pending post", js: true do
     let!(:pending_post) { create(:post, state: :moderation, group: group, membership: membership) }
 
     context "when I'm moderator" do
@@ -47,7 +47,7 @@ feature "Posts list" do
     end
   end
 
-  context "text post" do
+  context "text post", js: true do
     include ActionView::Helpers
 
     let!(:post) { create(:post, :text, group: group) }
@@ -55,12 +55,12 @@ feature "Posts list" do
     scenario "I visit posts page" do
       within("#post_#{post.id}") do
         expect(page).to have_css(".title", text: post.title)
-        expect(page).to have_css(".excerpt", text: truncate(post.body, length: 160))
+        expect(page.find(".excerpt").text[0..100]).to eql post.body[0..100]
       end
     end
   end
 
-  context "link post" do
+  context "link post", js: true do
     let!(:post) { create(:post, :link, group: group) }
 
     scenario "I visit posts page" do
@@ -72,7 +72,7 @@ feature "Posts list" do
     end
   end
 
-  context "image post" do
+  context "image post", js: true do
     let!(:post) { create(:post, :image, group: group) }
 
     scenario "I visit posts page" do
@@ -83,7 +83,7 @@ feature "Posts list" do
     end
   end
 
-  scenario "Search", js: true do
+  scenario "Search", js: true, driver: :webkit do
     within(".tt-dropdown-menu", visible: false) do
       expect(page).not_to have_content(post.title)
     end
@@ -108,7 +108,7 @@ feature "Posts list" do
     end
   end
 
-  context "when there are too much posts" do
+  context "when there are too much posts", js: true do
     background do
       create_list(:post, 20, group: group)
       visit root_path

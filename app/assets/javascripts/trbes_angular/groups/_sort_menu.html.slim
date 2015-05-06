@@ -1,0 +1,7 @@
+ul.nav.nav-pills.nav-filter
+  li[class="{{ sort_class('order_by_votes') }}"]
+    a[ng-click="update_sort_params('order_by_votes')"] Popular
+  li[class="{{ sort_class('order_by_created_at') }}"]
+    a[ng-click="update_sort_params('order_by_created_at')"] New
+  li[class="{{ sort_class('order_by_trending') }}"]
+    a[ng-click="update_sort_params('order_by_trending')"] Trending

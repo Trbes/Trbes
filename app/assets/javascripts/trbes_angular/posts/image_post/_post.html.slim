@@ -1,0 +1,16 @@
+.post.post-type-image[
+  id="post_{{ post.id }}"
+  highlighter="post.cached_votes_total"]
+  div[ng-include="'posts/_voting.html'"]
+  .post-content
+    a.title[
+      href="{{ post.path }}"
+      ng-attr-title="post.title"
+      ng-bind-html="post.title" ]
+    a.image[href="{{ post.path }}"]
+      .image-wrapper
+        img ng-attr-src="{{ post.preview_image_url }}"
+
+    div[ng-include="'posts/_footer.html'"]
+  .post-right
+    div[ng-include="'posts/_post_right.html'"]

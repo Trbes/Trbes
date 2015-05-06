@@ -22,18 +22,19 @@
               i.fa.fa-circle.fa-stack-1x
               i.fa.fa-times.fa-inverse.fa-stack-1x
 
-.modal.fade id="add_to_collection_#{post.id}" tabindex="-1" role="dialog" aria-labelledby="add_to_collection" aria-hidden="true"
-  .modal-dialog
-    .modal-content
-      .modal-header
-        button.close type="button" data-dismiss="modal" aria-label="Close"
-          span aria-hidden="true" &times;
-        h4.modal-title#add_to_collection Add post to collection
+- if policy(CollectionPost).create_for?(post, current_group_collections)
+  .modal.fade id="add_to_collection_#{post.id}" tabindex="-1" role="dialog" aria-labelledby="add_to_collection" aria-hidden="true"
+    .modal-dialog
+      .modal-content
+        .modal-header
+          button.close type="button" data-dismiss="modal" aria-label="Close"
+            span aria-hidden="true" &times;
+          h4.modal-title#add_to_collection Add post to collection
 
-      = simple_form_for([:admin, CollectionPost.new]) do |f|
-        .modal-body
-          = f.input :collection_id, collection: current_group_collections, label: "Select a collection"
-          = f.input :post_id, as: :hidden, input_html: { value: post.id }
-          .modal-footer
-            button.btn.btn-default type="button" data-dismiss="modal" Close
-            = f.submit "Add", class: "btn btn-primary"
+        = simple_form_for([:admin, CollectionPost.new]) do |f|
+          .modal-body
+            = f.input :collection_id, collection: current_group_collections, label: "Select a collection"
+            = f.input :post_id, as: :hidden, input_html: { value: post.id }
+            .modal-footer
+              button.btn.btn-default type="button" data-dismiss="modal" Close
+              = f.submit "Add", class: "btn btn-primary"
