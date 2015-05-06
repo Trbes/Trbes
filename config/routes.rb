@@ -59,6 +59,7 @@ Rails.application.routes.draw do
     namespace :v1 do
       resources :posts, only: %i( index show update destroy ) do
         concerns :voteable
+        put :feature, on: :member
       end
     end
 

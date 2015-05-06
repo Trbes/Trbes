@@ -26,4 +26,8 @@ class PostPolicy < Struct.new(:membership, :post)
   def vote?(user)
     user
   end
+
+  def feature?
+    membership && (membership.moderator? || membership.owner?)
+  end
 end

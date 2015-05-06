@@ -21,6 +21,10 @@
     init_posts_pagination($scope)
     init_posts_sort_filter($scope, Post)
 
+    $scope.feature_post = (post) ->
+      Post.feature({id: post.id}, post).$promise.then (p) ->
+        angular.copy(p, post)
+
     $scope.upvote_post = (post) ->
       Post.upvote({id: post.id}, post).$promise.then (p) ->
         angular.copy(p, post)

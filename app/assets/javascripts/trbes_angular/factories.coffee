@@ -11,6 +11,9 @@
       unvote:
         url: '/v1/posts/:id/unvote.json'
         method: 'PUT'
+      feature:
+        url: '/v1/posts/:id/feature.json'
+        method: 'PUT'
 ])
 
 

@@ -1,9 +1,4 @@
 .post-footer
-  div[
-    class="post-state post-state-{{ post.state }}"
-    ng-if="authorizer.policy(POLICIES.post_display_state, post)"
-    ng-bind="post.state" ]
-
   a[
     class="post-edit"
     ng-if="authorizer.policy(POLICIES.post_edit, post)"
@@ -21,6 +16,15 @@
     href="{{ post.path }}"
     data-method="delete"
     data-confirm="Are you sure?" ] Delete
+
+  span<>[
+    ng-if="authorizer.policy(POLICIES.post_edit, post) &&
+           authorizer.policy(POLICIES.post_destroy, post)" ] •
+
+  span[
+    class="post-state post-state-{{ post.state }}"
+    ng-if="authorizer.policy(POLICIES.post_display_state, post)"
+    ng-bind="post.state" ]
 
   .modal.fade[
     ng-if="authorizer.policy(POLICIES.post_edit, post)"
