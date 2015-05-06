@@ -21,3 +21,10 @@
     div[
       ng-include="'posts/_share_menu.html'"
       onload="position = 'left'"]
+
+  a.feature[
+    ng-bind-attrs="{ href: (userSignedIn() ? '#' : '/users/sign_up'),
+                     onclick: (userSignedIn() ? 'return false;' : '') }"
+    ng-click="feature_post(post)"
+    title="Feature"]
+    i.fa.fa-star
