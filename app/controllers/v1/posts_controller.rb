@@ -55,17 +55,10 @@ module V1
     end
 
     def feature
-      post.update_attributes(featured: true)
+      post.update_attributes(featured: !post.featured)
 
       render json: post
     end
-
-    def unfeature
-      post.update_attributes(featured: false)
-
-      render json: post
-    end
-
 
     private
 
