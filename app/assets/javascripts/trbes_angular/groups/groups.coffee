@@ -12,6 +12,7 @@
   'Post'
   ($scope, $routeParams, $resource, $timeout, $modal, $log, Auth, UsersHelper, Authorizer, POLICIES, Post) ->
     init_authentication($scope, Auth)
+    $scope.is_loading = false
 
     init_group_data($scope)
     init_group_helpers($scope, POLICIES, Authorizer, UsersHelper)
@@ -82,13 +83,15 @@ init_posts_sort_filter = ($scope, Post) ->
   $scope.posts_queried = false
 
   $scope.get_posts = () ->
-    showLoader("Loading posts...", ".group-page")
+    showLoader("Loading posts...")
+    $scope.is_loading = true
     Post.all(page: $scope.current_page, sort: $scope.sort_params, collection_id: $scope.collection_id).$promise.then (response) ->
       $scope.posts_queried = true
       $scope.posts = response.posts
       $scope.total_posts_count = response.total_posts_count
-      hideLoader(".group-page")
+      hideLoader()
       window.scrollTo(0, 0)
+      $scope.is_loading = false
 
   $scope.$watch 'current_page + sort_params + collection_id', ->
     $scope.get_posts()
