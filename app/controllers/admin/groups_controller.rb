@@ -35,7 +35,8 @@ module Admin
         :allow_image_posts,
         :allow_link_posts,
         :allow_text_posts,
-        :logo
+        :logo,
+        :ga_tracking_id
       )
     end
   end

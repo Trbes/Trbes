@@ -37,6 +37,7 @@ describe Group do
     it { is_expected.to have_db_column(:subdomain) }
     it { is_expected.to have_db_column(:custom_domain) }
     it { is_expected.to have_db_column(:private) }
+    it { is_expected.to have_db_column(:ga_tracking_id) }
     it { is_expected.to have_db_column(:allow_image_posts) }
     it { is_expected.to have_db_column(:allow_link_posts) }
     it { is_expected.to have_db_column(:allow_text_posts) }
