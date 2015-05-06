@@ -43,6 +43,7 @@
 //= require angular-moment
 //= require angular-bootstrap
 //= require angular-truncate-asset
+//= require angular-filter
 
 //= require trbes_angular/app
 //= require trbes_angular/directives

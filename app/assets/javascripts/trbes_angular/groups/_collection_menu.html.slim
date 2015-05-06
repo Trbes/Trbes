@@ -11,7 +11,7 @@ ul.nav.nav-pills.nav-collections
     a[
       ng-click="update_collection_id(collection.id)"
       id="collection_{{ collection.id }}"
-      title="{{ collection.name }}"
+      title="{{ collection.name | uppercase }}"
       data-toggle="tooltip"
       data-placement="top" ]
 
@@ -41,7 +41,7 @@ ul.nav.nav-pills.nav-collections
           id="collection_{{ collection.id }}" ]
 
           i.fa.circle[class="{{ isBlank(collection.icon_class) ? 'fa-list' : 'fa-' + collection.icon_class }}"]
-          | {{ collection.name }}
+          | {{ collection.name | uppercase }}
 
       li.divider[
         ng-if="authorizer.policy(POLICIES.collection_create) && hidden_collections.length > 0"

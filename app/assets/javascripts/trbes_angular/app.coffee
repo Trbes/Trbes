@@ -9,6 +9,7 @@
   'angularMoment'
   'ui.bootstrap'
   'truncate'
+  'angular.filter'
 ])
 
 @trbes.config([
