@@ -4,6 +4,5 @@ javascript:
   m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
   })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
 
-/ - binding.pry
-- if current_group && current_group.ga_tracking_id.present?
-  = render "group_specific_ga_tracker"
+= render "google_analytics_trbes_tracker" if ENV["GA_TRACKING_ID"].present?
+= render "google_analytics_group_tracker" if current_group && current_group.ga_tracking_id.present?
