@@ -88,6 +88,7 @@ init_posts_sort_filter = ($scope, Post) ->
       $scope.posts = response.posts
       $scope.total_posts_count = response.total_posts_count
       hideLoader(".group-page")
+      window.scrollTo(0, 0)
 
   $scope.$watch 'current_page + sort_params + collection_id', ->
     $scope.get_posts()
