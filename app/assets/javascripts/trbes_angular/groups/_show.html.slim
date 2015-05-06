@@ -34,7 +34,7 @@ pagination.pagination.pagination-azure.pagination-no-border[
   max-size="max_size"
   boundary-links="true" ]
 
-.group-welcome[ng-if="posts.length == 0 && login_triggered && posts_queried && !collection_id"]
+.group-welcome[ng-if="!is_loading && posts.length == 0 && login_triggered && posts_queried && !collection_id"]
   = image_tag("icons/icon_write_big.png")
   br
   | Welcome to {{ group.name }}.
