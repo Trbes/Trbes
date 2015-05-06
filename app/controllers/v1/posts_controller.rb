@@ -55,6 +55,8 @@ module V1
     end
 
     def feature
+      authorize(post)
+
       post.update_attributes(featured: !post.featured)
 
       render json: post

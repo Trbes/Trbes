@@ -46,7 +46,7 @@ shared_examples_for "inaccessible featuring" do
   end
 end
 
-feature "feature comment", js: true do
+feature "Feature post", js: true do
   include_context "group membership and authentication"
 
   let!(:featured_post) { create(:post, group: group, membership: membership, featured: true) }
