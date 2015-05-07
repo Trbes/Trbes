@@ -1,7 +1,7 @@
 require "rails_helper"
 
 shared_examples_for "deletable post" do
-  scenario "I can delete post from posts list page", js: true do
+  scenario "I can delete post from posts list page", js: true, driver: :poltergeist do
     visit root_path
 
     within("#post_#{post.id}", visible: false) do
@@ -26,7 +26,7 @@ shared_examples_for "deletable post" do
 end
 
 shared_examples_for "not deletable post" do
-  scenario "I can delete post from posts list page", js: true do
+  scenario "I can delete post from posts list page", js: true, driver: :poltergeist do
     visit root_path
 
     within("#post_#{post.id}", visible: false) do
@@ -41,7 +41,7 @@ shared_examples_for "not deletable post" do
   end
 end
 
-feature "Delete post", js: true do
+feature "Delete post", js: true, driver: :poltergeist do
   include_context "group membership and authentication"
 
   let!(:post) { create(:post, group: group) }
@@ -92,7 +92,7 @@ feature "Delete post", js: true do
     it_behaves_like "not deletable post"
   end
 
-  context "when I'm guest", js: true do
+  context "when I'm guest", js: true, driver: :poltergeist do
     background do
       page.find("a", text: "Sign out", visible: false).trigger("click")
     end
