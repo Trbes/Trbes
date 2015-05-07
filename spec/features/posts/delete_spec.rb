@@ -1,17 +1,17 @@
 require "rails_helper"
 
 shared_examples_for "deletable post" do
-  scenario "I can delete post from posts list page", js: true, driver: :poltergeist do
+  scenario "I can delete post from posts list page", js: true do
     visit root_path
 
     within("#post_#{post.id}", visible: false) do
       expect(page).to have_css(".post-delete", text: "Delete", visible: false)
 
-      expect {
-        page.find(".post-delete", visible: false).trigger("click")
-        sleep 1
-      }.to change { Post.count }.from(1).to(0)
+      page.find(".post-delete", visible: false).trigger("click")
     end
+
+    expect(page).not_to have_css("#post_#{post.id}")
+    expect(Post.count).to eq(0)
   end
 
   scenario "I can delete post from post page" do
@@ -19,14 +19,15 @@ shared_examples_for "deletable post" do
 
     expect(page).to have_link("Delete")
 
-    expect {
-      click_link("Delete")
-    }.to change { Post.count }.from(1).to(0)
+    click_link("Delete")
+
+    expect(page).not_to have_css("#post_#{post.id}")
+    expect(Post.count).to eq(0)
   end
 end
 
 shared_examples_for "not deletable post" do
-  scenario "I can delete post from posts list page", js: true, driver: :poltergeist do
+  scenario "I can delete post from posts list page", js: true do
     visit root_path
 
     within("#post_#{post.id}", visible: false) do
@@ -41,7 +42,7 @@ shared_examples_for "not deletable post" do
   end
 end
 
-feature "Delete post", js: true, driver: :poltergeist do
+feature "Delete post", js: true do
   include_context "group membership and authentication"
 
   let!(:post) { create(:post, group: group) }
@@ -92,7 +93,7 @@ feature "Delete post", js: true, driver: :poltergeist do
     it_behaves_like "not deletable post"
   end
 
-  context "when I'm guest", js: true, driver: :poltergeist do
+  context "when I'm guest", js: true do
     background do
       page.find("a", text: "Sign out", visible: false).trigger("click")
     end
