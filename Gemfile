@@ -78,7 +78,6 @@ group :test do
   gem "capybara-angular"
   gem "database_cleaner"
   gem "selenium-webdriver"
-  gem "poltergeist"
   gem "email_spec"
   gem "formulaic"
   gem "launchy"
