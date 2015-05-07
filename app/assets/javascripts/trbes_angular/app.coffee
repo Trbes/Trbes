@@ -17,7 +17,7 @@
   '$urlRouterProvider'
   '$locationProvider'
   ($stateProvider, $urlRouterProvider, $locationProvider) ->
-    $stateProvider.state('post_listing',
+    $stateProvider.state('posts_listing',
       url: '/'
       templateUrl: 'groups/_show.html'
       controller: 'GroupsCtrl'

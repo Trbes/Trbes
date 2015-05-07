@@ -16,4 +16,21 @@
         method: 'PUT'
 ])
 
+@trbes.factory('Group', [
+  '$resource'
+  ($resource) ->
+    $resource '/v1/groups/:id.json', null,
+      all:
+        url: '/v1/groups.json'
+        method: 'GET'
+])
 
+app.factory('subdomain', [
+  '$location'
+  ($location) ->
+    host = $location.host()
+    if host.indexOf('.') < 0
+      null
+    else
+      host.split('.')[0]
+])

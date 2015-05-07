@@ -4,13 +4,15 @@
   '$resource'
   '$timeout'
   '$modal'
+  'subdomain'
   '$log'
   'Auth'
   'UsersHelper'
   'Authorizer'
   'POLICIES'
+  'Group'
   'Post'
-  ($scope, $routeParams, $resource, $timeout, $modal, $log, Auth, UsersHelper, Authorizer, POLICIES, Post) ->
+  ($scope, $routeParams, $resource, $timeout, $modal, subdomain, $log, Auth, UsersHelper, Authorizer, POLICIES, Group, Post) ->
     init_authentication($scope, Auth)
     $scope.is_loading = false
 
@@ -19,21 +21,16 @@
     init_group_dom($scope, $timeout)
 
     init_posts_pagination($scope)
+    init_posts_loading($scope, Post)
     init_posts_sort_filter($scope, Post)
+    init_posts_voting($scope, Post)
 
     $scope.feature_post = (post) ->
       Post.feature({id: post.id}, post).$promise.then (p) ->
         angular.copy(p, post)
-
-    $scope.upvote_post = (post) ->
-      Post.upvote({id: post.id}, post).$promise.then (p) ->
-        angular.copy(p, post)
-
-    $scope.unvote_post = (post) ->
-      Post.unvote({id: post.id}, post).$promise.then (p) ->
-        angular.copy(p, post)
 ]
 
+# Group data
 init_group_data = ($scope) ->
   $scope.group = gon.group
   $scope.membership = gon.membership
@@ -43,6 +40,7 @@ init_group_data = ($scope) ->
   $scope.collection_icon_classes = gon.collection_icon_classes
   $scope.sample_icon_class = $scope.collection_icon_classes[Math.floor(Math.random()*$scope.collection_icon_classes.length)]
 
+# Group helpers
 init_group_helpers = ($scope, POLICIES, Authorizer, UsersHelper) ->
   $scope.isBlank = isBlank
   $scope.POLICIES = POLICIES
@@ -50,6 +48,7 @@ init_group_helpers = ($scope, POLICIES, Authorizer, UsersHelper) ->
   $scope.csrf_token = angular.element('meta[name="csrf-token"]').attr('content')
   $scope.UsersHelper = UsersHelper
 
+# Dom initialization
 init_group_dom = ($scope, $timeout) ->
   $scope.init_checkboxes = () ->
     $timeout ->
@@ -66,6 +65,7 @@ init_group_dom = ($scope, $timeout) ->
       window.init_share_link_events()
       gsdk.initPopovers()
 
+# Post pagination
 init_posts_pagination = ($scope) ->
   $scope.current_page = 1
   $scope.model = current_page: 1
@@ -79,13 +79,8 @@ init_posts_pagination = ($scope) ->
   $scope.page_changed = () ->
     $scope.current_page = $scope.model.current_page
 
-init_posts_sort_filter = ($scope, Post) ->
-  $scope.sort_params = "order_by_votes"
-  $scope.collection_id = null
-  $scope.current_collection = null
-  $scope.posts = []
-  $scope.posts_queried = false
-
+# Post loading
+init_posts_loading = ($scope, Post) ->
   $scope.get_posts = () ->
     showLoader("Loading posts...")
     $scope.is_loading = true
@@ -99,6 +94,14 @@ init_posts_sort_filter = ($scope, Post) ->
 
   $scope.$watch 'current_page + sort_params + collection_id', ->
     $scope.get_posts()
+
+# Post sort & filter
+init_posts_sort_filter = ($scope, Post) ->
+  $scope.sort_params = "order_by_votes"
+  $scope.collection_id = null
+  $scope.current_collection = null
+  $scope.posts = []
+  $scope.posts_queried = false
 
   $scope.sort_class = (sort) ->
     return "active" if sort == $scope.sort_params && !$scope.collection_id
@@ -116,3 +119,13 @@ init_posts_sort_filter = ($scope, Post) ->
     $scope.collection_id = id
     $scope.current_collection = _.find $scope.collections_to_show, (collection) ->
       collection.id == $scope.collection_id
+
+# Post voting
+init_posts_voting = ($scope, Post) ->
+  $scope.upvote_post = (post) ->
+    Post.upvote({id: post.id}, post).$promise.then (p) ->
+      angular.copy(p, post)
+
+  $scope.unvote_post = (post) ->
+    Post.unvote({id: post.id}, post).$promise.then (p) ->
+      angular.copy(p, post)
