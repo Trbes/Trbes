@@ -9,7 +9,7 @@ feature "Single post page" do
     visit root_path
   end
 
-  scenario "I visit single post page", js: true, driver: :webkit do
+  scenario "I visit single post page", js: true do
     visit post_path(post)
 
     expect(current_path).to eq("/#{post.title.parameterize}")

@@ -1,6 +1,6 @@
 require "rails_helper"
 
-feature "Sidebar", driver: :webkit do
+feature "Sidebar" do
   include_context "group membership and authentication"
 
   background do
