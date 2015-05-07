@@ -37,3 +37,9 @@ root.init_authentication = ($scope, Auth) ->
 
   sharedService
 )
+
+root.is_on_group_domain = () ->
+  host = window.location.hostname
+  subdomain = host.indexOf('.') < 0 ? null : host.split('.')[0]
+  console.log "host ", host, gon.trbes_host
+  return subdomain || host != gon.trbes_host

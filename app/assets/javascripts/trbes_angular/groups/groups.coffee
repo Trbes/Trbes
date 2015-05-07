@@ -4,7 +4,6 @@
   '$resource'
   '$timeout'
   '$modal'
-  'subdomain'
   '$log'
   'Auth'
   'UsersHelper'
@@ -12,22 +11,27 @@
   'POLICIES'
   'Group'
   'Post'
-  ($scope, $routeParams, $resource, $timeout, $modal, subdomain, $log, Auth, UsersHelper, Authorizer, POLICIES, Group, Post) ->
+  ($scope, $routeParams, $resource, $timeout, $modal, $log, Auth, UsersHelper, Authorizer, POLICIES, Group, Post) ->
     init_authentication($scope, Auth)
     $scope.is_loading = false
 
-    init_group_data($scope)
-    init_group_helpers($scope, POLICIES, Authorizer, UsersHelper)
-    init_group_dom($scope, $timeout)
+    if is_on_group_domain()
+      init_group_data($scope)
+      init_group_helpers($scope, POLICIES, Authorizer, UsersHelper)
+      init_group_dom($scope, $timeout)
 
-    init_posts_pagination($scope)
-    init_posts_loading($scope, Post)
-    init_posts_sort_filter($scope, Post)
-    init_posts_voting($scope, Post)
+      init_posts_pagination($scope)
+      init_posts_loading($scope, Post)
+      init_posts_sort_filter($scope, Post)
+      init_posts_voting($scope, Post)
 
-    $scope.feature_post = (post) ->
-      Post.feature({id: post.id}, post).$promise.then (p) ->
-        angular.copy(p, post)
+      $scope.feature_post = (post) ->
+        Post.feature({id: post.id}, post).$promise.then (p) ->
+          angular.copy(p, post)
+
+    else
+      Group.all().$promise.then (response) ->
+        $scope.groups = response.groups
 ]
 
 # Group data

@@ -72,6 +72,10 @@ Rails.application.routes.draw do
     delete "/*id", to: "posts#destroy"
   end
 
+  namespace :v1 do
+    resources :groups, only: %i( index )
+  end
+
   get "/groups/:subdomain", to: "groups#show", constraints: { format: // }
 
   get "/small-teams", to: "landing#small_teams"

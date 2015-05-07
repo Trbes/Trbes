@@ -1,0 +1,10 @@
+.groups-listing
+  ul
+    li[
+      ng-if="groups.length > 0"
+      class="animate-repeat"
+      ng-repeat="group in groups"
+      on-last-repeat="groups" ]
+
+      | {{ group.name }}
+

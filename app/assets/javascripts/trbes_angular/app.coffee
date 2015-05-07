@@ -17,11 +17,19 @@
   '$urlRouterProvider'
   '$locationProvider'
   ($stateProvider, $urlRouterProvider, $locationProvider) ->
-    $stateProvider.state('posts_listing',
-      url: '/'
-      templateUrl: 'groups/_show.html'
-      controller: 'GroupsCtrl'
-    )
+    if is_on_group_domain()
+      $stateProvider.state('posts_listing',
+        url: '/'
+        templateUrl: 'groups/show.html'
+        controller: 'GroupsCtrl'
+      )
+    else
+      $stateProvider.state('groups_listing',
+        url: '/'
+        templateUrl: 'groups/index.html'
+        controller: 'GroupsCtrl'
+      )
+
     # $locationProvider.html5Mode(true)
     $urlRouterProvider.otherwise '/'
 ])
