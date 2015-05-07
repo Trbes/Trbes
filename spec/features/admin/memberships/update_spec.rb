@@ -99,16 +99,37 @@ feature "Update membership", js: true do
 
   context "when I logged in as a moderator" do
     background do
-      some_membership.owner!
       membership.moderator!
-
-      visit admin_memberships_path
     end
 
     scenario "I cannot transfer ownership" do
+      some_membership.owner!
+      visit admin_memberships_path
+
       within(".memberships #membership_#{some_membership.id}.membership") do
         expect(page).to have_content("owner")
         expect(page).not_to have_css("a.role-link")
+      end
+    end
+
+    scenario "I cannot change other moderator's role" do
+      some_membership.moderator!
+      visit admin_memberships_path
+
+      within(".memberships #membership_#{some_membership.id}.membership") do
+        expect(page).to have_content("moderator")
+        expect(page).not_to have_css("a.role-link")
+      end
+    end
+
+    scenario "I cannot promote users to moderators" do
+      some_membership.member!
+      visit admin_memberships_path
+
+      find("section.memberships #membership_#{some_membership.id} .role-link").click
+
+      within("ul.select2-results") do
+        expect(page).not_to have_css("li div", text: /\A(moderator|owner)\z/)
       end
     end
   end
