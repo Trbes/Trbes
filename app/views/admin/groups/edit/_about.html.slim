@@ -9,7 +9,7 @@ section.about.clearfix
 
     .group-right
       .controls
-        - if policy(group).edit?
+        - if policy(group).update?
           = link_to "edit", "#", class: "control", data: { toggle: "modal", target: "#edit_group" }
           = render "admin/groups/edit/edit_modal", group: group
 

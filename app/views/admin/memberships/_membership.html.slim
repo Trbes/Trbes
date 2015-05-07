@@ -25,15 +25,19 @@
       strong owner
 
   - else
-    = link_to "#", class: "role-link" do
-      = best_in_place_if !membership.owner?, membership,
+    - if current_membership.owner? || !membership.moderator?
+      = link_to "#", class: "role-link" do
+        = best_in_place_if !membership.owner?, membership,
           :role,
           as: :select,
-          collection: Hash[Membership.roles.keys.zip(Membership.roles.keys)].delete_if { |key| key == "owner" },
+          collection: membership_role_update_options,
           place_holder: membership.role,
           url: admin_membership_path(membership),
           class: "update-class-on-success updateable-#{membership.role}"
-  '&nbsp;
+    - else
+      strong = membership.role
+
+  '
   = link_to "#" do
   .controls
     - unless membership.user == current_user
