@@ -49,4 +49,18 @@ feature "Edit group", js: true do
       expect(group.private).to eq(false)
     end
   end
+
+  context "when logged in as moderator" do
+    background do
+      membership.moderator!
+    end
+
+    scenario "cannot edit group info" do
+      visit edit_admin_group_path
+
+      within(".group-profile") do
+        expect(page).not_to have_link("edit")
+      end
+    end
+  end
 end
