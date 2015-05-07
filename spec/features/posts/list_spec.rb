@@ -83,7 +83,7 @@ feature "Posts list" do
     end
   end
 
-  scenario "Search", js: true, driver: :webkit do
+  scenario "Search", js: true do
     within(".tt-dropdown-menu", visible: false) do
       expect(page).not_to have_content(post.title)
     end
