@@ -13,7 +13,7 @@ feature "Edit group", js: true do
     fill_in "Name", with: "New Name"
     fill_in "Tagline", with: "New Tagline"
     fill_in "Description", with: "New Description"
-    fill_in "Google Analytics Tracking ID", with: "UA-12345-6"
+    # fill_in "Google Analytics Tracking ID", with: "UA-12345-6"
     # fill_in "Custom domain", with: "example.com"
     page.find("#cg_privacy").click
 
@@ -26,8 +26,8 @@ feature "Edit group", js: true do
     expect(group.name).to eq("New Name")
     expect(group.tagline).to eq("New Tagline")
     expect(group.description).to eq("New Description")
-    expect(group.ga_tracking_id).to eq("UA-12345-6")
     expect(group.private).to eq(true)
+    # expect(group.ga_tracking_id).to eq("UA-12345-6")
     # expect(group.custom_domain).to eq("example.com")
   end
 
