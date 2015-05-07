@@ -18,7 +18,7 @@ end
 
 Capybara.configure do |config|
   config.match = :prefer_exact
-  config.javascript_driver = :poltergeist
+  config.javascript_driver = :webkit
 end
 
 def clear_cookies
