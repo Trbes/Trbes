@@ -112,11 +112,12 @@ feature "Update membership", js: true do
       end
     end
 
-    scenario "I cannot change other moderator's role" do
+    scenario "I cannot change mine or other moderator's role" do
       some_membership.moderator!
       visit admin_memberships_path
 
-      within(".memberships #membership_#{some_membership.id}.membership") do
+      within(".memberships #membership_#{some_membership.id}.membership,
+              .memberships #membership_#{membership.id}.membership") do
         expect(page).to have_content("moderator")
         expect(page).not_to have_css("a.role-link")
       end
