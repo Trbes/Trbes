@@ -36,4 +36,6 @@
           membership_path(current_membership),
           method: :delete,
           data: { confirm: "Are you sure you want to cancel your membership request?" }
-= render "posts/add_a_post", post: Post.new, current_group: current_group if current_group
+
+- if current_membership
+  = render "posts/add_a_post", post: Post.new, current_group: current_group
