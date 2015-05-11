@@ -7,9 +7,9 @@ xml.rss version: "2.0" do
     xml.language "en-CA"
     xml.tag! "sy:updatePeriod", "hourly"
     xml.tag! "sy:updateFrequency", "1"
-    xml.lastBuildDate posts.first.created_at.to_s(:rfc822)
+    xml.lastBuildDate rss_posts.first.created_at.to_s(:rfc822)
 
-    posts.each do |post|
+    rss_posts.each do |post|
       xml.item do
         xml.title post.title
         xml.link post.link if post.link
