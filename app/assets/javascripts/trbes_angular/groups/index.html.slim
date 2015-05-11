@@ -1,8 +1,9 @@
 .groups-listing
   div[
-    ng-if="groups.length > 0"
+    ng-if="!is_loading && groups.length > 0"
     class="animate-repeat"
-    ng-repeat="group in groups" ]
+    ng-repeat="group in groups"
+    on-last-repeat="groups" ]
 
     div[ng-include="'groups/_group.html'"]
 

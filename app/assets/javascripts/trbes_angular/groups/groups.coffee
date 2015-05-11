@@ -14,7 +14,6 @@
   ($scope, $routeParams, $resource, $timeout, $modal, $log, Auth, UsersHelper, Authorizer, POLICIES, Group, Post) ->
     init_authentication($scope, Auth)
     $scope.is_loading = false
-    $scope.isBlank = isBlank
 
     if is_on_group_domain()
       init_group_data($scope)
@@ -31,8 +30,13 @@
           angular.copy(p, post)
 
     else
+      init_group_helpers($scope, POLICIES, Authorizer, UsersHelper)
       init_pagination($scope, 10)
       init_groups_loading($scope, Group)
+
+      $scope.$on 'onRepeatLast', (scope, element, attrs) ->
+        $timeout ->
+          gsdk.initPopovers()
 ]
 
 # Group data
@@ -47,8 +51,10 @@ init_group_data = ($scope) ->
 
 # Group helpers
 init_group_helpers = ($scope, POLICIES, Authorizer, UsersHelper) ->
+  $scope.isBlank = isBlank
   $scope.POLICIES = POLICIES
-  $scope.authorizer = new Authorizer($scope.membership)
+  if is_on_group_domain()
+    $scope.authorizer = new Authorizer($scope.membership)
   $scope.csrf_token = angular.element('meta[name="csrf-token"]').attr('content')
   $scope.UsersHelper = UsersHelper
 
@@ -142,6 +148,7 @@ init_groups_loading = ($scope, Group) ->
     $scope.is_loading = true
     Group.all(page: $scope.current_page).$promise.then (response) ->
       $scope.groups = response.groups
+      console.log response.groups
       $scope.total_count = response.total_count
       hideLoader(".groups-listing")
       window.scrollTo(0, angular.element(".explore-title").offset().top)

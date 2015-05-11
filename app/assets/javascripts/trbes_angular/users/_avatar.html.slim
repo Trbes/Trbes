@@ -5,11 +5,11 @@ a>[
   data-toggle="popover"
   data-html="true"
   data-placement="bottom"
-  data-content="{{ UsersHelper.user_popover_content(post.membership) }}"
+  data-content="{{ UsersHelper.user_popover_content(membership) }}"
   data-template="{{ UsersHelper.user_popover_template() }}" ]
 
   span[
-    ng-if="!locals['hide_overlay'] && UsersHelper.show_role_overlay(post.membership)"
+    ng-if="!locals['hide_overlay'] && UsersHelper.show_role_overlay(membership)"
     class="role-overlay role-overlay-{{ membership.role }}" ] {{ membership.role[0] }}
 
   img.img-circle[
