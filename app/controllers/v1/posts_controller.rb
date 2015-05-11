@@ -16,7 +16,7 @@ module V1
     def index
       render json: {
         posts: posts.map { |post| PostSerializer.new(post, root: false, scope: view_context) },
-        total_posts_count: posts.total_count
+        total_count: posts.total_count
       }
     end
 

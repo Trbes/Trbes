@@ -7,7 +7,7 @@
         i.fa.fa-search
       input#post_search.form-control aria-describedby="search_main" placeholder="Search for posts" type="search"
   .col-md-6
-    div[ng-include="'groups/_collection_menu.html'"]
+    div[ng-include="'collections/_menu.html'"]
 
 h1.posts-listing-title[ng-if="!!current_collection"] Showing posts under "{{ current_collection.name }}"
 
@@ -26,11 +26,11 @@ h1.posts-listing-title[ng-if="!!current_collection"] Showing posts under "{{ cur
         ng-include="'posts/' + post.post_type + '/_post.html'" ]
 
 pagination.pagination.pagination-azure.pagination-no-border[
-  ng-if="total_posts_count > posts_per_page"
+  ng-if="total_count > per_page"
   ng-model="model.current_page"
   ng-change="page_changed()"
-  total-items="total_posts_count"
-  items-per-page="posts_per_page"
+  total-items="total_count"
+  items-per-page="per_page"
   max-size="max_size"
   boundary-links="true" ]
 

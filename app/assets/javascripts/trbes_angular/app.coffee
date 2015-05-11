@@ -10,6 +10,7 @@
   'ui.bootstrap'
   'truncate'
   'angular.filter'
+  'ngInflection'
 ])
 
 @trbes.config([

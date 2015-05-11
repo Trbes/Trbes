@@ -19,6 +19,6 @@ a>[
 
   span[ng-if="!!locals['display_name']"]
     '  {{ membership.user_full_name }}
-    ' •
-    div.user-title<[ng-if="!locals['hide_title']"] {{ membership.user_title }}
-
+    span[ng-if="!locals['hide_title'] && !isBlank(membership.user_title)"]
+      ' •
+      span.user-title<[] {{ membership.user_title }}

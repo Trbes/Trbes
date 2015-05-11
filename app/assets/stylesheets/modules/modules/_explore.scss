@@ -73,6 +73,20 @@
 }
 
 .groups-listing {
+  min-height: 250px;
+
+  &>div {
+    .media {
+      margin-top: 30px;
+    }
+
+    &:first-child {
+      .media {
+        margin-top: 0;
+      }
+    }
+  }
+
   .group-info {
     display: table-cell;
     width: 10000px;
