@@ -142,5 +142,4 @@ source "https://rails-assets.org" do
   gem "rails-assets-angular-truncate-asset"
   gem "rails-assets-angular-filter"
   gem "rails-assets-ngInflection"
-
 end

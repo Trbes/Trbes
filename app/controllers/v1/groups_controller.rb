@@ -18,7 +18,9 @@ module V1
 
     def index
       render json: {
-        groups: public_groups_with_owners.map { |group, owner| GroupSerializer.new(group, root: false, scope: view_context) },
+        groups: public_groups_with_owners.map do |group, _owner|
+          GroupSerializer.new(group, root: false, scope: view_context)
+        end,
         total_count: group_owners.total_count
       }
     end
