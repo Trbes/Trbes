@@ -9,6 +9,7 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
   rescue_from Pundit::NotAuthorizedError, with: :not_authorized
+  rescue_from ActiveRecord::RecordNotFound, with: :not_found
 
   before_action :push_gon_config, :push_indexes, :ensure_email_is_exists, :authorize_group_access
 
@@ -60,6 +61,10 @@ class ApplicationController < ActionController::Base
 
   def load_current_membership
     current_membership
+  end
+
+  def not_found
+    render "errors/not_found", layout: "error", status: 404
   end
 
   def not_authorized
