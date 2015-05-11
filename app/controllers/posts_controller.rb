@@ -4,12 +4,21 @@ class PostsController < ApplicationController
   before_action :ensure_trailing_slash, only: %i( show update destroy )
   before_action :ensure_group_is_loaded!, :ensure_group_access_from_canonical_url!, only: [:show]
 
+  expose(:rss_posts) { currrent_group.posts.published.includes(collection_posts: :collection, membership: :user) }
   expose(:posts, ancestor: :current_group)
   expose(:post, attributes: :post_attributes, finder: :find_by_slug) do
     posts.with_deleted.find_by!(slug: params[:id] || params[:post_id])
   end
   expose(:comments, ancestor: :post) do |collection|
     policy_scope(collection.root).includes(:membership, :child_comments)
+  end
+
+  def index
+    respond_to do |format|
+      format.rss do
+        render layout: false
+      end
+    end
   end
 
   def show
