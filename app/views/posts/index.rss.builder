@@ -4,6 +4,10 @@ xml.rss version: "2.0" do
     xml.title current_group.name
     xml.description current_group.tagline
     xml.link root_url
+    xml.language "en-CA"
+    xml.tag! "sy:updatePeriod", "hourly"
+    xml.tag! "sy:updateFrequency", "1"
+    xml.lastBuildDate posts.first.created_at.to_s(:rfc822)
 
     posts.each do |post|
       xml.item do
