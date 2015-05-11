@@ -47,20 +47,12 @@ class GroupsController < ApplicationController
   end
 
   def show
-    respond_to do |format|
-      format.html do
-        # So that search result click will redirects to group's url
-        redirect_to root_url(subdomain: params[:subdomain]) and return if params[:id]
+    # So that search result click will redirects to group's url
+    redirect_to root_url(subdomain: params[:subdomain]) and return if params[:id]
 
-        @group_name = current_group.name
-        @group_tagline = current_group.tagline
-        setup_data_for_angular
-      end
-
-      format.rss do
-        render layout: false
-      end
-    end
+    @group_name = current_group.name
+    @group_tagline = current_group.tagline
+    setup_data_for_angular
   end
 
   private
