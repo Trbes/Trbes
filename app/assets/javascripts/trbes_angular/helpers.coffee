@@ -13,6 +13,8 @@ root.init_authentication = ($scope, Auth) ->
   sharedService = {}
 
   sharedService.user_popover_content = (membership) ->
+    return if !membership
+
     html = "<div class=\'user-popover-content\'>"
     html += "<div class=\'user-role user-role-" + membership.role + "\'>group " + membership.role + "</div>"
     html += "<img src=\'" + membership.user_avatar_url + "\' class=\'img-circle\' width=\'64\' height=\'64\'>"
@@ -33,7 +35,15 @@ root.init_authentication = ($scope, Auth) ->
     html
 
   sharedService.show_role_overlay = (membership) ->
+    return false if !membership
+
     membership.role == "moderator" || membership.role == "owner"
 
   sharedService
 )
+
+root.is_on_group_domain = () ->
+  host = window.location.hostname
+  subdomain = host.indexOf('.') < 0 ? null : host.split('.')[0]
+  console.log "host ", host, gon.trbes_host
+  return subdomain || host != gon.trbes_host

@@ -1,0 +1,40 @@
+.media.group id="group_{{ group.id }}"
+  .media-left
+    a[href="{{ group.url }}"]
+      img[
+        class="media-object group-logo"
+        width="138"
+        ng-attr-src="{{ group.logo_url }}"]
+  .media-body
+    .group-info
+      a.media-heading.group-name[href="{{ group.url }}"] {{ group.name }}
+      .group-tagline[] {{ group.tagline }}
+      .group-desc[] {{ group.description }}
+      .group-meta
+        ' Created by
+        span>[
+          ng-include="'users/_avatar.html'"
+          onload="membership = group.owner;
+            locals = {
+              html_class: 'group-owner user-avatar',
+              display_name: true,
+              hide_title: true,
+              hide_overlay: true }" ]
+        ' •
+        a>[
+          href="#" onclick="return false;"
+          data-toggle="modal"
+          data-target="#all_group_{{ group.id }}_members" ]
+          | {{ group.memberships_count }} {{ 'member' | inflect: group.memberships_count  }}
+        ' •
+        a[href="{{ group.url }}"]
+          | {{ group.published_posts_count }} {{ 'post' | inflect: group.published_posts_count  }}
+
+        / TODO: Don't uncomment this until it's moved to client side. It causes very slow loading time
+        / = render "groups/memberships_modal",
+        /   modal_id: "all_group_#{group.id}_members",
+        /   group_memberships: group.memberships,
+        /   group: group
+
+  .group-actions
+    div[ng-include="'groups/_' + group.join_partial_path + '.html'" ]

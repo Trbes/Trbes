@@ -16,4 +16,11 @@
         method: 'PUT'
 ])
 
-
+@trbes.factory('Group', [
+  '$resource'
+  ($resource) ->
+    $resource '/v1/groups/:id.json', null,
+      all:
+        url: '/v1/groups.json'
+        method: 'GET'
+])

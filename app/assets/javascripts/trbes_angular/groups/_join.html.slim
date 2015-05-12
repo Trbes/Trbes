@@ -1,0 +1,7 @@
+a.btn.btn-fill[
+  ng-if="userSignedIn()"
+  href="{{ group.join_url }}" ] Join
+
+a.btn.btn-fill[
+  ng-if="!userSignedIn()"
+  href="{{ group.url }}/users/sign_up" ] Join

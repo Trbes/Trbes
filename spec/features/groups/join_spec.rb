@@ -1,6 +1,6 @@
 require "rails_helper"
 
-feature "Join group" do
+feature "Join group", js: true do
   let!(:membership) { create(:membership) }
   let!(:user) { membership.user }
   let!(:group) { membership.group }
@@ -18,14 +18,14 @@ feature "Join group" do
 
     scenario "I see notice about my request" do
       within("#group_#{group.id}") do
-        expect(page).to have_content("Join request was sent")
+        expect(page).to have_content("Join request was sent".upcase)
       end
     end
   end
 
   context "when I'm not-signed-in visitor" do
     background do
-      sign_out
+      page.find("a", text: "Sign out", visible: false).trigger("click")
       visit "/"
     end
 

@@ -113,8 +113,11 @@ class ApplicationController < ActionController::Base
 
   def push_gon_config
     push_algolia_config
-    gon.push(zero_clipboard_path: view_context.asset_path("zeroclipboard/ZeroClipboard.swf"))
-    gon.push(facebook_app_id: ENV["FACEBOOK_APP_ID"])
+    gon.push(
+      zero_clipboard_path: view_context.asset_path("zeroclipboard/ZeroClipboard.swf"),
+      facebook_app_id: ENV["FACEBOOK_APP_ID"],
+      trbes_host: Trbes::Application.config.host
+    )
   end
 
   def ensure_email_is_exists
