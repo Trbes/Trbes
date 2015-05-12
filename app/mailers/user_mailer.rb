@@ -1,6 +1,4 @@
 class UserMailer < ApplicationMailer
-  default from: "hello@trbes.com"
-
   def invitation_email(user, group, invited_user)
     @user = user
     @group = group
