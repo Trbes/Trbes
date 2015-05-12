@@ -1,5 +1,5 @@
 class Post < ActiveRecord::Base
-  DATE_RANKING_INTRODUCED = DateTime.new(2015, 1, 1).to_i
+  DATE_RANKING_INTRODUCED = DateTime.new(1998, 8, 12).to_i
   ONE_RANKING_POINT_WEIGHT = 12.5.hours
 
   include Postable
@@ -9,7 +9,7 @@ class Post < ActiveRecord::Base
   enum post_type: %i(text_post link_post image_post)
   enum state: %i(moderation published rejected)
 
-  scope :order_by_votes, -> { order(cached_votes_total: :desc, created_at: :desc) }
+  scope :order_by_votes, -> { order(popular_rank: :desc, created_at: :desc) }
   scope :order_by_created_at, -> { order(created_at: :desc) }
   scope :order_by_trending, -> { order(hot_rank: :desc, created_at: :desc) }
   scope :for_collection, -> (collection_id) { where(collection_posts: { collection_id: collection_id }) }
@@ -41,7 +41,7 @@ class Post < ActiveRecord::Base
 
   delegate :user_full_name, :user_avatar_url, :user_title, to: :membership
 
-  after_save :set_hot_rank
+  after_save :set_hot_rank, :set_popular_rank
 
   acts_as_votable
 
@@ -66,6 +66,13 @@ class Post < ActiveRecord::Base
 
   def preview_image
     attachments.first.image if attachments.any?
+  end
+
+  def set_popular_rank
+    order = Math.log([cached_votes_total, 1].max, 10)
+    seconds = created_at.to_i - DATE_RANKING_INTRODUCED
+
+    update_column(:popular_rank, (order + seconds / 2.months.to_f).round(7))
   end
 
   def set_hot_rank
