@@ -1,5 +1,5 @@
 class Post < ActiveRecord::Base
-  DATE_RANKING_INTRODUCED = DateTime.new(2015, 1, 1).to_i
+  DATE_RANKING_INTRODUCED = DateTime.new(1998, 8, 12).to_i
   ONE_RANKING_POINT_WEIGHT = 12.5.hours
 
   include Postable
