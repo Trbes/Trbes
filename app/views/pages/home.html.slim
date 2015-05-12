@@ -1,0 +1,25 @@
+.parallax
+  .parallax-image style="background-image: url(#{asset_path('header.jpg')})"
+  .paralax-image-overlay
+  /
+    .parallax-image
+      = image_tag("header.jpg")
+
+  #marketing
+    .container
+      = image_tag("logo_full_lightgray.png", width: 175, class: "marketing-logo")
+      .marketing-headline
+        em> Instant
+        | upvote site to share your passion.
+      .marketing-subheadline For your private or public community of interest.
+
+      a.btn.btn-success.btn-bright-success.btn-lg.btn-create-community[href=new_user_registration_path] Create a community
+
+.section
+  .container
+    - 50.times do |i|
+      p alsdjflasjfl
+
+- content_for :javascripts do
+  javascript:
+    $(window).on('scroll', gsdk.checkScrollForTransparentNavbar);
