@@ -27,6 +27,8 @@ Rails.application.routes.draw do
 
     get "join" => "memberships#create"
 
+    match "feed", to: "posts#index", via: "get", defaults: { format: "rss" }
+
     resources :posts, only: %i( new create ) do
       concerns :voteable
 
