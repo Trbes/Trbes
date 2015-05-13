@@ -116,7 +116,7 @@ class ApplicationController < ActionController::Base
     gon.push(
       zero_clipboard_path: view_context.asset_path("zeroclipboard/ZeroClipboard.swf"),
       facebook_app_id: ENV["FACEBOOK_APP_ID"],
-      trbes_host: Trbes::Application.config.host
+      trbes_host: ENV["HOME_PAGE"]
     )
   end
 
