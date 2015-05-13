@@ -1,12 +1,6 @@
 class PagesController < ApplicationController
-  def small_teams
-    @teams = true
-  end
-
-  def business
-  end
-
   def terms
+    render layout: "application"
   end
 
   def home
