@@ -1,9 +1,6 @@
 .parallax
   .parallax-image style="background-image: url(#{asset_path('header.jpg')})"
   .paralax-image-overlay
-  /
-    .parallax-image
-      = image_tag("header.jpg")
 
   #marketing
     .container
@@ -15,8 +12,6 @@
 
       a.btn.btn-success.btn-bright-success.btn-lg.btn-create-community[
         href=(user_signed_in? ? new_group_path : new_user_registration_path) ] Create a community
-
-
 
 .section.section-features
   .container

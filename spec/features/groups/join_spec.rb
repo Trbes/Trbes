@@ -13,7 +13,7 @@ feature "Join group", js: true do
   context "when I'm unconfirmed group member" do
     background do
       membership.pending!
-      visit "/"
+      visit browse_path
     end
 
     scenario "I see notice about my request" do
@@ -26,7 +26,7 @@ feature "Join group", js: true do
   context "when I'm not-signed-in visitor" do
     background do
       page.find("a", text: "Sign out", visible: false).trigger("click")
-      visit "/"
+      visit browse_path
     end
 
     scenario "I can request membership by signing in" do
@@ -41,7 +41,7 @@ feature "Join group", js: true do
   context "When I'm confirmed group member" do
     background do
       membership.member!
-      visit "/"
+      visit browse_path
     end
 
     scenario "I can enter group" do
@@ -57,7 +57,7 @@ feature "Join group", js: true do
   context "When I'm signed in but not a group member" do
     background do
       membership.really_destroy!
-      visit "/"
+      visit browse_path
     end
 
     scenario "I can request membership" do
@@ -65,7 +65,7 @@ feature "Join group", js: true do
         click_link "Join"
       end
 
-      expect(current_path).to eq("/")
+      expect(current_path).to eq(root_path)
 
       expect(page).to have_content(group.name)
 
