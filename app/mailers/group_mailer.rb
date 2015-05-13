@@ -1,6 +1,8 @@
 class GroupMailer < ApplicationMailer
   layout "mailer"
 
+  helper ApplicationHelper
+
   def weekly_digest_email(membership)
     @membership = membership
 
