@@ -144,12 +144,12 @@ init_posts_voting = ($scope, Post) ->
 # Groups loading
 init_groups_loading = ($scope, Group) ->
   $scope.get_groups = () ->
-    showLoader("Loading groups...", ".groups-listing")
+    showLoader("Loading groups...")
     $scope.is_loading = true
     Group.all(page: $scope.current_page).$promise.then (response) ->
       $scope.groups = response.groups
       $scope.total_count = response.total_count
-      hideLoader(".groups-listing")
+      hideLoader()
       window.scrollTo(0, angular.element(".explore-title").offset().top)
       $scope.is_loading = false
 

@@ -70,11 +70,9 @@
 
     .groups-demo
       .featured-groups
-        = link_to image_tag("sample/default-group.png", width: 138), "#", class: "featured-group wow flipInX"
-        = link_to image_tag("sample/default-group.png", width: 138), "#", class: "featured-group wow flipInX"
-        = link_to image_tag("sample/default-group.png", width: 138), "#", class: "featured-group wow flipInX"
-        = link_to image_tag("sample/default-group.png", width: 138), "#", class: "featured-group wow flipInX"
-        = link_to image_tag("sample/default-group.png", width: 138), "#", class: "featured-group wow flipInX"
+        - if ENV["DEMO_GROUP_IDS"]
+          - ENV["DEMO_GROUP_IDS"].split(",").map { |id| Group.find(id) rescue nil }.compact.each do |group|
+            = link_to image_tag(group_logo_url(group), width: 138), group_url(group), class: "featured-group wow flipInX"
 
       .screenshot
         = image_tag("screenshot_group.png", class: "wow slideInUp")
