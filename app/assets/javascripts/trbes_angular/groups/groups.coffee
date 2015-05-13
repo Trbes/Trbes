@@ -148,7 +148,6 @@ init_groups_loading = ($scope, Group) ->
     $scope.is_loading = true
     Group.all(page: $scope.current_page).$promise.then (response) ->
       $scope.groups = response.groups
-      console.log response.groups
       $scope.total_count = response.total_count
       hideLoader(".groups-listing")
       window.scrollTo(0, angular.element(".explore-title").offset().top)
