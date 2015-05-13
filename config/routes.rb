@@ -78,9 +78,8 @@ Rails.application.routes.draw do
 
   get "/groups/:subdomain", to: "groups#show", constraints: { format: // }
 
-  get "/small-teams", to: "pages#small_teams"
-  get "/business", to: "pages#business"
   get "/terms", to: "pages#terms"
+  get "/browse", to: "groups#index", as: :browse
 
   root to: "pages#home"
 end

@@ -13,12 +13,83 @@
         | upvote site to share your passion.
       .marketing-subheadline For your private or public community of interest.
 
-      a.btn.btn-success.btn-bright-success.btn-lg.btn-create-community[href=new_user_registration_path] Create a community
+      a.btn.btn-success.btn-bright-success.btn-lg.btn-create-community[
+        href=(user_signed_in? ? new_group_path : new_user_registration_path) ] Create a community
 
-.section
+
+
+.section.section-features
   .container
-    - 50.times do |i|
-      p alsdjflasjfl
+    h1.section-title Curating industry-specific content has never been so easy.
+
+    .features
+      .row
+        .col-sm-4
+          .feature-block
+            h3.feature-title
+              = image_tag("icons/icon_feature_link.png")
+              | Simplicity at work.
+            .feature-description Instantly create an upvote site for your team or community and start collecting and organizing your knowledge.
+        .col-sm-4
+          .feature-block
+            h3.feature-title
+              = image_tag("icons/icon_feature_email.png")
+              | Less Email.
+            .feature-description Stop relying on email to share, collect and organize industry- specific content.  Trbes is the perfect email replacement for your team.
+        .col-sm-4
+          .feature-block
+            h3.feature-title
+              = image_tag("icons/icon_feature_upvote.png")
+              | Upvote for work.
+            .feature-description Create a private upvote site to share, organize and curate content, knowledge and resources with your team and coworkers.
+      .row
+        .col-sm-4
+          .feature-block
+            h3.feature-title
+              = image_tag("icons/icon_feature_clock.png")
+              span.strikethrough> 30
+              | 180 Days Free Trial
+            .feature-description We are just launching and we’re giving you a full 6 months free to try Trbes and decide if it’s useful for you and to power your community.
+        .col-sm-4
+          .feature-block
+            h3.feature-title
+              = image_tag("icons/icon_feature_bag.png")
+              | Basic or Premium
+            .feature-description After your 6 months free trial you can stay on the basic plan for as little as $5/month or upgrade to premium for more features.
+        .col-sm-4
+          .feature-block
+            h3.feature-title
+              = image_tag("icons/icon_feature_feedback.png")
+              | Feedback Powered
+            .feature-description We need your feedback to make Trbes the best option for upvote site deployment.  Tell us what you need to make Trbes better.
+
+.section.section-groups-demo.text-center
+  .container
+    h1.section-title What will my upvote site look like?
+    h3.section-subtitle Browse some communities powered by Trbes.
+
+    .groups-demo
+      .featured-groups
+        = link_to image_tag("sample/default-group.png", width: 138), "#", class: "featured-group wow flipInX"
+        = link_to image_tag("sample/default-group.png", width: 138), "#", class: "featured-group wow flipInX"
+        = link_to image_tag("sample/default-group.png", width: 138), "#", class: "featured-group wow flipInX"
+        = link_to image_tag("sample/default-group.png", width: 138), "#", class: "featured-group wow flipInX"
+        = link_to image_tag("sample/default-group.png", width: 138), "#", class: "featured-group wow flipInX"
+
+      .screenshot
+        = image_tag("screenshot_group.png", class: "wow slideInUp")
+
+.section.section-tryout
+  .container
+    h1.section-title Ready to power your online community?
+
+    .text-center
+      - if user_signed_in?
+        a.btn.btn-fill.btn-lg.btn-success.btn-bright-success[href=new_group_path] Start my community
+      - else
+        a.btn.btn-fill.btn-lg.btn-primary.btn-bright-primary[href=new_user_registration_path] Try Trbes FREE
+
+
 
 - content_for :javascripts do
   javascript:

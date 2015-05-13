@@ -17,7 +17,6 @@
     height: 100%;
     overflow: hidden;
     position: absolute;
-    background-attachment: fixed;
     background-repeat:no-repeat;
     background-size:cover;
     background-position: center center;
@@ -92,6 +91,162 @@
   }
 }
 
+.section {
+  padding: 60px 0;
+}
+
+.section-title {
+  color: #808080;
+  font-size: 48px;
+  font-weight: 600;
+  text-align: center;
+  margin-top: 0;
+
+  @include breakpoint(0 $screen-tablet - 1) {
+    font-size: 32px;
+  }
+}
+
+.section-subtitle {
+  color: #a0a0a0;
+  font-size: 24px;
+  font-weight: normal;
+
+  @include breakpoint(0 $screen-tablet - 1) {
+    font-size: 18px;
+  }
+}
+
+.section-features {
+  .container {
+    max-width: 940px;
+  }
+}
+
+.features {
+  margin-top: 40px;
+}
+
+.feature-block {
+  color: #848484;
+
+  @include breakpoint($screen-tablet 9999px) {
+    max-width: 250px;
+  }
+
+  margin: 0 auto 20px;
+
+  .feature-title {
+    font-weight: 600;
+    font-size: 17px;
+    min-height: 25px;
+    line-height: 25px;
+    margin-bottom: 3px;
+
+    .strikethrough {
+      color: red;
+      text-decoration: line-through;
+    }
+
+    img {
+      margin-right: 6px;
+      vertical-align: top;
+    }
+  }
+
+  .feature-description {
+    font-size: 17px;
+    line-height: 1.4em;
+  }
+}
+
+.section-groups-demo {
+  background-color: #e7e6e6;
+  padding-bottom: 0;
+
+  .section-title {
+    margin-bottom: 5px;
+  }
+
+  .section-subtitle {
+    margin-top: 0;
+  }
+
+  .groups-demo {
+    margin-top: 40px;
+    position: relative;
+  }
+
+  .screenshot {
+    opacity: 0.7;
+
+    img {
+      animation-duration: 0.5s;
+      max-width: 100%;
+    }
+  }
+
+  .featured-groups {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 100%;
+    padding-top: 120px;
+    z-index: 1;
+
+    @include breakpoint(0 $screen-tablet - 1) {
+      padding-top: 30px;
+    }
+  }
+
+  .featured-group {
+    margin-left: 10px;
+    margin-right: 10px;
+
+    @for $i from 1 through 5 {
+      &:nth-child(#{$i}) {
+        animation-delay: 0.15s * $i;
+      }
+    }
+
+    @include breakpoint(0 $screen-desktop - 1) {
+      &:nth-child(5) {
+        display: none;
+      }
+    }
+
+    @include breakpoint(0 $screen-tablet - 1) {
+      margin-left: 5px;
+      margin-right: 5px;
+
+      &:nth-child(4) {
+        display: none;
+      }
+
+      img {
+        width: 103.5px;
+        height: 86.25px;
+      }
+    }
+
+    @include breakpoint(0 $screen-phone - 1) {
+      img {
+        width: 69px;
+        height: 57.5px;
+      }
+    }
+  }
+}
+
+.section-tryout {
+  .container {
+    max-width: 640px;
+  }
+
+  .section-title {
+    margin-bottom: 30px;
+  }
+}
 
 .discover, .engage {
   text-align: center;
