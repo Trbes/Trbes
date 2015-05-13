@@ -11,12 +11,24 @@
       margin-bottom: 0;
 
       & > li {
+        &.dropdown-profile {
+          &>a {
+            .profile-info {
+              color: white;
+            }
+          }
+        }
+
         & > a {
           padding: 10px 15px;
           margin: 15px 3px;
 
           &.btn-simple {
             color: white;
+          }
+
+          &.btn-add-group {
+            margin: 18px 3px;
           }
 
           &.btn-bright-primary {
