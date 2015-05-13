@@ -11,7 +11,7 @@ nav#main_sliding_menu.js-menu.sliding-menu-content
 
   - if user_signed_in?
     .container-fluid.my-trbes
-      h5.my-trbes-title My Trbes
+      h5.my-trbes-title My Groups
       ul.my-trbes-list
         - if current_user_memberships.exists?
           - current_user_memberships.each do |membership|
@@ -24,12 +24,16 @@ nav#main_sliding_menu.js-menu.sliding-menu-content
                   data: { confirm: "Are you sure you want to unsubscribe?" } do
                 i.fa.fa-remove
         - else
-          li You are not a member of any trbes.
+          li You are not a member of any groups.
 
   .container-fluid.snf
     .input-group.search
       span#search_sliding_menu.input-group-addon
         i.fa.fa-search
       input#group_search.form-control aria-describedby="search_sliding_menu" placeholder="Search for groups" type="search"
+
+    hr.search-divider
+    .text-center
+      a.browse-link[href=browse_url(host: Trbes::Application.config.host)] Browse groups
 
 .js-menu-screen.sliding-menu-fade-screen

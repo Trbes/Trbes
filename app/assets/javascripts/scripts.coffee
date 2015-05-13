@@ -6,6 +6,8 @@ $.validator.addMethod "subdomain", (value, element) ->
 
 # Document ready
 $ ->
+  new WOW().init()
+
   $('[data-toggle="tooltip"]').tooltip()
 
   # Bind select2 to best_in_place select for consistent behaviour across browsers

@@ -27,11 +27,7 @@ class GroupSerializer < ActiveModel::Serializer
   end
 
   def logo_url
-    if object.logo.present?
-      object.logo_url(:group_logo)
-    else
-      scope.image_url("sample/default-group.png")
-    end
+    scope.group_logo_url(object)
   end
 
   def join_partial_path

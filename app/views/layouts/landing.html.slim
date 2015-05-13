@@ -25,11 +25,10 @@ html class="no-js" lang="en"
     = include_gon
 
   body[class=body_class]
-    #root
-      = render "landing/navigation"
+    = render "pages/navigation"
 
-      #main.wrapper
-        = yield
+    #main.wrapper
+      = yield
 
     = render "application/footer"
 
