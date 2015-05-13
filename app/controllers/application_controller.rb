@@ -9,6 +9,7 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
   rescue_from Pundit::NotAuthorizedError, with: :not_authorized
+  rescue_from ActiveRecord::RecordNotFound, with: :not_found
 
   before_action :push_gon_config, :push_indexes, :ensure_email_is_exists, :authorize_group_access
 
@@ -62,6 +63,10 @@ class ApplicationController < ActionController::Base
     current_membership
   end
 
+  def not_found
+    render "errors/not_found", layout: "error", status: 404
+  end
+
   def not_authorized
     flash[:alert] = "You are not authorized to perform this action."
 
@@ -108,8 +113,11 @@ class ApplicationController < ActionController::Base
 
   def push_gon_config
     push_algolia_config
-    gon.push(zero_clipboard_path: view_context.asset_path("zeroclipboard/ZeroClipboard.swf"))
-    gon.push(facebook_app_id: ENV["FACEBOOK_APP_ID"])
+    gon.push(
+      zero_clipboard_path: view_context.asset_path("zeroclipboard/ZeroClipboard.swf"),
+      facebook_app_id: ENV["FACEBOOK_APP_ID"],
+      trbes_host: Trbes::Application.config.host
+    )
   end
 
   def ensure_email_is_exists

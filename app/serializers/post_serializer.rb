@@ -13,6 +13,7 @@ class PostSerializer < ActiveModel::Serializer
     :published,
     :deleted,
     :voted_for,
+    :featured,
     :share_link,
     :share_body,
     :tweet_intent,

@@ -1,6 +1,7 @@
 @trbes.constant 'POLICIES',
   post_display_state: "post_display_state"
   post_edit: "post_edit"
+  post_feature: "post_feature"
   post_destroy: "post_destroy"
   post_show: "post_show"
   collection_post_create: "collection_post_create"
@@ -28,6 +29,8 @@
             when POLICIES.post_show
               return object.published && !object.deleted ||
                 (membership && (membership.role == "moderator" || membership.role == "owner" || object.membership.id == membership.id))
+            when POLICIES.post_feature
+              return membership && (membership.role == "moderator" || membership.role == "owner")
 
             # Collection post policies
             when POLICIES.collection_post_create

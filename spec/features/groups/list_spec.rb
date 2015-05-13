@@ -1,6 +1,6 @@
 require "rails_helper"
 
-feature "Groups list" do
+feature "Groups list", js: true do
   let!(:group) { create(:group) }
   let!(:post) { create(:post, group: group) }
   let(:posts_count) { 5 }

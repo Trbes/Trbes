@@ -9,7 +9,7 @@ feature "Single post page" do
     visit root_path
   end
 
-  scenario "I visit single post page", js: true, driver: :webkit do
+  scenario "I visit single post page", js: true do
     visit post_path(post)
 
     expect(current_path).to eq("/#{post.title.parameterize}")
@@ -48,9 +48,9 @@ feature "Single post page" do
     let!(:post_from_another_group) { create(:post, group: create(:group)) }
 
     scenario "I see an exception" do
-      expect {
-        visit post_path(post_from_another_group)
-      }.to raise_error
+      visit post_path(post_from_another_group)
+
+      expect(page).to have_content("The page you were looking for doesn't exist.")
     end
   end
 

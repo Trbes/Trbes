@@ -65,10 +65,8 @@ RSpec.configure do |config|
 
   config.before :each, :js, type: :feature do |example|
     if example.metadata[:js]
-      if Capybara.current_driver == :webkit
-        page.driver.block_unknown_urls
-        page.driver.allow_url(Trbes::Application.config.host)
-      end
+      page.driver.block_unknown_urls
+      page.driver.allow_url(Trbes::Application.config.host)
     end
   end
 

@@ -27,6 +27,8 @@ Rails.application.routes.draw do
 
     get "join" => "memberships#create"
 
+    match "feed", to: "posts#index", via: "get", defaults: { format: "rss" }
+
     resources :posts, only: %i( new create ) do
       concerns :voteable
 
@@ -59,6 +61,7 @@ Rails.application.routes.draw do
     namespace :v1 do
       resources :posts, only: %i( index show update destroy ) do
         concerns :voteable
+        put :feature, on: :member
       end
     end
 
@@ -67,6 +70,10 @@ Rails.application.routes.draw do
     get "/*id", to: "posts#show", as: :post, id: /(?!.*?assets).*/
     patch "/*id", to: "posts#update"
     delete "/*id", to: "posts#destroy"
+  end
+
+  namespace :v1 do
+    resources :groups, only: %i( index )
   end
 
   get "/groups/:subdomain", to: "groups#show", constraints: { format: // }

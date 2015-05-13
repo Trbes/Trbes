@@ -1,0 +1,3 @@
+javascript:
+  ga('create', '#{current_group.ga_tracking_id}', 'auto', {'name': 'tracker_#{current_group.subdomain}'});
+  ga('tracker_#{current_group.subdomain}.send', 'pageview');

@@ -16,7 +16,7 @@ module V1
     def index
       render json: {
         posts: posts.map { |post| PostSerializer.new(post, root: false, scope: view_context) },
-        total_posts_count: posts.total_count
+        total_count: posts.total_count
       }
     end
 
@@ -50,6 +50,14 @@ module V1
 
     def unvote
       post.unvote_by(current_user)
+
+      render json: post
+    end
+
+    def feature
+      authorize(post)
+
+      post.update_attributes(featured: !post.featured)
 
       render json: post
     end

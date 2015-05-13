@@ -31,6 +31,7 @@
 //= require underscore
 //= require is-loading
 //= require utils
+//= require inflection
 
 //= require angular
 //= require angular-ui-router
@@ -43,6 +44,8 @@
 //= require angular-moment
 //= require angular-bootstrap
 //= require angular-truncate-asset
+//= require angular-filter
+//= require ngInflection
 
 //= require trbes_angular/app
 //= require trbes_angular/directives

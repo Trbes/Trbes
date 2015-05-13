@@ -15,4 +15,18 @@ feature "Delete a group" do
 
     expect(Group.deleted.first).to eq(group)
   end
+
+  context "when logged in as moderator" do
+    background do
+      membership.moderator!
+    end
+
+    scenario "cannot delete group" do
+      visit edit_admin_group_path
+
+      within(".group-profile") do
+        expect(page).not_to have_link("delete")
+      end
+    end
+  end
 end

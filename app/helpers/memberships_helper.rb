@@ -10,4 +10,10 @@ module MembershipsHelper
   def will_show_admin_members_button_count_badge?
     !controller_path.include?("admin/memberships") && current_group.memberships.pending.count > 0
   end
+
+  def membership_role_update_options
+    Hash[Membership.roles.keys.zip(Membership.roles.keys)].delete_if do |key|
+      key == "owner" || (key == "moderator" && current_membership.moderator?)
+    end
+  end
 end

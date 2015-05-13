@@ -1,0 +1,18 @@
+.groups-listing
+  div[
+    ng-if="!is_loading && groups.length > 0"
+    class="animate-repeat"
+    ng-repeat="group in groups"
+    on-last-repeat="groups" ]
+
+    div[ng-include="'groups/_group.html'"]
+
+  pagination.pagination.pagination-azure.pagination-no-border[
+    ng-if="total_count > per_page"
+    ng-model="model.current_page"
+    ng-change="page_changed()"
+    total-items="total_count"
+    items-per-page="per_page"
+    max-size="max_size"
+    boundary-links="true" ]
+
