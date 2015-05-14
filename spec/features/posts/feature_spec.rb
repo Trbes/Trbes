@@ -8,20 +8,20 @@ shared_examples_for "accessible featuring" do
 
   scenario "can feature" do
     within("#post_#{unfeatured_post.id}") do
-      expect(page).to have_css(".fa-star-o")
+      expect(page).to have_css(".fa-star-o", visible: false)
       expect(unfeatured_post).not_to be_featured
-      page.find(".feature").click
-      expect(page).to have_css(".fa-star")
+      page.find(".feature", visible: false).click
+      expect(page).to have_css(".fa-star", visible: false)
       expect(unfeatured_post.reload).to be_featured
     end
   end
 
   scenario "can unfeature" do
     within("#post_#{featured_post.id}") do
-      expect(page).to have_css(".fa-star")
+      expect(page).to have_css(".fa-star", visible: false)
       expect(featured_post).to be_featured
-      page.find(".feature").click
-      expect(page).to have_css(".fa-star-o")
+      page.find(".feature", visible: false).click
+      expect(page).to have_css(".fa-star-o", visible: false)
       expect(featured_post.reload).not_to be_featured
     end
   end
@@ -35,7 +35,7 @@ shared_examples_for "inaccessible featuring" do
 
   scenario "can't feature" do
     within("#post_#{unfeatured_post.id}") do
-      expect(page).not_to have_css(".feature")
+      expect(page).not_to have_css(".feature", visible: false)
     end
   end
 
