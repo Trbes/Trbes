@@ -1,6 +1,7 @@
 class Post < ActiveRecord::Base
   DATE_RANKING_INTRODUCED = DateTime.new(1998, 8, 12).to_i
-  ONE_RANKING_POINT_WEIGHT = 12.5.hours
+  ONE_POPULAR_RANKING_POINT_WEIGHT = 2.months.to_f
+  ONE_HOT_RANKING_POINT_WEIGHT = 12.5.hours.to_f
 
   include Postable
   include AlgoliaSearch
@@ -69,16 +70,18 @@ class Post < ActiveRecord::Base
   end
 
   def set_popular_rank
-    order = Math.log([cached_votes_total, 1].max, 10)
+    order = Math.log([cached_votes_total, 1].max, 8)
     seconds = created_at.to_i - DATE_RANKING_INTRODUCED
 
-    update_column(:popular_rank, (order + seconds / 2.months.to_f).round(7))
+    rank = cached_votes_total > 0 ? (order + seconds / ONE_POPULAR_RANKING_POINT_WEIGHT).round(7) : 0
+
+    update_column(:popular_rank, rank)
   end
 
   def set_hot_rank
     order = Math.log([cached_votes_total, 1].max, 10)
     seconds = created_at.to_i - DATE_RANKING_INTRODUCED
 
-    update_column(:hot_rank, (order + seconds / ONE_RANKING_POINT_WEIGHT).round(7))
+    update_column(:hot_rank, (order + seconds / ONE_HOT_RANKING_POINT_WEIGHT).round(7))
   end
 end
