@@ -14,6 +14,7 @@ class Post < ActiveRecord::Base
   scope :order_by_trending, -> { order(hot_rank: :desc, created_at: :desc) }
   scope :for_collection, -> (collection_id) { where(collection_posts: { collection_id: collection_id }) }
   scope :for_membership, -> (membership) { where(membership_id: membership.id) }
+  scope :for_weekly_digest, -> { where("created_at > ?", 1.week.ago).published.order_by_trending.limit(7) }
 
   has_many :comments, dependent: :destroy
   has_many :attachments, as: :attachable, dependent: :destroy
