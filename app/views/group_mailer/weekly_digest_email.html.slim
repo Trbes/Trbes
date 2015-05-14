@@ -1,4 +1,9 @@
-h1 Weekly digest title placeholder
+h1 #{@membership.group_name} Weekly Digest
 
-- @membership.group.posts.published.order_by_trending.limit(7).each do |post|
-  = raw_sanitize(post.title)
+p
+  | Hi #{@membership.user_full_name}, here is what's happening today
+    and your digest for the past week on #{@membership.group_name}
+- @membership.group.posts.for_weekly_digest.each do |post|
+  p
+    = link_to post do
+      = raw_sanitize(post.title)
