@@ -115,6 +115,7 @@ class ApplicationController < ActionController::Base
     push_algolia_config
     gon.push(
       zero_clipboard_path: view_context.asset_path("zeroclipboard/ZeroClipboard.swf"),
+      grabicon_api_key: ENV["GRABICON_API_KEY"],
       facebook_app_id: ENV["FACEBOOK_APP_ID"],
       trbes_host: ENV["HOME_PAGE"]
     )
