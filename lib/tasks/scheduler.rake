@@ -1,7 +1,9 @@
-task weekly_digest: :environment do
-  puts "Adding emails to weekly digest queue..."
+namespace :scheduler do
+  task weekly_digest: :environment do
+    puts "Adding emails to weekly digest queue..."
 
-  WeeklyDigest.call
+    WeeklyDigest.call
 
-  puts "Adding to queue finished."
+    puts "Adding to queue finished."
+  end
 end
