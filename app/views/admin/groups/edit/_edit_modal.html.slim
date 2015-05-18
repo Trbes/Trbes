@@ -18,8 +18,10 @@
 
               = link_to "change image", "#", class: "upload", data: { target: "#logo_upload" }
 
+              hr
+
               #favicon_preview
-                = group.favicon
+                = cl_image_tag(group.favicon.favicon)
                 p 32x32 pixels
 
               = f.cl_image_upload :favicon,
