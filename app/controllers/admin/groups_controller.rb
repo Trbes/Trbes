@@ -36,6 +36,7 @@ module Admin
         :allow_link_posts,
         :allow_text_posts,
         :logo,
+        :favicon,
         :ga_tracking_id
       )
     end

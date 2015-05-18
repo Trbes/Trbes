@@ -16,4 +16,8 @@ class ImageUploader < CarrierWave::Uploader::Base
   version :group_logo do
     process resize_to_fill: [138, 115]
   end
+
+  version :favicon do
+    process resize_to_fill: [32, 32]
+  end
 end
