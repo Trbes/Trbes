@@ -45,12 +45,12 @@ $ ->
   .bind 'cloudinarydone', (e, data) ->
     $(this).closest("form").find("input[type='submit']").prop("disabled", false)
 
-    $('#preview').html $.cloudinary.image(data.result.public_id,
+    $($(this).data("preview")).html $.cloudinary.image(data.result.public_id,
       format: data.result.format
       version: data.result.version
-      crop: 'fill'
-      width: 138
-      height: 115)
+      crop: "fill"
+      width: $(this).data("width")
+      height: $(this).data("height"))
     $('.image_public_id').val data.result.public_id
     true
 
