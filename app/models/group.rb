@@ -32,6 +32,7 @@ class Group < ActiveRecord::Base
   acts_as_paranoid
 
   mount_uploader :logo, ImageUploader
+  mount_uploader :favicon, ImageUploader
 
   def total_posts_count
     [

@@ -9,13 +9,26 @@
         = simple_nested_form_for([:admin, group], url: admin_group_path, html: { class: "cg-form" }) do |f|
           .modal-body
             .modal-inner
-              #preview
+              #logo_preview
                 = group.listing_logo
                 p 138x115 pixels
 
-              = f.cl_image_upload :logo, html: { disabled: true, class: "hidden file-uploader" }
+              = f.cl_image_upload :logo,
+                  html: { disabled: true, class: "hidden file-uploader", id: "logo_upload", data: { width: 138, height: 115, preview: "#logo_preview" } }
 
-              = link_to "change image", "#", class: "upload"
+              = link_to "change image", "#", class: "upload", data: { target: "#logo_upload" }
+
+              hr
+
+              #favicon_preview
+                = cl_image_tag(group.favicon.favicon)
+                p 32x32 pixels
+
+              = f.cl_image_upload :favicon,
+                  html: { disabled: true, class: "hidden file-uploader", id: "favicon_upload", data: { width: 32, height: 32, preview: "#favicon_preview" } }
+
+              = link_to "change favicon", "#", class: "upload", data: { target: "#favicon_upload" }
+
               = f.input :name, input_html: { data: { original_value: f.object.name } }
               = f.input :tagline
               = f.input :description
