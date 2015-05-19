@@ -18,7 +18,7 @@ class OmniauthCallbacksController < Devise::OmniauthCallbacksController
     set_flash_message(:notice, :success, kind: "#{profile.provider}".capitalize)
   end
 
-  def after_sign_in_path_for(resource)
-    request.env['omniauth.origin'].gsub("/users/sign_in", "")
+  def after_sign_in_path_for(_resource)
+    request.env["omniauth.origin"].gsub("/users/sign_in", "")
   end
 end
