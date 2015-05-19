@@ -134,3 +134,13 @@ $ ->
 
   $(document).on 'change', '.rails-submitable', ->
     $(@form).trigger 'submit.rails'
+
+  # Fit header image on page load & window resize
+  if $(".parallax").length
+    fit_header_image = ->
+      $(".parallax").height $(window).height()
+
+    fit_header_image()
+
+    $(window).on "resize", ->
+      fit_header_image()
