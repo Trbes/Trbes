@@ -1,0 +1,88 @@
+{
+  "name": "Trbes",
+  "scripts": {
+    "postdeploy":"rake db:migrate"
+  },
+  "env": {
+    "APP_HOST": {
+      "required": true
+    },
+    "DEMO_GROUP_IDS": {
+      "required": true
+    },
+    "FACEBOOK_APP_ID": {
+      "required": true
+    },
+    "FACEBOOK_APP_SECRET": {
+      "required": true
+    },
+    "GOOGLE_CLIENT_ID": {
+      "required": true
+    },
+    "GOOGLE_CLIENT_SECRET": {
+      "required": true
+    },
+    "HEROKU_API_TOKEN": {
+      "required": true
+    },
+    "HEROKU_APP_NAME": {
+      "required": true
+    },
+    "HOME_PAGE": {
+      "required": true
+    },
+    "LANG": {
+      "required": true
+    },
+    "LINKEDIN_API_KEY": {
+      "required": true
+    },
+    "LINKEDIN_API_SECRET": {
+      "required": true
+    },
+    "MAX_THREADS": {
+      "required": true
+    },
+    "NOREPLY_EMAIL": {
+      "required": true
+    },
+    "RACK_ENV": {
+      "required": true
+    },
+    "RAILS_ENV": {
+      "required": true
+    },
+    "SECRET_KEY_BASE": {
+      "required": true
+    },
+    "SUBSCRIBE_TO_TRBES_URL": {
+      "required": true
+    },
+    "TLD_LENGTH": {
+      "required": true
+    },
+    "TRBES_GROUP_ID": {
+      "required": true
+    },
+    "TRBES_GROUP_URL": {
+      "required": true
+    },
+    "TWITTER_API_KEY": {
+      "required": true
+    },
+    "TWITTER_API_SECRET": {
+      "required": true
+    },
+    "WEB_CONCURRENCY": {
+      "required": true
+    }
+  },
+  "addons": [
+    "algoliasearch",
+    "cloudinary",
+    "scheduler",
+    "heroku-postgresql",
+    "newrelic",
+    "sendgrid"
+  ]
+}
