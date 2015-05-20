@@ -17,52 +17,34 @@
 }
 
 #footer_landing {
-  margin-top: 60px;
-  padding-bottom: 120px;
-
-  .footer-block {
-    margin-bottom: 40px;
-  }
-
-  .footer-block-company {
-    max-width: 190px;
-  }
-
-  .footer-title {
-    color: #585858;
-    font-size: 18px;
-    font-weight: bold;
-    margin-top: 0;
-    margin-bottom: 15px;
-  }
-
-  .footer-block-content {
-    font-size: 16px;
-  }
+  background-color: #e7e6e6;
+  padding: 60px 0;
 
   ul.footer-links {
     list-style: none;
     padding: 0;
+    margin-bottom: 20px;
+
+    li {
+      display: inline;
+      margin-left: 10px;
+      margin-right: 10px;
+    }
+
+    a {
+      color: #727272;
+      font-size: 14px;
+      font-weight: 600;
+      text-transform: uppercase;
+    }
   }
 
-  .hello-customer {
-    text-align: right;
-    float: right;
+  .disclaimer {
+    color: #a9a8a8;
+    margin-bottom: 20px;
+  }
 
-    .message {
-      font-size: 24px;
-      color: #404040;
-      line-height: 1.3em;
-
-      a {
-        font-weight: 400;
-      }
-    }
-
-    .copyright {
-      font-size: 14px;
-      color: #afafaf;
-      margin-top: 30px;
-    }
+  .copyright {
+    color: #a9a8a8;
   }
 }

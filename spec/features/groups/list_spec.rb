@@ -9,7 +9,7 @@ feature "Groups list", js: true do
   background do
     create(:membership, group: group, role: :owner)
     create_list(:post, posts_count, :text, group: group)
-    visit "/"
+    visit browse_path
   end
 
   scenario "I visit explore page" do
@@ -24,7 +24,7 @@ feature "Groups list", js: true do
   context "when there are too many groups" do
     background do
       create_list(:group, extra_groups_count, :with_owner)
-      visit "/"
+      visit browse_path
     end
 
     scenario "pagination happens" do
@@ -42,7 +42,7 @@ feature "Groups list", js: true do
     let!(:private_group) { create(:group, private: true) }
 
     scenario "I can't wee them within groups list" do
-      visit root_path
+      visit browse_path
 
       within("#group_#{group.id}") do
         expect(page).to have_css(".group-name", text: group.name)

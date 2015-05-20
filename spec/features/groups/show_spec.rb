@@ -39,9 +39,7 @@ feature "Group main page" do
     scenario "I'm not allowed to do so" do
       visit root_path
 
-      within(".navbar .group-name") do
-        expect(page).not_to have_content(group.name)
-      end
+      expect(page).to have_content("Curating industry-specific content has never been so easy")
     end
   end
 end
@@ -49,12 +47,12 @@ end
 feature "Going to www subdomain" do
   background do
     switch_to_subdomain("www")
-    visit root_path
+    visit browse_path
   end
 
   after { switch_to_main }
 
-  scenario "I will see home page instead of a group page" do
+  scenario "I will see browse page instead of a group page" do
     expect(page).to have_content("Discover Interesting Teams")
   end
 end

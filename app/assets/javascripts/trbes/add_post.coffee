@@ -7,6 +7,10 @@ class window.AddPost
     @_init_form_validations()
 
   _init_events: ->
+    $(".form-new-post").submit ->
+      if $(this).valid() == true
+        $(".btn-submit-post").prop("disabled", true)
+
     $(".toggle-post-type").click (e) ->
       e.preventDefault()
       that = $(this)

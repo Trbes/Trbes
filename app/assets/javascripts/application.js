@@ -32,6 +32,7 @@
 //= require is-loading
 //= require utils
 //= require inflection
+//= require WOW
 
 //= require angular
 //= require angular-ui-router

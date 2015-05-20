@@ -12,7 +12,8 @@ html class="no-js" lang="en"
         property="og:image"
         content="#{request.protocol}#{request.host_with_port}#{asset_path('logo_mini_black@2x.png')}"
       ]
-    link id="page_favicon" href=(image_path("favicon.ico")) rel="icon" type="image/x-icon"
+
+    = favicon_link_tag(link_to_favicon)
 
     title= title
 
@@ -33,7 +34,7 @@ html class="no-js" lang="en"
   body[class=body_class ng-app="Trbes"]
 
     #root
-      = render "navigation", current_group: current_group
+      = render "application/navigation", current_group: current_group
 
       #main.wrapper
         = yield

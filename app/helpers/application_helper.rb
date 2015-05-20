@@ -54,4 +54,12 @@ module ApplicationHelper
   def raw_sanitize(html)
     raw Sanitize.fragment(html, Sanitize::Config::RELAXED)
   end
+
+  def link_to_favicon
+    if current_group && current_group.favicon
+      "#{current_group.favicon}?v=#{current_group.updated_at.to_i}"
+    else
+      "favicon.ico"
+    end
+  end
 end

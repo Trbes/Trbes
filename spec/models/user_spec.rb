@@ -2,8 +2,8 @@ require "rails_helper"
 
 describe User do
   describe "associations" do
-    it { is_expected.to have_many(:posts).dependent(:destroy) }
-    it { is_expected.to have_many(:comments).dependent(:destroy) }
+    it { is_expected.to have_many(:posts).through(:memberships) }
+    it { is_expected.to have_many(:comments).through(:memberships) }
   end
 
   describe "validations" do

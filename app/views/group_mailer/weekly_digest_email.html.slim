@@ -1,0 +1,15 @@
+h1 #{@membership.group_name} Weekly Digest
+
+p
+  | Hi #{@membership.user_full_name}, here is what's happening today
+    and your digest for the past week on #{@membership.group_name}
+
+- if @posts.any?
+  - @posts.each do |post|
+    p
+      = link_to post do
+        = raw_sanitize(post.title)
+- else
+  p
+    | There are no new posts in the past week, check out the discussions
+      on the site instead: #{link_to(group_url(@membership.group), group_url(@membership.group))}

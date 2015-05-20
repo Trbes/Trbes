@@ -6,6 +6,8 @@ $.validator.addMethod "subdomain", (value, element) ->
 
 # Document ready
 $ ->
+  new WOW().init()
+
   $('[data-toggle="tooltip"]').tooltip()
 
   # Bind select2 to best_in_place select for consistent behaviour across browsers
@@ -43,12 +45,12 @@ $ ->
   .bind 'cloudinarydone', (e, data) ->
     $(this).closest("form").find("input[type='submit']").prop("disabled", false)
 
-    $('#preview').html $.cloudinary.image(data.result.public_id,
+    $($(this).data("preview")).html $.cloudinary.image(data.result.public_id,
       format: data.result.format
       version: data.result.version
-      crop: 'fill'
-      width: 138
-      height: 115)
+      crop: "fill"
+      width: $(this).data("width")
+      height: $(this).data("height"))
     $('.image_public_id').val data.result.public_id
     true
 
@@ -64,7 +66,7 @@ $ ->
 
   $(".upload").on "click", (e) ->
     e.preventDefault()
-    $(this).siblings(".file-uploader").toggleClass("hidden").prop("disabled", (i, v) -> return !v )
+    $($(this).data("target")).toggleClass("hidden").prop("disabled", (i, v) -> return !v )
 
   $(".comment-upvote a.vote:not(.not-logged-in)").on "click", (e) ->
     e.preventDefault()
@@ -132,3 +134,13 @@ $ ->
 
   $(document).on 'change', '.rails-submitable', ->
     $(@form).trigger 'submit.rails'
+
+  # Fit header image on page load & window resize
+  if $(".parallax").length
+    fit_header_image = ->
+      $(".parallax").height $(window).height()
+
+    fit_header_image()
+
+    $(window).on "resize", ->
+      fit_header_image()

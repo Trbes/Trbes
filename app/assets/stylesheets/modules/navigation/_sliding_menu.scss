@@ -162,12 +162,26 @@
       }
 
       &:hover {
-        border-bottom-color: rgba(255,255,255,0.1);
+        border-bottom-color: rgba(white, 0.1);
 
         a.unsubscribe {
           display: block;
         }
       }
+    }
+  }
+
+  hr.search-divider {
+    border-color: rgba(white, 0.2);
+    margin-top: 0;
+  }
+
+  .browse-link {
+    color: white;
+    text-transform: uppercase;
+
+    @include on_link_actions {
+      text-decoration: underline;
     }
   }
 }

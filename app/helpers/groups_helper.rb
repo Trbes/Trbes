@@ -27,6 +27,14 @@ module GroupsHelper
     "JOIN #{group.name} on Trbes"
   end
 
+  def group_logo_url(group)
+    if group.logo.present?
+      group.logo_url(:group_logo)
+    else
+      image_url("sample/default-group.png")
+    end
+  end
+
   def group_share_body(group)
     [
       "Check out #{group.name} - A new place for us to share about #{group.tagline}",
