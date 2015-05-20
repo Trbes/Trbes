@@ -59,7 +59,7 @@ module ApplicationHelper
     if current_group && current_group.favicon
       "#{current_group.favicon}?v=#{current_group.updated_at.to_i}"
     else
-      image_path("favicon.ico")
+      "favicon.ico"
     end
   end
 end
