@@ -37,6 +37,10 @@
     - else
       strong = membership.role
 
+  - if !membership.user.confirmed?
+    small.text-warning
+      =< "pending invitation"
+
   '
   = link_to "#" do
   .controls
