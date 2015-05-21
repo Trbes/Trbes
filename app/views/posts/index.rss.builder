@@ -12,11 +12,11 @@ xml.rss version: "2.0" do
     rss_posts.each do |post|
       xml.item do
         xml.title post.title
-        xml.link post.link if post.link
+        xml.link post.link || custom_post_url(post)
         xml.description post.body if post.body
         xml.pubDate post.created_at.to_s(:rfc822)
         xml.tag! "dc:creator", post.user_full_name
-        xml.guid post_url(post)
+        xml.guid custom_post_url(post)
 
         post.collections.each do |collection|
           xml.category collection.name

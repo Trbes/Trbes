@@ -5,6 +5,14 @@ html class="no-js" lang="en"
   head
     meta charset="utf-8"
     meta name="viewport" content="width=device-width, initial-scale=1.0"
+    - if defined?(post) && post && post.attachments.any?
+      meta property="og:image" content="#{post.attachments.first.image_url}"
+    - else
+      meta[
+        property="og:image"
+        content="#{request.protocol}#{request.host_with_port}#{asset_path('logo_mini_black@2x.png')}"
+      ]
+
     = favicon_link_tag(link_to_favicon)
 
     title= title

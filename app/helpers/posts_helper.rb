@@ -7,6 +7,13 @@ module PostsHelper
     end
   end
 
+  def custom_post_url(post)
+    post_url(post,
+      subdomain: current_group.custom_domain.present? ? nil : current_group.subdomain,
+      domain: current_group.custom_domain.presence
+    )
+  end
+
   def post_share_link(post)
     post.link_post? ? post.link : post_url(post, subdomain: current_group.subdomain)
   end
