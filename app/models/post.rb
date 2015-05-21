@@ -10,9 +10,9 @@ class Post < ActiveRecord::Base
   enum post_type: %i(text_post link_post image_post)
   enum state: %i(moderation published rejected)
 
-  scope :order_by_votes, -> { order(popular_rank: :desc, created_at: :desc) }
-  scope :order_by_created_at, -> { order(created_at: :desc) }
-  scope :order_by_trending, -> { order(hot_rank: :desc, created_at: :desc) }
+  scope :order_by_votes, -> { order(featured: :desc, popular_rank: :desc, created_at: :desc) }
+  scope :order_by_created_at, -> { order(featured: :desc, created_at: :desc) }
+  scope :order_by_trending, -> { order(featured: :desc, hot_rank: :desc, created_at: :desc) }
   scope :for_collection, -> (collection_id) { where(collection_posts: { collection_id: collection_id }) }
   scope :for_membership, -> (membership) { where(membership_id: membership.id) }
   scope :for_weekly_digest, -> { where("created_at > ?", 1.week.ago).published.order_by_trending.limit(7) }

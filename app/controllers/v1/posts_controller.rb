@@ -1,13 +1,13 @@
 module V1
   class PostsController < V1::ApiController
     expose(:posts) do
-      scope = current_group.posts
-        .includes(:attachments, collection_posts: :collection, membership: :user)
-        .public_send(sort_filter)
-        .page(params[:page])
+      scope = current_group.posts.public_send(sort_filter)
 
-      params[:collection_id] ? scope.for_collection(params[:collection_id]) : scope
+      scope = params[:collection_id] ? scope.for_collection(params[:collection_id]) : scope
+
+      scope.page(params[:page]).includes(:attachments, collection_posts: :collection, membership: :user)
     end
+
     expose(:post, attributes: :post_attributes)
     expose(:comments, ancestor: :post) { |collection| collection.root.published.includes(:membership, :child_comments) }
 
