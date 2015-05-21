@@ -76,6 +76,7 @@ init_group_dom = ($scope, $timeout) ->
       iconify_links()
       window.init_share_link_events()
       gsdk.initPopovers()
+      $('[data-toggle="tooltip"]').tooltip()
 
 # Pagination
 init_pagination = ($scope, per_page) ->
