@@ -3,6 +3,7 @@ class GroupMailer < ApplicationMailer
 
   helper ApplicationHelper
   helper GroupsHelper
+  helper PostsHelper
 
   def weekly_digest_email(membership)
     @membership = membership

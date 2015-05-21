@@ -9,8 +9,8 @@ module PostsHelper
 
   def custom_post_url(post)
     post_url(post,
-      subdomain: current_group.custom_domain.present? ? nil : current_group.subdomain,
-      domain: current_group.custom_domain.presence
+      subdomain: post.group.custom_domain.present? ? nil : post.group.subdomain,
+      domain: post.group.custom_domain.presence
     )
   end
 
