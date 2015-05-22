@@ -105,6 +105,9 @@ group :development do
   gem "quiet_assets"
   gem "letter_opener"
   gem "slim-rails", "~> 3.0.1"
+  gem "capistrano-rails"
+  gem "capistrano-rvm"
+  gem "capistrano3-unicorn"
 end
 
 # Assets gems from rails-assets.org
