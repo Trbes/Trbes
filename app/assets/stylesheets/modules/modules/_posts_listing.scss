@@ -273,6 +273,11 @@ $post-right-min-width: $post-actions-min-width + $post-component-spacing + $post
     .post-author, .date {
       margin-right: 15px;
     }
+
+    .featured {
+      color: red;
+      margin-right: 30px;
+    }
   }
 
   .post-actions {

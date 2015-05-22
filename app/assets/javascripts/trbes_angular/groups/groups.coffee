@@ -28,6 +28,7 @@
       $scope.feature_post = (post) ->
         Post.feature({id: post.id}, post).$promise.then (p) ->
           angular.copy(p, post)
+          init_posts_loading($scope, Post)
 
     else
       init_group_helpers($scope, POLICIES, Authorizer, UsersHelper)
@@ -75,6 +76,7 @@ init_group_dom = ($scope, $timeout) ->
       iconify_links()
       window.init_share_link_events()
       gsdk.initPopovers()
+      $('[data-toggle="tooltip"]').tooltip()
 
 # Pagination
 init_pagination = ($scope, per_page) ->

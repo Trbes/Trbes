@@ -1,3 +1,6 @@
+span.featured data-toggle="tooltip" title="Featured Post"
+  .fa.fa-star-o ng-if="post.featured"
+
 span[
   ng-include="'users/_avatar.html'"
   onload="membership = post.membership; locals = { html_class: 'post-author' }" ]
