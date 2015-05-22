@@ -7,7 +7,7 @@ p
 - if @posts.any?
   - @posts.each do |post|
     p
-      = link_to post do
+      = link_to custom_post_url(post) do
         = raw_sanitize(post.title)
 - else
   p
