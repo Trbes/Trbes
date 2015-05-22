@@ -28,4 +28,8 @@ class Membership < ActiveRecord::Base
   acts_as_paranoid
 
   attr_accessor :new_group_owner_id
+
+  def posts_for_weekly_digest
+    group.posts.for_weekly_digest
+  end
 end

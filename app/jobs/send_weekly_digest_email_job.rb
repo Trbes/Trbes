@@ -1,9 +1,9 @@
 class SendWeeklyDigestEmailJob < ActiveJob::Base
   queue_as :default
 
-  def perform(membership_id:)
-    membership = Membership.find(membership_id)
+  def perform(user_id:)
+    user = User.find(user_id)
 
-    GroupMailer.weekly_digest_email(membership).deliver_now
+    GroupMailer.weekly_digest_email(user).deliver_now
   end
 end
