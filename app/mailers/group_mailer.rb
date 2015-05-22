@@ -1,14 +1,11 @@
 class GroupMailer < ApplicationMailer
-  layout "mailer"
-
   helper ApplicationHelper
   helper GroupsHelper
   helper PostsHelper
 
-  def weekly_digest_email(membership)
-    @membership = membership
-    @posts = @membership.group.posts.for_weekly_digest
+  def weekly_digest_email(user)
+    @user = user
 
-    mail(to: membership.user_email, subject: "Weekly digest for #{@membership.group_name}")
+    mail_with_mailkick(to: @user.email, subject: "Weekly digest from your groups")
   end
 end

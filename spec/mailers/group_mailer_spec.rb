@@ -5,7 +5,7 @@ describe GroupMailer do
   let(:membership) { create(:membership, group: group) }
   let(:posts) { create_list(:post, 5, group: group, membership: membership) }
 
-  let(:mail) { described_class.weekly_digest_email(membership) }
+  let(:mail) { described_class.weekly_digest_email(membership.user) }
 
   describe "#weekly_digest_email" do
     context "when there are new posts" do

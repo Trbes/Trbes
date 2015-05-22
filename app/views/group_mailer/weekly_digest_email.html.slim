@@ -1,15 +1,32 @@
-h1 #{@membership.group_name} Weekly Digest
+doctype html
+html
+  head
+    meta content=("text/html; charset=UTF-8") http-equiv="Content-Type" /
+  body
+    h1 Trbes Weekly Digest
 
-p
-  | Hi #{@membership.user_full_name}, here is what's happening today
-    and your digest for the past week on #{@membership.group_name}
-
-- if @posts.any?
-  - @posts.each do |post|
     p
-      = link_to custom_post_url(post) do
-        = raw_sanitize(post.title)
-- else
-  p
-    | There are no new posts in the past week, check out the discussions
-      on the site instead: #{link_to(group_url(@membership.group), group_url(@membership.group))}
+      | Hi #{@user.full_name}, here is what's happening today
+        and your digest for the past week on:
+
+    - @user.memberships.each do |membership|
+      h2= membership.group_name
+
+      - if membership.posts_for_weekly_digest.any?
+        - membership.posts_for_weekly_digest.each do |post|
+          p
+            = link_to custom_post_url(post) do
+              = raw_sanitize(post.title)
+      - else
+        p
+          | There are no new posts in the past week, check out the discussions
+            on the site instead: #{link_to(group_url(membership.group), group_url(membership.group))}
+
+    p
+      em Martin, Airat, Cody and the Trbes Team.
+      br
+      em
+        a href="http://trbes.com"  http://trbes.com
+
+    p.small
+      = link_to "Unsubscribe", mailkick_unsubscribe_url, style: "color: #777; font-size: 75%;"

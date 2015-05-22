@@ -16,6 +16,8 @@ class User < ActiveRecord::Base
 
   mount_uploader :avatar, ImageUploader
 
+  mailkick_user
+
   def membership_for(group)
     memberships.select { |m| m.group_id == group.id }.first
   end
