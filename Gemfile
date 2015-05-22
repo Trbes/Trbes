@@ -28,6 +28,7 @@ gem "nested_form"
 gem "active_link_to"
 gem "title"
 gem "flutie"
+gem "mailkick", git: "https://github.com/dlackty/mailkick", branch: "fix-subscription-not-found"
 
 # all other gems
 gem "devise"

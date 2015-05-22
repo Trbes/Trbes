@@ -7,6 +7,13 @@ GIT
       actionpack (>= 3.2)
       railties (>= 3.2)
 
+GIT
+  remote: https://github.com/dlackty/mailkick
+  revision: 599e9b4a686df82394764f2235a656fc057295e5
+  branch: fix-subscription-not-found
+  specs:
+    mailkick (0.1.1)
+
 GEM
   remote: https://rubygems.org/
   remote: https://rails-assets.org/
@@ -585,6 +592,7 @@ DEPENDENCIES
   kaminari
   launchy
   letter_opener
+  mailkick!
   mobile-fu
   nested_form
   newrelic_rpm
