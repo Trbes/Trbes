@@ -74,7 +74,15 @@ class ApplicationController < ActionController::Base
   end
 
   def not_authorized_redirect
-    current_group.private? ? new_user_session_url(subdomain: current_group.subdomain) : root_path
+    if current_group.private?
+      if current_membership
+        root_url
+      else
+        new_user_session_url(subdomain: current_group.subdomain)
+      end
+    else
+      root_path
+    end
   end
 
   def pundit_user
