@@ -1,4 +1,5 @@
 class SessionsController < Devise::SessionsController
+  skip_before_action :authorize_group_access, only: [:new, :create]
   after_action :after_login, only: :create
 
   def after_login
