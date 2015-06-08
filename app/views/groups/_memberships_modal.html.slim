@@ -10,7 +10,7 @@
           ' There are #{group.memberships_count} members in
           strong = group.name
 
-        - group.memberships.each_with_index do |membership, index|
+        - current_group_memberships.each_with_index do |membership, index|
           = render "users/avatar", membership: membership, html_class: "member", hide_overlay: true
 
           = membership.user_full_name
