@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  devise_for :super_admins
+  mount RailsAdmin::Engine => '/super_admin', as: 'rails_admin'
   devise_for :users, controllers: {
     registrations: "registrations",
     invitations: "invitations",
