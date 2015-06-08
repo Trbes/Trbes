@@ -1,4 +1,6 @@
 class InvitationsController < Devise::InvitationsController
+  skip_before_action :authorize_group_access, only: %i(edit update)
+
   before_action :configure_permitted_parameters, if: :devise_controller?
 
   helper_method :current_group

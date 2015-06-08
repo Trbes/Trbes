@@ -28,7 +28,7 @@ feature "Admin dashboard" do
 
     scenario "even if I try to load admin dashboard by URL", js: true do
       visit(admin_dashboard_index_path)
-      expect(page).to have_content("You are not authorized to perform this action.")
+      expect(page).to have_content("Please sign in to perform this action.")
     end
   end
 end

@@ -162,7 +162,7 @@ feature "Single post page" do
       scenario "I can't read it's posts" do
         visit post_path(post)
 
-        expect(current_path).to eq(root_path)
+        expect(current_path).to eq(new_user_session_path)
         expect(page).not_to have_content(post.title)
       end
     end

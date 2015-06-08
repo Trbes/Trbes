@@ -68,13 +68,21 @@ class ApplicationController < ActionController::Base
   end
 
   def not_authorized
-    flash[:alert] = "You are not authorized to perform this action."
+    flash[:alert] = "Please sign in to perform this action."
 
     redirect_to(request.referrer || not_authorized_redirect)
   end
 
   def not_authorized_redirect
-    current_group.private? ? root_url : root_path
+    if current_group.private?
+      if current_membership
+        root_url
+      else
+        new_user_session_url(subdomain: current_group.subdomain)
+      end
+    else
+      root_path
+    end
   end
 
   def pundit_user
