@@ -75,7 +75,7 @@ class ApplicationController < ActionController::Base
 
   def not_authorized_redirect
     if current_group.private?
-      if current_membership
+      if current_user
         root_url
       else
         new_user_session_url(subdomain: current_group.subdomain)
