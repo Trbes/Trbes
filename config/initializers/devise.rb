@@ -13,6 +13,7 @@ Devise.setup do |config|
   config.password_length = 6..128
   config.reset_password_within = 6.hours
   config.sign_out_via = :get
+  config.remember_for = 2.years
 
   config.omniauth :twitter, ENV["TWITTER_API_KEY"], ENV["TWITTER_API_SECRET"]
   config.omniauth :facebook, ENV["FACEBOOK_APP_ID"], ENV["FACEBOOK_APP_SECRET"]
