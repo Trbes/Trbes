@@ -17,13 +17,14 @@ class Membership < ActiveRecord::Base
   scope :not_owner, -> { where.not(role: roles[:owner]) }
   scope :not_member, -> { where.not(role: roles[:member]) }
   scope :not_pending, -> { where.not(role: roles[:pending]) }
+  scope :not_blacklisted, -> { where.not(role: roles[:blacklisted]) }
   scope :confirmed, -> { where("users.confirmed_at IS NOT NULL") }
   scope :new_this_week, -> { where("created_at > ?", Date.today.beginning_of_week) }
 
   delegate :full_name, :avatar_url, :email, :title, to: :user, prefix: true
   delegate :name, to: :group, prefix: true
 
-  enum role: %i(member moderator owner pending)
+  enum role: %i(member moderator owner pending blacklisted)
 
   acts_as_paranoid
 

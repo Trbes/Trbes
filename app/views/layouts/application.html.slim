@@ -32,14 +32,16 @@ html class="no-js" lang="en"
 
   - content_for(:extra_body_classes, 'no-group') unless current_group
   body[class=body_class ng-app="Trbes"]
+    - if current_membership && current_membership.blacklisted?
+      h3.text-center You are banned in this group
+    - else
+      #root
+        = render "application/navigation", current_group: current_group
 
-    #root
-      = render "application/navigation", current_group: current_group
+        #main.wrapper
+          = yield
 
-      #main.wrapper
-        = yield
-
-    = render "application/footer", current_group: current_group
+      = render "application/footer", current_group: current_group
 
     = render "facebook_sdk"
     = render "google_analytics"
