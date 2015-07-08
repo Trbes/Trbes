@@ -14,7 +14,7 @@ class ApplicationController < ActionController::Base
   before_action :push_gon_config, :push_indexes, :ensure_email_is_exists, :authorize_group_access
 
   expose(:groups)
-  expose(:current_group_memberships) { current_group.memberships.joins(:user).not_pending }
+  expose(:current_group_memberships) { current_group.memberships.joins(:user).not_pending.not_blacklisted }
   expose(:visible_current_group_memberships) do
     view_context.present(current_group_memberships[0..Group::VISIBLE_MEMBERS_COUNT - 1])
   end
