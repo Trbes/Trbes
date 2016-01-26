@@ -1,6 +1,6 @@
 source "https://rubygems.org"
 
-ruby ENV["CUSTOM_RUBY_VERSION"] || "2.2.2"
+ruby ENV["CUSTOM_RUBY_VERSION"] || "2.3.0"
 
 # the most important stuff
 gem "rails", "4.2.5.1"
