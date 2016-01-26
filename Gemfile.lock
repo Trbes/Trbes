@@ -243,7 +243,7 @@ GEM
       addressable (~> 2.3)
     letter_opener (1.2.0)
       launchy (~> 2.2)
-    libv8 (3.16.14.7)
+    libv8 (3.16.14.13)
     loofah (2.0.3)
       nokogiri (>= 1.5.9)
     mail (2.6.3)
@@ -307,8 +307,7 @@ GEM
       slop (~> 3.4)
     pry-rails (0.3.2)
       pry (>= 0.9.10)
-    puma (2.11.2)
-      rack (>= 1.1, < 2.0)
+    puma (2.15.3)
     pundit (0.3.0)
       activesupport (>= 3.0.0)
     quiet_assets (1.0.2)
@@ -687,4 +686,4 @@ DEPENDENCIES
   webmock
 
 BUNDLED WITH
-   1.10.6
+   1.11.2
