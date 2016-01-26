@@ -3,7 +3,7 @@ source "https://rubygems.org"
 ruby ENV["CUSTOM_RUBY_VERSION"] || "2.2.2"
 
 # the most important stuff
-gem "rails", "4.2.2"
+gem "rails", "4.2.5.1"
 gem "pg"
 
 # frontend stack: preprocessors, libraries, minifiers, assets
