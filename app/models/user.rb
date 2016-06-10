@@ -38,6 +38,9 @@ class User < ActiveRecord::Base
     votes.select { |vote| vote.votable_id == entity.id }.any?
   end
 
+  def after_password_reset
+  end
+
   after_create do
     if ENV["TRBES_GROUP_ID"].present?
       trbes_group = Group.find ENV["TRBES_GROUP_ID"]
