@@ -22,6 +22,8 @@ Rails.application.routes.draw do
   concern :voteable do
     put "upvote"
     put "unvote"
+    get "upvote"
+    get "unvote"
   end
 
   constraints CustomDomainConstraint do

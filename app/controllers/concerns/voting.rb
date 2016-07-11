@@ -5,21 +5,29 @@ module Voting
     def upvote
       resource.upvote_by(current_user)
 
-      render json: {
-        new_total_votes: resource.cached_votes_total,
-        voted_up: true,
-        new_vote_path: public_send("#{resource_name}_unvote_path", resource)
-      }
+      if request.put?
+        render json: {
+          new_total_votes: resource.cached_votes_total,
+          voted_up: true,
+          new_vote_path: public_send("#{resource_name}_unvote_path", resource)
+        }
+      else
+        redirect_to :back
+      end
     end
 
     def unvote
       resource.unvote_by(current_user)
 
-      render json: {
-        new_total_votes: resource.cached_votes_total,
-        voted_up: false,
-        new_vote_path: public_send("#{resource_name}_upvote_path", resource)
-      }
+      if request.put?
+        render json: {
+          new_total_votes: resource.cached_votes_total,
+          voted_up: false,
+          new_vote_path: public_send("#{resource_name}_upvote_path", resource)
+        }
+      else
+        redirect_to :back
+      end
     end
 
     def resource
