@@ -5,6 +5,9 @@ html class="no-js" lang="en"
   head
     meta charset="utf-8"
     meta name="viewport" content="width=device-width, initial-scale=1.0"
+    
+    - if current_group && current_group.subdomain == "mtw"
+      script src="//load.sumome.com/" data-sumo-site-id="b8275bd95333c4e49eab7554ff4f06507194bd1957f84f1ffca28e6311c2df23" async="async"
     - if defined?(post) && post && post.attachments.any?
       meta property="og:image" content="#{post.attachments.first.image_url}"
     - else
