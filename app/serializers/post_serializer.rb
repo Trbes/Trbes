@@ -54,7 +54,7 @@ class PostSerializer < ActiveModel::Serializer
   end
 
   def path
-    scope.post_path(object)
+    scope.post_path(id: object.id)
   end
 
   def preview_image_url
